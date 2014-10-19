@@ -1,0 +1,5 @@
+- content_for( :meta ) { csrf_meta_tags }
+- content_for( :stylesheet ) { stylesheet_link_tag 'application' }
+- content_for( :javascript ) { javascript_include_tag 'application' }
+
+= render :template => 'layouts/application'
