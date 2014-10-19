@@ -1,0 +1,6 @@
+== README
+
+=== Inklings
+
+This is a website that I am constructing as a senior project over the 
+course of the Fall 2014 and Winter 2015 semesters.
