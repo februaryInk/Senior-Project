@@ -1,2 +1,8 @@
-%h1 CorePages#about
-%p Find me in app/views/core_pages/about.html.haml
+- content_for( :title ) { about_title }
+
+- content_for :body do
+
+    %h1
+        CorePages#about
+    %p
+        Find me in app/views/core_pages/about.html.haml
