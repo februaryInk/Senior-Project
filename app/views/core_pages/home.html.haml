@@ -2,7 +2,34 @@
 
 - content_for :body do
 
-    %h1
-        CorePages#home
-    %p
-        Find me in app/views/core_pages/home.html.haml
+    %div.table
+        %div.wrapper
+            %div#intro
+                %h2
+                    See your story come
+                    %span.emphasis
+                        alive.
+                    Make it
+                    %span.emphasis
+                        grow. 
+                    Watch it
+                    %span.emphasis
+                        evolve.
+                %br
+                %div#intro-text
+                    %p
+                        Inklings is a new kind of writer's hangout where being with your work in progress 
+                        is just as emphasized as being with other writers. Your story needs your attention, 
+                        and Inklings is here to show you that. By embodying it as an Inkling, a creature that 
+                        feeds on words and changes as your story does, our website lets you view your work as
+                        never before.
+                    %br
+                    %p
+                        So come on in. Meet other writers. Nurture your story.
+                    %br
+                    %p
+                        = link_to 'Learn More', about_path
+                        or sign up at the right.
+            %div#sign-up
+                %h3
+                    Sign Up

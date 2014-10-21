@@ -1,3 +1,32 @@
-// Place all the styles related to the CorePages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#intro {
+    display: inline-block;
+    max-width: 550px;
+    padding: 25px;
+    text-align: left;
+    vertical-align: top;
+}
+
+#sign-up {
+    display: inline-block;
+    padding: 25px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.table {
+    display: table;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.wrapper {
+    display: table-cell;
+    margin: auto;
+    vertical-align: middle;
+}
+
+body {
+    background-color: darken( $color1, 10% );
+}
