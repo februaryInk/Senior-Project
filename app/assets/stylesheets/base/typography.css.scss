@@ -1,22 +1,37 @@
+#intro-text {
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+
+#logo {
+    font-family: 'Kalam', cursive;
+    font-size: 2.5em;
+}
+
 .emphasis {
     font-family: 'Kalam', cursive;
     font-weight: bolder;
     text-transform: uppercase;
 }
 
-#intro-text {
-    font-size: 1.2em;
-    line-height: 1.2em;
+a {
+    &:hover {
+        color: darken( $color1, 85% );
+        text-shadow: 0 0 0.5em $color3;
+    }
+    color: darken( $color1, 95% );
+    text-decoration: none;
 }
 
 body {
+    color: darken( $color1, 95% );
     font-family: 'candara', 'helvetica', sans;
-    font-size: 1.125em;
+    font-size: 1em;
     line-height: 1.25em;
 }
 
 h2 {
-    font-size: 2.2em;
+    font-size: 2.0em;
     line-height: 1.25em;
 }
 
@@ -24,6 +39,12 @@ h3 {
     font-family: 'Kalam';
     font-size: 1.4em;
     line-height: 1.55em;
+}
+
+header {
+    a {
+        text-transform: uppercase;
+    }
 }
 
 html {

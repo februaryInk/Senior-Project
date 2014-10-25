@@ -9,5 +9,6 @@
         = yield( :javascript ) || javascript_include_tag( 'application', 'data-turbolinks-track' => true )
     %body
         = yield :header
-        = yield :body
+        %main
+            = yield :body
         = yield :footer
