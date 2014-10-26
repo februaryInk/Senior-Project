@@ -1,15 +1,35 @@
 
 %header
-    %div.content
-        %div#logo
-            Inklings
-        %nav
-            %ul
-                %li
-                    = link_to 'Home', root_path
-                %li
-                    = link_to 'About', about_path
-                %li
-                    = link_to 'Forums', '#'
-                %li
-                    = link_to 'Sign In', '#'
+    %div#header-main
+        %div.content
+            %div.float-wrapper
+                %div#logo
+                    Inklings
+                %nav
+                    %ul
+                        %li
+                            = link_to 'Home', root_path
+                        %li
+                            = link_to 'About', about_path
+                        %li
+                            = link_to 'Forums', '#'
+                        %li
+                            = link_to 'Sign In', '#'
+            %div.clear
+    - if params[ :controller ] === 'help_pages'
+        %div#header-help
+            %div.content
+                %div.float-wrapper
+                    %nav
+                        %ul
+                            %li
+                                = link_to 'Help Center', help_path
+                            %li
+                                = link_to 'Getting Started', getting_started_path
+                            %li
+                                = link_to 'FAQ', faq_path
+                            %li
+                                = link_to 'Contact Us', contact_path
+                %div.clear
+                        
+                                    
