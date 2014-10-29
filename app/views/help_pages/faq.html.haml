@@ -1,2 +1,73 @@
-%h1 HelpPages#faq
-%p Find me in app/views/help_pages/faq.html.haml
+- content_for( :title ) { faq_title }
+
+= content_for( :body ) do
+
+    %div.content
+        %h2
+            Frequently Asked Questions
+        %br
+        %h3
+            How do I access my account settings?
+        %br
+        %p
+            Your account settings are available through your account overview page. In the header, click Account --> Overview, then click the Manage My Account button on the Profile tab.
+        %br
+        %h3 
+            How do I change my manuscript settings?
+        %br
+        %p
+            Your manuscript settings are available through your account overview page. In the header, click Account --> Overview, then navigate to the Manuscripts tab. Find the manuscript whose settings you want to edit and click the "Change Settings" button.
+        %br
+        %h3
+            Can I delete a manuscript?
+        %br
+        %p
+            You can, but be careful when you make this decision, because we don't keep any back-ups for you if you change your mind! In your manuscript's settings, you will find a Delete button. If you use it, your manuscript (and its Inkling) will be gone for good.
+        %br
+        %h3
+            What do I do when I finish my manuscript?
+        %br
+        %p
+            In your manuscript's editing screen, there is a button on the right-hand side of the screen that reads Finished!. Click this button to complete your manuscript. The complete status makes it so that even if your manuscript is under its set word count goal, its Inkling will be considered fully grown and will no longer require more words to survive. If you decide later that you weren't done after all, you can remove the finished status through your manuscript's settings. 
+        %br
+        %h3
+            How do I view my social activity?
+        %br
+        %p
+            Your social activity is viewable through your account overview page. In the header, click Account --> Overview, then navigate to the Social tab.
+        %br
+        %h3
+            My Inkling is sick! What did I do? How do I make it better?
+        %br
+        %p
+            Your Inklings can get sick if you are consistently not meeting your word count goals by a substantial amount. To get it healthy again, start meeting your current word count goal or edit your manuscript settings to make your goal something you can manage. You can even set your goal to zero if you don't want the pressure.
+        %br
+        %h3
+            I neglected my manuscript, and my Inkling died. What can I do now?
+        %br
+        %p
+            When you made your manuscript, you would have set a Revival Fee - as in, a number of words you must write in order to bring the Inkling back to life if you neglect it so much that it dies. Enter Revival Mode by going to your Account Overview's Manuscripts tab and click the Revive button. The Inkling will come alive again once you meet the Revival Fee. If you don't think you are capable of meeting the fee, you can change it through your manuscript's settings.
+        %br
+        %h3
+            I don't have the time/interest to work on my manuscript right now, but I don't want to let my Inkling to die. How do I put it on hiatus?
+        %br
+        %p
+            In your Account Overview's Manuscript tab, you will find the option to have your Inkling sleep by clicking the Sleep button. This will put an indefinite pause on the Inkling, which only you can end by clicking the Awake button.
+        %br
+        %h3
+            How do I make a friend on the Inklings website?
+        %br
+        %p
+            If you want to send a friendship request to another user, navigate to their profile page and click the Friend button. If they accept, they will be added to your friends list and you will be added to theirs.
+        %br
+        %h3
+            How do I let my friend read my manuscript?
+        %br
+        %p
+            Inklings allows what are called pre-reading rights, which are managed through your Account Overview's Social tab. Scroll down to the Pre-Reading section and click the New Pre-Reader request link.
+        %br
+        %h3
+            My question isn't answered here. What now?
+        %br
+        %p
+            If your question has not been answered, ask it on the forums or contact us.

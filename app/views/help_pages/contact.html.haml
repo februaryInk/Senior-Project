@@ -1,2 +1,10 @@
-%h1 HelpPages#contact_us
-%p Find me in app/views/help_pages/contact_us.html.haml
+- content_for( :title ) { contact_title }
+
+- content_for( :body ) do
+
+    %div.content
+        %h2
+            Contact Us
+        %br
+        %p
+            We would be happy to hear your comments and suggestions. On the other hand, if you have a question related to our site, feel free to direct it to us. You can get hold of us at farbrink@gmail.com.

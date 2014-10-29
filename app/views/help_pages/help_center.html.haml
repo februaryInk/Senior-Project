@@ -1,2 +1,37 @@
-%h1 HelpPages#help_center
-%p Find me in app/views/help_pages/help_center.html.haml
+- content_for( :title ) { help_title }
+
+= content_for( :body ) do
+
+    %div.content-wide
+        %h2.text-align-center
+            Help Center
+        %br
+        %div.wrapper-float
+            %table.help-tiles
+                %tr
+                    %td
+                        %h3.text-align-center
+                            = link_to 'Getting Started', getting_started_path
+                        %br
+                        %p
+                            If you are new to Inklings, try starting here. Learn how to navigate
+                            the site, view your account pages, and begin a new manuscript.
+                    %td
+                        %h3.text-align-center
+                            = link_to 'Frequently Asked Questions', faq_path
+                        %br
+                        %p
+                            This page answers the questions we get most often from our members.
+                    %td
+                        %h3.text-align-center
+                            = link_to 'Forum Help Center', '#'
+                        %br
+                        %p
+                            Ask your question on the forum to get answers from other Inklings
+                            members.
+        %div.clear
+        %br
+        %p.text-align-center
+            If you still need help and can't find the answer on our help pages, then
+            = link_to 'Contact Us', contact_path
+            \.
