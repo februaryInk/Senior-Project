@@ -1,2 +1,7 @@
-%h1 HelpPages#getting_started
-%p Find me in app/views/help_pages/getting_started.html.haml
+- content_for( :title ) { getting_started_title }
+
+- content_for( :body ) do
+
+    %div.content
+        %h2
+            Getting Started
