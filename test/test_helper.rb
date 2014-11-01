@@ -10,4 +10,5 @@ class ActiveSupport::TestCase
     include ApplicationHelper
     include CorePagesHelper
     include HelpPagesHelper
+    include UsersHelper
 end
