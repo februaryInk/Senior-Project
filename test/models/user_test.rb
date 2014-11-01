@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
     
     def setup
-        @user = User.new( :email => 'testuser@example.com', :username => 'Test User' )
+        @user = User.new( :email => 'testuser@example.com', :password => 'strongpass', :password_confirmation => 'strongpass', :username => 'Test User' )
     end
     
     test 'should be valid' do
@@ -81,5 +81,23 @@ class UserTest < ActiveSupport::TestCase
             @user.email = address
             assert_not @user.valid?, "#{ address.inspect } should be invalid"
         end
+    end
+    
+    test 'password should be present' do
+        @user.password = ' ' * 10
+        @user.password_confirmation = ' ' * 10
+        assert_not @user.valid?
+    end
+    
+    test 'password should have at least 8 characters' do
+        @user.password = 'a' * 7
+        @user.password_confirmation = 'a' * 7
+        assert_not @user.valid?
+    end
+    
+    test 'password should have at most 32 characters' do
+        @user.password = 'a' * 33
+        @user.password_confirmation = 'a' * 33
+        assert_not @user.valid?
     end
 end
