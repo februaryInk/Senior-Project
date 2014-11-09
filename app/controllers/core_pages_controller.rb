@@ -1,7 +1,8 @@
 class CorePagesController < ApplicationController
-  def about
-  end
+    def about
+    end
 
-  def home
-  end
+    def home
+        @user = User.new
+    end
 end
