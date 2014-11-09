@@ -1,3 +1,23 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import '../base/mixins.css.scss';
+@import '../base/variables.css.scss';
+
+#sidebar-member {
+    * {
+        margin: auto;
+    }
+    float: left;
+    text-align: center;
+    width: 30%;
+}
+
+.active {
+    background-color: darken( $color1, 12.5% );
+}
+
+body {
+    background-color: darken( $color1, 12.5% );
+}
+
+main {
+    margin-top: 4em;
+}
