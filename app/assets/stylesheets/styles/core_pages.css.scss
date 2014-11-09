@@ -3,10 +3,10 @@
 
 #intro {
     display: inline-block;
-    max-width: 550px;
     padding: 25px;
     text-align: left;
     vertical-align: top;
+    width: 60%;
 }
 
 #sign-up {
@@ -24,16 +24,12 @@
     width: 100%;
 }
 
-.wrapper {
-    display: table-cell;
-    margin: auto;
-    vertical-align: middle;
-}
 
 body {
     background-color: darken( $color1, 10% );
 }
 
 main {
-    padding-top: 4em;
+    margin-top: 4em;
+    padding-top: 2em;
 }
