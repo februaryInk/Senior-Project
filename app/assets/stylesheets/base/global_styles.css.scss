@@ -4,6 +4,33 @@
     box-sizing: border-box;
 }
 
+#header-tabs {
+        background-color: darken( $color1, 10% );
+        line-height: 3em;
+        ul {
+            list-style: none;
+            li {
+                a {
+                    &:hover {
+                        border-bottom: 0;
+                    }
+                    border-color: darken( $color1, 50% );
+                    border-style: solid;
+                    border-width: 0 0.1em 0.1em 0.1em;
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+                }
+                display: inline-block;
+                float: left;
+                height: 100%;
+                text-align: center;
+                width: 25%;
+            }
+            width: 100%;
+        }
+    }
+
 #logo {
     float: left;
 }
@@ -51,32 +78,6 @@ footer {
 }
 
 header {
-    #header-help {
-        background-color: darken( $color1, 10% );
-        line-height: 3em;
-        ul {
-            list-style: none;
-            li {
-                a {
-                    &:hover {
-                        border-bottom: 0;
-                    }
-                    border-color: darken( $color1, 50% );
-                    border-style: solid;
-                    border-width: 0 0.1em 0.1em 0.1em;
-                    display: block;
-                    height: 100%;
-                    width: 100%;
-                }
-                display: inline-block;
-                float: left;
-                height: 100%;
-                text-align: center;
-                width: 25%;
-            }
-            width: 100%;
-        }
-    }
     #header-main {
         background-color: darken( $color1, 5% );
         line-height: 4em;

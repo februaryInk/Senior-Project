@@ -17,7 +17,7 @@
                             = link_to 'Sign In', '#'
             %div.clear
     - if params[ :controller ] === 'help_pages'
-        %div#header-help
+        %div#header-tabs
             %div.content
                 %div.float-wrapper
                     %nav
@@ -31,5 +31,18 @@
                             %li
                                 = link_to 'Contact Us', contact_path
                 %div.clear
-                        
-                                    
+    - if @account_tab === true
+        %div#header-tabs
+            %div.content
+                %div.float-wrapper
+                    %nav
+                        %ul
+                            %li
+                                = link_to 'Profile', '#'
+                            %li
+                                = link_to 'Manuscripts', '#'
+                            %li
+                                = link_to 'Social', '#'
+                            %li
+                                = link_to 'Account Settings', '#'
+                %div.clear

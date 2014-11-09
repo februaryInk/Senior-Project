@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     end
 
     def show
+        @account_tab = true
+        @user = User.find( params[ :id ] )
     end
     
     private

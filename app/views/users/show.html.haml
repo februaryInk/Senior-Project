@@ -1,1 +1,12 @@
 - content_for( :title ) { users_show_title }
+
+- content_for( :body ) do
+
+    %div.content
+        %div.wrapper-float
+            %aside#sidebar-member
+                = gravatar_for @user
+                %br
+                %h3
+                    = @user.username
+        %div.clear
