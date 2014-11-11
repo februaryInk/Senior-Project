@@ -11,4 +11,9 @@ class User < ActiveRecord::Base
     
     before_validation(  ) { self.simple_name = self.username.downcase.gsub( /[ \-\._\s ]/, "" ) }
     before_save(  ) { self.email = email.downcase(  ) }
+    
+    def User.digest( string )
+        cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+        BCrypt::Password.create( string, :cost => cost )
+    end
 end
