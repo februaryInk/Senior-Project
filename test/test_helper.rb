@@ -10,5 +10,6 @@ class ActiveSupport::TestCase
     include ApplicationHelper
     include CorePagesHelper
     include HelpPagesHelper
+    include SessionsHelper
     include UsersHelper
 end
