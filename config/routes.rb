@@ -10,4 +10,8 @@ Rails.application.routes.draw do
     get '/help/contact',         :to => 'help_pages#contact',         :as => 'contact'
     get '/help/faq',             :to => 'help_pages#faq',             :as => 'faq'
     get '/help/getting_started', :to => 'help_pages#getting_started', :as => 'getting_started'
+    
+    get    '/signin',  :to => 'sessions#new'
+    post   '/signin',  :to => 'sessions#create'
+    delete '/signout', :to => 'sessions#destroy', :as => 'signout'
 end
