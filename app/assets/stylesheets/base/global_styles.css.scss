@@ -4,6 +4,58 @@
     box-sizing: border-box;
 }
 
+#header-main {
+    .dropdown {
+        ul {
+            &:after {
+                border-left: 0.8em solid transparent;
+                border-right: 0.8em solid transparent;
+                border-bottom: 1em solid darken( $color1, 35% );
+                content: '';
+                display: block;
+                left: 1.15em;
+                height: 0;
+                position: absolute;
+                top: -1em;
+                width: 0; 
+            }
+            background-color: darken( $color1, 25% );
+            border-color: darken( $color1, 35% );
+            border-style: solid;
+            border-width: 0.1em;
+            li {
+                a {
+                    &:hover {
+                        background-color: darken( $color1, 5% );
+                    }
+                    display: block;
+                    height: 100%;
+                    padding: 0 2em;
+                }
+                display: block;
+                float: none;
+                line-height: 2.5em;
+                width: 100%;
+            }
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            visibility: hidden;
+        }
+    }
+    background-color: darken( $color1, 5% );
+    line-height: 4em;
+    nav {
+        float: left;
+        ul {
+            list-style: none;
+            li {
+                display: inline-block;
+            }
+        }
+    }
+}
+
 #header-tabs {
         background-color: darken( $color1, 10% );
         line-height: 3em;
@@ -11,15 +63,17 @@
             list-style: none;
             li {
                 a {
-                    &:hover {
-                        border-bottom: 0;
-                    }
-                    border-color: darken( $color1, 50% );
+                    border-color: darken( $color1, 25% );
                     border-style: solid;
-                    border-width: 0 0.1em 0.1em 0.1em;
+                    border-width: 0.1em;
                     display: block;
                     height: 100%;
+                    padding: 0;
                     width: 100%;
+                    &.active {
+                        border-bottom-color: $color1;
+                        background-color: $color1;
+                    }
                 }
                 display: inline-block;
                 float: left;
@@ -49,10 +103,27 @@
     width: 60%;
 }
 
+.dropdown-label {
+    display: inline;
+    &:after {
+        content: '';
+        display: inline-block;
+        height: 0;
+        width: 0; 
+        border-left: 0.5em solid transparent;
+        border-right: 0.5em solid transparent;
+        border-top: 0.5em solid darken( $color1, 85% );
+    }
+}
+
 .in-text-list {
     list-style: square;
     list-style-position: inside;
     padding-left: 1em;
+}
+
+.indented {
+    padding-left: 2em;
 }
 
 .padding-top-4em {
@@ -78,20 +149,6 @@ footer {
 }
 
 header {
-    #header-main {
-        background-color: darken( $color1, 5% );
-        line-height: 4em;
-        nav {
-            float: left;
-            ul {
-                list-style: none;
-                li {
-                    display: inline-block;
-                    margin-left: 2em;
-                }
-            }
-        }
-    }
     position: fixed;
     top: 0;
     width: 100%;
