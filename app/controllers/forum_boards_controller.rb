@@ -1,4 +1,6 @@
 class ForumBoardsController < ApplicationController
-  def index
-  end
+    layout 'default.html'
+
+    def index
+    end
 end

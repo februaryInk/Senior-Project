@@ -1,4 +1,6 @@
 class CorePagesController < ApplicationController
+    layout 'default.html'
+    
     def about
     end
 

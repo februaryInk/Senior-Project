@@ -1,4 +1,5 @@
 class HelpPagesController < ApplicationController
+    layout 'default.html'
 
     def contact
     end
