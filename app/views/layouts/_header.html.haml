@@ -7,14 +7,25 @@
                     Inklings
                 %nav
                     %ul
-                        %li
+                        %li.indented
                             = link_to 'Home', root_path
-                        %li
+                        %li.indented
                             = link_to 'About', about_path
-                        %li
+                        %li.indented
                             = link_to 'Forums', '#'
-                        %li
-                            = link_to 'Sign In', '#'
+                        - if signed_in?
+                            %li.dropdown.indented
+                                %div.dropdown-label
+                                    ACCOUNT
+                                %div.arrow
+                                %ul
+                                    %li
+                                        = link_to 'Overview', user_path( current_user )
+                                    %li
+                                        = link_to 'Sign Out', signout_path, :method => 'delete'
+                        - else
+                            %li.indented
+                                = link_to 'Sign In', signin_path
             %div.clear
     - if params[ :controller ] === 'help_pages'
         %div#header-tabs
@@ -38,7 +49,7 @@
                     %nav
                         %ul
                             %li
-                                = link_to 'Profile', '#'
+                                = link_to 'Profile', user_path( current_user )
                             %li
                                 = link_to 'Manuscripts', '#'
                             %li

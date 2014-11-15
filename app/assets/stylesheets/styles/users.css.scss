@@ -10,14 +10,10 @@
     width: 30%;
 }
 
-.active {
-    background-color: darken( $color1, 12.5% );
-}
-
 body {
-    background-color: darken( $color1, 12.5% );
+    background-color: $color1;
 }
 
 main {
-    margin-top: 4em;
+    margin-top: 7em;
 }

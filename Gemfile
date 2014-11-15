@@ -7,7 +7,6 @@ gem( 'haml-rails'             )                                                 
 gem( 'jbuilder',      '2.0.0' )                                                             # Builds JSON APIs with ease.
 gem( 'jquery-rails'           )                                                             # Instates jQuery as the JavaScript library.
 gem( 'sass-rails',    '4.0.3' )                                                             # Allows the use of SCSS for style sheets.
-gem( 'turbolinks'             )                                                             # Makes following links in the web application faster.
 gem( 'uglifier',      '1.3.0' )                                                             # Compresses JavaScript assets.
 
 gem( 'tzinfo',                   { :platforms => [ :x64_mingw, :mingw, :mswin ] } )         # Provides Windows with the necessary zoneinfo files.
