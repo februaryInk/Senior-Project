@@ -1,2 +1,17 @@
-%h1 ForumThreads#new
-%p Find me in app/views/forum_threads/new.html.haml
+- content_for( :title ) { 'New Thread' }
+
+- content_for( :body ) do
+
+    %div.content
+        = form_for( @thread ) do | f |
+            // Replace this later with a drop-down menu. It will fix the problem of indirect entry.
+            = f.hidden_field :forum_board_id, :value => params[ :board_id ]
+            = f.label :name
+            %br
+            = f.text_field :name
+            %br
+            = f.label :content
+            %br
+            = f.text_field :content
+            %br
+            = f.submit 'Create'

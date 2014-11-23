@@ -1,2 +1,34 @@
-%h1 ForumBoards#index
-%p Find me in app/views/forum_boards/index.html.haml
+- content_for( :title ) { 'Inklings Forums' }
+
+- content_for( :body ) do
+
+    %div.content
+        %table
+            %tr
+                %th
+                    Community
+                %th
+                    Latest
+            - for forum in @forum_boards
+                - if forum.group == 'community'
+                    %tr
+                        %td
+                            = link_to h( forum.name ), forum_path( forum.id )
+                        %td
+                            - if forum.forum_threads.any?
+                                = forum.forum_threads.order( :created_at ).last.name
+        %br                                
+        %table
+            %tr
+                %th
+                    Writing
+                %th
+                    Latest
+            - for forum in @forum_boards
+                - if forum.group == 'writing'
+                    %tr
+                        %td
+                            = link_to h( forum.name ), forum_path( forum.id )
+                        %td
+                            - if forum.forum_threads.any?
+                                = forum.forum_threads.order( :created_at ).last.name
