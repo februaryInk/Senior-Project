@@ -1,12 +1,14 @@
 class CreateForumThreads < ActiveRecord::Migration
-  def change
-    create_table :forum_threads do |t|
-      t.integer :board_id
-      t.integer :creator_id
-      t.text :first_post
-      t.string :name
+    def change
+        create_table :forum_threads do | t |
+            t.references :forum_board, :index => true
+            t.references :user, :index => true
+            t.string :name
+            t.text :content
 
-      t.timestamps
+            t.timestamps
+        end
+        
+        add_index :forum_threads, :created_at
     end
-  end
 end

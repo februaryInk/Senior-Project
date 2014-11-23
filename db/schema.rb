@@ -11,7 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029133755) do
+ActiveRecord::Schema.define(version: 20141115191159) do
+
+  create_table "forum_boards", force: true do |t|
+    t.string   "group"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forum_posts", force: true do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "forum_thread_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "forum_posts", ["created_at"], name: "index_forum_posts_on_created_at"
+  add_index "forum_posts", ["forum_thread_id"], name: "index_forum_posts_on_forum_thread_id"
+  add_index "forum_posts", ["user_id"], name: "index_forum_posts_on_user_id"
+
+  create_table "forum_threads", force: true do |t|
+    t.integer  "forum_board_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "forum_threads", ["created_at"], name: "index_forum_threads_on_created_at"
+  add_index "forum_threads", ["forum_board_id"], name: "index_forum_threads_on_forum_board_id"
+  add_index "forum_threads", ["user_id"], name: "index_forum_threads_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email"
