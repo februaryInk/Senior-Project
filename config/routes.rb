@@ -2,12 +2,12 @@ Rails.application.routes.draw do
 
     root :to => 'core_pages#home'
     
-    resources :forums, :controller => 'forum_boards', :only => [ :index, :show ]
-    resources :forum_posts, :only => [ :create, :destroy ]
+    resources :forums, :only => [ :index, :show ]
+    resources :comments, :only => [ :create, :destroy ]
     resources :users
     
-    scope( :path => '/forum' ) do
-        resources :forum_threads
+    scope( :path => '/forums' ) do
+        resources :conversations
     end
 
     get '/about', :to => 'core_pages#about', :as => 'about'

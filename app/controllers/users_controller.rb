@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    layout 'default.html'
 
     def create
         @user = User.new( user_params )

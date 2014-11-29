@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ForumThreadsControllerTest < ActionController::TestCase
+class ConversationsControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit
     assert_response :success

@@ -3,20 +3,20 @@ writing_forums = [ 'Advice', 'Characters', 'Grammar and Form', 'Playing with Plo
 
 User.create( :email => 'testuser@example.com', :password => 'goodpassword', :password_confirmation => 'goodpassword', :username => 'Test User' )
 
-for topic in community_forums do
-    ForumBoard.create( :group => :community, :name => topic )
+for forum in community_forums do
+    Forum.create( :group => :community, :name => forum )
 end
 
-for topic in writing_forums do
-    ForumBoard.create( :group => :writing, :name => topic )
+for forum in writing_forums do
+    Forum.create( :group => :writing, :name => forum )
 end
 
-User.first.forum_threads.create( :forum_board_id => 1, :name => 'Hi, I\'m a test user!' )
-User.first.forum_threads.create( :forum_board_id => 1, :name => 'Any other users here?' )
-User.first.forum_threads.create( :forum_board_id => 6, :name => 'Has anyone read my favorite book?' )
+User.first.conversations.create( :content => 'My hobbies include reading and gardening.', :forum_id => 1, :name => 'Hi, I\'m a test user!' )
+User.first.conversations.create( :content => 'It\'s been pretty quiet around here.', :forum_id => 1, :name => 'Any other users here?' )
+User.first.conversations.create( :content => 'It is my favorite.', :forum_id => 6, :name => 'Has anyone read my favorite book?' )
 
-User.first.forum_posts.create( :content => 'I just wanted to say hello to y\'all!', :forum_thread_id => 1 )
-User.first.forum_posts.create( :content => 'If there are, I say hi.', :forum_thread_id => 1 )
-User.first.forum_posts.create( :content => 'I eagerly await your responses!', :forum_thread_id => 1 )
-User.first.forum_posts.create( :content => 'I think it is the best.', :forum_thread_id => 3 )
-User.first.forum_posts.create( :content => 'Hello?', :forum_thread_id => 1 )
+User.first.comments.create( :content => 'I just wanted to say hello to y\'all!', :conversation_id => 1 )
+User.first.comments.create( :content => 'If there are, I say hi.', :conversation_id => 2 )
+User.first.comments.create( :content => 'I eagerly await your responses!', :conversation_id => 1 )
+User.first.comments.create( :content => 'I think it is the best.', :conversation_id => 3 )
+User.first.comments.create( :content => 'Hello?', :conversation_id => 2 )

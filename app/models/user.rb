@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
     has_secure_password # creates password and password_confirmation attributes
     attr_accessor :remember_token
     
-    has_many :forum_posts
-    has_many :forum_threads
+    has_many :conversations
+    has_many :comments
     
     validates :email, { :format => { :with => EMAIL_REGEX }, :presence => true, :uniqueness => { :case_sensitive => false } }
     validates :username, { :format => { :with => USERNAME_REGEX }, :length => { :maximum => 32 }, :presence => true }
