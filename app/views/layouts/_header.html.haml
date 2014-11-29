@@ -49,11 +49,11 @@
                     %nav
                         %ul
                             %li
-                                = link_to 'Profile', user_path( current_user )
+                                = link_to 'Profile', user_path( current_user.id )
                             %li
                                 = link_to 'Manuscripts', '#'
                             %li
                                 = link_to 'Social', '#'
                             %li
-                                = link_to 'Account Settings', '#'
+                                = link_to 'Account Settings', edit_user_path( current_user.id )
                 %div.clear

@@ -8,9 +8,11 @@ class User < ActiveRecord::Base
     has_many :conversations
     has_many :comments
     
+    # allow_blank => true on the password validations only works on PATCH requests.
+    # has_secure_password still prevents blank passwords on POST requests.
     validates :email, { :format => { :with => EMAIL_REGEX }, :presence => true, :uniqueness => { :case_sensitive => false } }
     validates :username, { :format => { :with => USERNAME_REGEX }, :length => { :maximum => 32 }, :presence => true }
-    validates :password, { :length => { :maximum => 32, :minimum => 10 } }
+    validates :password, { :length => { :maximum => 32, :minimum => 10 }, :allow_blank => true }
     validates :simple_name, { :uniqueness => true }
     
     before_validation(  ) { self.simple_name = self.username.downcase.gsub( /[ \-\._\s ]/, "" ) }
