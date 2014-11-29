@@ -1,0 +1,21 @@
+- content_for( :title ) { 'Forum' }
+
+- content_for( :body ) do
+
+    %div.content
+        %div
+            = link_to 'New Conversation', new_conversation_path( :forum_id => params[ :id ] )
+        %table
+            %tr
+                %th
+                    Conversation
+                %th
+                    Participants
+                %th
+                    Latest Post
+                - for conversation in @conversations
+                    %tr
+                        %td
+                            = link_to h( conversation.name ), conversation_path( conversation.id )
+                        %td
+                            = conversation.comments.distinct.count( :user_id )

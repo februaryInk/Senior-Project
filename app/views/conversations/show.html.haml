@@ -1,0 +1,19 @@
+- content_for( :title ) { 'Inklings Thread' }
+
+- content_for( :body ) do
+    
+    %div.content
+        %div#conversation-starter
+            %h3
+                = @conversation.name
+            %p
+                = @conversation.content
+        %ol
+            - for comment in @comments
+                = comment.content
+                %br
+        = form_for( @comment ) do | f |
+            = f.hidden_field :conversation_id, :value => params[ :id ]
+            = f.label :comment
+            = f.text_field :content
+            = f.submit 'Submit'
