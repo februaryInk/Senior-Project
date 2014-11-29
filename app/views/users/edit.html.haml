@@ -1,2 +1,33 @@
-%h1 Users#edit
-%p Find me in app/views/users/edit.html.haml
+- content_for( :title ) { 'Edit Profile' }
+
+- content_for( :body ) do
+
+    %div.content
+        %h1
+            = "#{ @user.username }'s Account Settings"
+        %div
+            // Rails determines whether PATCH or POST is appropriate for this form depending on the
+            // existence of @user (User.@user.new_record?).
+            = form_for( @user ) do | f |
+                = f.label :username
+                %br
+                = f.text_field :username
+                %br
+                = f.label :email
+                %br
+                = f.text_field :email
+                %br
+                = f.label :password
+                %br
+                = f.password_field :password
+                %br
+                = f.label :password_confirmation
+                %br
+                = f.password_field :password_confirmation
+                %br
+                = f.submit 'Save Changes'
+                %br
+                %br
+            %div
+                = gravatar_for @user
+                = link_to 'Change', 'http://gravatar.com/emails', :target => '_blank'

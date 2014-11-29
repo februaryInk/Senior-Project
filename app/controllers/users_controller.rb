@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     end
     
     def edit
+        @user = User.find( params[ :id ] )
     end
 
     def index
@@ -24,6 +25,15 @@ class UsersController < ApplicationController
     def show
         @account_tab = true
         @user = User.find( params[ :id ] )
+    end
+    
+    def update
+        @user = User.find( params[ :id ] )
+        if @user.update_attributes( user_params )
+            redirect_to user_url( @user )
+        else
+            render 'edit'
+        end
     end
     
     private
