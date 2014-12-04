@@ -3,6 +3,13 @@ writing_forums = [ 'Advice', 'Characters', 'Grammar and Form', 'Playing with Plo
 
 User.create( :email => 'testuser@example.com', :password => 'goodpassword', :password_confirmation => 'goodpassword', :username => 'Test User' )
 
+99.times do | n |
+    username = Faker::Name.name
+    email = "testuser-#{ n + 1 }@example.com"
+    password = 'goodpassword'
+    User.create!( :username => username, :email => email, :password => password, :password_confirmation => password )
+end
+    
 for forum in community_forums do
     Forum.create( :group => :community, :name => forum )
 end
