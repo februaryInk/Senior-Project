@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
     layout 'default.html'
     
-    before_action :correct_user, :only => [ :edit, update ]
-    before_action :signed_in_user, :only => [ :edit, update ]
-
+    before_action :correct_user, :only => [ :edit, :update ]
+    before_action :signed_in_user, :only => [ :edit, :update ]
+    
     def create
         @user = User.new( user_params )
         if @user.save
@@ -19,6 +19,8 @@ class UsersController < ApplicationController
     end
 
     def index
+        @letter = params[ :letter ] || 'a'
+        @users = User.where( "username LIKE :first", :first => "#{ @letter }%" ).order( 'username ASC' ).paginate( :page => params[ :page ] )
     end
 
     def new

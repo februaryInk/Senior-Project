@@ -1,6 +1,11 @@
 @import '../base/mixins.css.scss';
 @import '../base/variables.css.scss';
 
+#direc {
+    margin: 1.5em 0;
+    width: 100%;
+}
+
 #sidebar-member {
     * {
         margin: auto;
@@ -8,6 +13,29 @@
     float: left;
     text-align: center;
     width: 30%;
+}
+
+.table-user {
+    & td:last-child {
+        width: 100%;
+    }
+    td {
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+}
+
+.direc-link {
+}
+
+.users {
+    li {
+        border-bottom: 1px solid darken( $color1, 15% );
+        padding: 0.75em 0;
+        overflow: auto;
+    }
+    list-style: none;
+    margin: 0;
 }
 
 body {

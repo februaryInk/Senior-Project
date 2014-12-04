@@ -1,1 +1,33 @@
 - content_for( :title ) { users_index_title }
+
+- content_for( :body ) do
+    
+    %div.content
+        %h2
+            = "#{ site_name } User Directory"
+        %table#direc
+            %tr
+                - for i in [ *( 'A'..'O' ) ] do
+                    %td
+                        = link_to i, users_path( :letter => i ), :class => 'direc-link'
+            %tr
+                - for i in [ *( 'P'..'Z' ), '.', '-', '_' ] do
+                    %td
+                        = link_to i, users_path( :letter => i ), :class => 'direc-link'
+                
+        %div
+        
+            = will_paginate
+        
+            %ul.users
+                - for user in @users do
+                    %li
+                        %table.table-user
+                            %tr
+                                %td
+                                    = gravatar_for user
+                                %td
+                                    = link_to user.username, user_path( user.id )
+                                %td
+            
+            = will_paginate
