@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
     layout 'default.html'
     
+    before_action :signed_in_user, :only => [ :destroy, :edit, :index, :update ]
+    before_action :admin_user, :only => [ :destroy, :index ]
     before_action :correct_user, :only => [ :edit, :update ]
-    before_action :signed_in_user, :only => [ :edit, :update ]
     
     def create
         @user = User.new( user_params )
@@ -12,6 +13,11 @@ class UsersController < ApplicationController
         else
             render new
         end
+    end
+    
+    def destroy
+        User.find( params[ :id ] ).destroy
+        redirect_to users_url
     end
     
     def edit
@@ -42,6 +48,10 @@ class UsersController < ApplicationController
     end
     
     private
+    
+        def admin_user
+            redirect_to( user_url( current_user ) ) unless current_user.admin?
+        end
     
         def correct_user
             @user = User.find( params[ :id ] )

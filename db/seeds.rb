@@ -1,13 +1,15 @@
 community_forums = [ 'Introduce Yourself', 'Questions and Answers', 'Wouldn\'t it be Nice if...', 'General Talk', 'Deep Thoughts', 'Good Books' ]
 writing_forums = [ 'Advice', 'Characters', 'Grammar and Form', 'Playing with Plot', 'Revising and Polishing', 'Short Stories' ]
 
-User.create( :email => 'testuser@example.com', :password => 'goodpassword', :password_confirmation => 'goodpassword', :username => 'Test User' )
+User.create( :admin => true, :email => 'testuser@example.com', :password => 'goodpassword', :password_confirmation => 'goodpassword', :username => 'Test User' )
 
 99.times do | n |
     username = Faker::Name.name
     email = "testuser-#{ n + 1 }@example.com"
     password = 'goodpassword'
-    User.create!( :username => username, :email => email, :password => password, :password_confirmation => password )
+    if ( /\A(?=.*[a-z0-9].*)([a-z0-9\-_.]+)([\s][a-z0-9\-_.]+)*\z/i.match( username ) ) then
+        User.create!( :username => username, :email => email, :password => password, :password_confirmation => password )
+    end
 end
     
 for forum in community_forums do
