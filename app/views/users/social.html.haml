@@ -1,0 +1,39 @@
+- content_for( :title ) { 'Social Activity' }
+
+- content_for( :body ) do
+
+    %div.content
+        %div.forums
+            %h2
+                Forum Activity
+            %table
+                %tr
+                    %h3
+                        Conversations Started
+                %tr
+                    %th
+                        Name
+                    %th
+                        Created At
+                - for conversation in @conversations do
+                    %tr
+                        %td
+                            = link_to conversation.name, conversation_path( conversation )
+                        %td
+                            = conversation.created_at
+            = will_paginate( @conversations )
+            %table
+                %tr
+                    %h3
+                        Comments Posted
+                %tr
+                    %th
+                        Content
+                    %th
+                        Created At
+                - for comment in @comments do
+                    %tr
+                        %td
+                            = link_to comment.content, conversation_path( comment.conversation_id )
+                        %td
+                            = comment.created_at

@@ -53,7 +53,7 @@
                             %li
                                 = link_to 'Manuscripts', '#'
                             %li
-                                = link_to 'Social', '#'
+                                = link_to 'Social', user_social_path( current_user )
                             %li
                                 = link_to 'Account Settings', edit_user_path( current_user.id )
                 %div.clear
