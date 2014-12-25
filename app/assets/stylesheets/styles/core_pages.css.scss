@@ -2,18 +2,39 @@
 @import '../base/variables.css.scss';
 
 #intro {
-    display: inline-block;
-    padding: 25px;
+    background-color: $color1;
+    height: 100%;
+    padding: 1.5em;
     text-align: left;
-    vertical-align: top;
+    width: 100%;
+}
+
+#intro-wrapper {
+    border-right: 1.5em solid darken( $color1, 5% );
+    margin-right: 1em;
     width: 60%;
 }
 
+#news {
+    background-color: $color1;
+    margin-top: 1.5em;
+    padding: 1.5em;
+    width: 100%;
+}
+
 #sign-up {
-    display: inline-block;
-    padding: 25px;
+    background-color: $color1;
+    input[type=text], input[type=password] {
+        margin-bottom: 0.5em;
+        width: 100%;
+    }
+    padding: 1.5em;
     text-align: left;
     vertical-align: top;
+}
+
+.report {
+    font-size: 1.25em;
 }
 
 .table {
@@ -26,7 +47,7 @@
 
 
 body {
-    background-color: darken( $color1, 10% );
+    background-color: darken( $color1, 5% );
 }
 
 main {

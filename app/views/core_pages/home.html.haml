@@ -3,51 +3,88 @@
 - content_for :body do
 
     %div.content
-        %div.wrapper
-            %div#intro
+        %table
+            %tr
+                %td#intro-wrapper
+                    %div#intro
+                        %h2
+                            See your story come
+                            %span.emphasis
+                                alive.
+                            Make it
+                            %span.emphasis
+                                grow. 
+                            Watch it
+                            %span.emphasis
+                                evolve.
+                        %br
+                        %div#intro-text
+                            %p
+                                Inklings is a new writing community where your work in progress 
+                                is just as emphasized as being with other writers. Your story needs your attention, 
+                                and by embodying it as an Inkling, a creature that feeds on words and changes as 
+                                your story does, our website lets you view your work as never before.
+                            %p
+                                Come on in. Meet other writers. Nurture your story.
+                            %p
+                                = link_to 'Learn More', about_path
+                                or sign up at the right.
+                %td#sign-up
+                    %div.overlay.overlay-content
+                        %h3
+                            Sign Up
+                    = form_for( @user ) do | f |
+                        = f.label :username
+                        %br
+                        = f.text_field :username
+                        %br
+                        = f.label :email
+                        %br
+                        = f.text_field :email
+                        %br
+                        = f.label :password
+                        %br
+                        = f.password_field :password
+                        %br
+                        = f.label :password_confirmation
+                        %br
+                        = f.password_field :password_confirmation
+                        %br
+                        %br
+                        %div.diamond
+                            = f.submit 'Join', :class => 'button-flat'
+        %div#news
+            %div.overlay.overlay-content
                 %h2
-                    See your story come
-                    %span.emphasis
-                        alive.
-                    Make it
-                    %span.emphasis
-                        grow. 
-                    Watch it
-                    %span.emphasis
-                        evolve.
-                %br
-                %div#intro-text
+                    Website News
+            %br
+            - if signed_in? && current_user.admin?
+                %div
+                    %h3
+                        This Just in...
                     %p
-                        Inklings is a new kind of writer's hangout where being with your work in progress 
-                        is just as emphasized as being with other writers. Your story needs your attention, 
-                        and by embodying it as an Inkling, a creature that feeds on words and changes as 
-                        your story does, our website lets you view your work as never before.
-                    %br
+                        (Admins: use this form to create new news reports. Once you submit the report, it will appear at the top of the news feed.)
+                    = form_for( @news_report ) do | f |
+                        = f.label :title
+                        %br
+                        = f.text_field :title, :class => 'width-100'
+                        %br
+                        = f.label :content
+                        %br
+                        = f.text_area :content, :class => 'width-100 height-10em'
+                        %br
+                        %div.diamond
+                            = f.submit 'Submit Report', :class => 'button-flat'
+                    %hr
+            - for report in @news_reports do
+                %div#report
+                    %h3
+                        = report.title
                     %p
-                        So come on in. Meet other writers. Nurture your story.
-                    %br
-                    %p
-                        = link_to 'Learn More', about_path
-                        or sign up at the right.
-            %div#sign-up
-                %h3
-                    Sign Up
-                = form_for( @user ) do | f |
-                    = f.label :username
-                    %br
-                    = f.text_field :username
-                    %br
-                    = f.label :email
-                    %br
-                    = f.text_field :email
-                    %br
-                    = f.label :password
-                    %br
-                    = f.password_field :password
-                    %br
-                    = f.label :password_confirmation
-                    %br
-                    = f.password_field :password_confirmation
-                    %br
-                    %br
-                    = f.submit 'Join' 
+                        = "Reported by #{ User.find_by( report.user_id ).username } on #{ report.created_at.strftime( '%B %d, %Y' ) }"
+                    %p.report
+                        = report.content
+                    - if signed_in? && current_user.admin?
+                        %br
+                        = link_to 'delete', report, :class => 'button-like', :method => :delete, :data => { :confirm => 'Are you sure you want to delete this news report?' }
+                    %hr

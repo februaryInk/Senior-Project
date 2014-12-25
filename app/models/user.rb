@@ -2,11 +2,13 @@ class User < ActiveRecord::Base
     EMAIL_REGEX = /\A([\w+\-.]+)(@)([a-z\d\-]+)(?:\.[a-z\d\-]+)*(\.)([a-z]+)\z/i
     USERNAME_REGEX = /\A(?=.*[a-z0-9].*)([a-z0-9\-_.]+)([\s][a-z0-9\-_.]+)*\z/i
     
-    has_secure_password # creates password and password_confirmation attributes
+    # creates password and password_confirmation attributes
+    has_secure_password
     attr_accessor :remember_token
     
     has_many :conversations
     has_many :comments
+    has_many :news_reports
     
     # allow_blank => true on the password validations only works on PATCH requests.
     # has_secure_password still prevents blank passwords on POST requests.
