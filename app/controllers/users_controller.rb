@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     layout 'default.html'
+    include AuthorizationFilters
     
     before_action :signed_in_user, :only => [ :destroy, :edit, :index, :update ]
     before_action :admin_user, :only => [ :destroy, :index ]
@@ -38,6 +39,11 @@ class UsersController < ApplicationController
         @user = User.find( params[ :id ] )
     end
     
+    def social
+        @comments = current_user.comments.order( 'created_at DESC' ).paginate( :page => params[ :page ], :per_page => 7 )
+        @conversations = current_user.conversations.order( 'created_at DESC' ).paginate( :page => params[ :page ], :per_page => 7 )
+    end
+    
     def update
         @user = User.find( params[ :id ] )
         if @user.update_attributes( user_params )
@@ -49,20 +55,9 @@ class UsersController < ApplicationController
     
     private
     
-        def admin_user
-            redirect_to( user_url( current_user ) ) unless current_user.admin?
-        end
-    
         def correct_user
             @user = User.find( params[ :id ] )
             redirect_to( root_url ) unless current_user?( @user )
-        end
-    
-        def signed_in_user
-            unless signed_in?
-                store_location
-                redirect_to signin_url
-            end
         end
     
         def user_params

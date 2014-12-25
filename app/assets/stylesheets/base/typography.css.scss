@@ -15,12 +15,7 @@
 }
 
 a {
-    &:hover {
-        color: darken( $color1, 85% );
-        background-color: $color3;
-    }
     color: darken( $color1, 95% );
-    padding: 0.25em 0.5em;
     text-decoration: none;
 }
 

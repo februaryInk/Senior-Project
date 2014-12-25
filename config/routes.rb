@@ -2,8 +2,9 @@ Rails.application.routes.draw do
 
     root :to => 'core_pages#home'
     
-    resources :forums, :only => [ :index, :show ]
     resources :comments, :only => [ :create, :destroy ]
+    resources :forums, :only => [ :index, :show ]
+    resources :news_reports, :only => [ :create, :destroy ]
     resources :users
     
     scope( :path => '/forums' ) do
@@ -11,6 +12,8 @@ Rails.application.routes.draw do
     end
 
     get '/about', :to => 'core_pages#about', :as => 'about'
+    
+    get '/users/:id/social', :to => 'users#social', :as => 'user_social'
     
     get '/help',                 :to => 'help_pages#help_center',     :as => 'help'
     get '/help/contact',         :to => 'help_pages#contact',         :as => 'contact'

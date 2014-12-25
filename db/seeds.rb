@@ -29,3 +29,5 @@ User.first.comments.create( :content => 'If there are, I say hi.', :conversation
 User.first.comments.create( :content => 'I eagerly await your responses!', :conversation_id => 1 )
 User.first.comments.create( :content => 'I think it is the best.', :conversation_id => 3 )
 User.first.comments.create( :content => 'Hello?', :conversation_id => 2 )
+
+User.first.news_reports.create( :content => 'Our news feed is now up and running! We will keep you updated on new features and site events.', :title => 'The News Feed' )
