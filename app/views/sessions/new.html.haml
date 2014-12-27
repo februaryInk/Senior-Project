@@ -3,15 +3,20 @@
 - content_for( :body ) do
 
     %div.content
-        = form_for( :session, :url => signin_path ) do | f |
-            = f.label :email
-            = f.text_field :email, :class => 'form-control'
-            
-            = f.label :password
-            = f.password_field :password, :class => 'form-control'
-            
-            = f.check_box :remember_me
-            %span
-                Remember Me
-            
-            = f.submit 'Sign In'
+        %div#signin
+            %h2
+                Sign in to Inklings
+            = form_for( :session, :url => signin_path ) do | f |
+                = f.label :email
+                %br
+                = f.text_field :email, :class => 'width-100'
+                %br
+                = f.label :password
+                %br
+                = f.password_field :password, :class => 'width-100'
+                %br
+                = f.check_box :remember_me
+                %span
+                    Remember Me
+                %br
+                = f.submit 'Sign In', :class => 'button-flat'
