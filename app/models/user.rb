@@ -11,10 +11,13 @@ class User < ActiveRecord::Base
     has_many :news_reports
     
     # allow_blank => true on the password validations only works on PATCH requests.
-    # has_secure_password still prevents blank passwords on POST requests.
-    validates :email, { :format => { :with => EMAIL_REGEX }, :presence => true, :uniqueness => { :case_sensitive => false } }
-    validates :username, { :format => { :with => USERNAME_REGEX }, :length => { :maximum => 32 }, :presence => true }
-    validates :password, { :length => { :maximum => 32, :minimum => 10 }, :allow_blank => true }
+    # has_secure_password still prevents truly blank passwords on POST requests.
+    # with the addition of the custom reduce validator, validations must be put in
+    # the order that the error messages should come, i.e., blank before invalid.
+    # always put :reduce last to display at most 1 error for each attribute.
+    validates :email, { :presence => true, :format => { :with => EMAIL_REGEX }, :uniqueness => { :case_sensitive => false }, :reduce => true }
+    validates :username, { :presence => true, :length => { :maximum => 32 }, :format => { :with => USERNAME_REGEX }, :reduce => true }
+    validates :password, { :length => { :maximum => 32, :minimum => 8 }, :allow_blank => true, :reduce => true }
     validates :simple_name, { :uniqueness => true }
     
     before_validation(  ) { self.simple_name = self.username.downcase.gsub( /[ \-\._\s ]/, "" ) }

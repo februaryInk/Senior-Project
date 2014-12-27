@@ -4,6 +4,27 @@
     box-sizing: border-box;
 }
 
+footer {
+    .content {
+        border-color: darken( $color1, 95% );
+        border-style: solid;
+        border-width: 1px 0 0 0;
+        padding-top: 2em;
+    }
+    margin-top: 2em;
+    ul {
+        float: left;
+        margin-left: 4em;
+    }
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
 hr {
     border: 0;
     height: 0;
@@ -11,6 +32,23 @@ hr {
     border-top: 0.1em solid darken( $color1, 10% );
     margin-bottom: 1em;
     margin-top: 1em;
+}
+
+input[type=textfield] {
+    margin-bottom: 0.5em;
+    padding: 0.25em;
+}
+
+main {
+    margin-top: 9em;
+}
+
+p {
+    padding: 0.5em 0;
+}
+
+textarea {
+    margin-bottom: 0.5em;
 }
 
 .overlay-content:before, .overlay-content:after {
@@ -83,33 +121,33 @@ hr {
 }
 
 #header-tabs {
-        background-color: darken( $color1, 10% );
-        line-height: 3em;
-        ul {
-            list-style: none;
-            li {
-                a {
-                    border-color: darken( $color1, 25% );
-                    border-style: solid;
-                    border-width: 0.1em;
-                    display: block;
-                    height: 100%;
-                    padding: 0;
-                    width: 100%;
-                    &.active {
-                        border-bottom-color: $color1;
-                        background-color: $color1;
-                    }
-                }
-                display: inline-block;
-                float: left;
+    background-color: darken( $color1, 10% );
+    line-height: 3em;
+    ul {
+        list-style: none;
+        li {
+            a {
+                border-color: darken( $color1, 25% );
+                border-style: solid;
+                border-width: 0.1em;
+                display: block;
                 height: 100%;
-                text-align: center;
-                width: 25%;
+                padding: 0;
+                width: 100%;
+                &.active {
+                    border-bottom-color: $color1;
+                    background-color: $color1;
+                }
             }
-            width: 100%;
+            display: inline-block;
+            float: left;
+            height: 100%;
+            text-align: center;
+            width: 25%;
         }
+        width: 100%;
     }
+}
 
 #logo {
     float: left;
@@ -152,10 +190,6 @@ hr {
     padding-left: 2em;
 }
 
-.padding-top-4em {
-    padding-top: 4em;
-}
-
 .text-align-center {
     text-align: center;
 }
@@ -172,7 +206,7 @@ hr {
     line-height: 2em;
     padding: 0;
     position: relative;
-    width: 90%;
+    width: 100%;
 }
 
 .diamond {
@@ -201,49 +235,11 @@ hr {
     width: 70%
 }
 
-.overlay {
-    background-color: darken( $color1, 30% );
-    margin-left: -2em;
-    position: relative;
-    text-align: center;
-    width: calc( 100% + 4em );
-}
-
-footer {
-    .content {
-        border-color: darken( $color1, 95% );
-        border-style: solid;
-        border-width: 1px 0 0 0;
-        padding-top: 2em;
-    }
-    margin-top: 2em;
-    ul {
-        float: left;
-        margin-left: 4em;
-    }
-}
-
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 10;
-}
-
-input[type=textfield] {
-    margin-bottom: 0.5em;
-    padding: 0.25em;
-}
-
-textarea {
-    margin-bottom: 0.5em;
-}
-
 .height-10em {
     height: 10em;
 }
 
-.button-like {
+.link-button-like {
     &:active {
         background-color: darken( $color1, 25% );
         border: 0.15em solid darken( $color1, 10% );
@@ -256,6 +252,14 @@ textarea {
     padding: 0.5em;
 }
 
-p {
-    padding: 0.5em 0;
+.overlay {
+    background-color: darken( $color1, 30% );
+    margin-left: -2em;
+    position: relative;
+    text-align: center;
+    width: calc( 100% + 4em );
+}
+
+.padding-top-4em {
+    padding-top: 4em;
 }

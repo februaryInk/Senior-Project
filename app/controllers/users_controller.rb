@@ -12,7 +12,11 @@ class UsersController < ApplicationController
             signin @user
             redirect_to user_url( @user )
         else
-            render new
+            @news_reports = NewsReport.all
+            # used redirect_to because render loaded the user stylesheet, 
+            # not the core_pages stylesheet. however, redirect_to does 
+            # not keep the error messages. pass them via flash.
+            redirect_to root_url, :flash => { :user_errors => @user.errors.full_messages }
         end
     end
     
