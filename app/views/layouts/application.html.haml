@@ -11,6 +11,9 @@
     %body
         = yield :header
         %main
+            - flash.each do | message_type, message |
+                - if %W[ danger info success warning ].include? message_type
+                    = content_tag( :div, message, :class => "alert-#{ message_type }" )
             = yield :body
         = yield :footer
         %div.content

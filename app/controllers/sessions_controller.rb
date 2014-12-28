@@ -8,6 +8,11 @@ class SessionsController < ApplicationController
             params[ :session ][ :remember_me ] == '1' ? remember( user ) : forget( user )
             redirect_back_or user_path( user )
         else
+            if user
+                flash[ :session_error ] = 'The supplied password is incorrect.'
+            else
+                flash[ :session_error ] = 'There is no user associated with that email address.'
+            end
             render 'new'
         end
     end
