@@ -10,6 +10,7 @@ class UsersController < ApplicationController
         @user = User.new( user_params )
         if @user.save
             signin @user
+            flash[ :success ] = "Welcome to the Inklings community!"
             redirect_to user_url( @user )
         else
             @news_reports = NewsReport.all

@@ -6,6 +6,9 @@
         %div#signin
             %h2
                 Sign in to Inklings
+            - if flash[ :session_error ]
+                %div
+                    = flash[ :session_error ]
             = form_for( :session, :url => signin_path ) do | f |
                 = f.label :email
                 %br
@@ -20,3 +23,5 @@
                     Remember Me
                 %br
                 = f.submit 'Sign In', :class => 'button-flat'
+            New around here?
+            = link_to 'Sign up.', root_path

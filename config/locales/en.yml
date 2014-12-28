@@ -28,6 +28,7 @@ en:
                         email:
                             blank: "Please fill in the Email field."
                             invalid: "Please supply a valid email address."
+                            taken: "Sorry, that email address is already in use."
                         password:
                             blank: "Please fill in the Password field."
                             empty: "Please fill in the Password field."
