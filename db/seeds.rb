@@ -1,5 +1,5 @@
-community_forums = [ 'Introduce Yourself', 'Questions and Answers', 'Wouldn\'t it be Nice if...', 'General Talk', 'Deep Thoughts', 'Good Books' ]
-writing_forums = [ 'Advice', 'Characters', 'Grammar and Form', 'Playing with Plot', 'Revising and Polishing', 'Short Stories' ]
+community_forums = [ 'Introduce Yourself', 'Questions and Answers', 'Suggestions', 'General Talk', 'Deep Thoughts', 'Good Books' ]
+writing_forums = [ 'Advice', 'Characters', 'Grammar and Form', 'Ideas Exchange', 'Playing with Plot', 'Revising and Polishing', 'Short Stories' ]
 
 User.create( :admin => true, :email => 'testuser@example.com', :password => 'goodpassword', :password_confirmation => 'goodpassword', :username => 'Test User' )
 
@@ -20,9 +20,9 @@ for forum in writing_forums do
     Forum.create( :group => :writing, :name => forum )
 end
 
-User.first.conversations.create( :content => 'My hobbies include reading and gardening.', :forum_id => 1, :name => 'Hi, I\'m a test user!' )
-User.first.conversations.create( :content => 'It\'s been pretty quiet around here.', :forum_id => 1, :name => 'Any other users here?' )
-User.first.conversations.create( :content => 'It is my favorite.', :forum_id => 6, :name => 'Has anyone read my favorite book?' )
+User.first.conversations.create( :forum_id => 1, :name => 'Hi, I\'m a test user!' )
+User.first.conversations.create( :forum_id => 1, :name => 'Any other users here?' )
+User.first.conversations.create( :forum_id => 6, :name => 'Has anyone read my favorite book?' )
 
 User.first.comments.create( :content => 'I just wanted to say hello to y\'all!', :conversation_id => 1 )
 User.first.comments.create( :content => 'If there are, I say hi.', :conversation_id => 2 )

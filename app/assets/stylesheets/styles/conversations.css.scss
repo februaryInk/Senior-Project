@@ -1,3 +1,54 @@
-main {
-    margin-top: 6em;
+@import '../base/mixins.css.scss';
+@import '../base/variables.css.scss';
+
+.aside-user {
+    float: left;
+    padding: 2em 0;
+    text-align: center;
+    width: 10em;
+}
+
+.li-comment {
+    background-color: darken( $color1, 7.5% );
+    border: 0.1em solid darken( $color1, 25% );
+    margin-bottom: 1em;
+}
+
+.comment {
+    margin-left: 14em;
+    p {
+        font-size: 1.2em;
+    }
+    padding: 2em;
+}
+
+.comment-info {
+    background-color: $color1;
+    border-bottom: 0.1em solid darken( $color1, 25% );
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+.date {
+    float: right;
+    padding: 0.5em;
+}
+
+.name {
+    float: left;
+}
+
+.number {
+    float: left;
+    padding: 0.5em;
+}
+
+#comment-new {
+    padding: 2em;
+}
+
+#conversation-info {
+    border: 0.1em solid darken( $color1, 25% );
+    margin-bottom: 1em;
+    padding: 0.5em;
 }

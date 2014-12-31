@@ -3,17 +3,42 @@
 - content_for( :body ) do
     
     %div.content
-        %div#conversation-starter
-            %h3
-                = @conversation.name
-            %p
-                = @conversation.content
+        %div#conversation-info
+            %div.name
+                %h3
+                    = @conversation.name
+            %div.date
+                %strong
+                    = "Started #{ @conversation.created_at.strftime( '%B %d, %Y' ) } by #{ User.find_by( @conversation.user_id ).username }"
+            %div.clear
+        = will_paginate @comments
         %ol
+            - i = 1
             - for comment in @comments
-                = comment.content
+                %li.li-comment
+                    %div.comment-info
+                        %div.date
+                            = "#{ time_ago_in_words( comment.created_at ) } ago"
+                        %div.number
+                            = params[ :page ].nil? ? "##{ i }" : "##{ i + 15 * ( params[ :page ].to_i - 1) }"
+                        %div.clear
+                    %aside.aside-user
+                        = gravatar_for User.find_by( comment.user_id )
+                        %br
+                        %h3
+                            = User.find_by( comment.user_id ).username
+                    %div.comment
+                        %p
+                            = comment.content
+                    %div.clear
+                - i += 1
+        = will_paginate @comments
+        %div#comment-new
+            = form_for( @comment ) do | f |
+                = f.hidden_field :conversation_id, :value => params[ :id ]
+                = f.label 'New Comment'
                 %br
-        = form_for( @comment ) do | f |
-            = f.hidden_field :conversation_id, :value => params[ :id ]
-            = f.label :comment
-            = f.text_field :content
-            = f.submit 'Submit'
+                = f.text_area :content, :class => 'width-100 height-10em'
+                %br
+                %br
+                = f.submit 'Submit', :class => 'button-flat'

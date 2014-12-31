@@ -3,15 +3,19 @@
 - content_for( :body ) do
 
     %div.content
-        = form_for( @conversation ) do | f |
-            // Replace this later with a drop-down menu. It will fix the problem of indirect entry.
-            = f.hidden_field :forum_id, :value => params[ :forum_id ]
+        = form_for @conversation do | f |
+            = f.label :forum
+            %br
+            = f.collection_select :forum_id, @forums, :id, :name, :selected => params[ :forum_id ]
+            %br
             = f.label :name
             %br
-            = f.text_field :name
+            = f.text_field :name, :class => 'width-100'
             %br
-            = f.label :content
-            %br
-            = f.text_field :content
+            = f.fields_for :comments do | ff |
+                = ff.hidden_field :user_id, :value => current_user.id
+                = ff.label :content
+                %br
+                = ff.text_area :content, :class => 'height-10em width-100'
             %br
             = f.submit 'Create'

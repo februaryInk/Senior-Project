@@ -3,32 +3,39 @@
 - content_for( :body ) do
 
     %div.content
-        %table
+        %table.forums-community
             %tr
+                %th.category
+                    %h3
+                        Community Forums
                 %th
-                    Community
-                %th
-                    Latest
+                    %strong
+                        Latest Activity
+            - i = 1
             - for forum in @forums
                 - if forum.group == 'community'
-                    %tr
-                        %td
+                    = content_tag :tr, :class => "#{ i.odd? ? 'tr-odd' : 'tr-even' }" do
+                        %td.topic
                             = link_to h( forum.name ), forum_path( forum.id )
-                        %td
+                        %td.latest_conversation
                             - if forum.conversations.any?
-                                = forum.conversations.order( :created_at ).last.name
-        %br                                
-        %table
+                                = forum.conversations.order( :updated_at ).last.name
+                    - i += 1
+        %table.forums-writing
             %tr
+                %th.category
+                    %h3
+                        Writing Forums
                 %th
-                    Writing
-                %th
-                    Latest
+                    %strong
+                        Latest Activity
+            - i = 1
             - for forum in @forums
                 - if forum.group == 'writing'
-                    %tr
-                        %td
+                    = content_tag :tr, :class => "#{ i.odd? ? 'tr-odd' : 'tr-even' }" do
+                        %td.topic
                             = link_to h( forum.name ), forum_path( forum.id )
-                        %td
+                        %td.latest_conversation
                             - if forum.conversations.any?
-                                = forum.conversations.order( :created_at ).last.name
+                                = forum.conversations.order( :updated_at ).last.name
+                    - i += 1
