@@ -90,5 +90,5 @@
                         = report.content
                     - if signed_in? && current_user.admin?
                         %br
-                        = link_to 'delete', report, :class => 'link-button-like', :method => :delete, :data => { :confirm => 'Are you sure you want to delete this news report?' }
+                        = link_to 'delete', report, :class => 'link-button-like', :method => :delete, :data => { :confirm => 'Are you sure you want to permanently delete this news report?' }
                     %hr

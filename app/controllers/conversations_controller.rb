@@ -10,6 +10,12 @@ class ConversationsController < ApplicationController
         end
     end
     
+    def destroy
+        @conversation = Conversation.find_by( :id => params[ :id ] )
+        @conversation.destroy
+        redirect_to forums_path
+    end
+    
     def edit
     end
 
@@ -17,18 +23,20 @@ class ConversationsController < ApplicationController
     end
 
     def new
-        @conversation = Conversation.new
+        @conversation = current_user.conversations.build
+        @conversation.comments.build
+        @forums = Forum.all
     end
 
     def show
         @conversation = Conversation.find_by( :id => params[ :id ] )
-        @comments = @conversation.comments.all
+        @comments = @conversation.comments.paginate( :page => params[ :page ], :per_page => 15 )
         @comment = Comment.new
     end
     
     private
     
         def conversation_params
-            params.require( :conversation ).permit( :content, :forum_id, :name, :user_id )
+            params.require( :conversation ).permit( :forum_id, :name, :user_id, :comments_attributes => [:content, :conversation, :user_id] )
         end
 end

@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20141222005502) do
     t.integer  "forum_id"
     t.integer  "user_id"
     t.string   "name"
-    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
