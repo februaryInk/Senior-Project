@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     
     resources :comments, :only => [ :create, :destroy ]
     resources :forums, :only => [ :index, :show ]
+    resources :friendships, :only => [ :create, :destroy, :update ]
     resources :news_reports, :only => [ :create, :destroy ]
     resources :users
     

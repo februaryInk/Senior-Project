@@ -10,6 +10,14 @@ class User < ActiveRecord::Base
     has_many :comments
     has_many :news_reports
     
+    has_many :friendships, :dependent => :destroy
+    has_many :reciprocated_friendships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy
+    
+    has_many :accepted_friends, -> { where( 'friendships.status = ?', 'accepted' ) }, :through => :friendships
+    has_many :friends, :through => :friendships
+    has_many :pending_friends, -> { where( 'friendships.status = ?', 'pending' ) }, :through => :friendships
+    has_many :waiting_friends, -> { where( 'friendships.status = ?', 'waiting' ) }, :through => :friendships
+    
     # allow_blank => true on the password validations only works on PATCH requests.
     # has_secure_password still prevents truly blank passwords on POST requests.
     # with the addition of the custom reduce validator, validations must be put in
@@ -23,6 +31,8 @@ class User < ActiveRecord::Base
     before_validation(  ) { self.simple_name = self.username.downcase.gsub( /[ \-\._\s ]/, "" ) }
     before_save(  ) { self.email = email.downcase(  ) }
     
+    # class methods
+    
     def authenticated?( remember_token )
         return false if remember_digest.nil?
         BCrypt::Password.new( remember_digest ).is_password?( remember_token )
@@ -32,10 +42,24 @@ class User < ActiveRecord::Base
         update_attribute( :remember_digest, nil )
     end
     
+    def friend?( user )
+        friends.include?( user )
+    end
+    
+    def pending_friend?( user )
+        pending_friends.include?( user )
+    end
+    
     def remember
         self.remember_token = User.create_token
         update_attribute( :remember_digest, User.digest( remember_token ) )
     end
+    
+    def waiting_friend?( user )
+        waiting_friends.include?( user )
+    end
+    
+    # instance methods
     
     def User.create_token
         SecureRandom.urlsafe_base64
