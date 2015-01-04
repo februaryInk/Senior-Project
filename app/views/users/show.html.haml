@@ -9,4 +9,24 @@
                 %br
                 %h3
                     = @user.username
+                - unless current_user?( @user )
+                    %div#form-friendship
+                        - if current_user.accepted_friends.include?( @user )
+                            = "#{ @user.username } is your friend"
+                            = link_to 'Revoke Friendship', friendship_path( @friendship ), :method => :delete, :data => { :confirm => 'Are you sure you want to end this friendship?' }
+                        - elsif current_user.pending_friends.include?( @user )
+                            = "You sent #{ @user.username } an offer of friendship on #{ current_user.friendships.find_by( :friend_id => @user.id ).created_at }"
+                            = link_to 'Revoke Offer', friendship_path( @friendship ), :method => :delete, :data => { :confirm => 'Are you sure you want to revoke your offer of friendship?' }
+                        - elsif current_user.waiting_friends.include?( @user )
+                            = "#{ @user.username } sent your an offer of friendship on #{ current_user.friendships.find_by( :friend_id => @user.id ).created_at }"
+                            = link_to 'Accept Offer', friendship_path( @friendship ), :method => :patch
+                        - else
+                            = form_tag( friendships_path, :method => 'post' ) do
+                                = fields_for 'friendship', @friendship do | f |
+                                    = f.hidden_field :friend_id, :value => @user.id
+                                    = f.hidden_field :status, :value => 'pending'
+                                = fields_for 'reciprocated_friendship', @reciprocated_friendship do | f |
+                                    = f.hidden_field :user_id, :value => @user.id
+                                    = f.hidden_field :status, :value => 'waiting'
+                                = submit_tag 'Send Friendship Request', :class => 'button-flat'
         %div.clear

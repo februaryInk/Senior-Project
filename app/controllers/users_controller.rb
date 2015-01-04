@@ -42,6 +42,13 @@ class UsersController < ApplicationController
     def show
         @account_tab = true
         @user = User.find( params[ :id ] )
+        unless current_user.friends.include?( @user )
+            @friendship = current_user.friendships.new
+            @reciprocated_friendship = current_user.reciprocated_friendships.new
+        else
+            @friendship = current_user.friendships.find_by( :friend_id => @user.id )
+            @reciprocated_friendship = @user.friendships.find_by( :friend_id => current_user.id )
+        end
     end
     
     def social
