@@ -9,7 +9,7 @@
                     = @conversation.name
             %div.date
                 %strong
-                    = "Started #{ @conversation.created_at.strftime( '%B %d, %Y' ) } by #{ User.find_by( @conversation.user_id ).username }"
+                    = "Started #{ l( @conversation.created_at, :format => :to_the_day ) } by #{ User.find_by( @conversation.user_id ).username }"
             %div.clear
         = will_paginate @comments
         %ol

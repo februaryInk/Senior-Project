@@ -5,9 +5,9 @@
     %div.content
         %div#conversation-info
             = link_to 'Start a New Conversation', new_conversation_path( :forum_id => params[ :id ] ), :class => 'link-button-like'
-        %table.forum
+        %table.table-wide
             %tr
-                %th
+                %th.td-fill-remainder
                     %h3
                         Conversation
                 %th.td-to-fit

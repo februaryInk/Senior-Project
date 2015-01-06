@@ -6,13 +6,23 @@
     width: 100%;
 }
 
+#div-comments, #div-conversations {
+    margin-bottom: 2em;
+    width: 100%;
+}
+
+#div-gravatar {
+    margin: 0.5em 0;
+}
+
+#div-profile {
+    margin-left: 14em;
+}
+
 #sidebar-member {
-    * {
-        margin: auto;
-    }
     float: left;
     text-align: center;
-    width: 30%;
+    width: 12em;
 }
 
 .table-user {
@@ -23,6 +33,13 @@
         vertical-align: middle;
         white-space: nowrap;
     }
+}
+
+.friend {
+    float: left;
+    margin: 1em;
+    text-align: center;
+    width: 10em;
 }
 
 .direc-link {

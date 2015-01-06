@@ -3,7 +3,7 @@
 - content_for( :body ) do
 
     %div.content
-        %table.forums-community
+        %table.table-wide
             %tr
                 %th.category
                     %h3
@@ -21,7 +21,7 @@
                             - if forum.conversations.any?
                                 = forum.conversations.order( :updated_at ).last.name
                     - i += 1
-        %table.forums-writing
+        %table.table-wide
             %tr
                 %th.category
                     %h3

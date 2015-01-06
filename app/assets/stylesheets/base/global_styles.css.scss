@@ -34,9 +34,17 @@ hr {
     margin-top: 1em;
 }
 
-input[type=textfield] {
-    margin-bottom: 0.5em;
-    padding: 0.25em;
+input[type="text"], input[type="password"], select, textarea {
+    border: 0.1em solid darken( $color1, 20% );
+    font-family: "Century Gothic";
+    font-weight: bold;
+    margin-bottom: 1em;
+    padding: 0.5em;
+    width: 100%;
+}
+
+input[type="submit"] {
+    margin: 0.5em 0;
 }
 
 main {
@@ -66,6 +74,54 @@ textarea {
 .overlay-content:after {
   right: 0;
   border-width: 0.5em 0.5em 0 0;
+}
+
+.table-large {
+    border-bottom: 0.1em solid darken( $color1, 25% );
+    border-top: 0.1em solid darken( $color1, 25% );
+    margin-bottom: 4em;
+    td {
+        font-size: 1.2em;
+        line-height: 2em;
+        padding: 0.5em;
+    }
+    th {
+        line-height: 2.5em;
+        padding: 0.5em;
+    }
+    width: 100%;
+}
+
+.table-narrow {
+    border-bottom: 0.1em solid darken( $color1, 25% );
+    border-top: 0.1em solid darken( $color1, 25% );
+    td {
+        font-size: 1.2em;
+        line-height: 1.4em;
+        padding: 0.5em;
+    }
+    th {
+        line-height: 1.75em;
+        padding: 0.5em;
+    }
+    width: 100%;
+}
+
+.td-fill-remainder {
+    width: 99%;
+}
+
+.td-to-fit {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.tr-even {
+    background-color: darken( $color1, 2.5% );
+}
+
+.tr-odd {
+    background-color: darken( $color1, 7.5% );
 }
 
 #header-main {
@@ -188,6 +244,42 @@ textarea {
 
 .indented {
     padding-left: 2em;
+}
+
+.link-affirmative {
+    &:active {
+        background-color: darken( $color1, 10% );
+        border: 0.15em solid darken( $color1, 5% );
+    }
+    &:hover {
+        border: 0.1em solid darken( $color1, 25% );
+    }
+    background-color: darken( $color1, 5% );
+    border: 0.1em solid darken( $color1, 5% );
+    color: darken( $color1, 35% );
+    display: block;
+    font-weight: bold;
+    margin: 0.25em 0;
+    padding: 0.5em;
+    width: 100%;
+}
+
+.link-negative {
+    &:active {
+        background-color: darken( $color1, 35% );
+        border: 0.15em solid darken( $color1, 10% );
+    }
+    &:hover {
+        border: 0.1em solid darken( $color1, 55% );
+    }
+    background-color: darken( $color1, 35% );
+    border: 0.1em solid darken( $color1, 35% );
+    display: block;
+    color: darken( $color1, 5% );
+    font-weight: bold;
+    margin: 0.25em 0;
+    padding: 0.5em;
+    width: 100%;
 }
 
 .text-align-center {

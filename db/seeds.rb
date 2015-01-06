@@ -1,7 +1,7 @@
 community_forums = [ 'Introduce Yourself', 'Questions and Answers', 'Suggestions', 'General Talk', 'Deep Thoughts', 'Good Books' ]
 writing_forums = [ 'Advice', 'Characters', 'Grammar and Form', 'Ideas Exchange', 'Playing with Plot', 'Revising and Polishing', 'Short Stories' ]
 
-User.create( :admin => true, :email => 'testuser@example.com', :password => 'goodpassword', :password_confirmation => 'goodpassword', :username => 'Test User' )
+User.create( :admin => true, :biography => 'I live in a small town, and I suppose I will stay here all my life. I go to church every Sunday and rollerskating every Friday. I lead a steady, same-old same-old life, and I like it best that way.', :email => 'testuser@example.com', :password => 'goodpassword', :password_confirmation => 'goodpassword', :username => 'Test User' )
 
 99.times do | n |
     username = Faker::Name.name
@@ -31,3 +31,16 @@ User.first.comments.create( :content => 'I think it is the best.', :conversation
 User.first.comments.create( :content => 'Hello?', :conversation_id => 2 )
 
 User.first.news_reports.create( :content => 'Our news feed is now up and running! We will keep you updated on new features and site events.', :title => 'The News Feed' )
+
+User.first.friendships.create( :friend_id => 2, :status => 'accepted' )
+User.first.reciprocated_friendships.create( :user_id => 2, :status => 'accepted' )
+User.first.friendships.create( :friend_id => 3, :status => 'pending' )
+User.first.reciprocated_friendships.create( :user_id => 3, :status => 'waiting' )
+User.first.friendships.create( :friend_id => 4, :status => 'accepted' )
+User.first.reciprocated_friendships.create( :user_id => 4, :status => 'accepted' )
+User.first.friendships.create( :friend_id => 5, :status => 'waiting' )
+User.first.reciprocated_friendships.create( :user_id => 5, :status => 'pending' )
+User.first.friendships.create( :friend_id => 6, :status => 'pending' )
+User.first.reciprocated_friendships.create( :user_id => 6, :status => 'waiting' )
+User.first.friendships.create( :friend_id => 7, :status => 'accepted' )
+User.first.reciprocated_friendships.create( :user_id => 7, :status => 'accepted' )

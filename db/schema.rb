@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20150101005143) do
     t.string   "remember_digest"
     t.string   "simple_name"
     t.string   "username"
+    t.text     "biography"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
