@@ -3,31 +3,41 @@
 - content_for( :body ) do
 
     %div.content
-        %h1
-            = "#{ @user.username }'s Account Settings"
-        %div
-            // Rails determines whether PATCH or POST is appropriate for this form depending on the
-            // existence of @user (User.@user.new_record?).
-            = form_for( @user ) do | f |
-                = f.label :username
-                %br
-                = f.text_field :username
-                %br
-                = f.label :email
-                %br
-                = f.text_field :email
-                %br
-                = f.label :password
-                %br
-                = f.password_field :password
-                %br
-                = f.label :password_confirmation
-                %br
-                = f.password_field :password_confirmation
-                %br
-                = f.submit 'Save Changes'
-                %br
-                %br
-            %div
+        %h2
+            = "#{ @user.username }'s Settings"
+        %div#account
+            %h3
+                Account
+            %div#div-gravatar
                 = gravatar_for @user
+                %br
                 = link_to 'Change', 'http://gravatar.com/emails', :target => '_blank'
+            = form_tag( user_path, :method => 'patch' ) do
+                = fields_for 'user', @user do | f |
+                    %div
+                        = f.label :username
+                        = f.text_field :username, :value => @user.username
+                    %div
+                        = f.label :email
+                        = f.text_field :email, :value => @user.email
+                    %div
+                        = f.label :biography
+                        = f.text_area :biography, :class => 'height-10em', :value => @user.biography
+                    %div
+                        = f.label :new_password
+                        = f.password_field :password
+                    %div
+                        = f.label :new_password_confirmation
+                        = f.password_field :password_confirmation
+                = fields_for 'authentication', @user do | f |
+                    %p
+                        %strong
+                            To authorize any account changes, please enter your current password below before clicking the submit button.
+                    = f.label :current_password
+                    = f.password_field :password
+                = submit_tag 'Submit Account Changes', :class => 'button-flat'
+        %br
+        %hr
+        %div#privacy
+            %h3
+                Privacy

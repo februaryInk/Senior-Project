@@ -9,6 +9,8 @@ class CreateUsers < ActiveRecord::Migration
             t.string :remember_digest
             t.string :simple_name
             t.string :username
+            
+            t.text :biography
 
             t.timestamps
         end

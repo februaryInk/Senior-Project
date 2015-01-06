@@ -2,9 +2,9 @@ class UsersController < ApplicationController
     layout 'default.html'
     include AuthorizationFilters
     
-    before_action :signed_in_user, :only => [ :destroy, :edit, :index, :update ]
+    before_action :signed_in_user, :only => [ :destroy, :edit, :index, :social, :update ]
     before_action :admin_user, :only => [ :destroy, :index ]
-    before_action :correct_user, :only => [ :edit, :update ]
+    before_action :correct_user, :only => [ :edit, :social, :update ]
     
     def create
         @user = User.new( user_params )
@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     end
     
     def edit
+        @account_tab = true
         @user = User.find( params[ :id ] )
     end
 
@@ -52,13 +53,17 @@ class UsersController < ApplicationController
     end
     
     def social
-        @comments = current_user.comments.order( 'created_at DESC' ).paginate( :page => params[ :page ], :per_page => 7 )
-        @conversations = current_user.conversations.order( 'created_at DESC' ).paginate( :page => params[ :page ], :per_page => 7 )
+        @account_tab = true
+        @accepted_friends = current_user.accepted_friends.order( 'username ASC' ).paginate( :page => params[ :friend_page ] )
+        @comments = current_user.comments.order( 'created_at DESC' ).paginate( :page => params[ :comment_page ], :per_page => 10 )
+        @conversations = current_user.conversations.order( 'created_at DESC' ).paginate( :page => params[ :conversation_page ], :per_page => 5 )
+        @pending_friends = current_user.pending_friends.order( 'username ASC' ).paginate( :page => params[ :p_friend_page ] )
+        @waiting_friends = current_user.waiting_friends.order( 'username ASC' ).paginate( :page => params[ :w_friend_page ] )
     end
     
     def update
         @user = User.find( params[ :id ] )
-        if @user.update_attributes( user_params )
+        if ( @user.authenticate( params[ :authentication ][ :password ] ) && @user.update_attributes( user_params ) )
             redirect_to user_url( @user )
         else
             render 'edit'
@@ -73,6 +78,6 @@ class UsersController < ApplicationController
         end
     
         def user_params
-            params.require( :user ).permit( :email, :password, :password_confirmation, :username )
+            params.require( :user ).permit( :biography, :email, :password, :password_confirmation, :username )
         end
 end

@@ -42,7 +42,7 @@
                             %li
                                 = link_to 'Contact Us', contact_path
                 %div.clear
-    - if @account_tab === true
+    - if @account_tab === true && current_user?( User.find( params[ :id ] ) )
         %div#header-tabs
             %div.content
                 %div.float-wrapper
