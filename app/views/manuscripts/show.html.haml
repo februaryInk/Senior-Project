@@ -1,0 +1,21 @@
+- content_for( :title ) { @manuscript.title }
+
+= content_for( :body ) do
+    
+    %div.content
+        %div#manuscript-info
+            %h2
+                = @manuscript.title
+            %p
+                = @manuscript.genre
+            %p
+                = @manuscript.description
+        %div#statistics
+            %h3
+                Statistics
+            %p
+                = "Started On: #{ l( @manuscript.created_at, :format => :to_the_day ) }"
+                %br
+                = "Last Updated On: #{ l( @manuscript.updated_at, :format => :to_the_day ) }"
+            %p
+                = "Number of Words: #{ @manuscript.word_count }"

@@ -1,0 +1,16 @@
+- content_for( :title ) { 'Edit Manuscript' }
+
+= content_for( :body ) do
+    
+    %div.content
+        %h2
+            Manuscript Settings
+        %div#form-manuscript
+            = form_for @manuscript, :method => :patch do | f |
+                = f.label :title
+                = f.text_field :title, :value => @manuscript.title
+                = f.label :genre
+                = f.select :genre, options_for_select( @genres ), :value => @manuscript.genre
+                = f.label :description
+                = f.text_area :description, :value => @manuscript.description, :class => 'height-10em'
+                = f.submit 'Submit Changes', :class => 'button-flat'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150101005143) do
+ActiveRecord::Schema.define(version: 20150113003651) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20150101005143) do
   add_index "comments", ["conversation_id"], name: "index_comments_on_conversation_id"
   add_index "comments", ["created_at"], name: "index_comments_on_created_at"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "contents_pages", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "manuscript_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "conversations", force: true do |t|
     t.integer  "forum_id"
@@ -56,6 +63,22 @@ ActiveRecord::Schema.define(version: 20150101005143) do
   add_index "friendships", ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
   add_index "friendships", ["user_id"], name: "index_friendships_on_user_id"
 
+  create_table "manuscripts", force: true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "genre"
+    t.text     "description"
+    t.integer  "word_count"
+    t.integer  "adventurous_word_count"
+    t.integer  "romantic_word_count"
+    t.integer  "scary_word_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "manuscripts", ["genre"], name: "index_manuscripts_on_genre"
+  add_index "manuscripts", ["user_id"], name: "index_manuscripts_on_user_id"
+
   create_table "news_reports", force: true do |t|
     t.integer  "user_id"
     t.string   "title"
@@ -65,6 +88,23 @@ ActiveRecord::Schema.define(version: 20150101005143) do
   end
 
   add_index "news_reports", ["user_id"], name: "index_news_reports_on_user_id"
+
+  create_table "sections", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "manuscript_id"
+    t.integer  "position"
+    t.string   "name"
+    t.text     "content"
+    t.integer  "word_count"
+    t.integer  "adventurous_word_count"
+    t.integer  "romantic_word_count"
+    t.integer  "scary_word_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sections", ["manuscript_id"], name: "index_sections_on_manuscript_id"
+  add_index "sections", ["user_id"], name: "index_sections_on_user_id"
 
   create_table "users", force: true do |t|
     t.boolean  "admin",           default: false

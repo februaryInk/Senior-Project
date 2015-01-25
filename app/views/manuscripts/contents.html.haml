@@ -1,0 +1,40 @@
+- content_for( :title ) { @manuscript.title }
+
+= content_for( :body ) do
+
+    %div.content
+        %h2
+            Content Management
+        %div#instructions
+            %p
+                This page allows you to see and manage the sections in your manuscript.
+            %ul.in-text-list
+                %li
+                    Create a new section at the end by selecting "New Section" at the bottom of the list.
+                %li
+                    Change a section's name by erasing its current name and typing the new name.
+                %li
+                    Change the order of sections by dragging and dropping them into the positions you want.
+                %li
+                    Delete a section by selecting "Delete", but be careful; we keep no backups at this time, so it will be an IRREVERSIBLE action.
+        %div#div-table-of-contents
+            %h3
+                = "#{ @manuscript.title } Table of Contents"
+            - if @sections.any?
+                %table#table-of-contents
+                    %thead
+                        %tr
+                            %th
+                            %th
+                                Section Name
+                            %th
+                                Position
+                            %th
+                                Words
+                            %th
+                            %th
+                    %tbody#tbody-contents.sortable
+                        = render :partial => 'sections/sections'
+            = link_to sections_path( :manuscript_id => params[ :id ] ), :method => :post, :remote => true, :class => 'make-new' do
+                %div#div-section-new
+                    Create a New Section

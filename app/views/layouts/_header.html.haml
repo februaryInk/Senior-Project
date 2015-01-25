@@ -57,3 +57,18 @@
                             %li
                                 = link_to 'Account Settings', edit_user_path( current_user.id )
                 %div.clear
+    - if @manuscript_tab === true
+        %div#header-tabs
+            %div.content
+                %div.float-wrapper
+                    %nav
+                        %ul
+                            %li
+                                = link_to 'Summary', manuscript_path( @manuscript.id )
+                            %li
+                                = link_to 'Contents', manuscript_contents_path( @manuscript.id )
+                            %li
+                                = link_to 'Write', manuscript_write_path( @manuscript.id )
+                            %li
+                                = link_to 'Settings', edit_manuscript_path( @manuscript.id )
+                %div.clear

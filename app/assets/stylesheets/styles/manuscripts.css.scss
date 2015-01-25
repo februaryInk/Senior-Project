@@ -1,0 +1,84 @@
+@import '../base/mixins.css.scss';
+@import '../base/variables.css.scss';
+
+#div-table-of-contents {
+    background-color: darken( $color1, 5% );
+    input {
+        background-color: darken( $color1, 5% );
+        font-size: 0.85em;
+        &:hover {
+            border: 0.1em solid darken( $color1, 10% );
+        }
+        &:focus {
+            background-color: darken( $color1, 2.5% );
+            border: 0.1em solid darken( $color1, 15% );
+        }
+        border: 0.1em solid darken( $color1, 5% );
+        margin: 0;
+    }
+    padding: 1.5em;
+}
+
+#instructions {
+    margin-bottom: 1em;
+}
+
+#section-content {
+    height: 40em;
+}
+
+#table-of-contents {
+    border-top: 0.1em solid darken( $color1, 25% );
+    td {
+        font-size: 1.2em;
+        line-height: 1.4em;
+        padding: 0.5em;
+    }
+    th {
+        line-height: 1.75em;
+        padding: 0.5em;
+    }
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+.handle {
+    &:after {
+        background-color: darken( $color1, 5% );
+        border-radius: 0.35em;
+        content: '';
+        display: block;
+        height: 0.7em;
+        left: 0.05em;
+        position: relative;
+        top: -0.75em;
+        width: 0.7em;
+    }
+    &:before {
+        background-color: darken( $color1, 85% );
+        border-radius: 0.4em;
+        content: '';
+        display: block;
+        height: 0.8em;
+        position: relative;
+        top: 0em;
+        width: 0.8em;
+    }
+    display: block;
+    height: 0.8em;
+    width: 0.8em;
+}
+
+.handle-wrapper {
+    display: table;
+    vertical-align: center;
+}
+
+#div-section-new {
+    border: 0.1em dotted darken( $color1, 25% );
+    display: block;
+    font-size: 1.2em;
+    height: 3em;
+    line-height: 3em;
+    text-align: center;
+}
