@@ -76,7 +76,7 @@ textarea {
   border-width: 0.5em 0.5em 0 0;
 }
 
-.table-large {
+.table-wide {
     border-bottom: 0.1em solid darken( $color1, 25% );
     border-top: 0.1em solid darken( $color1, 25% );
     margin-bottom: 4em;
@@ -207,6 +207,32 @@ textarea {
 
 #logo {
     float: left;
+}
+
+.arrow-down {
+    display: inline;
+    &:after {
+        content: '';
+        display: inline-block;
+        height: 0;
+        width: 0; 
+        border-left: 0.5em solid transparent;
+        border-right: 0.5em solid transparent;
+        border-top: 0.5em solid darken( $color1, 85% );
+    }
+}
+
+.arrow-up {
+    display: inline;
+    &:after {
+        content: '';
+        display: inline-block;
+        height: 0;
+        width: 0; 
+        border-left: 0.5em solid transparent;
+        border-right: 0.5em solid transparent;
+        border-bottom: 0.5em solid darken( $color1, 85% );
+    }
 }
 
 .clear {
@@ -342,6 +368,7 @@ textarea {
     background-color: darken( $color1, 15% );
     border: 0.1em solid darken( $color1, 15% );
     padding: 0.5em;
+    width: 100%;
 }
 
 .overlay {

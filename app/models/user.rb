@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
     
     has_many :conversations
     has_many :comments
+    has_many :manuscripts, :dependent => :destroy
     has_many :news_reports
+    has_many :sections, :dependent => :destroy
     
     has_many :friendships, :dependent => :destroy
     has_many :reciprocated_friendships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy

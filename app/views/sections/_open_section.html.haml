@@ -1,0 +1,5 @@
+= @open_section.name
+= form_for @open_section, :method => 'patch', :remote => true do | f |
+    = f.submit 'Save', :class => 'button-flat'
+    = f.text_area :content, :id => 'section-content'
+    = f.submit 'Save', :class => 'button-flat'

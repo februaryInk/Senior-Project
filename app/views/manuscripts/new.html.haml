@@ -1,0 +1,16 @@
+- content_for( :title ) { 'New Manuscript' }
+
+= content_for( :body ) do
+    
+    %div.content
+        %h2
+            Create a New Manuscript
+        %div#form-manuscript
+            = form_for @manuscript do | f |
+                = f.label :title
+                = f.text_field :title
+                = f.label :genre
+                = f.select :genre, options_for_select( @genres ), :prompt => '---'
+                = f.label :description
+                = f.text_area :description, :class => 'height-10em'
+                = f.submit 'Create', :class => 'button-flat'

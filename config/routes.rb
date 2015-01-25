@@ -5,7 +5,12 @@ Rails.application.routes.draw do
     resources :comments, :only => [ :create, :destroy ]
     resources :forums, :only => [ :index, :show ]
     resources :friendships, :only => [ :create, :destroy, :update ]
+    resources :manuscripts do
+        patch '/sections/sort',   :to => 'sections#sort',   :as => 'section_sort'
+        get   '/sections/select', :to => 'sections#select', :as => 'section_select'
+    end
     resources :news_reports, :only => [ :create, :destroy ]
+    resources :sections, :only => [ :create, :destroy, :update ]
     resources :users
     
     scope( :path => '/forums' ) do
@@ -15,6 +20,12 @@ Rails.application.routes.draw do
     get '/about', :to => 'core_pages#about', :as => 'about'
     
     get '/users/:id/social', :to => 'users#social', :as => 'user_social'
+    
+    get '/manuscripts/:id/contents', :to => 'manuscripts#contents', :as => 'manuscript_contents'
+    get '/manuscripts/:id/write',    :to => 'manuscripts#write',    :as => 'manuscript_write'
+    
+    patch '/section/:id/rename', :to => 'sections#rename', :as => 'section_rename'
+    # delete 'section/:id/destroy', :to =
     
     get '/help',                 :to => 'help_pages#help_center',     :as => 'help'
     get '/help/contact',         :to => 'help_pages#contact',         :as => 'contact'

@@ -1,11 +1,12 @@
-source( 'http://rubygems.org' )
+source( 'https://rubygems.org' )
 
 gem( 'rails',         '4.1.1' )                                                             # The essential Ruby on Rails gem.
 
-gem( 'bcrypt-ruby',   '3.1.2' )                                                             # Includes password-encrypting function BCrypt.
+gem( 'bcrypt',        '3.1.9' )                                                             # Includes password-encrypting function BCrypt.
 gem( 'haml-rails'             )                                                             # Allows HTML code to be written in HAML, a kind of HTML shorthand.
 gem( 'jbuilder',      '2.0.0' )                                                             # Builds JSON APIs with ease.
 gem( 'jquery-rails'           )                                                             # Instates jQuery as the JavaScript library.
+gem( 'jquery-ui-rails'        )                                                             # Enables jQuery UI.
 gem( 'sass-rails',    '4.0.3' )                                                             # Allows the use of SCSS for style sheets.
 gem( 'uglifier',      '1.3.0' )                                                             # Compresses JavaScript assets.
 gem( 'will_paginate', '3.0.7' )                                                             # Paginates long lists.
