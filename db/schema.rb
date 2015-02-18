@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113003651) do
+ActiveRecord::Schema.define(version: 20150112220927) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -21,16 +24,9 @@ ActiveRecord::Schema.define(version: 20150113003651) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["conversation_id"], name: "index_comments_on_conversation_id"
-  add_index "comments", ["created_at"], name: "index_comments_on_created_at"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
-
-  create_table "contents_pages", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "manuscript_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "comments", ["conversation_id"], name: "index_comments_on_conversation_id", using: :btree
+  add_index "comments", ["created_at"], name: "index_comments_on_created_at", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "conversations", force: true do |t|
     t.integer  "forum_id"
@@ -40,9 +36,9 @@ ActiveRecord::Schema.define(version: 20150113003651) do
     t.datetime "updated_at"
   end
 
-  add_index "conversations", ["created_at"], name: "index_conversations_on_created_at"
-  add_index "conversations", ["forum_id"], name: "index_conversations_on_forum_id"
-  add_index "conversations", ["user_id"], name: "index_conversations_on_user_id"
+  add_index "conversations", ["created_at"], name: "index_conversations_on_created_at", using: :btree
+  add_index "conversations", ["forum_id"], name: "index_conversations_on_forum_id", using: :btree
+  add_index "conversations", ["user_id"], name: "index_conversations_on_user_id", using: :btree
 
   create_table "forums", force: true do |t|
     t.string   "group"
@@ -59,9 +55,9 @@ ActiveRecord::Schema.define(version: 20150113003651) do
     t.datetime "updated_at"
   end
 
-  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id"
-  add_index "friendships", ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
-  add_index "friendships", ["user_id"], name: "index_friendships_on_user_id"
+  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
+  add_index "friendships", ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true, using: :btree
+  add_index "friendships", ["user_id"], name: "index_friendships_on_user_id", using: :btree
 
   create_table "manuscripts", force: true do |t|
     t.integer  "user_id"
@@ -76,8 +72,8 @@ ActiveRecord::Schema.define(version: 20150113003651) do
     t.datetime "updated_at"
   end
 
-  add_index "manuscripts", ["genre"], name: "index_manuscripts_on_genre"
-  add_index "manuscripts", ["user_id"], name: "index_manuscripts_on_user_id"
+  add_index "manuscripts", ["genre"], name: "index_manuscripts_on_genre", using: :btree
+  add_index "manuscripts", ["user_id"], name: "index_manuscripts_on_user_id", using: :btree
 
   create_table "news_reports", force: true do |t|
     t.integer  "user_id"
@@ -87,7 +83,7 @@ ActiveRecord::Schema.define(version: 20150113003651) do
     t.datetime "updated_at"
   end
 
-  add_index "news_reports", ["user_id"], name: "index_news_reports_on_user_id"
+  add_index "news_reports", ["user_id"], name: "index_news_reports_on_user_id", using: :btree
 
   create_table "sections", force: true do |t|
     t.integer  "user_id"
@@ -103,8 +99,8 @@ ActiveRecord::Schema.define(version: 20150113003651) do
     t.datetime "updated_at"
   end
 
-  add_index "sections", ["manuscript_id"], name: "index_sections_on_manuscript_id"
-  add_index "sections", ["user_id"], name: "index_sections_on_user_id"
+  add_index "sections", ["manuscript_id"], name: "index_sections_on_manuscript_id", using: :btree
+  add_index "sections", ["user_id"], name: "index_sections_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.boolean  "admin",           default: false
@@ -118,7 +114,7 @@ ActiveRecord::Schema.define(version: 20150113003651) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["simple_name"], name: "index_users_on_simple_name", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["simple_name"], name: "index_users_on_simple_name", unique: true, using: :btree
 
 end
