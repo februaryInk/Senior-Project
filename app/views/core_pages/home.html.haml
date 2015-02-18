@@ -85,7 +85,7 @@
                     %h3
                         = report.title
                     %p
-                        = "Reported by #{ User.find_by( report.user_id ).username } on #{ report.created_at.strftime( '%B %d, %Y' ) }"
+                        = "Reported by #{ User.find( report.user_id ).username } on #{ report.created_at.strftime( '%B %d, %Y' ) }"
                     %p.report
                         = report.content
                     - if signed_in? && current_user.admin?
