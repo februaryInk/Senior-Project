@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
             redirect_back_or user_path( user )
         else
             if user
-                flash[ :session_error ] = 'The supplied password is incorrect.'
+                flash.now[ :session_error ] = 'The supplied password is incorrect.'
             else
-                flash[ :session_error ] = 'There is no user associated with that email address.'
+                flash.now[ :session_error ] = 'There is no user associated with that email address.'
             end
             render 'new'
         end

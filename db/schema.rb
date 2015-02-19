@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112220927) do
+ActiveRecord::Schema.define(version: 20150125224207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "body_parts", force: true do |t|
+    t.string   "selector"
+    t.string   "kind"
+    t.integer  "adventurous_points"
+    t.integer  "romantic_points"
+    t.integer  "scary_points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "body_parts_inklings", id: false, force: true do |t|
+    t.integer "inkling_id"
+    t.integer "body_part_id"
+  end
+
+  add_index "body_parts_inklings", ["body_part_id"], name: "index_body_parts_inklings_on_body_part_id", using: :btree
+  add_index "body_parts_inklings", ["inkling_id"], name: "index_body_parts_inklings_on_inkling_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -58,6 +76,26 @@ ActiveRecord::Schema.define(version: 20150112220927) do
   add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
   add_index "friendships", ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true, using: :btree
   add_index "friendships", ["user_id"], name: "index_friendships_on_user_id", using: :btree
+
+  create_table "inklings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "manuscript_id"
+    t.integer  "word_count_goal"
+    t.integer  "word_rate_goal"
+    t.integer  "word_rate_goal_basis"
+    t.integer  "revival_fee"
+    t.integer  "revival_fee_currency"
+    t.boolean  "hardcore"
+    t.integer  "points"
+    t.integer  "adventurous_points"
+    t.integer  "romantic_points"
+    t.integer  "scary_points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "inklings", ["manuscript_id"], name: "index_inklings_on_manuscript_id", using: :btree
+  add_index "inklings", ["user_id"], name: "index_inklings_on_user_id", using: :btree
 
   create_table "manuscripts", force: true do |t|
     t.integer  "user_id"
