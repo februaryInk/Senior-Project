@@ -13,4 +13,17 @@
                 = f.select :genre, options_for_select( @genres ), :prompt => '---'
                 = f.label :description
                 = f.text_area :description, :class => 'height-10em'
+                = f.fields_for :inkling do | ff |
+                    = ff.label 'Word Count Goal'
+                    = ff.text_field :word_count_goal
+                    = ff.label 'Word Rate Goal'
+                    = ff.text_field :word_rate_goal
+                    words every
+                    = ff.text_field :word_rate_goal_basis
+                    day(s)
+                    = ff.label 'Revival Fee'
+                    = ff.text_field :revival_fee
+                    = ff.text_field :revival_fee_currency
+                    Do you want to make the word rate goal and revival fee unchangeable?
+                    = ff.check_box :hardcore
                 = f.submit 'Create', :class => 'button-flat'

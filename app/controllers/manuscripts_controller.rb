@@ -15,9 +15,12 @@ class ManuscriptsController < ApplicationController
     
     def create
         @manuscript = current_user.manuscripts.build( manuscript_params )
-        # does this, as opposed to initializing these in the form, help prevent meddling with word_counts?
-        @manuscript.assign_attributes( :word_count => 0, :adventurous_word_count => 0, :romantic_word_count => 0, :scary_word_count => 0 )
+        # assign the attributes that the user does not need to specify.
+        @manuscript.assign_attributes( :word_count => 0, :adventurous_word_count => 0, :romantic_word_count => 0, :scary_word_count => 0, :inkling_attributes => { :points => 0, :adventurous_points => 0,  :romantic_points => 0, :scary_points => 0, :user_id => current_user.id } )
         if @manuscript.save
+            inkling = @manuscript.inkling
+            standard_parts = BodyPart.find_by( :total_points => 0 )
+            inkling.body_parts << standard_parts
             redirect_to manuscript_path( @manuscript )
         else
             render 'new'
@@ -27,14 +30,15 @@ class ManuscriptsController < ApplicationController
     def edit
         @manuscript_tab = true
         @manuscript = Manuscript.find( params[ :id ] )
-        @genres = %w[ adventure fantasy horror mystery romance paranormal ]
+        @genres = %w[ adventure fantasy horror historical mystery romance paranormal ]
     end
 
     def index
     end
 
     def new
-        @manuscript = current_user.manuscripts.new
+        @manuscript = current_user.manuscripts.build
+        @manuscript.build_inkling
         # it may be appropriate to eventually make a genre model, to store typical word count, associated inklings, genre names, genre stamps...
         @genres =  %w[ adventure fantasy horror mystery romance paranormal ]
     end
@@ -42,7 +46,7 @@ class ManuscriptsController < ApplicationController
     def show
         @manuscript_tab = true
         @manuscript = Manuscript.find( params[ :id ] )
-    end
+    end 
     
     def update
         @manuscript = Manuscript.find( params[ :id ] )
@@ -63,6 +67,6 @@ class ManuscriptsController < ApplicationController
     private
     
         def manuscript_params
-            params.require( :manuscript ).permit( :description, :genre, :title, :user_id )
+            params.require( :manuscript ).permit( :description, :genre, :title, :user_id, :inkling_attributes => [:hardcore, :revival_fee, :revival_fee_currency, :word_count_goal, :word_rate_goal, :word_rate_goal_basis] )
         end
 end
