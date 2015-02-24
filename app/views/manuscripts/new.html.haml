@@ -15,15 +15,22 @@
                 = f.text_area :description, :class => 'height-10em'
                 = f.fields_for :inkling do | ff |
                     = ff.label 'Word Count Goal'
-                    = ff.text_field :word_count_goal
+                    %br
+                    = ff.text_field :word_count_goal, :class => 'input-inline'
+                    words
+                    %br
                     = ff.label 'Word Rate Goal'
-                    = ff.text_field :word_rate_goal
+                    %br
+                    = ff.text_field :word_rate_goal, :class => 'input-inline'
                     words every
-                    = ff.text_field :word_rate_goal_basis
+                    = ff.text_field :word_rate_goal_basis, :class => 'input-inline'
                     day(s)
+                    %br
                     = ff.label 'Revival Fee'
-                    = ff.text_field :revival_fee
-                    = ff.text_field :revival_fee_currency
+                    %br
+                    = ff.text_field :revival_fee, :class => 'input-inline'
+                    = ff.select :revival_fee_currency, options_for_select( [ 'words', 'points' ] ), { :prompt => '---' }, { :class => 'input-inline' }
+                    %br
                     Do you want to make the word rate goal and revival fee unchangeable?
                     = ff.check_box :hardcore
                 = f.submit 'Create', :class => 'button-flat'

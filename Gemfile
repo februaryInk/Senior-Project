@@ -1,6 +1,6 @@
 source( 'https://rubygems.org' )
 
-gem( 'rails',         '4.1.1' )                                                             # The essential Ruby on Rails gem.
+gem( 'rails',         '4.2.0' )                                                             # The essential Ruby on Rails gem.
 
 gem( 'bcrypt',        '3.1.9' )                                                             # Includes password-encrypting function BCrypt.
 gem( 'faker',         '1.4.3' )                                                             # Generates realistic-seeming fake data.

@@ -2,9 +2,9 @@ class UsersController < ApplicationController
     layout 'default.html'
     include AuthorizationFilters
     
-    before_action :signed_in_user, :only => [ :destroy, :edit, :index, :social, :update ]
+    before_action :signed_in_user, :only => [ :destroy, :edit, :index, :manuscripts, :social, :update ]
     before_action :admin_user, :only => [ :destroy, :index ]
-    before_action :correct_user, :only => [ :edit, :social, :update ]
+    before_action :correct_user, :only => [ :destroy, :edit, :manuscripts, :social, :update ]
     
     def create
         @user = User.new( user_params )
@@ -34,6 +34,12 @@ class UsersController < ApplicationController
     def index
         @letter = params[ :letter ] || 'a'
         @users = User.where( "username LIKE :first", :first => "#{ @letter }%" ).order( 'username ASC' ).paginate( :page => params[ :page ] )
+    end
+    
+    def manuscripts
+        @account_tab = true
+        @manuscripts = current_user.manuscripts
+        
     end
 
     def new

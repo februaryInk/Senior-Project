@@ -13,4 +13,4 @@ $( document ).ready( function(  ) {
     function closeSubMenu(  ) {
         $( this ).find( 'ul' ).css( 'visibility', 'hidden' );
     };
-});
+} );

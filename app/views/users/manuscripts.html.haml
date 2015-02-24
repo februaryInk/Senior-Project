@@ -1,0 +1,33 @@
+- content_for( :title ) { 'Account Overview' }
+- content_for( :javascript ) { javascript_include_tag 'inklings' }
+- content_for( :stylesheet ) { stylesheet_link_tag 'styles/inklings.css' }
+
+- content_for( :body ) do
+
+    %div.content
+        %h2
+            Your Manuscripts
+        - if @manuscripts.any?
+            - @manuscripts.each do | manuscript |
+                %div.div-manuscript-inkling
+                    %div.div-manuscript
+                        %div.div-book-wrapper
+                            %div.div-book
+                                %img.img-book{ :src => '/images/plain_book.svg' }
+                                    %div.div-book-writing
+                                        %h3
+                                            = manuscript.title
+                            %div.clear
+                        = link_to 'Open Manuscript', manuscript_path( :id => manuscript.id ), :class => 'link-affirmative'
+                        = link_to 'Manage Settings', edit_manuscript_path( :id => manuscript.id ), :class => 'link-affirmative'
+                        = link_to 'Delete Manuscript', manuscript_path( :id => manuscript.id ), :method => :delete, :class => 'link-negative'
+                    - if manuscript.inkling != nil
+                        = content_tag 'div', :class => 'div-inkling-habitat' do
+                            = content_tag 'div', :id => manuscript.id.to_s, :class => 'div-inkling-container', :data => { :selectors => manuscript.inkling.inkling_parts.map( &:selector ) } do
+                                = render :partial => 'inklings/inkling_svg.html'
+        - else
+            %h3
+                You are not currently working on any manuscripts.
+        = link_to new_manuscript_path do
+            %div#div-section-new
+                Create a New Manuscript

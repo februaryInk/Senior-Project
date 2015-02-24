@@ -51,9 +51,9 @@
                             %li
                                 = link_to 'Profile', user_path( current_user.id )
                             %li
-                                = link_to 'Manuscripts', '#'
+                                = link_to 'Manuscripts', user_manuscripts_path( current_user.id )
                             %li
-                                = link_to 'Social', user_social_path( current_user )
+                                = link_to 'Social', user_social_path( current_user.id )
                             %li
                                 = link_to 'Account Settings', edit_user_path( current_user.id )
                 %div.clear
