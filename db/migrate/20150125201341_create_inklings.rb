@@ -10,9 +10,9 @@ class CreateInklings < ActiveRecord::Migration
             t.integer :revival_fee_currency
             t.boolean :hardcore
             t.integer :points
-            t.integer :adventurous_points
-            t.integer :romantic_points
-            t.integer :scary_points
+            t.integer :might_points
+            t.integer :light_points
+            t.integer :dark_points
 
             t.timestamps
         end

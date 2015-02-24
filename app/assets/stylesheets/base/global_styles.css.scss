@@ -176,6 +176,15 @@ textarea {
     }
 }
 
+#div-section-new {
+    border: 0.1em dotted darken( $color1, 25% );
+    display: block;
+    font-size: 1.2em;
+    height: 3em;
+    line-height: 3em;
+    text-align: center;
+}
+
 #header-tabs {
     background-color: darken( $color1, 10% );
     line-height: 3em;

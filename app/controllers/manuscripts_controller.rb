@@ -16,15 +16,25 @@ class ManuscriptsController < ApplicationController
     def create
         @manuscript = current_user.manuscripts.build( manuscript_params )
         # assign the attributes that the user does not need to specify.
-        @manuscript.assign_attributes( :word_count => 0, :adventurous_word_count => 0, :romantic_word_count => 0, :scary_word_count => 0, :inkling_attributes => { :points => 0, :adventurous_points => 0,  :romantic_points => 0, :scary_points => 0, :user_id => current_user.id } )
+        @manuscript.assign_attributes( :word_count => 0, :might_word_count => 0, :light_word_count => 0, :dark_word_count => 0, :inkling_attributes => { :points => 0, :might_points => 0,  :light_points => 0, :dark_points => 0, :user_id => current_user.id } )
         if @manuscript.save
             inkling = @manuscript.inkling
-            standard_parts = BodyPart.find_by( :total_points => 0 )
-            inkling.body_parts << standard_parts
+            guides = InklingPartGuide.all
+            guides.each do | guide |
+                selector = guide.kind + '-000'
+                inkling.inkling_parts.create( :inkling_part_guide_id => guide.id, :kind => guide.kind, :total_points => 0, :might_points => 0, :light_points => 0, :dark_points => 0, :selector => selector )
+            end
             redirect_to manuscript_path( @manuscript )
         else
+            @genres =  %w[ adventure action fantasy historical horror mystery romance paranormal western ]
             render 'new'
         end
+    end
+    
+    def destroy
+        @manuscript = Manuscript.find( params[ :id ] )
+        @manuscript.destroy
+        redirect_to :back
     end
     
     def edit
@@ -40,12 +50,14 @@ class ManuscriptsController < ApplicationController
         @manuscript = current_user.manuscripts.build
         @manuscript.build_inkling
         # it may be appropriate to eventually make a genre model, to store typical word count, associated inklings, genre names, genre stamps...
-        @genres =  %w[ adventure fantasy horror mystery romance paranormal ]
+        @genres =  %w[ adventure action fantasy historical horror mystery romance paranormal western ]
     end
 
     def show
         @manuscript_tab = true
         @manuscript = Manuscript.find( params[ :id ] )
+        @inkling = @manuscript.inkling
+        @selectors = @inkling.inkling_parts.map( &:selector ).to_json
     end 
     
     def update

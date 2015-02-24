@@ -6,9 +6,9 @@ class CreateManuscripts < ActiveRecord::Migration
             t.string :genre
             t.text :description
             t.integer :word_count
-            t.integer :adventurous_word_count
-            t.integer :romantic_word_count
-            t.integer :scary_word_count
+            t.integer :might_word_count
+            t.integer :light_word_count
+            t.integer :dark_word_count
             
             t.timestamps
         end

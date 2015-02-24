@@ -42,6 +42,17 @@
     width: 100%;
 }
 
+.div-inkling-container {
+    height: 18em;
+    width: 27.75em;
+}
+
+.div-inkling-habitat {
+    border: 0.1em dotted darken( $color1, 10% );
+    height: 40em;
+    width: 100%;
+}
+
 .handle {
     &:after {
         background-color: darken( $color1, 5% );
@@ -74,11 +85,7 @@
     vertical-align: center;
 }
 
-#div-section-new {
-    border: 0.1em dotted darken( $color1, 25% );
-    display: block;
-    font-size: 1.2em;
-    height: 3em;
-    line-height: 3em;
-    text-align: center;
+input[type="text"].input-inline, .input-inline {
+    display: inline-block;
+    width: 10em;
 }

@@ -1,4 +1,6 @@
 - content_for( :title ) { @manuscript.title }
+- content_for( :stylesheet ) { stylesheet_link_tag 'styles/inklings.css' }
+- content_for( :javascript ) { javascript_include_tag 'inklings' }
 
 = content_for( :body ) do
     
@@ -19,3 +21,6 @@
                 = "Last Updated On: #{ l( @manuscript.updated_at, :format => :to_the_day ) }"
             %p
                 = "Number of Words: #{ @manuscript.word_count }"
+        %div.div-inkling-habitat
+            = content_tag 'div', :id => @manuscript.id.to_s, :class => 'div-inkling-container', :data => { :selectors => @manuscript.inkling.inkling_parts.map( &:selector ) } do
+                = render :partial => 'inklings/inkling_svg.html'

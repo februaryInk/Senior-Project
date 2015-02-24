@@ -7,7 +7,9 @@
         = csrf_meta_tags
         = stylesheet_link_tag 'application', :media => 'all'
         = stylesheet_link_tag "styles/#{ params[ :controller ] }"
+        = yield :stylesheet
         = javascript_include_tag( 'application' )
+        = yield :javascript
         
     %body
         = yield :header

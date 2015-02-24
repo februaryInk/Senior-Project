@@ -7,5 +7,6 @@ class Manuscript < ActiveRecord::Base
     has_many :sections, :dependent => :destroy
     
     validates :title, :presence => true, :length => { :maximum => 250 }
-    validates :user_id, :presence => true
+    validates :genre, :presence => true, :inclusion => { :in => %w[ adventure action fantasy historical horror mystery romance paranormal western ] }
+    validates :user_id, :presence => true, :numericality => { :only_integer => true }
 end

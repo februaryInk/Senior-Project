@@ -25,6 +25,61 @@
     width: 12em;
 }
 
+.div-book {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.div-book-writing {
+    left: 0;
+    padding: 2em 1em 1em 2em;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
+
+.div-book-wrapper {
+    clear: both;
+    display: block;
+    position: relative;
+}
+
+.div-manuscript-inkling {
+    border-bottom: 0.1em solid darken( $color1, 10% );
+    border-top: 0.1em solid darken( $color1, 10% );
+    min-height: 36.2em;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    padding: 0.5em;
+    width: 100%;
+}
+
+.div-manuscript {
+    display: inline-block;
+    float: left;
+    width: 27.5%;
+}
+
+.div-inkling-container {
+    height: 9em;
+    width: 13.875em;
+}
+
+.div-inkling-habitat {
+    border: 0.1em dotted darken( $color1, 10% );
+    display: inline-block;
+    float: right;
+    height: 100%;
+    min-height: 35em;
+    width: 70%;
+}
+
+.img-book {
+    width: 100%;
+}
+
 .table-user {
     & td:last-child {
         width: 100%;
