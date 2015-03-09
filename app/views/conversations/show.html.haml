@@ -9,7 +9,7 @@
                     = @conversation.name
             %div.date
                 %strong
-                    = "Started #{ l( @conversation.created_at, :format => :to_the_day ) } by #{ User.find_by( @conversation.user_id ).username }"
+                    = "Started #{ l( @conversation.created_at, :format => :to_the_day ) } by #{ User.find( @conversation.user_id ).username }"
             %div.clear
         = will_paginate @comments
         %ol
@@ -23,10 +23,10 @@
                             = params[ :page ].nil? ? "##{ i }" : "##{ i + 15 * ( params[ :page ].to_i - 1) }"
                         %div.clear
                     %aside.aside-user
-                        = gravatar_for User.find_by( comment.user_id )
+                        = gravatar_for User.find( comment.user_id )
                         %br
                         %h3
-                            = User.find_by( comment.user_id ).username
+                            = User.find( comment.user_id ).username
                     %div.comment
                         %p
                             = comment.content
@@ -35,6 +35,12 @@
         = will_paginate @comments
         %div#comment-new
             = form_for( @comment ) do | f |
+                - if flash[ :comment_errors ]
+                    %div.div-errors
+                        %ul
+                            - flash[ :comment_errors ].each do | message |
+                                %li
+                                    = message
                 = f.hidden_field :conversation_id, :value => params[ :id ]
                 = f.label 'New Comment'
                 %br

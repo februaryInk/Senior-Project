@@ -18,7 +18,7 @@
                             %span.emphasis
                                 evolve.
                         %br
-                        %div#intro-text
+                        %div.intro-text
                             %p
                                 Inklings is a new writing community where your work in progress 
                                 is just as emphasized as being with other writers. Your story needs your attention, 
@@ -26,38 +26,60 @@
                                 your story does, our website lets you view your work as never before.
                             %p
                                 Come on in. Meet other writers. Nurture your story.
-                            %p
-                                = link_to 'Learn More', about_path
-                                or sign up at the right.
+                            - unless signed_in?
+                                %p
+                                    = link_to 'Learn More', about_path, :class => 'link-inline'
+                                    or sign up at the right.
                 %td#sign-up
-                    %div.overlay.overlay-content
-                        %h3
-                            Sign Up
-                    = form_for( @user ) do | f |
-                        - if flash[ :user_errors ]
-                            %div
-                                %ul
-                                    - flash[ :user_errors ].each do | message |
-                                        %li
-                                            = message
-                        = f.label :username
-                        %br
-                        = f.text_field :username
-                        %br
-                        = f.label :email
-                        %br
-                        = f.text_field :email
-                        %br
-                        = f.label :password
-                        %br
-                        = f.password_field :password
-                        %br
-                        = f.label :password_confirmation
-                        %br
-                        = f.password_field :password_confirmation
-                        %br
-                        %br
-                        = f.submit 'Join', :class => 'button-flat'
+                    - if signed_in?
+                        %div.overlay.overlay-content
+                            %h3
+                                Hello Again!
+                        %div.intro-text
+                            %p
+                                = "You are currently signed in as #{ current_user.username }."
+                                %br
+                                = "(Not #{ current_user.username }? Click "
+                                = link_to 'here', signout_path, :method => 'delete', :class => 'link-inline'
+                                to sign out.)
+                            %p
+                                - if current_user.manuscripts.any?
+                                    = "You were last working on: #{ @working_on.title }"
+                                    %br
+                                    %br
+                                    = link_to 'Keep Working', manuscript_path( :id => @working_on.id ), :class => 'link-affirmative'
+                                - else
+                                    You currently have no manuscripts.
+                                = link_to 'Start a New Manuscript', new_manuscript_path, :class => 'link-affirmative'
+                    - else
+                        %div.overlay.overlay-content
+                            %h3
+                                Sign Up
+                        = form_for( @user ) do | f |
+                            - if flash[ :user_errors ]
+                                %div.div-errors
+                                    %ul
+                                        - flash[ :user_errors ].each do | message |
+                                            %li
+                                                = message
+                            = f.label :username
+                            %br
+                            = f.text_field :username
+                            %br
+                            = f.label :email
+                            %br
+                            = f.text_field :email
+                            %br
+                            = f.label :password
+                            %br
+                            = f.password_field :password
+                            %br
+                            = f.label :password_confirmation
+                            %br
+                            = f.password_field :password_confirmation
+                            %br
+                            %br
+                            = f.submit 'Join', :class => 'button-flat'
         %div#news
             %div.overlay.overlay-content
                 %h2

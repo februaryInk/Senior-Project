@@ -2,6 +2,9 @@ class ManuscriptsController < ApplicationController
     layout 'default.html'
     include AuthorizationFilters
     
+    before_action :signed_in_user, :only => [ :create, :new ]
+    before_action :correct_user, :only => [ :contents, :destroy, :edit, :show, :update, :write ]
+    
     def contents
         @manuscript_tab = true
         @manuscript = Manuscript.find( params[ :id ] )
@@ -40,6 +43,7 @@ class ManuscriptsController < ApplicationController
     def edit
         @manuscript_tab = true
         @manuscript = Manuscript.find( params[ :id ] )
+        @inkling = @manuscript.inkling
         @genres = %w[ adventure fantasy horror historical mystery romance paranormal ]
     end
 
@@ -77,6 +81,12 @@ class ManuscriptsController < ApplicationController
     end
     
     private
+    
+        def correct_user
+            @manuscript = Manuscript.find( params[ :id ] )
+            @user = @manuscript.user
+            redirect_to( root_path ) unless current_user?( @user )
+        end
     
         def manuscript_params
             params.require( :manuscript ).permit( :description, :genre, :title, :user_id, :inkling_attributes => [:hardcore, :revival_fee, :revival_fee_currency, :word_count_goal, :word_rate_goal, :word_rate_goal_basis] )

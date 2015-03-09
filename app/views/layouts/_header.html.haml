@@ -55,7 +55,7 @@
                             %li
                                 = link_to 'Social', user_social_path( current_user.id )
                             %li
-                                = link_to 'Account Settings', edit_user_path( current_user.id )
+                                = link_to 'Account Settings', edit_user_path( current_user.id ), :class => 'nowrap'
                 %div.clear
     - if @manuscript_tab === true
         %div#header-tabs

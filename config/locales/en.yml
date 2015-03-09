@@ -2,6 +2,43 @@ en:
     activerecord:
         errors:
             models:
+                comment:
+                    attributes:
+                        content:
+                            blank: "Sorry, but empty comments are not allowed."
+                conversation:
+                    attributes:
+                        name:
+                            blank: "Please provide a valid name for your conversation."
+                            too_long: "The maximum conversation name length is 140 characters."
+                inkling:
+                    attributes:
+                        revival_fee:
+                            blank: "Please provide a revival fee. (Hint: Enter 0 if you don't want one.)"
+                            not_an_integer: "The revival fee must be a whole number value."
+                            not_a_number: "The revival fee must be a whole number value."
+                        revival_fee_currency:
+                            blank: "Please provide a revival fee currency."
+                        word_count_goal:
+                            blank: "Please provide a word count goal."
+                            not_an_integer: "The word count goal must be a whole number value."
+                            not_a_number: "The word count goal must be a whole number value."
+                        word_rate_goal:
+                            blank: "Please provide a word rate goal. (Hint: Enter 0 if you don't want one.)"
+                            not_an_integer: "The word rate goal must be a whole number value."
+                            not_a_number: "The word rate goal must be a whole number value."
+                        word_rate_goal_basis:
+                            blank: "Please provide a word rate goal basis."
+                            not_an_integer: "The word rate goal basis must be a whole number value."
+                            not_a_number: "The word rate goal basis must be a whole number value."
+                manuscript:
+                    attributes:
+                        title:
+                            blank: "Please provide a manuscript title."
+                            too_long: "The maximum title length is 250 characters."
+                        genre:
+                            blank: "Please provide a manuscript genre."
+                            inclusion: "The provided manuscript genre is invalid."
                 user:
                     attributes:
                         email:
@@ -21,7 +58,7 @@ en:
                             taken: "Sorry, that username is taken."
                         username:
                             blank: "Please fill in the Username field."
-                            invalid: "Sorry; that is not a valid username. Usernames must have at least one alphanumeric character and can have periods, dashes, underscores, and internal spaces."
+                            invalid: "Sorry, that is not a valid username. Usernames must have at least one alphanumeric character and can have periods, dashes, underscores, and internal spaces."
                             too_long: "The maximum username length is 32 characters."
     date:
         formats:
