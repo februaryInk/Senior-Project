@@ -4,6 +4,12 @@
 
     %div.content
         = form_for @conversation do | f |
+            - if @conversation.errors.any?
+                %div.div-errors
+                    %ul
+                        - @conversation.errors.full_messages.each do | message |
+                            %li
+                                = message
             = f.label :forum
             %br
             = f.collection_select :forum_id, @forums, :id, :name, :selected => params[ :forum_id ]

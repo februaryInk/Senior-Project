@@ -35,6 +35,9 @@ hr {
 }
 
 input[type="text"], input[type="password"], select, textarea {
+    &.field-error {
+        border-color: #f0a0a0;
+    }
     border: 0.1em solid darken( $color1, 20% );
     font-family: "Century Gothic";
     font-weight: bold;
@@ -59,6 +62,51 @@ textarea {
     margin-bottom: 0.5em;
 }
 
+.alert-danger {
+    background-color: lighten( $color-danger, 30% );
+    border-color: $color-danger;
+    color: $color-danger;
+}
+
+.alert-info {
+    background-color: lighten( $color-info, 30% );
+    border-color: $color-info;
+    color: $color-info;
+}
+
+.alert-success {
+    background-color: lighten( $color-success, 30% );
+    border-color: $color-success;
+    color: $color-success;
+}
+
+.alert-warning {
+    background-color: lighten( $color-warning, 30% );
+    border-color: $color-warning;
+    color: $color-warning;
+}
+
+.div-errors {
+    color: #f09090;
+}
+
+.div-flash {
+    border-style: solid;
+    border-width: 0.1em;
+    font-size: 1.25em;
+    font-weight: bold;
+    line-height: 2em;
+    margin: auto;
+    margin-bottom: 0.75em;
+    margin-top: 0.75em;
+    text-align: center;
+    width: 60%;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
 .overlay-content:before, .overlay-content:after {
   content: "";
   position: absolute;
@@ -67,10 +115,12 @@ textarea {
   border-color: #804f7c transparent transparent transparent;
   bottom: -0.5em;
 }
+
 .overlay-content:before {
   left: 0;
   border-width: 0.5em 0 0 0.5em;
 }
+
 .overlay-content:after {
   right: 0;
   border-width: 0.5em 0.5em 0 0;

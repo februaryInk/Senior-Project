@@ -5,9 +5,15 @@ class CorePagesController < ApplicationController
     end
 
     def home
-        @user = User.new
-        if signed_in? && current_user.admin?
-            @news_report = current_user.news_reports.new
+        if signed_in?
+            if current_user.manuscripts.any?
+                @working_on = current_user.manuscripts.order( :updated_at ).last
+            end
+            if current_user.admin?
+                @news_report = current_user.news_reports.new
+            end
+        else
+            @user = User.new
         end
         @news_reports = NewsReport.all
     end

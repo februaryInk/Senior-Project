@@ -133,9 +133,9 @@ ActiveRecord::Schema.define(version: 20150125224207) do
     t.string   "name"
     t.text     "content"
     t.integer  "word_count"
-    t.integer  "adventurous_word_count"
-    t.integer  "romantic_word_count"
-    t.integer  "scary_word_count"
+    t.integer  "might_word_count"
+    t.integer  "light_word_count"
+    t.integer  "dark_word_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -12,9 +12,10 @@ class SectionsController < ApplicationController
     def destroy
         # destroy the section and update the manuscript counts.
         @section = Section.find( params[ :id ] )
+        @manuscript = @section.manuscript
         destroyed_position = @section.position
         @section.destroy
-        @sections = @section.manuscript.sections.all
+        @sections = @manuscript.sections.all
         @sections.each do | section |
             if section.position > destroyed_position
                 section.update_attributes( :position => section.position - 1 )

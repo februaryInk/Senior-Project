@@ -13,4 +13,23 @@
                 = f.select :genre, options_for_select( @genres ), :value => @manuscript.genre
                 = f.label :description
                 = f.text_area :description, :value => @manuscript.description, :class => 'height-10em'
+                = f.fields_for @inkling do | ff |
+                    = ff.label 'Word Count Goal'
+                    %br
+                    = ff.text_field :word_count_goal, :class => 'input-inline', :value => @inkling.word_count_goal
+                    words
+                    %br
+                    - unless @inkling.hardcore == true
+                        = ff.label 'Word Rate Goal'
+                        %br
+                        = ff.text_field :word_rate_goal, :class => 'input-inline', :value => @inkling.word_rate_goal
+                        words every
+                        = ff.text_field :word_rate_goal_basis, :class => 'input-inline', :value => @inkling.word_rate_goal_basis
+                        day(s)
+                        %br
+                        = ff.label 'Revival Fee'
+                        %br
+                        = ff.text_field :revival_fee, :class => 'input-inline', :value => @inkling.revival_fee
+                        = ff.select :revival_fee_currency, options_for_select( [ 'words', 'points' ] ), { :value => @inkling.revival_fee_currency }, { :class => 'input-inline' }
+                        %br
                 = f.submit 'Submit Changes', :class => 'button-flat'

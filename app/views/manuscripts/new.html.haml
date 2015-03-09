@@ -7,6 +7,12 @@
             Create a New Manuscript
         %div#form-manuscript
             = form_for @manuscript do | f |
+                - if @manuscript.errors.any?
+                    %div.div-errors
+                        %ul
+                            - @manuscript.errors.full_messages.each do | message |
+                                %li
+                                    = message
                 = f.label :title
                 = f.text_field :title
                 = f.label :genre

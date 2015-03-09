@@ -1,12 +1,16 @@
 class ConversationsController < ApplicationController
     layout 'default.html'
+    include AuthorizationFilters
+    
+    before_action :signed_in_user, :only => [ :destroy, :create, :edit, :new, :update ]
     
     def create
         @conversation = current_user.conversations.build( conversation_params )
         if @conversation.save
             redirect_to conversation_path( @conversation.id )
         else
-            render new
+            @forums = Forum.all
+            render 'new'
         end
     end
     
@@ -32,6 +36,9 @@ class ConversationsController < ApplicationController
         @conversation = Conversation.find_by( :id => params[ :id ] )
         @comments = @conversation.comments.paginate( :page => params[ :page ], :per_page => 15 )
         @comment = Comment.new
+    end
+    
+    def update
     end
     
     private
