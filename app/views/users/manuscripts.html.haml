@@ -23,7 +23,7 @@
                         = link_to 'Delete Manuscript', manuscript_path( :id => manuscript.id ), :method => :delete, :class => 'link-negative'
                     - if manuscript.inkling != nil
                         = content_tag 'div', :class => 'div-inkling-habitat' do
-                            = content_tag 'div', :id => manuscript.id.to_s, :class => 'div-inkling-container', :data => { :selectors => manuscript.inkling.inkling_parts.map( &:selector ) } do
+                            = content_tag 'div', :id => manuscript.id.to_s, :class => 'div-inkling-wrapper moving', :data => { :selectors => manuscript.inkling.inkling_parts.map( &:selector ) } do
                                 = render :partial => 'inklings/inkling_svg.html'
         - else
             %h3
