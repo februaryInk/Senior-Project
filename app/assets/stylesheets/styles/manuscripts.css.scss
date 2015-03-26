@@ -42,14 +42,18 @@
     width: 100%;
 }
 
-.div-inkling-container {
-    height: 18em;
-    width: 27.75em;
+.div-inkling-wrapper {
+    display: block;
+    height: 15em;
+    left: calc( 50% - 11.563em );
+    top: calc( 50% - 7.5em );
+    width: 23.125em;
 }
 
 .div-inkling-habitat {
     border: 0.1em dotted darken( $color1, 10% );
     height: 40em;
+    position: relative;
     width: 100%;
 }
 

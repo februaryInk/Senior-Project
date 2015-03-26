@@ -2,7 +2,11 @@
 @import '../base/variables.css.scss';
 
 #direc {
-    margin: 1.5em 0;
+    margin: 1.5em auto;
+    tr td {
+        text-align: center;
+        width: 6%;
+    }
     width: 100%;
 }
 
@@ -23,6 +27,10 @@
     float: left;
     text-align: center;
     width: 12em;
+}
+
+body {
+    background-color: $color1;
 }
 
 .div-book {
@@ -62,18 +70,28 @@
     width: 27.5%;
 }
 
-.div-inkling-container {
+.div-inkling-wrapper {
+    display: block;
     height: 9em;
+    left: 50px;
+    top: 50px;
     width: 13.875em;
 }
 
 .div-inkling-habitat {
     border: 0.1em dotted darken( $color1, 10% );
-    display: inline-block;
     float: right;
     height: 100%;
     min-height: 35em;
+    position: relative;
     width: 70%;
+}
+
+.friend {
+    float: left;
+    margin: 1em;
+    text-align: center;
+    width: 10em;
 }
 
 .img-book {
@@ -90,26 +108,13 @@
     }
 }
 
-.friend {
-    float: left;
-    margin: 1em;
-    text-align: center;
-    width: 10em;
-}
-
-.direc-link {
-}
-
 .users {
-    li {
+    tr td {
         border-bottom: 1px solid darken( $color1, 15% );
-        padding: 0.75em 0;
-        overflow: auto;
+        line-height: 100%;
+        padding: 0.5em;
+        vertical-align: middle;
     }
-    list-style: none;
     margin: 0;
-}
-
-body {
-    background-color: $color1;
+    width: 100%;
 }
