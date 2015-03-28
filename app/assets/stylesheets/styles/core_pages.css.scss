@@ -2,7 +2,6 @@
 @import '../base/variables.css.scss';
 
 #intro {
-    background-color: $color1;
     height: 100%;
     padding: 1.5em;
     text-align: left;
@@ -10,8 +9,7 @@
 }
 
 #intro-wrapper {
-    border-right: 1.5em solid darken( $color1, 5% );
-    margin-right: 1em;
+    background-color: $color1;
     width: 60%;
 }
 
@@ -33,6 +31,33 @@
     vertical-align: top;
 }
 
+#table-welcome {
+    width: 100%;
+}
+
+#td-transparency {
+    background-color: transparent;
+    width: 1.5em;
+}
+
+body {
+    background-attachment: fixed;
+    background-color: #eeeeee;
+    background-image:
+    radial-gradient(circle at 0% 100%, #ccdddd 0%, transparent 60%),
+    radial-gradient(circle at 100% 50%, #ddeedd 0%, transparent 60%);
+}
+
+.intro-text {
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+
+main {
+    margin-top: 4em;
+    padding-top: 2em;
+}
+
 .report {
     font-size: 1.25em;
 }
@@ -43,14 +68,4 @@
     position: absolute;
     text-align: center;
     width: 100%;
-}
-
-
-body {
-    background-color: darken( $color1, 5% );
-}
-
-main {
-    margin-top: 4em;
-    padding-top: 2em;
 }

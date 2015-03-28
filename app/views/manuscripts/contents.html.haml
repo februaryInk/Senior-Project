@@ -1,4 +1,4 @@
-- content_for( :title ) { @manuscript.title }
+- content_for( :title ) { manuscripts_contents_title( @manuscript ) }
 
 = content_for( :body ) do
 
@@ -20,20 +20,22 @@
         %div#div-table-of-contents
             %h3
                 = "#{ @manuscript.title } Table of Contents"
-            - if @sections.any?
-                %table#table-of-contents
-                    %thead
-                        %tr
-                            %th
-                            %th
-                                Section Name
-                            %th
-                                Position
-                            %th
-                                Words
-                            %th
-                            %th
-                    %tbody#tbody-contents.sortable
+            %table#table-of-contents
+                %thead
+                    %tr
+                        %th
+                        %th.td-fill-remainder
+                            Section Name
+                        %th.td-to-fit
+                            Position
+                        %th.td-to-fit
+                            Words
+                        %th
+                        %th
+                // the sortable class is being used as a jQuery selector in manuscripts.js to
+                // add the jQuery-ui sortable properties.
+                %tbody#tbody-contents.sortable
+                    - if @sections.any?
                         = render :partial => 'sections/sections'
             = link_to sections_path( :manuscript_id => params[ :id ] ), :method => :post, :remote => true, :class => 'make-new' do
                 %div#div-section-new

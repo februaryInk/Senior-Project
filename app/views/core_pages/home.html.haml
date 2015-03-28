@@ -3,7 +3,7 @@
 - content_for :body do
 
     %div.content
-        %table
+        %table#table-welcome
             %tr
                 %td#intro-wrapper
                     %div#intro
@@ -30,6 +30,7 @@
                                 %p
                                     = link_to 'Learn More', about_path, :class => 'link-inline'
                                     or sign up at the right.
+                %td#td-transparency
                 %td#sign-up
                     - if signed_in?
                         %div.overlay.overlay-content

@@ -11,10 +11,14 @@ gem( 'jquery-ui-rails'        )                                                 
 gem( 'pg',           '0.18.1' )                                                             # PostgreSQL database gem.
 gem( 'sass-rails',    '4.0.3' )                                                             # Allows the use of SCSS for style sheets.
 gem( 'uglifier',      '1.3.0' )                                                             # Compresses JavaScript assets.
-gem( 'will_paginate', '3.0.7' )                                                             # Paginates long lists.
+gem( 'will_paginate', '3.0.7' )                                                             # Paginates long lists or tables.
 
 gem( 'tzinfo',                   { :platforms => [ :x64_mingw, :mingw, :mswin ] } )         # Provides Windows with the necessary zoneinfo files.
 gem( 'tzinfo-data',              { :platforms => [ :x64_mingw, :mingw, :mswin ] } )         # Provides Windows with the necessary zoneinfo files.
+
+gem( 'therubyracer',             { :platforms => [ :ruby ] } )
+gem( 'execjs',                   { :platforms => [ :ruby ] } )
+gem( 'whenever',                 { :platforms => [ :ruby ], :require => false } )
 
 group( :doc ) do
     gem( 'sdoc', 	            '0.4.0',                    { :require => false } )         # Wrapper for the rdoc command line tool.

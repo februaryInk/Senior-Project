@@ -5,6 +5,11 @@ module UsersHelper
         gravatar_url = "https://secure.gravatar.com/avatar/#{ gravatar_id }"
         image_tag( gravatar_url, :alt => user.username, :class => 'gravatar' )
     end
+    
+    def users_account_title
+        
+        'Account Overview'
+    end
 
     def users_index_title
     

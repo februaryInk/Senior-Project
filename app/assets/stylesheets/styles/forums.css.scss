@@ -1,13 +1,13 @@
 @import '../base/mixins.css.scss';
 @import '../base/variables.css.scss';
 
-.category {
-    width: 30%;
-}
-
 #conversation-info {
     .link-button-like {
         font-size: 1.2em;
     }
     margin-bottom: 2em;
+}
+
+.category {
+    width: 30%;
 }

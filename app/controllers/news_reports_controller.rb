@@ -12,7 +12,7 @@ class NewsReportsController < ApplicationController
     end
     
     def destroy
-        @report = NewsReport.find_by( params[ :id ] )
+        @report = NewsReport.find( params[ :id ] )
         @report.destroy
         redirect_to root_url
     end

@@ -1,22 +1,31 @@
 class FriendshipsController < ApplicationController
+
+    include AuthorizationFilters
+    
+    before_action :signed_in_user
+
     def create
-        @user = User.find_by( params[ :friendship ][ :friend_id ] )
-        @friendship = current_user.friendships.new( friendship_params )
-        @reciprocated_friendship = current_user.reciprocated_friendships.new( reciprocated_friendship_params )
+        new_friend = User.find( params[ :friendship ][ :friend_id ] )
+        friendship = current_user.friendships.new( friendship_params )
+        reciprocated_friendship = friendship.reciprocal
         begin
-            @friendship.transaction do
-                @friendship.save
-                @reciprocated_friendship.save
+            # if any part of the transaction fails, the entire thing is rolled back.
+            # friendships and reciprocated friendships always have to be changed
+            # together, so we want to prevent any possibility of only one side
+            # being affected.
+            friendship.transaction do
+                friendship.save
+                reciprocated_friendship.save
             end
-            redirect_to :back, :flash => { :success => "An offer of friendship has been sent to #{ @user.username }." }
+            redirect_to :back, :flash => { :success => "An offer of friendship has been sent to #{ new_friend.username }." }
         rescue Exception
-            redirect_to :back, :flash => { :friendship_errors => @friendship.errors.full_messages }
+            redirect_to :back, :flash => { :friendship_errors => friendship.errors.full_messages }
         end
     end
     
     def destroy
         friendship = Friendship.find( params[ :id ] )
-        reciprocated_friendship = current_user.reciprocated_friendships.find_by( :user_id => friendship.friend_id )
+        reciprocated_friendship = friendship.reciprocal
         begin
             friendship.transaction do
                 friendship.destroy
@@ -30,7 +39,7 @@ class FriendshipsController < ApplicationController
     
     def update
         friendship = Friendship.find( params[ :id ] )
-        reciprocated_friendship = current_user.reciprocated_friendships.find_by( :user_id => friendship.friend_id )
+        reciprocated_friendship = friendship.reciprocal
         begin
             friendship.transaction do
                 friendship.update_attributes( :status => 'accepted' )

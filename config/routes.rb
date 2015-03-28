@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :comments, :only => [ :create, :destroy ]
     resources :forums, :only => [ :index, :show ]
     resources :friendships, :only => [ :create, :destroy, :update ]
+    # sort and select are section methods, but are used on views that belong
+    # to the manuscripts controller.
     resources :manuscripts do
         patch '/sections/sort',   :to => 'sections#sort',   :as => 'section_sort'
         get   '/sections/select', :to => 'sections#select', :as => 'section_select'
@@ -26,7 +28,6 @@ Rails.application.routes.draw do
     get '/manuscripts/:id/write',    :to => 'manuscripts#write',    :as => 'manuscript_write'
     
     patch '/section/:id/rename', :to => 'sections#rename', :as => 'section_rename'
-    # delete 'section/:id/destroy', :to =
     
     get '/help',                 :to => 'help_pages#help_center',     :as => 'help'
     get '/help/contact',         :to => 'help_pages#contact',         :as => 'contact'
