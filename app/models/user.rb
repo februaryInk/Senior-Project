@@ -36,6 +36,17 @@ class User < ActiveRecord::Base
     
     # class methods
     
+    def User.create_token
+        SecureRandom.urlsafe_base64
+    end
+    
+    def User.digest( string )
+        cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+        BCrypt::Password.create( string, :cost => cost )
+    end
+    
+    # instance methods
+    
     def authenticated?( remember_token )
         return false if remember_digest.nil?
         BCrypt::Password.new( remember_digest ).is_password?( remember_token )
@@ -60,16 +71,5 @@ class User < ActiveRecord::Base
     
     def waiting_friend?( user )
         waiting_friends.include?( user )
-    end
-    
-    # instance methods
-    
-    def User.create_token
-        SecureRandom.urlsafe_base64
-    end
-    
-    def User.digest( string )
-        cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-        BCrypt::Password.create( string, :cost => cost )
     end
 end

@@ -21,12 +21,7 @@ class ManuscriptsController < ApplicationController
         # assign the attributes that the user does not need to specify.
         @manuscript.assign_attributes( :word_count => 0, :might_word_count => 0, :light_word_count => 0, :dark_word_count => 0, :inkling_attributes => { :points => 0, :might_points => 0,  :light_points => 0, :dark_points => 0, :user_id => current_user.id } )
         if @manuscript.save
-            inkling = @manuscript.inkling
-            guides = InklingPartGuide.all
-            guides.each do | guide |
-                selector = guide.kind + '-000'
-                inkling.inkling_parts.create( :inkling_part_guide_id => guide.id, :kind => guide.kind, :total_points => 0, :might_points => 0, :light_points => 0, :dark_points => 0, :selector => selector )
-            end
+            @manuscript.generate_inkling
             redirect_to manuscript_path( @manuscript )
         else
             @genres =  %w[ adventure action fantasy historical horror mystery romance paranormal western ]
@@ -35,8 +30,8 @@ class ManuscriptsController < ApplicationController
     end
     
     def destroy
-        @manuscript = Manuscript.find( params[ :id ] )
-        @manuscript.destroy
+        manuscript = Manuscript.find( params[ :id ] )
+        manuscript.destroy
         redirect_to :back
     end
     

@@ -42,19 +42,19 @@
     width: 100%;
 }
 
+.div-inkling-habitat {
+    border: 0.1em dotted darken( $color1, 10% );
+    height: 40em;
+    position: relative;
+    width: 100%;
+}
+
 .div-inkling-wrapper {
     display: block;
     height: 15em;
     left: calc( 50% - 11.563em );
     top: calc( 50% - 7.5em );
     width: 23.125em;
-}
-
-.div-inkling-habitat {
-    border: 0.1em dotted darken( $color1, 10% );
-    height: 40em;
-    position: relative;
-    width: 100%;
 }
 
 .handle {
@@ -89,6 +89,8 @@
     vertical-align: center;
 }
 
+// CSS priority requires the specification of type to override the styles
+// in global-styles.css.scss.
 input[type="text"].input-inline, .input-inline {
     display: inline-block;
     width: 10em;

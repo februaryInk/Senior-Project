@@ -1,4 +1,4 @@
-- content_for( :title ) { 'Inklings Thread' }
+- content_for( :title ) { conversations_show_title( @conversation ) }
 
 - content_for( :body ) do
     
@@ -33,18 +33,19 @@
                     %div.clear
                 - i += 1
         = will_paginate @comments
-        %div#comment-new
-            = form_for( @comment ) do | f |
-                - if flash[ :comment_errors ]
-                    %div.div-errors
-                        %ul
-                            - flash[ :comment_errors ].each do | message |
-                                %li
-                                    = message
-                = f.hidden_field :conversation_id, :value => params[ :id ]
-                = f.label 'New Comment'
-                %br
-                = f.text_area :content, :class => 'width-100 height-10em'
-                %br
-                %br
-                = f.submit 'Submit', :class => 'button-flat'
+        - if signed_in?
+            %div#comment-new
+                = form_for( @comment ) do | f |
+                    - if flash[ :comment_errors ]
+                        %div.div-errors
+                            %ul
+                                - flash[ :comment_errors ].each do | message |
+                                    %li
+                                        = message
+                    = f.hidden_field :conversation_id, :value => params[ :id ]
+                    = f.label 'New Comment'
+                    %br
+                    = f.text_area :content, :class => 'width-100 height-10em'
+                    %br
+                    %br
+                    = f.submit 'Submit', :class => 'button-flat'
