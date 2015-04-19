@@ -8,8 +8,9 @@ Rails.application.routes.draw do
     # sort and select are section methods, but are used on views that belong
     # to the manuscripts controller.
     resources :manuscripts do
-        patch '/sections/sort',   :to => 'sections#sort',   :as => 'section_sort'
-        get   '/sections/select', :to => 'sections#select', :as => 'section_select'
+        patch '/sections/sort',              :to => 'sections#sort',              :as => 'section_sort'
+        get   '/sections/select',            :to => 'sections#select',            :as => 'section_select'
+        get   '/sections/select_for_reader', :to => 'sections#select_for_reader', :as => 'section_select_for_reader'
     end
     resources :news_reports, :only => [ :create, :destroy ]
     resources :sections, :only => [ :create, :destroy, :update ]
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
     
     get '/manuscripts/:id/contents', :to => 'manuscripts#contents', :as => 'manuscript_contents'
     get '/manuscripts/:id/write',    :to => 'manuscripts#write',    :as => 'manuscript_write'
+    get '/manuscripts/:id/read',     :to => 'manuscripts#read',     :as => 'manuscript_read'
     
     patch '/section/:id/rename', :to => 'sections#rename', :as => 'section_rename'
     

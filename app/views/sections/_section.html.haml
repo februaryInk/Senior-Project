@@ -4,6 +4,8 @@
     %td.td-fill-remainder
         = form_tag( section_rename_path( section.id ), :method => :patch, :remote => true ) do
             = hidden_field_tag :section_id, section.id
+            \\ auto-submit class is meaningful to a jQuery function in
+            \\ manuscripts.js.
             = text_field_tag :name, section.name, :class => 'auto-submit'
     %td.td-to-fit
         = section.position

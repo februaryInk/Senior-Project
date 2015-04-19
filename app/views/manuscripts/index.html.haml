@@ -1,4 +1,21 @@
 - content_for( :title ) { manuscripts_index_title }
 
-%h1 Manuscripts#index
-%p Find me in app/views/manuscripts/index.html.haml
+- content_for( :body ) do
+
+    %div.content
+        %h2
+            = "#{ site_name } Manuscript Library"
+                
+        %div
+        
+            = will_paginate @updated_manuscripts
+        
+            %table.manuscript
+                - for manuscript in @updated_manuscripts do
+                    %tr
+                        %td.td-to-fit
+                            = manuscript.title
+                        %td.td-fill-remainder
+                            = manuscript.description
+                                        
+            = will_paginate @updated_manuscripts

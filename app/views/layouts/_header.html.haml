@@ -1,4 +1,3 @@
-
 %header
     %div#header-main
         %div.content
@@ -27,7 +26,7 @@
                             %li.indented
                                 = link_to 'Sign In', signin_path
             %div.clear
-    - if params[ :controller ] === 'help_pages'
+    - if params[ :controller ] == 'help_pages'
         %div#header-tabs
             %div.content
                 %div.float-wrapper
@@ -42,7 +41,7 @@
                             %li
                                 = link_to 'Contact Us', contact_path
                 %div.clear
-    - if @account_tab === true && current_user?( User.find( params[ :id ] ) )
+    - if @account_tab && current_user?( User.find( params[ :id ] ) )
         %div#header-tabs
             %div.content
                 %div.float-wrapper
@@ -57,7 +56,7 @@
                             %li
                                 = link_to 'Account Settings', edit_user_path( current_user.id ), :class => 'nowrap'
                 %div.clear
-    - if @manuscript_tab === true
+    - if @manuscript_tab
         %div#header-tabs
             %div.content
                 %div.float-wrapper
@@ -72,3 +71,16 @@
                             %li
                                 = link_to 'Settings', edit_manuscript_path( @manuscript.id )
                 %div.clear
+    - if @reader
+        %nav#nav-for-reader
+            %div.content
+                %table
+                    %tr
+                        %td.td-to-fit
+                            %h4.section-title
+                                = "#{ @manuscript.title }: #{ @open_section.name }"
+                        %td.td-fill-remainder
+                        %td.td-to-fit
+                            = collection_select :section, :id, @sections, :id, :name, { :selected => ( params[ :section ].nil? ? 1 : params[ :section ] ) }, { :id => 'selector-for-reader' }
+                %div.clear
+                %hr

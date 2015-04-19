@@ -1,0 +1,11 @@
+- content_for( :title ) { manuscripts_read_title( @manuscript ) }
+
+- content_for( :body ) do
+    
+    %div.content
+        - if @manuscript.sections.any?
+            %div#open-section
+                = h( @open_section.content ).gsub( /(?:\n\r?|\r\n?)/, '<br>' ).html_safe
+        - else
+            %p
+                This manuscript does not currently have any sections. Visit the Contents tab to create and manage sections.

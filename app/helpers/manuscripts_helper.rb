@@ -8,11 +8,15 @@ module ManuscriptsHelper
     end
     
     def manuscripts_index_title
-        "#{ site_name } Manuscripts"
+        "#{ site_name } Manuscript Library"
     end
     
     def manuscripts_new_title
         'Create New Manuscript'
+    end
+    
+    def manuscripts_read_title( manuscript )
+        "#{ manuscript.title }"
     end
     
     def manuscripts_show_title( manuscript )

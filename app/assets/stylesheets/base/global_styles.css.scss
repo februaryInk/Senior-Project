@@ -94,6 +94,29 @@
     font-size: 2.5em;
 }
 
+#nav-for-reader {
+    background-color: $color1;
+    hr {
+        margin: 0;
+    }
+    line-height: 3em;
+    table {
+        #selector-for-reader {
+            margin: 0;
+            width: 20em;
+        }
+        .td-to-fit {
+            text-align: center;
+        }
+        td {
+            vertical-align: middle;
+        }
+        height: 3em;
+        width: 100%;
+    }
+    width: 100%;
+}
+
 .alert-danger {
     background-color: lighten( $color-danger, 30% );
     border-color: $color-danger;
@@ -407,6 +430,11 @@ h3 {
     font-family: 'Kalam';
     font-size: 1.4em;
     line-height: 1.55em;
+}
+
+h4 {
+    font-size: 1.5em;
+    line-height: 1.25em;
 }
 
 header {

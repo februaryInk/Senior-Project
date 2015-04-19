@@ -36,6 +36,11 @@ class SectionsController < ApplicationController
         @open_section = Section.find( params[ :data_value ] )
     end
     
+    def select_for_reader
+        @open_section = Section.find( params[ :data_value ] )
+        @manuscript = @open_section.manuscript
+    end
+    
     def sort
         # let users rearrange the sections in their manuscripts using jQuery-ui's
         # sortable properties.

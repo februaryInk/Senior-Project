@@ -43,6 +43,7 @@ class ManuscriptsController < ApplicationController
     end
 
     def index
+        @updated_manuscripts = Manuscript.limit( 100 ).order( :created_at => :asc ).paginate( :page => params[ :page ] )
     end
 
     def new
@@ -50,6 +51,17 @@ class ManuscriptsController < ApplicationController
         @manuscript.build_inkling
         # it may be appropriate to eventually make a genre model, to store typical word count, associated inklings, genre names, genre stamps...
         @genres =  %w[ adventure action fantasy historical horror mystery romance paranormal western ]
+    end
+    
+    def read
+        @reader = true
+        @manuscript = Manuscript.find( params[ :id ] )
+        @open_section = params[ :section_id ].nil? ? @manuscript.sections.first : Section.find( params[ :section_id ] )
+        @sections = @manuscript.sections.all
+    end
+    
+    def reviews
+    
     end
 
     def show
