@@ -79,6 +79,10 @@
                         %td.td-to-fit
                             %h4.section-title
                                 = "#{ @manuscript.title }: #{ @open_section.name }"
+                        %td.td-to-fit
+                            = link_to 'Leave Feedback', '#', :class => 'link-add-modal'
+                        %td.td-to-fit
+                            = link_to 'See All Feedback', manuscript_feedback_path( @manuscript.id )
                         %td.td-fill-remainder
                         %td.td-to-fit
                             = collection_select :section, :id, @sections, :id, :name, { :selected => ( params[ :section ].nil? ? 1 : params[ :section ] ) }, { :id => 'selector-for-reader' }

@@ -3,14 +3,17 @@ Rails.application.routes.draw do
     root :to => 'core_pages#home'
     
     resources :comments, :only => [ :create, :destroy ]
+    resources :feedback, :only => [ :destroy ]
     resources :forums, :only => [ :index, :show ]
     resources :friendships, :only => [ :create, :destroy, :update ]
     # sort and select are section methods, but are used on views that belong
-    # to the manuscripts controller.
+    # to the manuscripts controller. putting them under the manuscripts 
+    # resources keeps the relevant manuscript id in params as :manuscript_id.
     resources :manuscripts do
         patch '/sections/sort',              :to => 'sections#sort',              :as => 'section_sort'
         get   '/sections/select',            :to => 'sections#select',            :as => 'section_select'
         get   '/sections/select_for_reader', :to => 'sections#select_for_reader', :as => 'section_select_for_reader'
+        post  '/feedback/',                  :to => 'feedback#create',            :as => 'feedback_index'
     end
     resources :news_reports, :only => [ :create, :destroy ]
     resources :sections, :only => [ :create, :destroy, :update ]
@@ -28,6 +31,7 @@ Rails.application.routes.draw do
     get '/manuscripts/:id/contents', :to => 'manuscripts#contents', :as => 'manuscript_contents'
     get '/manuscripts/:id/write',    :to => 'manuscripts#write',    :as => 'manuscript_write'
     get '/manuscripts/:id/read',     :to => 'manuscripts#read',     :as => 'manuscript_read'
+    get '/manuscripts/:id/feedback', :to => 'manuscripts#feedback', :as => 'manuscript_feedback'
     
     patch '/section/:id/rename', :to => 'sections#rename', :as => 'section_rename'
     

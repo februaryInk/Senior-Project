@@ -37,6 +37,7 @@ class SectionsController < ApplicationController
     end
     
     def select_for_reader
+        # let the user select which section is displayed and refresh with ajax.
         @open_section = Section.find( params[ :data_value ] )
         @manuscript = @open_section.manuscript
     end

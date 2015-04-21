@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
     has_many :news_reports
     has_many :inklings, :dependent => :destroy
     has_many :sections, :dependent => :destroy
+    has_many :feedback
     
     has_many :friendships, :dependent => :destroy
     has_many :reciprocated_friendships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy

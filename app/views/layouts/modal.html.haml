@@ -1,0 +1,16 @@
+!!!
+%html{ :lang => 'en' }
+    %head
+        %title
+            = yield( :title ) || 'Inklings'
+        %link{ :href => 'http://fonts.googleapis.com/css?family=Merienda+One|Delius|Kalam:400,300,700|Merienda', :rel => 'stylesheet', :type => 'text/css' }
+        = csrf_meta_tags
+        = stylesheet_link_tag 'application', :media => 'all'
+        = stylesheet_link_tag "styles/#{ params[ :controller ] }"
+        = yield :stylesheet
+        = javascript_include_tag( 'application' )
+        = javascript_include_tag( controller_name ) if ::Rails.application.assets.find_asset( controller_name )
+        = yield :javascript
+        
+    %body
+        = yield :body

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150125224207) do
+ActiveRecord::Schema.define(version: 20150419165106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20150125224207) do
   add_index "conversations", ["created_at"], name: "index_conversations_on_created_at", using: :btree
   add_index "conversations", ["forum_id"], name: "index_conversations_on_forum_id", using: :btree
   add_index "conversations", ["user_id"], name: "index_conversations_on_user_id", using: :btree
+
+  create_table "feedback", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "manuscript_id"
+    t.text     "content"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "forums", force: :cascade do |t|
     t.string   "group"
