@@ -1,11 +1,12 @@
 - content_for( :title ) { manuscripts_read_title( @manuscript ) }
 
 - content_for( :body ) do
-    
     %div.content
         - if @manuscript.sections.any?
-            %div#open-section
+            = content_tag 'div', :id => 'open-section', :data => { :manuscript_id => @manuscript.id } do
                 = h( @open_section.content ).gsub( /(?:\n\r?|\r\n?)/, '<br>' ).html_safe
         - else
             %p
                 This manuscript does not currently have any sections. Visit the Contents tab to create and manage sections.
+    %div#dialog
+        = render :partial => '/feedback/new'

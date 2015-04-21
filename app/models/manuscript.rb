@@ -5,9 +5,10 @@ class Manuscript < ActiveRecord::Base
     accepts_nested_attributes_for :inkling
     
     has_many :sections, :dependent => :destroy
+    has_many :feedback
     
     validates :title, :presence => true, :length => { :maximum => 250 }
-    validates :genre, :presence => true, :inclusion => { :in => %w[ adventure action fantasy historical horror mystery romance paranormal western ] }, :reduce => true
+    validates :genre, :presence => true, :inclusion => { :in => %w( adventure action fantasy historical horror mystery romance paranormal western ) }, :reduce => true
     validates :user_id, :presence => true, :numericality => { :only_integer => true }, :reduce => true
     
     # instance methods

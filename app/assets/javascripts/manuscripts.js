@@ -40,4 +40,10 @@ $( document ).ready( function (  ) {
             data : { data_value: section_num }
         } );
     } );
+    
+    $( '.feedback-popup' ).click( function( el ) {
+        el.preventDefault(  );
+        var popup = window.open( '/feedback/new', '_blank' );
+        return( false );
+    } );
 } );

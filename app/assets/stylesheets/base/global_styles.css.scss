@@ -1,3 +1,44 @@
+#dialog {
+    border: 0.1em solid darken( $color1, 15% );
+    background-color: white;
+    padding: 1em;
+}
+
+#div-dark-overlay {
+    background: darken( $color1, 100% );
+    /* support IE7 and IE8 with filter. */
+    filter: alpha( opacity=50 );
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 200;
+}
+
+#div-modal {
+    background-color: $color1;
+    padding: 1em;
+    position: absolute;
+    z-index: 300;
+}
+
+#div-modal-close {
+    background-color: red;
+    height: 1.5em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1.5em;
+}
+
+#div-modal-content {
+    height: 100%;
+    padding: 0.5em;
+    width: 100%;
+}
+
 #div-section-new {
     border: 0.1em dotted darken( $color1, 25% );
     display: block;
@@ -46,6 +87,9 @@
             visibility: hidden;
         }
     }
+    a {
+        text-transform: uppercase;
+    }
     background-color: darken( $color1, 2.5% );
     line-height: 4em;
     nav {
@@ -60,6 +104,9 @@
 }
 
 #header-tabs {
+    a {
+        text-transform: uppercase;
+    }
     background-color: darken( $color1, 10% );
     line-height: 3em;
     ul {
@@ -95,6 +142,9 @@
 }
 
 #nav-for-reader {
+    a {
+        padding: 0 0 0 0.75em;
+    }
     background-color: $color1;
     hr {
         margin: 0;
@@ -388,6 +438,10 @@
     background-color: darken( $color1, 7.5% );
 }
 
+.ui-dialog-titlebar-close {
+    display: none;
+}
+
 .width-100 {
     width: 100%;
 }
@@ -438,9 +492,6 @@ h4 {
 }
 
 header {
-    a {
-        text-transform: uppercase;
-    }
     position: fixed;
     top: 0;
     width: 100%;

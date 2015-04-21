@@ -1,0 +1,35 @@
+- content_for( :title ) { manuscripts_read_title( @manuscript ) }
+
+- content_for( :body ) do
+    
+    %div.content
+        %h2
+            Feedback for 
+            = link_to @manuscript.title, manuscript_read_path( @manuscript )
+        %br
+        - if @feedback.any?
+            = will_paginate @feedback
+            %ol
+                - i = 1
+                - for feedback in @feedback
+                    %li.li-feedback
+                        %div.feedback-info
+                            %div.date
+                                = "#{ time_ago_in_words( feedback.created_at ) } ago"
+                            %div.number
+                                = params[ :page ].nil? ? "##{ i }" : "##{ i + 15 * ( params[ :page ].to_i - 1) }"
+                            %div.clear
+                        %aside.aside-user
+                            = gravatar_for User.find( feedback.user_id )
+                            %br
+                            %h3
+                                = User.find( feedback.user_id ).username
+                        %div.feedback
+                            %p
+                                = feedback.content
+                        %div.clear
+                    - i += 1
+            = will_paginate @feedback
+        - else
+            %p
+                This manuscript doesn't have any feedback yet.

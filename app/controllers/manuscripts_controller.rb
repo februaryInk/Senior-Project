@@ -41,6 +41,11 @@ class ManuscriptsController < ApplicationController
         @inkling = @manuscript.inkling
         @genres = %w[ adventure fantasy horror historical mystery romance paranormal ]
     end
+    
+    def feedback
+        @manuscript = Manuscript.find( params[ :id ] )
+        @feedback = @manuscript.feedback.paginate( :page => params[ :page ] )
+    end
 
     def index
         @updated_manuscripts = Manuscript.limit( 100 ).order( :created_at => :asc ).paginate( :page => params[ :page ] )
@@ -58,10 +63,7 @@ class ManuscriptsController < ApplicationController
         @manuscript = Manuscript.find( params[ :id ] )
         @open_section = params[ :section_id ].nil? ? @manuscript.sections.first : Section.find( params[ :section_id ] )
         @sections = @manuscript.sections.all
-    end
-    
-    def reviews
-    
+        @feedback = Feedback.new
     end
 
     def show
