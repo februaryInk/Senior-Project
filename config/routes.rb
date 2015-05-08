@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
     root :to => 'core_pages#home'
     
+    resources :account_activation, :only => [ :edit ]
     resources :comments, :only => [ :create, :destroy ]
     resources :feedback, :only => [ :destroy ]
     resources :forums, :only => [ :index, :show ]
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
         post  '/feedback/',                  :to => 'feedback#create',            :as => 'feedback_index'
     end
     resources :news_reports, :only => [ :create, :destroy ]
+    resources :password_resets, :only => [ :create, :edit, :new, :update ]
     resources :sections, :only => [ :create, :destroy, :update ]
     resources :users
     

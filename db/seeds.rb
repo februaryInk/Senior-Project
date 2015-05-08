@@ -1,8 +1,8 @@
 community_forums = [ 'Introduce Yourself', 'Questions and Answers', 'Suggestions', 'General Talk', 'Deep Thoughts', 'Good Books' ]
 writing_forums = [ 'Advice', 'Characters', 'Grammar and Form', 'Ideas Exchange', 'Playing with Plot', 'Revising and Polishing', 'Short Stories' ]
 
-User.create( :admin => true, :biography => 'Greetings. I am the imaginary user created to test this site. I live in a small town, and I suppose I will stay here all my life. I go to church every Sunday and rollerskating every Friday. I lead a steady, same-old same-old life, and I like it best that way. I\'m also a site admin, so be nice.', :email => 'testuser@example.com', :password => 'goodpassword', :password_confirmation => 'goodpassword', :username => 'Test User' )
-User.create( :admin => false, :biography => 'I live on the eastern coast of the United States, but it has always been my dream to move west. I\'ve always been a reader, but lately I\'ve been feeling the urge to write my own stories.', :email => 'margie@example.com', :password => 'goodpassword', :password_confirmation => 'goodpassword', :username => 'Margie' )
+User.create( :activated => true, :activated_at => Time.zone.now, :admin => true, :biography => 'Greetings. I am the imaginary user created to test this site. I live in a small town, and I suppose I will stay here all my life. I go to church every Sunday and rollerskating every Friday. I lead a steady, same-old same-old life, and I like it best that way. I\'m also a site admin, so be nice.', :email => 'testuser@example.com', :password => 'goodpassword', :password_confirmation => 'goodpassword', :username => 'Test User' )
+User.create( :activated => true, :activated_at => Time.zone.now, :admin => false, :biography => 'I live on the eastern coast of the United States, but it has always been my dream to move west. I\'ve always been a reader, but lately I\'ve been feeling the urge to write my own stories.', :email => 'margie@example.com', :password => 'goodpassword', :password_confirmation => 'goodpassword', :username => 'Margie' )
 
 99.times do | n |
     username = Faker::Name.name
@@ -10,7 +10,7 @@ User.create( :admin => false, :biography => 'I live on the eastern coast of the 
     password = 'goodpassword'
     biography = Faker::Lorem.paragraph
     if ( /\A(?=.*[a-z0-9].*)([a-z0-9\-_.]+)([\s][a-z0-9\-_.]+)*\z/i.match( username ) ) then
-        User.create!( :username => username, :biography => biography, :email => email, :password => password, :password_confirmation => password )
+        User.create!( :activated => true, :activated_at => Time.zone.now, :username => username, :biography => biography, :email => email, :password => password, :password_confirmation => password )
     end
 end
     

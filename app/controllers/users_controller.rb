@@ -2,16 +2,16 @@ class UsersController < ApplicationController
     layout 'default.html'
     include AuthorizationFilters
     
-    before_action :signed_in_user, :only => [ :destroy, :edit, :index, :manuscripts, :social, :update ]
     before_action :admin_user, :only => [ :destroy, :index ]
     before_action :correct_user, :only => [ :destroy, :edit, :manuscripts, :social, :update ]
+    before_action :signed_in_user, :only => [ :destroy, :edit, :index, :manuscripts, :social, :update ]
     
     def create
         @user = User.new( user_params )
         if @user.save
-            signin @user
-            flash[ :success ] = "Welcome to the Inklings community!"
-            redirect_to user_url( @user )
+            @user.send_activation_email
+            flash[ :info ] = 'Activation email has been sent. Please check your inbox.'
+            redirect_to root_path
         else
             @news_reports = NewsReport.all
             # used redirect_to because render loaded the user stylesheet, 

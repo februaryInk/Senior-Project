@@ -1,0 +1,12 @@
+- content_for( :title ) { new_password_reset_title }
+
+- content_for( :body ) do
+
+    %div.content
+        %h2
+            Forgot Password
+        %div
+            = form_for( :password_reset, :url => password_resets_path ) do | f |
+                = f.label :email
+                = f.text_field :email
+                = f.submit 'Send', :class => 'button-flat'

@@ -2,9 +2,11 @@ class User < ActiveRecord::Base
     EMAIL_REGEX = /\A([\w+\-.]+)(@)([a-z\d\-]+)(?:\.[a-z\d\-]+)*(\.)([a-z]+)\z/i
     USERNAME_REGEX = /\A(?=.*[a-z0-9].*)([a-z0-9\-_.]+)([\s][a-z0-9\-_.]+)*\z/i
     
-    # creates password and password_confirmation attributes
+    # creates password and password_confirmation attributes.
     has_secure_password
-    attr_accessor :remember_token
+    
+    # these attributes are not kept in the database, and so are assigned here.
+    attr_accessor :activation_token, :remember_token, :reset_token
     
     has_many :conversations
     has_many :comments
@@ -32,6 +34,7 @@ class User < ActiveRecord::Base
     validates :password, { :length => { :maximum => 32, :minimum => 8 }, :allow_blank => true, :reduce => true }
     validates :simple_name, { :uniqueness => true }
     
+    before_create :create_activation_digest
     before_validation(  ) { self.simple_name = self.username.downcase.gsub( /[ \-\._\s ]/, "" ) }
     before_save(  ) { self.email = email.downcase(  ) }
     
@@ -48,9 +51,19 @@ class User < ActiveRecord::Base
     
     # instance methods
     
-    def authenticated?( remember_token )
-        return false if remember_digest.nil?
-        BCrypt::Password.new( remember_digest ).is_password?( remember_token )
+    def activate
+        self.update_attributes( :activated => true, activated_at => Time.zone.now )
+    end
+    
+    def authenticated?( attribute, token )
+        digest = send( "#{ attribute }_digest" )
+        return false if digest.nil?
+        BCrypt::Password.new( digest ).is_password?( token )
+    end
+    
+    def create_reset_digest
+        self.reset_token = User.create_token
+        update_attributes( :reset_digest => User.digest( reset_token ), :reset_sent_at => Time.zone.now )
     end
     
     def forget
@@ -59,6 +72,10 @@ class User < ActiveRecord::Base
     
     def friend?( user )
         friends.include?( user )
+    end
+    
+    def password_reset_expired?
+        self.reset_sent_at < 2.hours.ago
     end
     
     def pending_friend?( user )
@@ -70,7 +87,22 @@ class User < ActiveRecord::Base
         update_attribute( :remember_digest, User.digest( remember_token ) )
     end
     
+    def send_activation_email
+        AutomatedUserMailer.account_activation( self ).deliver
+    end
+    
+    def send_password_reset_email
+        AutomatedUserMailer.password_reset( self ).deliver
+    end
+    
     def waiting_friend?( user )
         waiting_friends.include?( user )
     end
+    
+    private
+    
+        def create_activation_digest
+            self.activation_token = User.create_token
+            self.activation_digest = User.digest( activation_token )
+        end
 end
