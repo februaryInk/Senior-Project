@@ -1,0 +1,6 @@
+%p
+    = "Hello #{ @user.username },"
+%p
+    = "Welcome to the #{ @site_name } community! Please click the link below to verify your email address and activate your account."
+%p
+    = link_to 'Activate', edit_account_activation_url( @user.activation_token, :email => @user.email )

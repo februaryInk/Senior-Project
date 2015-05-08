@@ -152,10 +152,15 @@ ActiveRecord::Schema.define(version: 20150419165106) do
   add_index "sections", ["user_id"], name: "index_sections_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.boolean  "admin",           default: false
+    t.boolean  "activated",         default: false
+    t.boolean  "admin",             default: false
+    t.datetime "activated_at"
+    t.datetime "reset_sent_at"
+    t.string   "activation_digest"
     t.string   "email"
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.string   "reset_digest"
     t.string   "simple_name"
     t.string   "username"
     t.text     "biography"
