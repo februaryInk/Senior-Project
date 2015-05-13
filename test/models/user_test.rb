@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
     
     def setup
-        @user = User.new( :email => 'testuser@example.com', :password => 'strongpass', :password_confirmation => 'strongpass', :username => 'Test User' )
+        @user = User.new( :email => 'newuser@example.com', :password => 'strongpassword', :password_confirmation => 'strongpassword', :username => 'New User' )
     end
     
     test 'should be valid' do
@@ -83,10 +83,17 @@ class UserTest < ActiveSupport::TestCase
         end
     end
     
-    test 'password should be present' do
+    test 'email should be downcased on save' do
+        mixed_case_email = 'User@Example.com'
+        @user.email = mixed_case_email
+        @user.save
+        assert_equal mixed_case_email.downcase, @user.reload.email
+    end
+    
+    test 'password should be present upon saving' do
         @user.password = ' ' * 10
         @user.password_confirmation = ' ' * 10
-        assert_not @user.valid?
+        assert_not @user.save
     end
     
     test 'password should have at least 8 characters' do

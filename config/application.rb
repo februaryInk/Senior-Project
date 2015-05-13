@@ -12,7 +12,7 @@ module Inklings
         
         # override the default behavior for input fields that fail validation (that is,
         # wrapping the field with the error in a new div with the class "field-with-error").
-        # instead, just add the class "error" to the offending field.
+        # instead, just add the class "field-error" to the offending field.
         config.action_view.field_error_proc = Proc.new do | html_tag, instance |
             class_attr_index = html_tag.index 'class="'
             

@@ -1,0 +1,25 @@
+= form_for @user, :remote => true do | f |
+    - if @user.errors.any?
+        %div.div-errors
+            %ul
+                - @user.errors.full_messages.each do | message |
+                    %li
+                        = message
+    = f.label :username
+    %br
+    = f.text_field :username
+    %br
+    = f.label :email
+    %br
+    = f.text_field :email
+    %br
+    = f.label :password
+    %br
+    = f.password_field :password
+    %br
+    = f.label :password_confirmation
+    %br
+    = f.password_field :password_confirmation
+    %br
+    %br
+    = f.submit 'Join', :class => 'button-flat'

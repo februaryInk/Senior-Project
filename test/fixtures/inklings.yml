@@ -1,11 +1,16 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+test_inkling:
+    created_at: <%= Time.zone.now %>
+    dark_points: 0
+    hardcore: false
+    id: 1
+    light_points: 1
+    manuscript_id: 1
+    might_points: 0
+    points: 1
+    revival_fee: 200
+    revival_fee_currency: 1
+    updated_at: <%= Time.zone.now %>
+    user_id: 1
+    word_count_goal: 1000
+    word_rate_goal: 100
+    word_rate_goal_basis: 1

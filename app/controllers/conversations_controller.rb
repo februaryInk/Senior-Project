@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
     layout 'default.html'
     include AuthorizationFilters
     
-    before_action :signed_in_user, :only => [ :destroy, :create, :edit, :new, :update ]
+    before_action :signed_in_user, :only => [ :destroy, :create, :new ]
     
     def create
         @conversation = current_user.conversations.build( conversation_params )
@@ -19,12 +19,6 @@ class ConversationsController < ApplicationController
         @conversation.destroy
         redirect_to forums_path
     end
-    
-    def edit
-    end
-
-    def index
-    end
 
     def new
         @conversation = current_user.conversations.build
@@ -36,9 +30,6 @@ class ConversationsController < ApplicationController
         @conversation = Conversation.find_by( :id => params[ :id ] )
         @comments = @conversation.comments.paginate( :page => params[ :page ], :per_page => 15 )
         @comment = Comment.new
-    end
-    
-    def update
     end
     
     private

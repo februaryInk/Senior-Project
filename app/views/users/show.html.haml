@@ -9,7 +9,7 @@
                 %br
                 %h3
                     = @user.username
-                - unless current_user?( @user )
+                - unless current_user.nil? || current_user?( @user )
                     %div#form-friendship
                         - if current_user.accepted_friends.include?( @user )
                             = "#{ @user.username } is your friend"

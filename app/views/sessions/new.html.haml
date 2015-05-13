@@ -7,7 +7,7 @@
             %h2
                 Sign in to Inklings
             - if flash[ :session_error ]
-                %div
+                %div.div-errors
                     = flash[ :session_error ]
             = form_for( :session, :url => signin_path ) do | f |
                 = f.label :email
