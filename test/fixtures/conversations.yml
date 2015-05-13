@@ -1,13 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  board_id: 1
-  creator_id: 1
-  first_post: MyText
-  name: MyString
-
-two:
-  board_id: 1
-  creator_id: 1
-  first_post: MyText
-  name: MyString
+conversation_1:
+    forum_id: 1
+    id: 1
+    name: 'The First Conversation'
+    user_id: 1

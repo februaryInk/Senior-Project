@@ -56,31 +56,8 @@
                         %div.overlay.overlay-content
                             %h3
                                 Sign Up
-                        = form_for( @user ) do | f |
-                            - if flash[ :user_errors ]
-                                %div.div-errors
-                                    %ul
-                                        - flash[ :user_errors ].each do | message |
-                                            %li
-                                                = message
-                            = f.label :username
-                            %br
-                            = f.text_field :username
-                            %br
-                            = f.label :email
-                            %br
-                            = f.text_field :email
-                            %br
-                            = f.label :password
-                            %br
-                            = f.password_field :password
-                            %br
-                            = f.label :password_confirmation
-                            %br
-                            = f.password_field :password_confirmation
-                            %br
-                            %br
-                            = f.submit 'Join', :class => 'button-flat'
+                        %div#form-signup
+                            = render :partial => 'users/new'
         %div#news
             %div.overlay.overlay-content
                 %h2

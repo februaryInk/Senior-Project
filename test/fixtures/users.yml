@@ -1,4 +1,32 @@
 test_user:
-    username: Test User
+    activated: true
+    activated_at: <%= Time.zone.now %>
+    admin: false
+    created_at: <%= Time.zone.now %>
     email: testuser@example.com
-    password_digest: <%= User.digest( 'strongpassword' ) %>
+    id: 1
+    password_digest: <%= User.digest( 'goodpassword' ) %>
+    updated_at: <%= Time.zone.now %>
+    username: Test User
+    
+admin_user:
+    activated: true
+    activated_at: <%= Time.zone.now %>
+    admin: true
+    created_at: <%= Time.zone.now %>
+    email: adminuser@example.com
+    id: 2
+    password_digest: <%= User.digest( 'goodpassword' ) %>
+    updated_at: <%= Time.zone.now %>
+    username: Admin User
+    
+other_user:
+    activated: true
+    activated_at: <%= Time.zone.now %>
+    admin: false
+    created_at: <%= Time.zone.now %>
+    email: otheruser@example.com
+    id: 3
+    password_digest: <%= User.digest( 'goodpassword' ) %>
+    updated_at: <%= Time.zone.now %>
+    username: Other User

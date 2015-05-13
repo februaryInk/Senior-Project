@@ -1,9 +1,10 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  user_id: 1
-  title: MyString
-
-two:
-  user_id: 1
-  title: MyString
+manuscript_1:
+    dark_word_count: 10
+    description: 'adventure adventure adventure'
+    genre: 'adventure'
+    id: 1
+    light_word_count: 2
+    might_word_count: 5
+    title: 'Manuscipt 1'
+    user_id: 1
+    word_count: 100

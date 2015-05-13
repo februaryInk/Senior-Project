@@ -23,3 +23,7 @@ gem( 'whenever',                 { :platforms => [ :ruby ], :require => false } 
 group( :doc ) do
     gem( 'sdoc', 	            '0.4.0',                    { :require => false } )         # Wrapper for the rdoc command line tool.
 end
+
+group( :test ) do
+    gem( 'minitest-reporters' )                                                             # Provides a clearer assessment of test results.
+end

@@ -1,11 +1,4 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  description: MyString
-  group: MyString
-  name: MyString
-
-two:
-  description: MyString
-  group: MyString
-  name: MyString
+forum_1:
+    group: 'Group 1'
+    id: 1
+    name: 'The First Forum'

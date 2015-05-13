@@ -17,7 +17,10 @@ class UsersController < ApplicationController
             # used redirect_to because render loaded the user stylesheet, 
             # not the core_pages stylesheet. however, redirect_to does 
             # not keep the error messages. pass them via flash.
-            redirect_to root_url, :flash => { :user_errors => @user.errors.full_messages }
+            # redirect_to root_path, :flash => { :user_errors => @user.errors.full_messages }
+            respond_to do | format |
+                format.js { render layout: false, content_type: 'text/javascript' }
+            end
         end
     end
     
@@ -39,7 +42,6 @@ class UsersController < ApplicationController
     def manuscripts
         @account_tab = true
         @manuscripts = current_user.manuscripts
-        
     end
 
     def new
@@ -49,12 +51,14 @@ class UsersController < ApplicationController
     def show
         @account_tab = true
         @user = User.find( params[ :id ] )
-        unless current_user.friends.include?( @user )
-            @friendship = current_user.friendships.new
-            @reciprocated_friendship = current_user.reciprocated_friendships.new
-        else
-            @friendship = current_user.friendships.find_by( :friend_id => @user.id )
-            @reciprocated_friendship = @user.friendships.find_by( :friend_id => current_user.id )
+        unless current_user.nil?
+            unless current_user.friends.include?( @user )
+                @friendship = current_user.friendships.new
+                @reciprocated_friendship = current_user.reciprocated_friendships.new
+            else
+                @friendship = current_user.friendships.find_by( :friend_id => @user.id )
+                @reciprocated_friendship = @user.friendships.find_by( :friend_id => current_user.id )
+            end
         end
     end
     
@@ -70,10 +74,9 @@ class UsersController < ApplicationController
     def update
         @user = User.find( params[ :id ] )
         if ( @user.authenticate( params[ :authentication ][ :password ] ) && @user.update_attributes( user_params ) )
-            redirect_to user_url( @user )
-        else
-            render 'edit'
+            flash.now[ :success ] = 'Account settings were successfully edited.'
         end
+        render 'edit'
     end
     
     private
