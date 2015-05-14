@@ -1,11 +1,18 @@
 class Section < ActiveRecord::Base
+
+    # RELATIONSHIPS
+
     belongs_to :manuscript
     belongs_to :user
     
+    # make the default order of collections of sections dependent on their
+    # positions, lowest first.
     default_scope -> { order( :position => :asc ) }
     
-    # instance methods
+    # INSTANCE METHODS
     
+    # update the word and keyword counts for the section. this should be used when
+    # a section is saved.
     def update_words( content, might_words, light_words, dark_words )
         might_word_count = 0
         light_word_count = 0

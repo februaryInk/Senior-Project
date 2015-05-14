@@ -2,11 +2,14 @@ class User < ActiveRecord::Base
     EMAIL_REGEX = /\A([\w+\-.]+)(@)([a-z\d\-]+)(?:\.[a-z\d\-]+)*(\.)([a-z]+)\z/i
     USERNAME_REGEX = /\A(?=.*[a-z0-9].*)([a-z0-9\-_.]+)([\s][a-z0-9\-_.]+)*\z/i
     
-    # creates password and password_confirmation attributes.
+    # creates password and password_confirmation attributes, along with the 
+    # authenticate method.
     has_secure_password
     
     # these attributes are not kept in the database, and so are assigned here.
     attr_accessor :activation_token, :remember_token, :reset_token
+    
+    # RELATIONSHIPS
     
     has_many :conversations
     has_many :comments
@@ -24,7 +27,7 @@ class User < ActiveRecord::Base
     has_many :pending_friends, -> { where( 'friendships.status = ?', 'pending' ) }, :through => :friendships
     has_many :waiting_friends, -> { where( 'friendships.status = ?', 'waiting' ) }, :through => :friendships
     
-    # validations
+    # VALIDATIONS
     
     # with the addition of the custom reduce validator, validations must be put in
     # the order that the error messages should come, i.e., blank before invalid.
@@ -38,78 +41,102 @@ class User < ActiveRecord::Base
     validates :password, { :length => { :maximum => 32, :minimum => 8 }, :reduce => true, :on => :update, :if => :update_password? }
     validates :simple_name, { :uniqueness => true }
     
+    # BEFORE ACTIONS
+    
     before_create :create_activation_digest
     before_validation(  ) { self.simple_name = self.username.downcase.gsub( /[ \-\._\s ]/, "" ) }
     before_save(  ) { self.email = email.downcase(  ) }
     
-    # class methods
+    # CLASS METHODS
     
+    # generate a random string to be used as a secure token.
     def User.create_token
         SecureRandom.urlsafe_base64
     end
     
+    # hash a string with a certain time/complexity cost. generally, the hash is
+    # what will be stored in the database for sensitive information rather than
+    # the actual string.
     def User.digest( string )
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
         BCrypt::Password.create( string, :cost => cost )
     end
     
-    # instance methods
+    # INSTANCE METHODS
     
+    # activate the user so they can access their account.
     def activate
         self.update_attributes( :activated => true, activated_at => Time.zone.now )
     end
     
+    # check if a given token matches the stored digest. possibilities for attribute
+    # are activation, password, remember, and reset.
     def authenticated?( attribute, token )
         digest = send( "#{ attribute }_digest" )
         return false if digest.nil?
         BCrypt::Password.new( digest ).is_password?( token )
     end
     
+    # create a password reset token for sending to the user through email, then
+    # store the digest in the database.
     def create_reset_digest
         self.reset_token = User.create_token
         update_attributes( :reset_digest => User.digest( reset_token ), :reset_sent_at => Time.zone.now )
     end
     
+    # delete a user's remember digest so that they will no longer be signed in.
     def forget
-        update_attribute( :remember_digest, nil )
+        self.update_attribute( :remember_digest, nil )
     end
     
+    # check if another user is this user's friend.
     def friend?( user )
-        friends.include?( user )
+        self.friends.include?( user )
     end
     
+    # check if the password reset was sent to the user longer than 2 hours ago.
     def password_reset_expired?
         self.reset_sent_at < 2.hours.ago
     end
     
+    # check if another user is this user's friend.
     def pending_friend?( user )
-        pending_friends.include?( user )
+        self.pending_friends.include?( user )
     end
     
+    # assign the user a remember_token and store the digest. this is used to keep
+    # users signed in even if the browser is closed.
     def remember
         self.remember_token = User.create_token
-        update_attribute( :remember_digest, User.digest( remember_token ) )
+        self.update_attribute( :remember_digest, User.digest( remember_token ) )
     end
     
+    # deliver an email to the user that contains an activation link.
     def send_activation_email
         AutomatedUserMailer.account_activation( self ).deliver
     end
     
+    # deliver an email to the user that contains a password reset link.
     def send_password_reset_email
         AutomatedUserMailer.password_reset( self ).deliver
     end
     
+    # check if another user is this user's waiting friend.
     def waiting_friend?( user )
-        waiting_friends.include?( user )
+        self.waiting_friends.include?( user )
     end
     
     private
     
+        # create an activation token for sending to the user through email, then
+        # store the digest in the database.
         def create_activation_digest
             self.activation_token = User.create_token
             self.activation_digest = User.digest( activation_token )
         end
         
+        # detect if the user is attempting to change their password when updating
+        # their account.
         def update_password?
             password.present? || password_confirmation.present?
         end
