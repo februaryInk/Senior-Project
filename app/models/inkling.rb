@@ -1,8 +1,13 @@
 class Inkling < ActiveRecord::Base
+
+    # RELATIONSHIPS
+
     belongs_to :user
     belongs_to :manuscript
     
     has_many :inkling_parts
+    
+    # VALIDATIONS
     
     validates :revival_fee, :presence => true, :numericality => { :only_integer => true }, :reduce => true
     validates :revival_fee_currency, :presence => true, :reduce => true
@@ -10,8 +15,10 @@ class Inkling < ActiveRecord::Base
     validates :word_rate_goal, :presence => true, :numericality => { :only_integer => true }, :reduce => true
     validates :word_rate_goal_basis, :presence => true, :numericality => { :only_integer => true }, :reduce => true
     
-    # instance methods
+    # INSTANCE METHODS
     
+    # transform the inkling based on the number of words and keyword counts in the
+    # manuscript.
     def update_parts
         all_parts = self.inkling_parts
         might = 0
@@ -26,8 +33,8 @@ class Inkling < ActiveRecord::Base
             dark += part.dark_points
         end
         
-        # figure the difference between the number of points that should be 
-        # invested and the number that is invested for each category.
+        # figure the difference between the number of points that should be invested 
+        # and the number that is invested for each category.
         point_changes = { :might_points => ( self.might_points - might ), :light_points => ( self.light_points - light ), :dark_points => ( self.dark_points - dark ) }
         
         # remove points first, if any need to be removed.
@@ -76,6 +83,7 @@ class Inkling < ActiveRecord::Base
         end
     end
     
+    # calculate the number of points that should be put in each word category.
     def update_points( manuscript )
         # calculate the number of qualifier words and the total inkling points 
         # with a cap of 21 points.
