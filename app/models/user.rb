@@ -24,14 +24,18 @@ class User < ActiveRecord::Base
     has_many :pending_friends, -> { where( 'friendships.status = ?', 'pending' ) }, :through => :friendships
     has_many :waiting_friends, -> { where( 'friendships.status = ?', 'waiting' ) }, :through => :friendships
     
-    # allow_blank => true on the password validations only works on PATCH requests.
-    # has_secure_password still prevents truly blank passwords on POST requests.
+    # validations
+    
     # with the addition of the custom reduce validator, validations must be put in
     # the order that the error messages should come, i.e., blank before invalid.
     # always put :reduce last to display at most 1 error for each attribute.
+    # password requires slightly different validations on create versus on update,
+    # so that a blank password on update is allowed and leaves the password 
+    # unchanged.
     validates :email, { :presence => true, :format => { :with => EMAIL_REGEX }, :uniqueness => { :case_sensitive => false }, :reduce => true }
     validates :username, { :presence => true, :length => { :maximum => 32 }, :format => { :with => USERNAME_REGEX }, :reduce => true }
-    validates :password, { :length => { :maximum => 32, :minimum => 8 }, :allow_blank => true, :reduce => true }
+    validates :password, { :presence => true, :length => { :maximum => 32, :minimum => 8 }, :reduce => true, :on => :create }
+    validates :password, { :length => { :maximum => 32, :minimum => 8 }, :reduce => true, :on => :update, :if => :update_password? }
     validates :simple_name, { :uniqueness => true }
     
     before_create :create_activation_digest
@@ -104,5 +108,9 @@ class User < ActiveRecord::Base
         def create_activation_digest
             self.activation_token = User.create_token
             self.activation_digest = User.digest( activation_token )
+        end
+        
+        def update_password?
+            password.present? || password_confirmation.present?
         end
 end

@@ -74,9 +74,11 @@ class UsersController < ApplicationController
     def update
         @user = User.find( params[ :id ] )
         if ( @user.authenticate( params[ :authentication ][ :password ] ) && @user.update_attributes( user_params ) )
-            flash.now[ :success ] = 'Account settings were successfully edited.'
+            flash[ :success ] = 'Account settings were successfully edited.'
+            redirect_to edit_user_path( @user.id )
+        else
+            render :edit
         end
-        render 'edit'
     end
     
     private
