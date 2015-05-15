@@ -1,5 +1,7 @@
 module UsersHelper
     
+    # get a user's globally recognized avatar, hosted at gravatar.com under their
+    # username.
     def gravatar_for( user )
         gravatar_id = Digest::MD5::hexdigest( user.email.downcase )
         gravatar_url = "https://secure.gravatar.com/avatar/#{ gravatar_id }"
