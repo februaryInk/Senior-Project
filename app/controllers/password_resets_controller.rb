@@ -2,10 +2,13 @@ class PasswordResetsController < ApplicationController
 
     layout 'default'
     
+    # BEFORE ACTIONS
+    
     before_action :check_expiration, :only => [ :edit, :update ]
     before_action :get_user, :only => [ :edit, :update ]
     before_action :valid_user, :only => [ :edit, :update ]
 
+    # send the user a password reset email if the user exists.
     def create
         @user = User.find_by( :email => params[ :password_reset ][ :email ].downcase )
         if @user
@@ -19,12 +22,15 @@ class PasswordResetsController < ApplicationController
         end
     end
     
+    # display the password reset page.
     def edit
     end
 
+    # display the password reset request page.
     def new
     end
     
+    # reset the user's password.
     def update
         if @user.update_attributes( user_params )
             signin @user
@@ -37,6 +43,7 @@ class PasswordResetsController < ApplicationController
     
     private
     
+        # redirect if the password reset_token was sent more than 2 hours ago.
         def check_expiration
             if @user.password_reset_expired?
                 flash[ :danger ] = 'The password reset link has expired. If you still wish to reset your password, please submit your request again.'
@@ -44,6 +51,8 @@ class PasswordResetsController < ApplicationController
             end
         end
     
+        # retrieve the user from the information stored in the reset password link,
+        # which the user was sent via email.
         def get_user
             @user = User.find_by( :email => params[ :email ] )
         end
@@ -52,6 +61,8 @@ class PasswordResetsController < ApplicationController
             params.require( :user ).permit( :password, :password_confirmation )
         end
         
+        # ensure that the user exists, was activated, and that the reset_token passed
+        # through the link pairs with the user's reset_digest in the database.
         def valid_user
             unless ( @user && @user.activated? && @user.authenticated?( :reset, params[ :id ] ) )
                 redirect_to root_path

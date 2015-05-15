@@ -2,8 +2,12 @@ class FriendshipsController < ApplicationController
 
     include AuthorizationFilters
     
+    # BEFORE ACTIONS
+    
     before_action :signed_in_user
 
+    # create a pair of friendship objects, one for the pending friend and one for
+    # the waiting friend. the friendship must be accepted before being active.
     def create
         new_friend = User.find( params[ :friendship ][ :friend_id ] )
         friendship = current_user.friendships.new( friendship_params )
@@ -23,6 +27,7 @@ class FriendshipsController < ApplicationController
         end
     end
     
+    # destroy the friendship and its reciprocal.
     def destroy
         friendship = Friendship.find( params[ :id ] )
         reciprocated_friendship = friendship.reciprocal
@@ -37,6 +42,7 @@ class FriendshipsController < ApplicationController
         end
     end
     
+    # set a friendship's status to accepted for both users.
     def update
         friendship = Friendship.find( params[ :id ] )
         reciprocated_friendship = friendship.reciprocal

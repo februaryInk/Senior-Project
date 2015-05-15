@@ -2,9 +2,13 @@ class ManuscriptsController < ApplicationController
     layout 'default.html'
     include AuthorizationFilters
     
+    # BEFORE ACTIONS
+    
     before_action :signed_in_user, :only => [ :create, :new ]
     before_action :correct_user, :only => [ :contents, :destroy, :edit, :show, :update, :write ]
     
+    # display the table of contents. AJAX and jQuery are used to make it
+    # interactive.
     def contents
         @manuscript_tab = true
         @manuscript = Manuscript.find( params[ :id ] )
@@ -16,6 +20,7 @@ class ManuscriptsController < ApplicationController
         end
     end
     
+    # create a manuscript and its inkling.
     def create
         @manuscript = current_user.manuscripts.build( manuscript_params )
         # assign the attributes that the user does not need to specify.
@@ -29,12 +34,14 @@ class ManuscriptsController < ApplicationController
         end
     end
     
+    # destroy a manuscript.
     def destroy
         manuscript = Manuscript.find( params[ :id ] )
         manuscript.destroy
         redirect_to :back
     end
     
+    # display the edit page, where manuscript settings can be updated.
     def edit
         @manuscript_tab = true
         @manuscript = Manuscript.find( params[ :id ] )
@@ -42,15 +49,19 @@ class ManuscriptsController < ApplicationController
         @genres = %w[ adventure fantasy horror historical mystery romance paranormal ]
     end
     
+    # display the feedback page, where all of the feedback for the manuscript is
+    # shown.
     def feedback
         @manuscript = Manuscript.find( params[ :id ] )
         @feedback = @manuscript.feedback.paginate( :page => params[ :page ] )
     end
 
+    # display the manuscript library.
     def index
         @updated_manuscripts = Manuscript.limit( 100 ).order( :created_at => :asc ).paginate( :page => params[ :page ] )
     end
 
+    # display the new manuscript page.
     def new
         @manuscript = current_user.manuscripts.build
         @manuscript.build_inkling
@@ -58,6 +69,7 @@ class ManuscriptsController < ApplicationController
         @genres =  %w[ adventure action fantasy historical horror mystery romance paranormal western ]
     end
     
+    # display the manuscript contents in a format for reading.
     def read
         @reader = true
         @manuscript = Manuscript.find( params[ :id ] )
@@ -66,6 +78,7 @@ class ManuscriptsController < ApplicationController
         @feedback = Feedback.new
     end
 
+    # display information/statistics relating to the manuscript.
     def show
         @manuscript_tab = true
         @manuscript = Manuscript.find( params[ :id ] )
@@ -73,15 +86,18 @@ class ManuscriptsController < ApplicationController
         @selectors = @inkling.inkling_parts.map( &:selector ).to_json
     end 
     
+    # update manuscript and inkling settings.
     def update
         @manuscript = Manuscript.find( params[ :id ] )
         if @manuscript.update_attributes( manuscript_params )
             redirect_to manuscript_url( @manuscript )
+            flash[ :success ] = 'Manuscript settings have been successfully updated.'
         else
             render 'edit'
         end
     end
     
+    # display the manuscript contents in a format for reading.
     def write
         @manuscript_tab = true
         @manuscript = Manuscript.find( params[ :id ] )

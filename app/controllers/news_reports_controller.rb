@@ -1,9 +1,13 @@
 class NewsReportsController < ApplicationController
+
     include AuthorizationFilters
     
-    before_action :signed_in_user, :only => [ :destroy, :edit, :index, :update ]
-    before_action :admin_user, :only => [ :destroy, :index ]
+    # BEFORE ACTIONS
+    
+    before_action :signed_in_user, :only => [ :create, :destroy ]
+    before_action :admin_user, :only => [ :create, :destroy ]
 
+    # create a new news_report.
     def create
         @report = current_user.news_reports.build( news_report_params )
         if @report.save
@@ -11,6 +15,7 @@ class NewsReportsController < ApplicationController
         end
     end
     
+    # delete a news report.
     def destroy
         @report = NewsReport.find( params[ :id ] )
         @report.destroy
