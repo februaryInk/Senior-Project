@@ -2,6 +2,7 @@ class FeedbackController < ApplicationController
 
     layout 'modal.html'
     
+    # create feedback.
     def create
         manuscript = Manuscript.find( params[ :manuscript_id ] )
         feedback = manuscript.feedback.build( feedback_params )
@@ -15,6 +16,7 @@ class FeedbackController < ApplicationController
         end
     end
     
+    # destroy feedback.
     def destroy
         feedback = Feedback.find( params[ :id ] )
         feedback.destroy

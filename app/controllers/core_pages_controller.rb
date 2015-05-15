@@ -1,9 +1,12 @@
 class CorePagesController < ApplicationController
+
     layout 'default.html'
     
+    # display the about page.
     def about
     end
 
+    # display the home page, adjusted to the current_user.
     def home
         if signed_in?
             if current_user.manuscripts.any?
