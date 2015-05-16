@@ -16,7 +16,7 @@ Rails.application.routes.draw do
         get   '/sections/select_for_reader', :to => 'sections#select_for_reader', :as => 'section_select_for_reader'
         post  '/feedback/',                  :to => 'feedback#create',            :as => 'feedback_index'
     end
-    resources :news_reports, :only => [ :create, :destroy ]
+    resources :news_reports, :only => [ :create, :destroy, :edit, :update ]
     resources :password_resets, :only => [ :create, :edit, :new, :update ]
     resources :sections, :only => [ :create, :destroy, :update ]
     resources :users
