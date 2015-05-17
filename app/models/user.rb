@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
     # BEFORE ACTIONS
     
     before_create :create_activation_digest
-    before_validation(  ) { self.simple_name = self.username.downcase.gsub( /[ \-\._\s ]/, "" ) }
+    before_validation :assign_simple_name
     before_save(  ) { self.email = email.downcase(  ) }
     
     # CLASS METHODS
@@ -67,6 +67,12 @@ class User < ActiveRecord::Base
     # activate the user so they can access their account.
     def activate
         self.update_attributes( :activated => true, activated_at => Time.zone.now )
+    end
+    
+    # determine the user's simple_name and assign it. the simple_name is used to 
+    # enforce greater username uniqueness.
+    def assign_simple_name
+        self.simple_name = self.username.downcase.gsub( /[ \-\._\s ]/, "" )
     end
     
     # check if a given token matches the stored digest. possibilities for attribute

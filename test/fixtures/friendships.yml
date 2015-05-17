@@ -1,0 +1,31 @@
+friendship_1:
+    created_at: <%= Time.zone.now %>
+    friend_id: 2
+    id: 1
+    status: 'accepted'
+    updated_at: <%= Time.zone.now %>
+    user_id: 1
+    
+friendship_2:
+    created_at: <%= Time.zone.now %>
+    friend_id: 1
+    id: 2
+    status: 'accepted'
+    updated_at: <%= Time.zone.now %>
+    user_id: 2
+    
+friendship_3:
+    created_at: <%= Time.zone.now %>
+    friend_id: 3
+    id: 3
+    status: 'pending'
+    updated_at: <%= Time.zone.now %>
+    user_id: 2
+    
+friendship_4:
+    created_at: <%= Time.zone.now %>
+    friend_id: 2
+    id: 4
+    status: 'waiting'
+    updated_at: <%= Time.zone.now %>
+    user_id: 3

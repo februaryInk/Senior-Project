@@ -1,32 +1,67 @@
-test_user:
-    activated: true
-    activated_at: <%= Time.zone.now %>
-    admin: false
-    created_at: <%= Time.zone.now %>
-    email: testuser@example.com
-    id: 1
-    password_digest: <%= User.digest( 'goodpassword' ) %>
-    updated_at: <%= Time.zone.now %>
-    username: Test User
-    
 admin_user:
     activated: true
     activated_at: <%= Time.zone.now %>
+    activation_digest: <%= User.digest( 'activation_token' ) %>
     admin: true
+    biography: 'I am an admin user.'
     created_at: <%= Time.zone.now %>
     email: adminuser@example.com
+    id: 1
+    password_digest: <%= User.digest( 'goodpassword' ) %>
+    remember_digest: <%= User.digest( 'remember_token' ) %>
+    reset_digest: <%= User.digest( 'reset_token' ) %>
+    reset_sent_at: <%= Time.zone.now %>
+    simple_name: 'adminuser'
+    updated_at: <%= Time.zone.now %>
+    username: 'Admin User'
+
+test_user:
+    activated: true
+    activated_at: <%= Time.zone.now %>
+    activation_digest: <%= User.digest( 'activation_token' ) %>
+    admin: false
+    biography: 'I am a test user.'
+    created_at: <%= Time.zone.now %>
+    email: testuser@example.com
     id: 2
     password_digest: <%= User.digest( 'goodpassword' ) %>
+    remember_digest: <%= User.digest( 'remember_token' ) %>
+    reset_digest: <%= User.digest( 'reset_token' ) %>
+    reset_sent_at: <%= Time.zone.now %>
+    simple_name: 'testuser'
     updated_at: <%= Time.zone.now %>
-    username: Admin User
+    username: 'Test User'
     
 other_user:
     activated: true
     activated_at: <%= Time.zone.now %>
+    activation_digest: <%= User.digest( 'activation_token' ) %>
     admin: false
+    biography: 'I am another user.'
     created_at: <%= Time.zone.now %>
     email: otheruser@example.com
     id: 3
     password_digest: <%= User.digest( 'goodpassword' ) %>
+    remember_digest: <%= User.digest( 'remember_token' ) %>
+    reset_digest: <%= User.digest( 'reset_token' ) %>
+    reset_sent_at: <%= Time.zone.now %>
+    simple_name: 'otheruser'
     updated_at: <%= Time.zone.now %>
-    username: Other User
+    username: 'Other User'
+    
+unactivated_user:
+    activated: false
+    activated_at: <%= Time.zone.now %>
+    activation_digest: <%= User.digest( 'activation_token' ) %>
+    admin: false
+    biography: ''
+    created_at: <%= Time.zone.now %>
+    email: unactivateduser@example.com
+    id: 4
+    password_digest: <%= User.digest( 'goodpassword' ) %>
+    remember_digest: <%= User.digest( 'remember_token' ) %>
+    reset_digest: <%= User.digest( 'reset_token' ) %>
+    reset_sent_at: <%= Time.zone.now %>
+    simple_name: 'unactivateduser'
+    updated_at: <%= Time.zone.now %>
+    username: 'Unactivated User'

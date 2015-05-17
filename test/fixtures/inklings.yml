@@ -1,4 +1,4 @@
-test_inkling:
+inkling_1:
     created_at: <%= Time.zone.now %>
     dark_points: 0
     hardcore: false

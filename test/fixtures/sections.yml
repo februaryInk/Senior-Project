@@ -1,0 +1,27 @@
+section_1:
+    content: 'This is a section.'
+    created_at: <%= Time.zone.now %>
+    dark_word_count: 0
+    id: 1
+    light_word_count: 0
+    might_word_count: 0
+    manuscript_id: 1
+    name: 'Chapter 1'
+    position: 1
+    updated_at: <%= Time.zone.now %>
+    user_id: 2
+    word_count: 4
+
+section_2:
+    content: 'This is a section.'
+    created_at: <%= Time.zone.now %>
+    dark_word_count: 0
+    id: 2
+    light_word_count: 0
+    might_word_count: 0
+    manuscript_id: 1
+    name: 'Chapter 2'
+    position: 2
+    updated_at: <%= Time.zone.now %>
+    user_id: 2
+    word_count: 4
