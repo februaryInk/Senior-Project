@@ -1,4 +1,6 @@
 forum_1:
+    created_at: <%= Time.zone.now %>
     group: 'Group 1'
     id: 1
     name: 'The First Forum'
+    updated_at: <%= Time.zone.now %>

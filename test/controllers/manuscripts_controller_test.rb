@@ -4,7 +4,7 @@ class ManuscriptsControllerTest < ActionController::TestCase
 
     def setup
         @user = users( :test_user )
-        @inkling = inklings( :test_inkling )
+        @inkling = inklings( :inkling_1 )
     end
 
     test "should get edit" do

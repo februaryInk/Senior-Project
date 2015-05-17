@@ -1,10 +1,10 @@
 manuscript_1:
-    dark_word_count: 10
+    dark_word_count: 1
     description: 'adventure adventure adventure'
     genre: 'adventure'
     id: 1
     light_word_count: 2
     might_word_count: 5
     title: 'Manuscipt 1'
-    user_id: 1
+    user_id: 2
     word_count: 100

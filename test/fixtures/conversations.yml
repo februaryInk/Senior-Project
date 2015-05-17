@@ -1,5 +1,7 @@
 conversation_1:
+    created_at: <%= Time.zone.now %>
     forum_id: 1
     id: 1
     name: 'The First Conversation'
+    updated_at: <%= Time.zone.now %>
     user_id: 1
