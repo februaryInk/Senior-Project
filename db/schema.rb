@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(version: 20150419165106) do
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
+    t.integer  "conversation_id"
     t.integer  "user_id"
     t.text     "content"
-    t.integer  "conversation_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "comments", ["conversation_id"], name: "index_comments_on_conversation_id", using: :btree
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20150419165106) do
     t.integer  "forum_id"
     t.integer  "user_id"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "conversations", ["created_at"], name: "index_conversations_on_created_at", using: :btree
@@ -48,19 +48,22 @@ ActiveRecord::Schema.define(version: 20150419165106) do
     t.datetime "updated_at",    null: false
   end
 
+  add_index "feedback", ["manuscript_id"], name: "index_feedback_on_manuscript_id", using: :btree
+  add_index "feedback", ["user_id"], name: "index_feedback_on_user_id", using: :btree
+
   create_table "forums", force: :cascade do |t|
     t.string   "group"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
     t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
@@ -68,41 +71,43 @@ ActiveRecord::Schema.define(version: 20150419165106) do
   add_index "friendships", ["user_id"], name: "index_friendships_on_user_id", using: :btree
 
   create_table "inkling_part_guides", force: :cascade do |t|
-    t.string  "kind"
-    t.integer "max_points"
-    t.integer "max_might_points"
-    t.integer "max_light_points"
     t.integer "max_dark_points"
+    t.integer "max_light_points"
+    t.integer "max_might_points"
+    t.integer "max_points"
+    t.string  "kind"
   end
 
   create_table "inkling_parts", force: :cascade do |t|
     t.integer  "inkling_id"
     t.integer  "inkling_part_guide_id"
-    t.string   "selector"
-    t.string   "kind"
-    t.integer  "total_points"
-    t.integer  "might_points"
-    t.integer  "light_points"
     t.integer  "dark_points"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "light_points"
+    t.integer  "might_points"
+    t.integer  "total_points"
+    t.string   "kind"
+    t.string   "selector"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
+  add_index "inkling_parts", ["inkling_id"], name: "index_inkling_parts_on_inkling_id", using: :btree
+
   create_table "inklings", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "manuscript_id"
+    t.integer  "user_id"
+    t.boolean  "hardcore"
+    t.integer  "dark_points"
+    t.integer  "light_points"
+    t.integer  "might_points"
+    t.integer  "points"
+    t.integer  "revival_fee"
+    t.integer  "revival_fee_currency"
     t.integer  "word_count_goal"
     t.integer  "word_rate_goal"
     t.integer  "word_rate_goal_basis"
-    t.integer  "revival_fee"
-    t.integer  "revival_fee_currency"
-    t.boolean  "hardcore"
-    t.integer  "points"
-    t.integer  "might_points"
-    t.integer  "light_points"
-    t.integer  "dark_points"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "inklings", ["manuscript_id"], name: "index_inklings_on_manuscript_id", using: :btree
@@ -110,15 +115,15 @@ ActiveRecord::Schema.define(version: 20150419165106) do
 
   create_table "manuscripts", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "light_word_count"
+    t.integer  "dark_word_count"
+    t.integer  "might_word_count"
+    t.integer  "word_count"
     t.string   "title"
     t.string   "genre"
     t.text     "description"
-    t.integer  "word_count"
-    t.integer  "might_word_count"
-    t.integer  "light_word_count"
-    t.integer  "dark_word_count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "manuscripts", ["genre"], name: "index_manuscripts_on_genre", using: :btree
@@ -128,8 +133,8 @@ ActiveRecord::Schema.define(version: 20150419165106) do
     t.integer  "user_id"
     t.string   "title"
     t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "news_reports", ["user_id"], name: "index_news_reports_on_user_id", using: :btree
@@ -137,15 +142,15 @@ ActiveRecord::Schema.define(version: 20150419165106) do
   create_table "sections", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "manuscript_id"
+    t.integer  "dark_word_count"
+    t.integer  "light_word_count"
+    t.integer  "might_word_count"
     t.integer  "position"
+    t.integer  "word_count"
     t.string   "name"
     t.text     "content"
-    t.integer  "word_count"
-    t.integer  "might_word_count"
-    t.integer  "light_word_count"
-    t.integer  "dark_word_count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "sections", ["manuscript_id"], name: "index_sections_on_manuscript_id", using: :btree
@@ -164,8 +169,8 @@ ActiveRecord::Schema.define(version: 20150419165106) do
     t.string   "simple_name"
     t.string   "username"
     t.text     "biography"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
