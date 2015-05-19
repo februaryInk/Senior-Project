@@ -42,18 +42,18 @@
                     %div#form-post
                         = render :partial => 'posts/new'
                 %ul#ul-activity-feed
-                    - @activity.each do | post |
+                    - @activity_feed.each do | post |
                         %li.li-post
                             %div.div-post-header
                                 %span
                                     = link_to post.user.username, user_path( post.user.id )
                                 %span
                                     = l( post.created_at, :format => :to_the_day )
-                                - if current_user.is_owner?( post )
+                                - if current_user && current_user.is_owner?( post )
                                     %span
                                         = link_to 'delete', user_post_path( current_user.id, post.id ), :method => :delete
                             %div.div-post-content
                                 = post.content
                                 
-                = will_paginate @activity
+                = will_paginate @activity_feed
             %div.clear

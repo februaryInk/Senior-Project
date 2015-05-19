@@ -11,4 +11,5 @@ class Post < ActiveRecord::Base
     # VALIDATIONS
     
     validates :content, :presence => true, :length => { :maximum => 1000 }, :reduce => true
+    validates :user_id, :presence => true
 end

@@ -2,9 +2,9 @@ class PostsController < ApplicationController
 
     include AuthorizationFilters
     
+    before_action :signed_in_user, :only => [ :create, :destroy ]
     before_action :owner_user, :only => [ :destroy ]
-    before_action :signed_in_user, :only => [ :create ]
-
+    
     def create
         @post = Post.new( post_params )
         respond_to do | format |
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     def destroy
         @post = Post.find( params[ :id ] )
         @post.destroy
-        redirect_to :back
+        redirect_to user_path( params[ :user_id ] )
     end
 
     private
