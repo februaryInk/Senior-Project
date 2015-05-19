@@ -31,6 +31,29 @@
                                     = f.hidden_field :status, :value => 'waiting'
                                 = submit_tag 'Send Friendship Request', :class => 'button-flat'
             %div#div-profile
+                %h4
+                    Biography
                 %p
                     = @user.biography
+                %div#div-activity
+                %h4
+                    Activity
+                - if current_user?( @user )
+                    %div#form-post
+                        = render :partial => 'posts/new'
+                %ul#ul-activity-feed
+                    - @activity.each do | post |
+                        %li.li-post
+                            %div.div-post-header
+                                %span
+                                    = link_to post.user.username, user_path( post.user.id )
+                                %span
+                                    = l( post.created_at, :format => :to_the_day )
+                                - if current_user.is_owner?( post )
+                                    %span
+                                        = link_to 'delete', user_post_path( current_user.id, post.id ), :method => :delete
+                            %div.div-post-content
+                                = post.content
+                                
+                = will_paginate @activity
             %div.clear

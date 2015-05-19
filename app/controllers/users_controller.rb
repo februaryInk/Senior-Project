@@ -13,11 +13,6 @@ class UsersController < ApplicationController
             flash[ :info ] = 'Activation email has been sent. Please check your inbox.'
             redirect_to root_path
         else
-            @news_reports = NewsReport.all
-            # used redirect_to because render loaded the user stylesheet, 
-            # not the core_pages stylesheet. however, redirect_to does 
-            # not keep the error messages. pass them via flash.
-            # redirect_to root_path, :flash => { :user_errors => @user.errors.full_messages }
             respond_to do | format |
                 format.js { render layout: false, content_type: 'text/javascript' }
             end
@@ -50,7 +45,9 @@ class UsersController < ApplicationController
 
     def show
         @account_tab = true
+        @post = Post.new
         @user = User.find( params[ :id ] )
+        @activity = @user.activity.paginate( :page => params[ :page ] )
         unless current_user.nil?
             unless current_user.friends.include?( @user )
                 @friendship = current_user.friendships.new

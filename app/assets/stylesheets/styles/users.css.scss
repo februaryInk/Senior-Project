@@ -29,6 +29,9 @@
     width: 12em;
 }
 
+#ul-activity-feed {
+}
+
 .div-book {
     display: block;
     position: relative;
@@ -83,6 +86,17 @@
     width: 70%;
 }
 
+.div-post-content {
+    padding: 0.5em;
+}
+
+.div-post-header {
+    padding: 0.5em;
+    span {
+        margin-right: 1em;
+    }
+}
+
 .friend {
     float: left;
     margin: 1em;
@@ -92,6 +106,12 @@
 
 .img-book {
     width: 100%;
+}
+
+.li-post {
+    border-color: darken( $color1, 15% );
+    border-style: solid;
+    border-width: 1px 0 0 0;
 }
 
 .table-user {

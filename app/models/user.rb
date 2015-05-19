@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
     has_many :comments
     has_many :manuscripts, :dependent => :destroy
     has_many :news_reports
+    has_many :posts, :dependent => :destroy
     has_many :inklings, :dependent => :destroy
     has_many :sections, :dependent => :destroy
     has_many :feedback
@@ -69,6 +70,12 @@ class User < ActiveRecord::Base
         self.update_attributes( :activated => true, activated_at => Time.zone.now )
     end
     
+    # fetch the posts that belong in this user's activity feed.
+    def activity
+        accepted_friends_ids = "SELECT user_id FROM friendships WHERE friend_id = :user_id"
+        Post.where( "user_id IN (#{ accepted_friends_ids }) OR user_id = :user_id", :user_id => self.id )
+    end
+    
     # determine the user's simple_name and assign it. the simple_name is used to 
     # enforce greater username uniqueness.
     def assign_simple_name
@@ -100,6 +107,11 @@ class User < ActiveRecord::Base
         self.friends.include?( user )
     end
     
+    def is_owner?( object )
+        owner = object.user
+        self == owner
+    end
+    
     # check if the password reset was sent to the user longer than 2 hours ago.
     def password_reset_expired?
         self.reset_sent_at < 2.hours.ago
@@ -109,6 +121,9 @@ class User < ActiveRecord::Base
     def pending_friend?( user )
         self.pending_friends.include?( user )
     end
+    
+    # NOTE: implement this when privacy settings are added.
+    # def privacy_settings_allow?( user )
     
     # assign the user a remember_token and store the digest. this is used to keep
     # users signed in even if the browser is closed.

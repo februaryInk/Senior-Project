@@ -19,7 +19,9 @@ Rails.application.routes.draw do
     resources :news_reports, :only => [ :create, :destroy, :edit, :update ]
     resources :password_resets, :only => [ :create, :edit, :new, :update ]
     resources :sections, :only => [ :create, :destroy, :update ]
-    resources :users
+    resources :users do
+        resources :posts, :only => [ :create, :destroy ]
+    end
     
     scope( :path => '/forums' ) do
         resources :conversations
