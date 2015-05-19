@@ -1,0 +1,10 @@
+- if @post.errors.any?
+    %div.div-errors
+        %ul
+            - @post.errors.full_messages.each do | message |
+                %li
+                    = message
+= form_for [ current_user, @post ], :remote => true do | f |
+    = f.label :content, 'New Post'
+    = f.text_area :content
+    = f.submit 'Submit', :class => 'button-flat'

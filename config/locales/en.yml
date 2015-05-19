@@ -39,6 +39,11 @@ en:
                         genre:
                             blank: "Please provide a manuscript genre."
                             inclusion: "The provided manuscript genre is invalid."
+                post:
+                    attributes:
+                        content:
+                            blank: "Activity feed posts can not be empty."
+                            too_long: "The maximum length permitted for an activity feed post is 1000 characters."
                 user:
                     attributes:
                         email:
