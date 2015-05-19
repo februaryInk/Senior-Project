@@ -47,7 +47,7 @@ class UsersController < ApplicationController
         @account_tab = true
         @post = Post.new
         @user = User.find( params[ :id ] )
-        @activity = @user.activity.paginate( :page => params[ :page ] )
+        @activity_feed = @user.activity_feed.paginate( :page => params[ :page ] )
         unless current_user.nil?
             unless current_user.friends.include?( @user )
                 @friendship = current_user.friendships.new
