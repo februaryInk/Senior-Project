@@ -1,6 +1,6 @@
 if ( <%= @saved %> ) {
-    window.location = '<%= user_path( params[ :user_id ] ) %>';
+    window.location = '<%= user_path( current_user.id ) %>';
 }
 else {
-    $( '#form-post' ).html( "<%= escape_javascript( render( :partial => 'posts/new' ) ).html_safe %>" );
+    $( '#form-post-new' ).html( "<%= escape_javascript( render( :partial => 'posts/new' ) ).html_safe %>" );
 }

@@ -7,37 +7,36 @@
             Create a New Manuscript
         %div#form-manuscript
             = form_for @manuscript do | f |
-                - if @manuscript.errors.any?
-                    %div.div-errors
-                        %ul
-                            - @manuscript.errors.full_messages.each do | message |
-                                %li
-                                    = message
-                        %b
-                = f.label :title
-                = f.text_field :title
-                = f.label :genre
-                = f.select :genre, options_for_select( @genres ), :prompt => '---'
-                = f.label :description
-                = f.text_area :description, :class => 'height-10em'
+                = render :partial => 'shared/error_messages', :locals => { :object => f.object }
+                %p
+                    = f.label :title
+                    = f.text_field :title
+                %p
+                    = f.label :genre
+                    = f.select :genre, options_for_select( @genres ), :prompt => '---'
+                %p
+                    = f.label :description
+                    = f.text_area :description, :class => 'height-10em'
                 = f.fields_for :inkling do | ff |
-                    = ff.label 'Word Count Goal'
-                    %br
-                    = ff.text_field :word_count_goal, :class => 'input-inline'
-                    words
-                    %br
-                    = ff.label 'Word Rate Goal'
-                    %br
-                    = ff.text_field :word_rate_goal, :class => 'input-inline'
-                    words every
-                    = ff.text_field :word_rate_goal_basis, :class => 'input-inline'
-                    day(s)
-                    %br
-                    = ff.label 'Revival Fee'
-                    %br
-                    = ff.text_field :revival_fee, :class => 'input-inline'
-                    = ff.select :revival_fee_currency, options_for_select( [ 'words', 'points' ] ), { :prompt => '---' }, { :class => 'input-inline' }
-                    %br
-                    Do you want to make the word rate goal and revival fee unchangeable?
-                    = ff.check_box :hardcore
-                = f.submit 'Create', :class => 'button-flat'
+                    %p
+                        = ff.label :word_count_goal, 'Word Count Goal'
+                        %br
+                        = ff.text_field :word_count_goal, :class => 'input-inline'
+                        words
+                    %p
+                        = ff.label :word_rate_goal, 'Word Rate Goal'
+                        %br
+                        = ff.text_field :word_rate_goal, :class => 'input-inline'
+                        words every
+                        = ff.text_field :word_rate_goal_basis, :class => 'input-inline'
+                        day(s)
+                    %p
+                        = ff.label :revival_fee, 'Revival Fee'
+                        %br
+                        = ff.text_field :revival_fee, :class => 'input-inline'
+                        = ff.select :revival_fee_currency, options_for_select( [ 'words', 'points' ] ), { :prompt => '---' }, { :class => 'input-inline' }
+                    %p
+                        = ff.label :hardcore, 'Do you want to make the word rate goal and revival fee unchangeable?'
+                        = ff.check_box :hardcore
+                %p
+                    = f.submit 'Create', :class => 'button-flat'

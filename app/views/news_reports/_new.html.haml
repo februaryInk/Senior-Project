@@ -1,0 +1,14 @@
+%h3
+    This Just in...
+%p
+    (Admins: use this form to create new news reports. Once you submit the report, it will appear at the top of the news feed.)
+= form_for @news_report, :remote => true do | f |
+    = render :partial => 'shared/error_messages', :locals => { :object => f.object }
+    %p
+        = f.label :title
+        = f.text_field :title
+    %p
+        = f.label :content
+        = f.text_area :content, :class => 'height-10em'
+    %p
+        = f.submit 'Submit Report', :class => 'button-flat'

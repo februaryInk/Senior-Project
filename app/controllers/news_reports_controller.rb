@@ -11,10 +11,14 @@ class NewsReportsController < ApplicationController
     # create a new news_report.
     def create
         @news_report = current_user.news_reports.build( news_report_params )
-        if @news_report.save
-            redirect_to root_url
-        else
-            render 'core_pages/home'
+        respond_to do | format |
+            if @news_report.save
+                @saved = true
+                format.html { redirect_to root_path }
+            else
+                @saved = false
+            end
+            format.js { render layout: false, content_type: 'text/javascript' }
         end
     end
     

@@ -8,14 +8,16 @@ class UsersController < ApplicationController
     
     def create
         @user = User.new( user_params )
-        if @user.save
-            @user.send_activation_email
-            flash[ :info ] = 'Activation email has been sent. Please check your inbox.'
-            redirect_to root_path
-        else
-            respond_to do | format |
-                format.js { render layout: false, content_type: 'text/javascript' }
+        respond_to do | format |
+            if @user.save
+                @saved = true
+                @user.send_activation_email
+                flash[ :info ] = 'Activation email has been sent. Please check your inbox.'
+                format.html { redirect_to root_path }
+            else
+                @saved = false
             end
+            format.js { render layout: false, content_type: 'text/javascript' }
         end
     end
     

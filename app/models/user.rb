@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
     
     # fetch the posts that belong in this user's activity feed.
     def activity_feed
-        accepted_friends_ids = "SELECT user_id FROM friendships WHERE friend_id = :user_id"
+        accepted_friends_ids = "SELECT user_id FROM friendships WHERE friend_id = :user_id AND status = 'accepted'"
         Post.where( "user_id IN (#{ accepted_friends_ids }) OR user_id = :user_id", :user_id => self.id )
     end
     

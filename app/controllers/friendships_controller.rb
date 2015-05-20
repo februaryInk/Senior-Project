@@ -10,8 +10,8 @@ class FriendshipsController < ApplicationController
     # the waiting friend. the friendship must be accepted before being active.
     def create
         new_friend = User.find( params[ :friendship ][ :friend_id ] )
-        friendship = current_user.friendships.new( friendship_params )
-        reciprocated_friendship = friendship.reciprocal
+        friendship = Friendship.new( friendship_params )
+        reciprocated_friendship = Friendship.new( reciprocated_friendship_params )
         begin
             # if any part of the transaction fails, the entire thing is rolled back.
             # friendships and reciprocated friendships always have to be changed
@@ -21,9 +21,9 @@ class FriendshipsController < ApplicationController
                 friendship.save
                 reciprocated_friendship.save
             end
-            redirect_to :back, :flash => { :success => "An offer of friendship has been sent to #{ new_friend.username }." }
+            redirect_to user_path( new_friend.id ), :flash => { :success => "An offer of friendship has been sent to #{ new_friend.username }." }
         rescue Exception
-            redirect_to :back, :flash => { :friendship_errors => friendship.errors.full_messages }
+            redirect_to user_path( new_friend.id ), :flash => { :info => friendship.errors.full_messages }
         end
     end
     
@@ -60,10 +60,10 @@ class FriendshipsController < ApplicationController
     private
     
         def friendship_params
-            params.require( :friendship ).permit( :friend_id, :status, :user_id )
+            params.require( :friendship ).permit( :friend_id ).merge( :status => 'pending', :user_id => current_user.id )
         end
         
         def reciprocated_friendship_params
-            params.require( :reciprocated_friendship ).permit( :friend_id, :status, :user_id )
+            params.require( :reciprocated_friendship ).permit( :user_id ).merge( :friend_id => current_user.id, :status => 'waiting' )
         end
 end
