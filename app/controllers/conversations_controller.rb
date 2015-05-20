@@ -35,6 +35,6 @@ class ConversationsController < ApplicationController
     private
     
         def conversation_params
-            params.require( :conversation ).permit( :forum_id, :name, :user_id, :comments_attributes => [ :content, :conversation, :user_id ] )
+            params.require( :conversation ).permit( :forum_id, :name, :comments_attributes => [ :content, :conversation, :user_id ] )
         end
 end

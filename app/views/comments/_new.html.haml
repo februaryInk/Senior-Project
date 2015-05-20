@@ -1,0 +1,8 @@
+= form_for @comment, :remote => true do | f |
+    = render :partial => 'shared/error_messages', :locals => { :object => f.object }
+    = f.hidden_field :conversation_id, :value => params[ :id ]
+    %p
+        = f.label 'New Comment'
+        = f.text_area :content, :class => 'height-10em'
+    %p
+        = f.submit 'Submit', :class => 'button-flat'

@@ -39,6 +39,15 @@ en:
                         genre:
                             blank: "Please provide a manuscript genre."
                             inclusion: "The provided manuscript genre is invalid."
+                news_report:
+                    attributes:
+                        content:
+                            blank: "Please provide content for the news report."
+                        title:
+                            blank: "Please provide a title for the news report."
+                            too_long: "The maximum title length is 140 characters."
+                        user_id:
+                            blank: "The user ID is missing from this form. This problem is most likely not your fault and should be reported as a bug."
                 post:
                     attributes:
                         content:

@@ -3,25 +3,19 @@
 - content_for( :body ) do
 
     %div.content
-        = form_for @conversation do | f |
-            - if @conversation.errors.any?
-                %div.div-errors
-                    %ul
-                        - @conversation.errors.full_messages.each do | message |
-                            %li
-                                = message
-            = f.label :forum
-            %br
-            = f.collection_select :forum_id, @forums, :id, :name, :selected => params[ :forum_id ]
-            %br
-            = f.label :name
-            %br
-            = f.text_field :name, :class => 'width-100'
-            %br
-            = f.fields_for :comments do | ff |
-                = ff.hidden_field :user_id, :value => current_user.id
-                = ff.label :content
-                %br
-                = ff.text_area :content, :class => 'height-10em width-100'
-            %br
-            = f.submit 'Create'
+        %div#form-conversation
+            = form_for @conversation do | f |
+                = render :partial => 'shared/error_messages', :locals => { :object => f.object }
+                %p
+                    = f.label :forum
+                    = f.collection_select :forum_id, @forums, :id, :name, :selected => params[ :forum_id ]
+                %p
+                    = f.label :name
+                    = f.text_field :name
+                = f.fields_for :comments do | ff |
+                    = ff.hidden_field :user_id, :value => current_user.id
+                    %p
+                        = ff.label :content
+                        = ff.text_area :content, :class => 'height-10em width-100'
+                %p
+                    = f.submit 'Submit'

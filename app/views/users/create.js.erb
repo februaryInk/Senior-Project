@@ -1,1 +1,6 @@
-$( '#form-signup' ).html( "<%= escape_javascript( render( :partial => 'users/new' ) ).html_safe %>" );
+if ( <%= @saved %> ) {
+    window.location = '<%= root_path %>';
+}
+else {
+    $( '#form-user-new' ).html( "<%= escape_javascript( render( :partial => 'users/new' ) ).html_safe %>" );
+}

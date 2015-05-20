@@ -9,34 +9,36 @@
             %h3
                 Account
             %div#div-gravatar
-                = gravatar_for @user
-                %br
-                = link_to 'Change', 'http://gravatar.com/emails', :target => '_blank'
-            = form_tag( user_path, :method => 'patch' ) do
-                = fields_for 'user', @user do | f |
-                    %div
-                        = f.label :username
-                        = f.text_field :username, :value => @user.username
-                    %div
-                        = f.label :email
-                        = f.text_field :email, :value => @user.email
-                    %div
-                        = f.label :biography
-                        = f.text_area :biography, :class => 'height-10em', :value => @user.biography
-                    %div
-                        = f.label :new_password
-                        = f.password_field :password
-                    %div
-                        = f.label :new_password_confirmation
-                        = f.password_field :password_confirmation
-                = fields_for 'authentication', @user do | f |
+                %p
+                    = gravatar_for @user
+                    = link_to 'Change', 'http://gravatar.com/emails', :target => '_blank'
+            %div#form-user-edit
+                = form_tag user_path, :method => 'patch' do
+                    = fields_for 'user', @user do | f |
+                        %p
+                            = f.label :username
+                            = f.text_field :username, :value => @user.username
+                        %p
+                            = f.label :email
+                            = f.text_field :email, :value => @user.email
+                        %p
+                            = f.label :biography
+                            = f.text_area :biography, :class => 'height-10em', :value => @user.biography
+                        %p
+                            = f.label :new_password, 'New Password'
+                            = f.password_field :password
+                        %p
+                            = f.label :new_password_confirmation, 'New Password Confirmation'
+                            = f.password_field :password_confirmation
+                    = fields_for 'authentication', @user do | f |
+                        %p
+                            %strong
+                                To authorize any account changes, please enter your current password below before clicking the submit button.
+                        %p
+                            = f.label :current_password
+                            = f.password_field :password
                     %p
-                        %strong
-                            To authorize any account changes, please enter your current password below before clicking the submit button.
-                    = f.label :current_password
-                    = f.password_field :password
-                = submit_tag 'Submit Account Changes', :class => 'button-flat'
-        %br
+                        = submit_tag 'Submit Account Changes', :class => 'button-flat'
         %hr
         %div#privacy
             %h3

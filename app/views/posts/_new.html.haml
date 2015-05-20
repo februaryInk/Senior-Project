@@ -1,10 +1,7 @@
-- if @post.errors.any?
-    %div.div-errors
-        %ul
-            - @post.errors.full_messages.each do | message |
-                %li
-                    = message
-= form_for [ current_user, @post ], :remote => true do | f |
-    = f.label :content, 'New Post'
-    = f.text_area :content
-    = f.submit 'Submit', :class => 'button-flat'
+= form_for @post, :remote => true do | f |
+    = render :partial => 'shared/error_messages', :locals => { :object => f.object }
+    %p
+        = f.label :content, 'New Post'
+        = f.text_area :content
+    %p
+        = f.submit 'Submit', :class => 'button-flat'
