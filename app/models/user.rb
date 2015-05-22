@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
     EMAIL_REGEX = /\A([\w+\-.]+)(@)([a-z\d\-]+)(?:\.[a-z\d\-]+)*(\.)([a-z]+)\z/i
     USERNAME_REGEX = /\A(?=.*[a-z0-9].*)([a-z0-9\-_.]+)([\s][a-z0-9\-_.]+)*\z/i
     
@@ -8,6 +9,20 @@ class User < ActiveRecord::Base
     
     # these attributes are not kept in the database, and so are assigned here.
     attr_accessor :activation_token, :remember_token, :reset_token
+    
+    # VALIDATIONS
+    
+    # with the addition of the custom reduce validator, validations must be put in
+    # the order that the error messages should come, i.e., blank before invalid.
+    # always put :reduce last to display at most 1 error for each attribute.
+    # password requires slightly different validations on create versus on update,
+    # so that a blank password on update is allowed and leaves the password 
+    # unchanged.
+    validates :email, { :presence => true, :format => { :with => EMAIL_REGEX }, :uniqueness => { :case_sensitive => false }, :reduce => true }
+    validates :username, { :presence => true, :length => { :maximum => 32 }, :format => { :with => USERNAME_REGEX }, :reduce => true }
+    validates :password, { :presence => true, :length => { :maximum => 32, :minimum => 8 }, :reduce => true, :on => :create }
+    validates :password, { :length => { :maximum => 32, :minimum => 8 }, :reduce => true, :on => :update, :if => :update_password? }
+    validates :simple_name, { :uniqueness => true }
     
     # RELATIONSHIPS
     
@@ -27,20 +42,6 @@ class User < ActiveRecord::Base
     has_many :friends, :through => :friendships
     has_many :pending_friends, -> { where( 'friendships.status = ?', 'pending' ) }, :through => :friendships
     has_many :waiting_friends, -> { where( 'friendships.status = ?', 'waiting' ) }, :through => :friendships
-    
-    # VALIDATIONS
-    
-    # with the addition of the custom reduce validator, validations must be put in
-    # the order that the error messages should come, i.e., blank before invalid.
-    # always put :reduce last to display at most 1 error for each attribute.
-    # password requires slightly different validations on create versus on update,
-    # so that a blank password on update is allowed and leaves the password 
-    # unchanged.
-    validates :email, { :presence => true, :format => { :with => EMAIL_REGEX }, :uniqueness => { :case_sensitive => false }, :reduce => true }
-    validates :username, { :presence => true, :length => { :maximum => 32 }, :format => { :with => USERNAME_REGEX }, :reduce => true }
-    validates :password, { :presence => true, :length => { :maximum => 32, :minimum => 8 }, :reduce => true, :on => :create }
-    validates :password, { :length => { :maximum => 32, :minimum => 8 }, :reduce => true, :on => :update, :if => :update_password? }
-    validates :simple_name, { :uniqueness => true }
     
     # BEFORE ACTIONS
     

@@ -4,7 +4,13 @@
 # user.
 
 class Friendship < ActiveRecord::Base
-
+    
+    # VALIDATIONS
+    
+    validates :friend_id, :presence => true
+    validates :status, :inclusion => { :in => [ 'accepted', 'pending', 'waiting' ] }, :presence => true
+    validates :user_id, :presence => true
+    
     # RELATIONSHIPS
 
     belongs_to :user
@@ -12,12 +18,6 @@ class Friendship < ActiveRecord::Base
     belongs_to :friend, :class_name => 'User'
     belongs_to :pending_friend, :class_name => 'User', :foreign_key => 'friend_id'
     belongs_to :waiting_friend, :class_name => 'User', :foreign_key => 'friend_id'
-    
-    # VALIDATIONS
-    
-    validates :friend_id, :presence => true
-    validates :status, :inclusion => { :in => [ 'accepted', 'pending', 'waiting' ] }, :presence => true
-    validates :user_id, :presence => true
     
     # INSTANCE METHODS
     

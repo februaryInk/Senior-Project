@@ -1,5 +1,11 @@
 class Manuscript < ActiveRecord::Base
-
+    
+    # VALIDATIONS
+    
+    validates :title, :presence => true, :length => { :maximum => 250 }
+    validates :genre, :presence => true, :inclusion => { :in => %w( adventure action fantasy historical horror mystery romance paranormal western ) }, :reduce => true
+    validates :user_id, :presence => true, :numericality => { :only_integer => true }, :reduce => true
+    
     # RELATIONSHIPS
 
     belongs_to :user
@@ -8,12 +14,6 @@ class Manuscript < ActiveRecord::Base
     
     has_many :sections, :dependent => :destroy
     has_many :feedback
-    
-    # VALIDATIONS
-    
-    validates :title, :presence => true, :length => { :maximum => 250 }
-    validates :genre, :presence => true, :inclusion => { :in => %w( adventure action fantasy historical horror mystery romance paranormal western ) }, :reduce => true
-    validates :user_id, :presence => true, :numericality => { :only_integer => true }, :reduce => true
     
     accepts_nested_attributes_for :inkling
     

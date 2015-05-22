@@ -1,5 +1,11 @@
 class Conversation < ActiveRecord::Base
-
+    
+    # VALIDATIONS
+    
+    validates :forum_id, { :presence => true }
+    validates :user_id, { :presence => true }
+    validates :name, { :length => { :maximum => 140 }, :presence => true }
+    
     # RELATIONSHIPS
 
     belongs_to :forum
@@ -13,10 +19,4 @@ class Conversation < ActiveRecord::Base
     has_many :comments, :inverse_of => :conversation, :dependent => :destroy
     
     accepts_nested_attributes_for :comments
-    
-    # VALIDATIONS
-    
-    validates :forum_id, { :presence => true }
-    validates :user_id, { :presence => true }
-    validates :name, { :length => { :maximum => 140 }, :presence => true }
 end

@@ -1,11 +1,4 @@
 class Inkling < ActiveRecord::Base
-
-    # RELATIONSHIPS
-
-    belongs_to :user
-    belongs_to :manuscript
-    
-    has_many :inkling_parts
     
     # VALIDATIONS
     
@@ -14,6 +7,13 @@ class Inkling < ActiveRecord::Base
     validates :word_count_goal, :presence => true, :numericality => { :only_integer => true }, :reduce => true
     validates :word_rate_goal, :presence => true, :numericality => { :only_integer => true }, :reduce => true
     validates :word_rate_goal_basis, :presence => true, :numericality => { :only_integer => true }, :reduce => true
+    
+    # RELATIONSHIPS
+
+    belongs_to :user
+    belongs_to :manuscript
+    
+    has_many :inkling_parts
     
     # INSTANCE METHODS
     
