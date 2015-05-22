@@ -1,9 +1,12 @@
 class CommentsController < ApplicationController
+
     include AuthorizationFilters
 
+    # BEFORE ACTIONS
+    
     before_action :signed_in_user, :only => [ :destroy, :create ]
-    #before_action :current_conversation, :only => [ :create ]
 
+    # create a comment. this action uses AJAX.
     def create
         @comment = current_user.comments.build( comment_params )
         @conversation = current_conversation
@@ -18,11 +21,9 @@ class CommentsController < ApplicationController
         end
     end
     
-    def destroy
-    end
-    
     private
     
+        # get the conversation to which the comment belongs.
         def current_conversation
             Conversation.find_by( id: params[ :comment ][ :conversation_id ] )
         end
