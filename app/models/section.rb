@@ -1,13 +1,13 @@
 class Section < ActiveRecord::Base
 
+    # make the default order of collections of sections dependent on their
+    # positions, lowest first.
+    default_scope -> { order( :position => :asc ) }
+
     # RELATIONSHIPS
 
     belongs_to :manuscript
     belongs_to :user
-    
-    # make the default order of collections of sections dependent on their
-    # positions, lowest first.
-    default_scope -> { order( :position => :asc ) }
     
     # INSTANCE METHODS
     
