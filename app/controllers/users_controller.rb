@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
+
     layout 'default.html'
     include AuthorizationFilters
+    
+    # BEFORE ACTIONS
     
     before_action :admin_user, :only => [ :destroy, :index ]
     before_action :correct_user, :only => [ :destroy, :edit, :manuscripts, :social, :update ]
     before_action :signed_in_user, :only => [ :destroy, :edit, :index, :manuscripts, :social, :update ]
     
+    # create a user and send them an activation email. this action uses AJAX.
     def create
         @user = User.new( user_params )
         respond_to do | format |
@@ -21,30 +25,31 @@ class UsersController < ApplicationController
         end
     end
     
+    # destroy a user.
     def destroy
         User.find( params[ :id ] ).destroy
         redirect_to users_url
     end
     
+    # display the user's edit page.
     def edit
         @account_tab = true
         @user = User.find( params[ :id ] )
     end
 
+    # display the user index page.
     def index
         @letter = params[ :letter ] || 'a'
         @users = User.where( "username LIKE :first", :first => "#{ @letter }%" ).order( 'username ASC' ).paginate( :page => params[ :page ] )
     end
     
+    # display all of a user's manuscripts for personal viewing.
     def manuscripts
         @account_tab = true
         @manuscripts = current_user.manuscripts
     end
 
-    def new
-        @user = User.new
-    end
-
+    # display a user's profile page.
     def show
         @account_tab = true
         @post = Post.new
@@ -61,6 +66,7 @@ class UsersController < ApplicationController
         end
     end
     
+    # display a user's social activity for personal viewing.
     def social
         @account_tab = true
         @accepted_friends = current_user.accepted_friends.order( 'username ASC' ).paginate( :page => params[ :friend_page ] )
@@ -70,6 +76,7 @@ class UsersController < ApplicationController
         @waiting_friends = current_user.waiting_friends.order( 'username ASC' ).paginate( :page => params[ :w_friend_page ] )
     end
     
+    # update a user if they supply the correct password.
     def update
         @user = User.find( params[ :id ] )
         if ( @user.authenticate( params[ :authentication ][ :password ] ) && @user.update_attributes( user_params ) )
@@ -82,6 +89,7 @@ class UsersController < ApplicationController
     
     private
     
+        # prevent users from accessing pages that don't belong to them.
         def correct_user
             @user = User.find( params[ :id ] )
             redirect_to( root_url ) unless current_user?( @user )
