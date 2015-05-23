@@ -3,7 +3,7 @@ module AuthorizationFilters
     private
         
         def admin_user
-            redirect_to( user_url( current_user ) ) unless current_user.admin?
+            redirect_to user_url( current_user ) unless current_user.admin?
         end
     
         def correct_user

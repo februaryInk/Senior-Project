@@ -51,6 +51,11 @@ class User < ActiveRecord::Base
     
     # CLASS METHODS
     
+    # fetch all users who have usernames beginning with a given letter.
+    def User.beginning_with( letter )
+        User.where( "username LIKE :first", :first => "#{ letter }%" ).order( 'username ASC' )
+    end
+    
     # generate a random string to be used as a secure token.
     def User.create_token
         SecureRandom.urlsafe_base64

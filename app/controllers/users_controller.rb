@@ -5,9 +5,10 @@ class UsersController < ApplicationController
     
     # BEFORE ACTIONS
     
-    before_action :admin_user, :only => [ :destroy, :index ]
-    before_action :correct_user, :only => [ :destroy, :edit, :manuscripts, :social, :update ]
     before_action :signed_in_user, :only => [ :destroy, :edit, :index, :manuscripts, :social, :update ]
+    before_action :admin_user, :only => [ :index ]
+    before_action :correct_user, :only => [ :edit, :manuscripts, :social ]
+    before_action :admin_or_correct_user, :only => [ :destroy, :update ]
     
     # create a user and send them an activation email. this action uses AJAX.
     def create
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
     # display the user index page.
     def index
         @letter = params[ :letter ] || 'a'
-        @users = User.where( "username LIKE :first", :first => "#{ @letter }%" ).order( 'username ASC' ).paginate( :page => params[ :page ] )
+        @users = User.beginning_with( @letter ).paginate( :page => params[ :page ] )
     end
     
     # display all of a user's manuscripts for personal viewing.
@@ -88,6 +89,13 @@ class UsersController < ApplicationController
     end
     
     private
+    
+        # prevent users who are not admins from tampering with information they 
+        # do not own.
+        def admin_or_correct_user
+            @user = User.find( params[ :id ] )
+            redirect_to( root_url ) unless current_user?( @user ) || current_user.admin?
+        end
     
         # prevent users from accessing pages that don't belong to them.
         def correct_user
