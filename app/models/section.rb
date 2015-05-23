@@ -7,7 +7,7 @@ class Section < ActiveRecord::Base
     # RELATIONSHIPS
 
     belongs_to :manuscript
-    belongs_to :user
+    has_one :user, :through => :manuscript
     
     # INSTANCE METHODS
     

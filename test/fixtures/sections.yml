@@ -9,7 +9,6 @@ section_1:
     name: 'Chapter 1'
     position: 1
     updated_at: <%= Time.zone.now %>
-    user_id: 2
     word_count: 4
 
 section_2:
@@ -23,5 +22,4 @@ section_2:
     name: 'Chapter 2'
     position: 2
     updated_at: <%= Time.zone.now %>
-    user_id: 2
     word_count: 4

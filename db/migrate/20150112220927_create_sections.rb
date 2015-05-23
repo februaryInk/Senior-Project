@@ -2,7 +2,6 @@ class CreateSections < ActiveRecord::Migration
     def change
         create_table :sections do | t |
         
-            t.references :user, :index => true
             t.references :manuscript, :index => true
             
             t.integer :dark_word_count
