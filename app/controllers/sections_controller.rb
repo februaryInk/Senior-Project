@@ -6,7 +6,7 @@ class SectionsController < ApplicationController
         @manuscript = Manuscript.find( params[ :manuscript_id ] )
         position = @manuscript.sections.count + 1
         default_name = "Chapter #{ position }"
-        @section = @manuscript.sections.create( :user_id => current_user.id, :name => default_name, :position => position, :word_count => 0, :dark_word_count => 0, :light_word_count => 0, :might_word_count => 0 )
+        @section = @manuscript.sections.create( :name => default_name, :position => position, :word_count => 0, :dark_word_count => 0, :light_word_count => 0, :might_word_count => 0 )
     end
     
     # destroy the section, then update the positions of the remaining sections and 

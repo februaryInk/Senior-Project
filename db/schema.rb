@@ -149,7 +149,6 @@ ActiveRecord::Schema.define(version: 20150518170647) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "sections", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "manuscript_id"
     t.integer  "dark_word_count"
     t.integer  "light_word_count"
@@ -163,7 +162,6 @@ ActiveRecord::Schema.define(version: 20150518170647) do
   end
 
   add_index "sections", ["manuscript_id"], name: "index_sections_on_manuscript_id", using: :btree
-  add_index "sections", ["user_id"], name: "index_sections_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.boolean  "activated",         default: false

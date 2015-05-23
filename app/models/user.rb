@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     has_many :news_reports
     has_many :posts, :dependent => :destroy
     has_many :inklings, :dependent => :destroy
-    has_many :sections, :dependent => :destroy
+    has_many :sections, :through => :manuscripts
     has_many :feedback
     
     has_many :friendships, :dependent => :destroy
