@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
     
     # activate the user so they can access their account.
     def activate
-        self.update_attributes( :activated => true, activated_at => Time.zone.now )
+        self.update_attributes( :activated => true, :activated_at => Time.zone.now )
     end
     
     # fetch the posts that belong in this user's activity feed.
@@ -113,6 +113,7 @@ class User < ActiveRecord::Base
         self.friends.include?( user )
     end
     
+    # check if a user owns some object.
     def is_owner?( object )
         owner = object.user
         self == owner
@@ -140,12 +141,12 @@ class User < ActiveRecord::Base
     
     # deliver an email to the user that contains an activation link.
     def send_activation_email
-        AutomatedUserMailer.account_activation( self ).deliver
+        AutomatedUserMailer.account_activation( self ).deliver_now
     end
     
     # deliver an email to the user that contains a password reset link.
     def send_password_reset_email
-        AutomatedUserMailer.password_reset( self ).deliver
+        AutomatedUserMailer.password_reset( self ).deliver_now
     end
     
     # check if another user is this user's waiting friend.

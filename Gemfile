@@ -26,4 +26,5 @@ end
 
 group( :test ) do
     gem( 'minitest-reporters' )                                                             # Provides a clearer assessment of test results.
+    gem( 'win32console',         { :platforms => [ :x64_mingw, :mingw, :mswin ] } )         # Provides colored test output in Windows.
 end
