@@ -71,6 +71,10 @@ class SectionsController < ApplicationController
         @manuscript = @section.manuscript
         inkling = @manuscript.inkling
         
+        if params[ :publish ]
+            @section.update_attributes( :published => true, :published_at => Time.zone.now )
+        end
+        
         content = params[ :section ][ :content ]
         @section.update_words( content, might_words, light_words, dark_words )
         
