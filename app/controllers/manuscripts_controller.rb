@@ -71,7 +71,7 @@ class ManuscriptsController < ApplicationController
     
     # display the manuscript contents in a format for reading.
     def read
-        @reader = true
+        @reader_or_writer = true
         @manuscript = Manuscript.find( params[ :id ] )
         @open_section = params[ :section_id ].nil? ? @manuscript.sections.first : Section.find( params[ :section_id ] )
         @sections = @manuscript.sections.all
@@ -100,6 +100,7 @@ class ManuscriptsController < ApplicationController
     # display the manuscript contents in a format for reading.
     def write
         @manuscript_tab = true
+        @reader_or_writer = true
         @manuscript = Manuscript.find( params[ :id ] )
         @open_section = params[ :section_id ].nil? ? @manuscript.sections.first : Section.find( params[ :section_id ] )
         @sections = @manuscript.sections.all

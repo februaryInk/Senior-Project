@@ -17,12 +17,12 @@ $( document ).ready( function (  ) {
     
     // submit form on blur of elements with class auto-submit.
     $( 'body' ).on( 'blur', '.auto-submit', function(  ) {
-        $( this ).parent(  ).submit(  )
+        $( this ).parent(  ).submit(  );
     } );
     
     // AJAX update the section being displayed when a new value is selected from 
     // the drop-down list with id selector-for-links.
-    $( '#selector-for-links' ).change( function( el ) {
+    $( '#selector-for-writer' ).change( function( el ) {
         var section_num = $( this ).val(  );
         $.ajax( {
             url : 'sections/select',
@@ -40,5 +40,18 @@ $( document ).ready( function (  ) {
             type : 'GET',
             data : { data_value: section_num }
         } );
+    } );
+    
+    // submit the section update form from the header.
+    $( '.button-submit-section' ).click( function( evt ) {
+        $( '#form-section-update' ).submit(  );
+    } );
+    
+    // submit the section update and publish form from the header. set the publish
+    // param to true.
+    $( '.button-submit-and-publish-section' ).click( function( evt ) {
+        var input = $( '<input>' ).attr( 'type', 'hidden' ).attr( 'name', 'publish' ).val( true );
+        $( '#form-section-update' ).append( $( input ) );
+        $( '#form-section-update' ).submit(  );
     } );
 } );

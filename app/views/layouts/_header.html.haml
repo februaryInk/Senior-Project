@@ -71,7 +71,7 @@
                             %li
                                 = link_to 'Settings', edit_manuscript_path( @manuscript.id )
                 %div.clear
-    - if @reader
+    - if @reader_or_writer
         %nav#nav-for-reader
             %div.content
                 %table
@@ -79,12 +79,18 @@
                         %td.td-to-fit
                             %h4.section-title
                                 = "#{ @manuscript.title }: #{ @open_section.name }"
-                        %td.td-to-fit
-                            = link_to 'Leave Feedback', '#', :class => 'link-add-modal'
-                        %td.td-to-fit
-                            = link_to 'See All Feedback', manuscript_feedback_path( @manuscript.id )
+                        - if action_name == 'read'
+                            %td.td-to-fit
+                                = link_to 'Leave Feedback', '#', :class => 'link-add-modal'
+                            %td.td-to-fit
+                                = link_to 'See All Feedback', manuscript_feedback_path( @manuscript.id )
+                        - elsif action_name == 'write'
+                            %td.td-to-fit
+                                = button_tag 'Save', :class => 'button-submit-section'
+                            %td.td-to-fit
+                                = button_tag 'Save and Publish', :class => 'button-submit-and-publish-section'
                         %td.td-fill-remainder
                         %td.td-to-fit
-                            = collection_select :section, :id, @sections, :id, :name, { :selected => ( params[ :section ].nil? ? 1 : params[ :section ] ) }, { :id => 'selector-for-reader' }
+                            = collection_select :section, :id, @sections, :id, :name, { :selected => ( params[ :section ].nil? ? 1 : params[ :section ] ) }, { :id => "#{ action_name == 'read' ? 'selector-for-reader' : 'selector-for-writer' }" }
                 %div.clear
                 %hr
