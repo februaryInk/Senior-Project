@@ -150,6 +150,8 @@ ActiveRecord::Schema.define(version: 20150518170647) do
 
   create_table "sections", force: :cascade do |t|
     t.integer  "manuscript_id"
+    t.boolean  "published"
+    t.datetime "published_at"
     t.integer  "dark_word_count"
     t.integer  "light_word_count"
     t.integer  "might_word_count"

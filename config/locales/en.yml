@@ -53,6 +53,10 @@ en:
                         content:
                             blank: "Activity feed posts can not be empty."
                             too_long: "The maximum length permitted for an activity feed post is 1000 characters."
+                section:
+                    attributes:
+                        content:
+                            too_short: "Sections that are to be published must be at least 100 characters long."
                 user:
                     attributes:
                         email:

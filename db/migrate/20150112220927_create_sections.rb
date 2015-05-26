@@ -4,6 +4,10 @@ class CreateSections < ActiveRecord::Migration
         
             t.references :manuscript, :index => true
             
+            t.boolean :published
+            
+            t.datetime :published_at
+            
             t.integer :dark_word_count
             t.integer :light_word_count
             t.integer :might_word_count
