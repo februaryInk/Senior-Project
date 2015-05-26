@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
     # authenticate method.
     has_secure_password
     
+    # VIRTUAL ATTRIBUTES
+    
     # these attributes are not kept in the database, and so are assigned here.
     attr_accessor :activation_token, :remember_token, :reset_token
     

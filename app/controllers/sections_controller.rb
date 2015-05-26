@@ -68,21 +68,29 @@ class SectionsController < ApplicationController
     # save the section changes, then count key words and update the section and 
     # manuscript counts. this action is used on the manuscripts edit page.
     def update
-        @section = Section.find( params[ :id ] )
-        @manuscript = @section.manuscript
+        @open_section = Section.find( params[ :id ] )
+        @manuscript = @open_section.manuscript
         inkling = @manuscript.inkling
         
-        if params[ :publish ]
-            @section.update_attributes( :published => true, :published_at => Time.zone.now )
+        @open_section.update_attribute( :publish, params[ :publish ] )
+        
+        if @open_section.save
+            if @open_section.publish       
+                @open_section.update_attributes( :published => true, :published_at => Time.zone.now )
+                flash.now[ :success ] = 'This section is now available to the public.'
+            end
+        
+            content = params[ :section ][ :content ]
+            @open_section.update_words( content, might_words, light_words, dark_words )
+            
+            @manuscript.update_counts
+            inkling.update_points( @manuscript )
+            inkling.update_parts
         end
         
-        content = params[ :section ][ :content ]
-        @section.update_words( content, might_words, light_words, dark_words )
-        
-        @manuscript.update_counts
-        inkling.update_points( @manuscript )
-        inkling.update_parts
-        render :nothing => true
+        respond_to do | format |
+            format.js { render layout: false, content_type: 'text/javascript' }
+        end
     end
     
     private

@@ -1,2 +1,1 @@
 $( '#open-section' ).html( "<%= escape_javascript( h( @open_section.content ).gsub( /(?:\n\r?|\r\n?)/, '<br>' ) ).html_safe %>" );
-$( '.section-title' ).html( "<%= escape_javascript( "#{ @manuscript.title }: #{ @open_section.name }" ).html_safe %>" );

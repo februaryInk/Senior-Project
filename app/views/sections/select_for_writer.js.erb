@@ -1,2 +1,1 @@
 $( '#open-section' ).html( "<%= escape_javascript( render :partial => 'sections/open_section', :object => @open_section ).html_safe %>" );
-$( '.section-title' ).html( '<%= escape_javascript( "#{ @manuscript.title }: #{ @open_section.name }" ).html_safe %>' );

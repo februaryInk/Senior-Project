@@ -1,3 +1,5 @@
-= @open_section.name
 = form_for @open_section, :method => 'patch', :remote => true, :html => { :id => 'form-section-update' } do | f |
-    = f.text_area :content, :id => 'section-content'
+    = render :partial => 'shared/error_messages', :locals => { :object => f.object }
+    %p
+        = f.label :content, @open_section.name
+        = f.text_area :content, :id => 'section-content'
