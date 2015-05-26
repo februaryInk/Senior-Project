@@ -3,10 +3,7 @@
 - content_for( :body ) do
 
     %div.content-wide
-        %h2
-            = @manuscript.title
         - if @manuscript.sections.any?
-            = collection_select :section, :id, @sections, :id, :name, { :selected => ( params[ :section ].nil? ? 1 : params[ :section ] ) }, { :id => 'selector-for-links' }
             %div#open-section
                 = render :partial => 'sections/open_section', :object => @open_section
         - else

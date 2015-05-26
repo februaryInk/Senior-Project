@@ -38,8 +38,9 @@ class SectionsController < ApplicationController
     
     # open a new section for editing. this action is used on the manuscripts edit
     # page and uses AJAX.
-    def select
+    def select_for_writer
         @open_section = Section.find( params[ :data_value ] )
+        @manuscript = @open_section.manuscript
     end
     
     # let the user select which section is displayed and refresh. this action

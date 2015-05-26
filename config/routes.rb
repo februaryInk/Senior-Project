@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     # resources keeps the relevant manuscript id in params as :manuscript_id.
     resources :manuscripts do
         patch '/sections/sort',              :to => 'sections#sort',              :as => 'section_sort'
-        get   '/sections/select',            :to => 'sections#select',            :as => 'section_select'
+        get   '/sections/select_for_writer', :to => 'sections#select_for_writer', :as => 'section_select_for_writer'
         get   '/sections/select_for_reader', :to => 'sections#select_for_reader', :as => 'section_select_for_reader'
         post  '/feedback/',                  :to => 'feedback#create',            :as => 'feedback_index'
     end

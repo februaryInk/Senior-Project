@@ -25,7 +25,7 @@ $( document ).ready( function (  ) {
     $( '#selector-for-writer' ).change( function( el ) {
         var section_num = $( this ).val(  );
         $.ajax( {
-            url : 'sections/select',
+            url : 'sections/select_for_writer',
             type : 'GET',
             data : { data_value: section_num }
         } );
