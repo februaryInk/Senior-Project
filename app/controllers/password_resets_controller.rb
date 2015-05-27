@@ -33,7 +33,7 @@ class PasswordResetsController < ApplicationController
     # reset the user's password.
     def update
         if @user.update_attributes( user_params )
-            signin @user
+            sign_in @user
             flash[ :success ] = 'Your password has been reset.'
             redirect_to user_path( @user )
         else

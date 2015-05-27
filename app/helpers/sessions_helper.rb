@@ -8,7 +8,7 @@ module SessionsHelper
         elsif cookies.signed[ :user_id ]
             user = User.find_by( :id => cookies.signed[ :user_id ] )
             if user && user.authenticated?( :remember, cookies[ :remember_token ] )
-                signin user
+                sign_in user
                 @current_user = user
             end
         end
@@ -45,7 +45,7 @@ module SessionsHelper
     end
 
     # sign in the user by using Rails's session method.
-    def signin( user )
+    def sign_in( user )
         session[ :user_id ] = user.id
     end
 
@@ -55,7 +55,7 @@ module SessionsHelper
     
     # sign the user out by deleting their remember_token cookie (if there is one)
     # and their session.
-    def signout
+    def sign_out
         forget( current_user )
         session.delete( :user_id )
         @current_user = nil
