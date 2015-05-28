@@ -6,6 +6,7 @@ class ConversationsController < ApplicationController
     # BEFORE ACTIONS
     
     before_action :signed_in_user, :only => [ :destroy, :create, :new ]
+    before_action :admin_user, :only => [ :destroy ]
     
     # create a conversation.
     def create
@@ -20,7 +21,7 @@ class ConversationsController < ApplicationController
     
     # destroy a conversation.
     def destroy
-        @conversation = Conversation.find_by( :id => params[ :id ] )
+        @conversation = Conversation.find( params[ :id ] )
         @conversation.destroy
         redirect_to forums_path
     end
@@ -34,7 +35,7 @@ class ConversationsController < ApplicationController
 
     # show the conversation with all of its comments.
     def show
-        @conversation = Conversation.find_by( :id => params[ :id ] )
+        @conversation = Conversation.find( params[ :id ] )
         @comments = @conversation.comments.paginate( :page => params[ :page ], :per_page => 15 )
         @comment = Comment.new
     end
@@ -42,6 +43,6 @@ class ConversationsController < ApplicationController
     private
     
         def conversation_params
-            params.require( :conversation ).permit( :forum_id, :name, :comments_attributes => [ :content, :conversation, :user_id ] )
+            params.require( :conversation ).permit( :forum_id, :name, :comments_attributes => [ :content, :user_id ] )
         end
 end
