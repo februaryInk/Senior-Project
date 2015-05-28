@@ -6,9 +6,11 @@ class Comment < ActiveRecord::Base
     
     # VALIDATIONS
     
+    # conversation is used rather than conversation_id because it must be possible
+    # for a conversation and a comment to be created at the same time.
     validates :user_id, { :presence => true }
-    validates :content, { :presence => true }
     validates :conversation, { :presence => true }
+    validates :content, { :presence => true }
     
     # RELATIONSHIPS
 
