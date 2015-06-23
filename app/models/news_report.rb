@@ -6,7 +6,7 @@ class NewsReport < ActiveRecord::Base
     
     # VALIDATIONS
     
-    validates :title, :length => { :maximum => 140 }, :presence => true
+    validates :title, :presence => true, :length => { :maximum => 140 }
     validates :content, :presence => true
     validates :user_id, :presence => true
     
