@@ -3,7 +3,6 @@ source( 'https://rubygems.org' )
 gem( 'rails',         '4.2.0' )                                                             # The essential Ruby on Rails gem.
 
 gem( 'bcrypt',        '3.1.9' )                                                             # Includes password-encrypting function BCrypt.
-gem( 'faker',         '1.4.3' )                                                             # Generates realistic-seeming fake data.
 gem( 'haml-rails'             )                                                             # Allows HTML code to be written in HAML, a kind of HTML shorthand.
 gem( 'jbuilder',      '2.0.0' )                                                             # Builds JSON APIs with ease.
 gem( 'jquery-rails'           )                                                             # Instates jQuery as the JavaScript library.
@@ -20,8 +19,16 @@ gem( 'therubyracer',             { :platforms => [ :ruby ] } )
 gem( 'execjs',                   { :platforms => [ :ruby ] } )
 gem( 'whenever',                 { :platforms => [ :ruby ], :require => false } )
 
+group( :development ) do
+    gem( 'web-console', '~> 2.0' )                                                          # Provides a console on exception pages or when <%= console %> is in views.
+end
+
+group( :development, :test ) do
+    gem( 'faker' )                                                                          # Generates fake information for tests and development.
+end
+
 group( :doc ) do
-    gem( 'sdoc', 	            '0.4.0',                    { :require => false } )         # Wrapper for the rdoc command line tool.
+    gem( 'sdoc', '0.4.0',        { :require => false } )                                    # Wrapper for the rdoc command line tool.
 end
 
 group( :test ) do
