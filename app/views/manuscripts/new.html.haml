@@ -15,6 +15,9 @@
                     = f.label :genre
                     = f.select :genre, options_for_select( @genres ), :prompt => '---'
                 %p
+                    = f.label :rating
+                    = f.select :rating, options_for_select( Manuscript::RATINGS ), :prompt => '---'
+                %p
                     = f.label :description
                     = f.text_area :description, :class => 'height-10em'
                 = f.fields_for :inkling do | ff |

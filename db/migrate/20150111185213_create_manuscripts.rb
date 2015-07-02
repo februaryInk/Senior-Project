@@ -9,8 +9,9 @@ class CreateManuscripts < ActiveRecord::Migration
             t.integer :might_word_count
             t.integer :word_count
             
-            t.string :title
             t.string :genre
+            t.string :rating
+            t.string :title
             
             t.text :description
             

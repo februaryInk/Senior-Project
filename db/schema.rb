@@ -119,8 +119,9 @@ ActiveRecord::Schema.define(version: 20150518170647) do
     t.integer  "dark_word_count"
     t.integer  "might_word_count"
     t.integer  "word_count"
-    t.string   "title"
     t.string   "genre"
+    t.string   "rating"
+    t.string   "title"
     t.text     "description"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false

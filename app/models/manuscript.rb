@@ -1,9 +1,14 @@
 class Manuscript < ActiveRecord::Base
     
+    # CLASS CONSTANTS
+    
+    RATINGS = [ "Friendly", "Mild", "Candid", "Intense", "Explicit" ]
+    
     # VALIDATIONS
     
     validates :title, :presence => true, :length => { :maximum => 250 }
     validates :genre, :presence => true, :inclusion => { :in => %w( adventure action fantasy historical horror mystery romance paranormal western ) }, :reduce => true
+    validates :rating, :presence => true, :inclusion => { :in => RATINGS }, :reduce => true
     validates :user_id, :presence => true, :numericality => { :only_integer => true }, :reduce => true
     
     # RELATIONSHIPS

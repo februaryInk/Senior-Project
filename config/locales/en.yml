@@ -33,12 +33,15 @@ en:
                             not_a_number: "The word rate goal basis must be a whole number value."
                 manuscript:
                     attributes:
-                        title:
-                            blank: "Please provide a manuscript title."
-                            too_long: "The maximum title length is 250 characters."
                         genre:
                             blank: "Please provide a manuscript genre."
                             inclusion: "The provided manuscript genre is invalid."
+                        rating:
+                            blank: "Please provide a manuscript rating."
+                            inclusion: "The provided manuscript rating is invalid."
+                        title:
+                            blank: "Please provide a manuscript title."
+                            too_long: "The maximum title length is 250 characters."
                 news_report:
                     attributes:
                         content:
