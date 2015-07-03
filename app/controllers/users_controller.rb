@@ -17,7 +17,7 @@ class UsersController < ApplicationController
             if @user.save
                 @saved = true
                 @user.send_activation_email
-                flash[ :info ] = 'Activation email has been sent. Please check your inbox.'
+                flash[ :info ] = 'Activation email has been sent. Please check your email inbox.'
                 format.html { redirect_to root_path }
             else
                 @saved = false

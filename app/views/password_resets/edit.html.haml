@@ -1,0 +1,17 @@
+- content_for( :title ) { edit_password_reset_title }
+
+- content_for( :body ) do
+    
+    %div.content
+        %div#reset
+            %h2
+                Reset Your Inklings Password
+            = form_tag( :user, :action => 'update', :controller => 'password_resets', :method => :patch ) do
+                %p
+                    = label_tag :password
+                    = password_field_tag :password
+                %p
+                    = label_tag :password_confirmation
+                    = password_field_tag :password_confirmation
+                %p
+                    = submit_tag :submit

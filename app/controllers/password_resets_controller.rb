@@ -11,11 +11,14 @@ class PasswordResetsController < ApplicationController
     # send the user a password reset email if the user exists.
     def create
         @user = User.find_by( :email => params[ :password_reset ][ :email ].downcase )
-        if @user
+        if @user && @user.activated?
             @user.create_reset_digest
             @user.send_password_reset_email
             flash[ :info ] = 'Password reset email has been sent.'
             redirect_to root_path
+        elsif @user && !@user.activated?
+            flash.now[ :info ] = "The account with the given address has not been activated. Please #{ view_context.link_to 'activate it', new_account_activation_path } first.".html_safe
+            render 'new'
         else
             flash.now[ :danger ] = 'No account with that address exists.'
             render 'new'

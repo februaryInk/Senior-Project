@@ -1,0 +1,14 @@
+- content_for( :title ) { new_account_activation_title }
+
+- content_for( :body ) do
+    
+    %div.content
+        %div#activation
+            %h2
+                Send Account Activation Email
+            = form_for( :account_activation, url: account_activations_path, :method => :post ) do | f |
+                %p
+                    = f.label :email
+                    = f.text_field :email
+                %p
+                    = f.submit :submit

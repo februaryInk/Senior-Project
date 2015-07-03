@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
     root :to => 'core_pages#home'
     
-    resources :account_activation, :only => [ :edit ]
+    resources :account_activations, :only => [ :create, :edit, :new ]
     resources :comments, :only => [ :create, :destroy ]
     resources :feedback, :only => [ :destroy ]
     resources :forums, :only => [ :index, :show ]
@@ -28,8 +28,8 @@ Rails.application.routes.draw do
 
     get '/about', :to => 'core_pages#about', :as => 'about'
     
-    get '/users/:id/social', :to => 'users#social', :as => 'user_social'
-    get '/users/:id/manuscripts', :to => 'users#manuscripts', :as => 'user_manuscripts'
+    get '/users/:id/social',            :to => 'users#social',            :as => 'user_social' 
+    get '/users/:id/manuscripts',       :to => 'users#manuscripts',       :as => 'user_manuscripts'
     
     get '/manuscripts/:id/contents', :to => 'manuscripts#contents', :as => 'manuscript_contents'
     get '/manuscripts/:id/write',    :to => 'manuscripts#write',    :as => 'manuscript_write'

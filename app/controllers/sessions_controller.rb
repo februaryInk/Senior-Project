@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
                 redirect_back_or user_path( user )
             else
                 # ADD FEATURE: this should give the option to re-send the email.
-                flash[ :warning ] = 'This account has not been activated. Check your email for the activation link.'
+                flash[ :warning ] = "This account has not been activated. Check your email inbox for the activation link. If you cannot find the email, #{ view_context.link_to( 'click here', new_account_activation_path ) } to send another.".html_safe
                 redirect_to root_path
             end
         else
