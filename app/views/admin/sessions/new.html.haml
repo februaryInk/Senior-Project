@@ -1,0 +1,20 @@
+- content_for( :title ) { admin_signin_title }
+
+- content_for( :body ) do
+
+    %div.content
+        %div#signin
+            %h2
+                Sign in to Inklings
+            - if flash[ :session_error ]
+                %div.div-errors
+                    = flash[ :session_error ]
+            = form_for( :session, :url => admin_signin_path ) do | f |
+                %p
+                    = f.label :email
+                    = f.text_field :email
+                %p
+                    = f.label :password
+                    = f.password_field :password
+                %p
+                    = f.submit 'Sign In', :class => 'button-flat'

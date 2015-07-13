@@ -1,6 +1,7 @@
 class PasswordResetsController < ApplicationController
 
     layout 'default'
+    include SessionManagement
     
     # BEFORE ACTIONS
     

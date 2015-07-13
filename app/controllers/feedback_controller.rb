@@ -1,6 +1,7 @@
 class FeedbackController < ApplicationController
 
     layout 'modal.html'
+    include SessionManagement
     
     # create feedback.
     def create

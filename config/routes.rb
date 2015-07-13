@@ -2,6 +2,15 @@ Rails.application.routes.draw do
 
     root :to => 'core_pages#home'
     
+    namespace :admin do
+    
+        root :to => 'core_pages#dashboard'
+        
+        get    '/signin',  :to => 'sessions#new'
+        post   '/signin',  :to => 'sessions#create'
+        delete '/signout', :to => 'sessions#destroy', :as => 'signout'
+    end
+    
     resources :account_activations, :only => [ :create, :edit, :new ]
     resources :comments, :only => [ :create, :destroy ]
     resources :feedback, :only => [ :destroy ]
@@ -22,14 +31,14 @@ Rails.application.routes.draw do
     resources :sections, :only => [ :create, :destroy, :update ]
     resources :users
     
-    scope( :path => '/forums' ) do
+    scope :path => '/forums' do
         resources :conversations
     end
 
     get '/about', :to => 'core_pages#about', :as => 'about'
     
-    get '/users/:id/social',            :to => 'users#social',            :as => 'user_social' 
-    get '/users/:id/manuscripts',       :to => 'users#manuscripts',       :as => 'user_manuscripts'
+    get '/users/:id/social',            :to => 'users#social',      :as => 'user_social' 
+    get '/users/:id/manuscripts',       :to => 'users#manuscripts', :as => 'user_manuscripts'
     
     get '/manuscripts/:id/contents', :to => 'manuscripts#contents', :as => 'manuscript_contents'
     get '/manuscripts/:id/write',    :to => 'manuscripts#write',    :as => 'manuscript_write'

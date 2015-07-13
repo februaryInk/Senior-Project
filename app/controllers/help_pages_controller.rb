@@ -1,6 +1,7 @@
 class HelpPagesController < ApplicationController
 
     layout 'default.html'
+    include SessionManagement
 
     # display the contact page.
     def contact

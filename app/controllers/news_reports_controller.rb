@@ -2,6 +2,7 @@ class NewsReportsController < ApplicationController
 
     layout 'default'
     include AuthorizationFilters
+    include SessionManagement
     
     # BEFORE ACTIONS
     

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
     include AuthorizationFilters
+    include SessionManagement
     
     # BEFORE ACTIONS
     

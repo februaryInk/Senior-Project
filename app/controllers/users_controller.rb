@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
     layout 'default.html'
     include AuthorizationFilters
+    include SessionManagement
     
     # BEFORE ACTIONS
     

@@ -1,4 +1,4 @@
-module SessionsHelper
+module SessionsManagementHelper
 
     # return the current_user, if there is one, by checking the session param or 
     # the remember_token in the browser cookies.
@@ -22,9 +22,5 @@ module SessionsHelper
     # return true if a user is signed in.
     def signed_in?
         !current_user.nil?
-    end
-
-    def signin_title
-        "#{ site_name } Signin"
     end
 end

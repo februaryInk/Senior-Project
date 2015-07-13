@@ -1,6 +1,7 @@
 class FriendshipsController < ApplicationController
 
     include AuthorizationFilters
+    include SessionManagement
     
     # BEFORE ACTIONS
     
