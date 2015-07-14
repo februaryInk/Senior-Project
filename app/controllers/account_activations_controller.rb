@@ -1,7 +1,4 @@
-class AccountActivationsController < ApplicationController
-
-    layout 'default.html'
-    include SessionManagement
+class AccountActivationsController < DefaultNamespaceController
 
     # resend the user an activation email, if it is requested.
     def create

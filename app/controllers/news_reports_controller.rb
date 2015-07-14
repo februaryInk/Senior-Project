@@ -1,8 +1,4 @@
-class NewsReportsController < ApplicationController
-
-    layout 'default'
-    include AuthorizationFilters
-    include SessionManagement
+class NewsReportsController < DefaultNamespaceController
     
     # BEFORE ACTIONS
     

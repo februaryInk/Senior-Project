@@ -1,6 +1,4 @@
-class SectionsController < ApplicationController
-
-    include SessionManagement
+class SectionsController < DefaultNamespaceController
     
     # make a new section with counts initialized to zero at the end of the 
     # manuscript.

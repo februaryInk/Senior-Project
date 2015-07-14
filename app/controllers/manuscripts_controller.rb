@@ -1,7 +1,4 @@
-class ManuscriptsController < ApplicationController
-    layout 'default.html'
-    include AuthorizationFilters
-    include SessionManagement
+class ManuscriptsController < DefaultNamespaceController
     
     # BEFORE ACTIONS
     

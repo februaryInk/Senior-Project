@@ -1,7 +1,4 @@
-class ForumsController < ApplicationController
-
-    layout 'default.html'
-    include SessionManagement
+class ForumsController < DefaultNamespaceController
 
     # display the forums index page.
     def index

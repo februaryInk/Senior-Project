@@ -1,7 +1,4 @@
-class SessionsController < ApplicationController
-
-    layout 'default.html'
-    include SessionManagement
+class SessionsController < DefaultNamespaceController
     
     # sign in the user if all requirements are met.
     def create

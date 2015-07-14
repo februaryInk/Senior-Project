@@ -1,7 +1,4 @@
-class CorePagesController < ApplicationController
-
-    layout 'default.html'
-    include SessionManagement
+class CorePagesController < DefaultNamespaceController
     
     # display the about page.
     def about

@@ -1,4 +1,4 @@
-module SessionsManagementHelper
+module SessionManagementHelper
 
     # return the current_user, if there is one, by checking the session param or 
     # the remember_token in the browser cookies.

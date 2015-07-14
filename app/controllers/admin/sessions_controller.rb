@@ -1,6 +1,4 @@
-class Admin::SessionsController < ApplicationController
-
-    include AdminSessionManagement
+class Admin::SessionsController < AdminNamespaceController
 
     # sign in the user if all requirements are met.
     def create

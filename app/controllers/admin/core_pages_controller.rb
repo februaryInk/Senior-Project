@@ -1,8 +1,6 @@
-class Admin::CorePagesController < ApplicationController
-
-    include AdminSessionManagement
+class Admin::CorePagesController < AdminNamespaceController
     
-    before_action :signed_in_admin, :only => [ :dashboard ]
+    before_action :signed_in_admin
 
     def dashboard
     end

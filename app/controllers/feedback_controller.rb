@@ -1,7 +1,6 @@
-class FeedbackController < ApplicationController
+class FeedbackController < DefaultNamespaceController
 
     layout 'modal.html'
-    include SessionManagement
     
     # create feedback.
     def create

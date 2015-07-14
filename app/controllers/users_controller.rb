@@ -1,8 +1,4 @@
-class UsersController < ApplicationController
-
-    layout 'default.html'
-    include AuthorizationFilters
-    include SessionManagement
+class UsersController < DefaultNamespaceController
     
     # BEFORE ACTIONS
     

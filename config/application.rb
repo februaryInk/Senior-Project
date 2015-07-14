@@ -10,6 +10,10 @@ module Inklings
     class Application < Rails::Application
         config.autoload_paths += %W( #{ config.root }/lib )
         
+        # do not include all view helpers in every controller. instead, only include
+        # the application helper and the controller's specific helper.
+        config.action_controller.include_all_helpers = false
+        
         # override the default behavior for input fields that fail validation (that is,
         # wrapping the field with the error in a new div with the class "field-with-error").
         # instead, just add the class "field-error" to the offending field.

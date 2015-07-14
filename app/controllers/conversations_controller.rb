@@ -1,8 +1,4 @@
-class ConversationsController < ApplicationController
-
-    layout 'default.html'
-    include AuthorizationFilters
-    include SessionManagement
+class ConversationsController < DefaultNamespaceController
     
     # BEFORE ACTIONS
     

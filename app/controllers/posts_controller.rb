@@ -1,7 +1,4 @@
-class PostsController < ApplicationController
-
-    include AuthorizationFilters
-    include SessionManagement
+class PostsController < DefaultNamespaceController
     
     # BEFORE ACTIONS
     

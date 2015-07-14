@@ -1,7 +1,4 @@
-class PasswordResetsController < ApplicationController
-
-    layout 'default'
-    include SessionManagement
+class PasswordResetsController < DefaultNamespaceController
     
     # BEFORE ACTIONS
     

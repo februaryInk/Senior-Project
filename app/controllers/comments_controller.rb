@@ -1,7 +1,4 @@
-class CommentsController < ApplicationController
-
-    include AuthorizationFilters
-    include SessionManagement
+class CommentsController < DefaultNamespaceController
 
     # BEFORE ACTIONS
     
