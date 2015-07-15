@@ -1,5 +1,7 @@
 class Admin::SessionsController < AdminNamespaceController
 
+    layout 'simple'
+
     # sign in the user if all requirements are met.
     def create
         user = User.find_by( :email => params[ :session ][ :email ].downcase )

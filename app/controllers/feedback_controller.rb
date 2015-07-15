@@ -1,6 +1,6 @@
 class FeedbackController < DefaultNamespaceController
 
-    layout 'modal.html'
+    layout 'simple'
     
     # create feedback.
     def create

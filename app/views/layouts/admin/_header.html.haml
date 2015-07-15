@@ -1,0 +1,21 @@
+%header
+    %div#header-main
+        %div.content
+            %div.float-wrapper
+                %div#logo
+                    Inklings
+                    %sub
+                        (Admin)
+                %nav
+                    %ul
+                        %li.indented
+                            = link_to 'Dashboard', admin_root_path
+                        %li.indented
+                            = link_to 'Inbox', '#'
+                        %li.indented
+                            = link_to 'Tasks', '#'
+                        %li.indented
+                            = link_to 'Users', '#'
+                        %li.indented
+                            = link_to 'Sign Out', admin_signout_path, :method => :delete
+            %div.clear

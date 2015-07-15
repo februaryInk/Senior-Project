@@ -5,7 +5,9 @@
     %div.content
         %div#signin
             %h2
-                Sign in to Inklings
+                Sign in to Inklings 
+                %sub
+                    (Admin)
             - if flash[ :session_error ]
                 %div.div-errors
                     = flash[ :session_error ]
