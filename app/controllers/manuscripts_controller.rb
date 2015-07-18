@@ -36,7 +36,7 @@ class ManuscriptsController < DefaultNamespaceController
     def destroy
         manuscript = Manuscript.find( params[ :id ] )
         manuscript.destroy
-        redirect_to :back
+        redirect_to user_path( current_user.id )
     end
     
     # display the edit page, where manuscript settings can be updated.
@@ -113,6 +113,6 @@ class ManuscriptsController < DefaultNamespaceController
         end
     
         def manuscript_params
-            params.require( :manuscript ).permit( :description, :genre, :title, :user_id, :inkling_attributes => [:hardcore, :revival_fee, :revival_fee_currency, :word_count_goal, :word_rate_goal, :word_rate_goal_basis] )
+            params.require( :manuscript ).permit( :description, :genre, :rating, :title, :user_id, :inkling_attributes => [:hardcore, :revival_fee, :revival_fee_currency, :word_count_goal, :word_rate_goal, :word_rate_goal_basis] )
         end
 end
