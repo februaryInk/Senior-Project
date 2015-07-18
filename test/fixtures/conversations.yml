@@ -1,7 +1,6 @@
-conversation_1:
+chit_chat:
     created_at: <%= Time.zone.now %>
-    forum_id: 1
-    id: 1
+    forum: life_and_stuff
     name: 'The First Conversation'
     updated_at: <%= Time.zone.now %>
-    user_id: 1
+    user: test_user

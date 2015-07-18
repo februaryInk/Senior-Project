@@ -4,7 +4,7 @@ class NewsReportsControllerTest < ActionController::TestCase
 
     def setup
         @admin_user = users( :admin_user )
-        @news_report_1 = news_reports( :news_report_1 )
+        @news_report = news_reports( :news_report_1 )
         @test_user = users( :test_user )
     end
     
@@ -46,15 +46,15 @@ class NewsReportsControllerTest < ActionController::TestCase
     test 'should destroy the news_report' do
         sign_in_as @admin_user
         assert_difference 'NewsReport.count', -1 do
-            delete :destroy, :id => @news_report_1.id
+            delete :destroy, :id => @news_report.id
         end
-        assert_not NewsReport.exists?( @news_report_1.id )
+        assert_not NewsReport.exists?( @news_report.id )
     end
     
     test 'should redirect if current_user is not an admin' do
         sign_in_as @test_user
         assert_no_difference 'NewsReport.count' do
-            delete :destroy, :id => @news_report_1.id
+            delete :destroy, :id => @news_report.id
         end
         assert_redirected_to user_path( @test_user.id )
     end
@@ -63,7 +63,7 @@ class NewsReportsControllerTest < ActionController::TestCase
     
     test 'should get edit' do
         sign_in_as @admin_user
-        get :edit, :id => 1
+        get :edit, :id => @news_report.id
         assert_template 'news_reports/edit'
         assert_response :success
     end

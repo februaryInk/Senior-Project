@@ -1,25 +1,40 @@
-section_1:
-    content: 'This is a section.'
+the_test_1:
+    content: > 
+        Our young heroes set out into the Bleak Black Wood in search of the famous Shiny Treasure.
     created_at: <%= Time.zone.now %>
     dark_word_count: 0
-    id: 1
     light_word_count: 0
     might_word_count: 0
-    manuscript_id: 1
-    name: 'Chapter 1'
+    manuscript: the_test
+    name: Chapter 1
     position: 1
     updated_at: <%= Time.zone.now %>
-    word_count: 4
+    word_count: 0
 
-section_2:
-    content: 'This is a section.'
+the_test_2:
+    content: >
+        They were tested. Boy, were they ever tested.
     created_at: <%= Time.zone.now %>
     dark_word_count: 0
-    id: 2
     light_word_count: 0
     might_word_count: 0
-    manuscript_id: 1
-    name: 'Chapter 2'
+    manuscript: the_test
+    name: Chapter 2
     position: 2
     updated_at: <%= Time.zone.now %>
-    word_count: 4
+    word_count: 0
+    
+the_magicians_rival_1:
+    content: >
+        The lady magician had a rival who had become the king's magician through 
+        bribery and blackmail. The public thought he was swell, but she knew his dark 
+        secrets.
+    created_at: <%= Time.zone.now %>
+    dark_word_count: 0
+    light_word_count: 0
+    might_word_count: 0
+    manuscript: the_magicians_rival
+    name: Chapter 1
+    position: 1
+    updated_at: <%= Time.zone.now %>
+    word_count: 0

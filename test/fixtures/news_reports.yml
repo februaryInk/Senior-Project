@@ -1,7 +1,6 @@
 news_report_1:
-    content: 'This is a news report.'
+    content: This is a news report.
     created_at: <%= Time.zone.now %>
-    id: 1
-    title: 'News Report'
+    title: News Report
     updated_at: <%= Time.zone.now %>
-    user_id: 1
+    user: admin_user

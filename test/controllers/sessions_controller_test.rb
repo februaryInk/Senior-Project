@@ -4,8 +4,8 @@ class SessionsControllerTest < ActionController::TestCase
 
     def setup
         @test_user = users( :test_user )
-        @unactivated_user = users( :unactivated_user )
-        @unremembered_user = users( :unremembered_user )
+        @unactivated_user = users( :absent_user )
+        @unremembered_user = users( :friendly_user )
     end
 
     # CREATE
@@ -20,6 +20,7 @@ class SessionsControllerTest < ActionController::TestCase
     test 'should remember a user who checked the remember_me box' do
         assert_nil session[ :user_id ]
         post :create, :session => { :email => @unremembered_user.email, :password => 'goodpassword', :remember_me => 1 }
+        @unremembered_user.reload
         assert_equal session[ :user_id ], @unremembered_user.id
         assert_not_nil @unremembered_user.remember_digest
         assert_not_nil cookies[ :remember_token ]

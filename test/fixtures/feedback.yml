@@ -1,7 +1,6 @@
 feedback_1:
     content: 'Feedback for a manuscript.'
     created_at: <%= Time.zone.now %>
-    id: 1
-    manuscript_id: 1
+    manuscript: the_test
     updated_at: <%= Time.zone.now %>
-    user_id: 2
+    user: friendly_user

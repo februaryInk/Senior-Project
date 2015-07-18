@@ -31,7 +31,7 @@ class PostTest < ActiveSupport::TestCase
     end
     
     test 'a user\'s posts should be deleted with their account' do
-        assert_difference 'Post.count', -3 do
+        assert_difference 'Post.count', @test_user.posts.count * -1 do
             @test_user.destroy
         end
     end

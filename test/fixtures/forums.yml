@@ -1,6 +1,5 @@
-forum_1:
+life_and_stuff:
     created_at: <%= Time.zone.now %>
-    group: 'Group 1'
-    id: 1
-    name: 'The First Forum'
+    group: 'Casual Talk'
+    name: 'Life and Stuff'
     updated_at: <%= Time.zone.now %>

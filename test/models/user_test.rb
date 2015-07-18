@@ -3,14 +3,14 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
     
     def setup
-        @friend_of_test_user = users( :friend_of_test_user )
-        @not_friend_of_test_user = users( :not_friend_of_test_user )
+        @friend_of_test_user = users( :friendly_user )
+        @not_friend_of_test_user = users( :other_user )
         @other_user = users( :other_user )
-        @pending_friend_of_test_user = users( :pending_friend_of_test_user )
-        @remembered_user = users( :remembered_user )
+        @pending_friend_of_test_user = users( :absent_user )
+        @remembered_user = users( :test_user )
         @test_user = users( :test_user )
-        @unactivated_user = users( :unactivated_user )
-        @unremembered_user = users( :unremembered_user )
+        @unactivated_user = users( :absent_user )
+        @unremembered_user = users( :friendly_user )
     end
     
     test 'should be valid' do
@@ -184,6 +184,7 @@ class UserTest < ActiveSupport::TestCase
     end
     
     test 'password_reset_expired? should return true if and only if a reset_digest is not expired' do
+        @test_user.update_attribute( :reset_sent_at, 1.hour.ago )
         assert_not @test_user.password_reset_expired?
         @test_user.update_attribute( :reset_sent_at, 3.hours.ago )
         assert @test_user.password_reset_expired?
@@ -213,7 +214,7 @@ class UserTest < ActiveSupport::TestCase
             @unactivated_user.send_password_reset_email
         end
         mail = ActionMailer::Base.deliveries.last
-        assert_equal 'unactivateduser@example.com', mail[ :to ].to_s
+        assert_equal @unactivated_user.email, mail[ :to ].to_s
         assert_equal "#{ site_name } Password Reset", mail[ :subject ].to_s
     end
     

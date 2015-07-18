@@ -4,7 +4,7 @@ class Admin::SessionsControllerTest < ActionController::TestCase
     def setup
         @admin_user = users( :admin_user )
         @test_user = users( :test_user )
-        @unactivated_user = users( :unactivated_user )
+        @unactivated_user = users( :absent_user )
     end
 
     # CREATE

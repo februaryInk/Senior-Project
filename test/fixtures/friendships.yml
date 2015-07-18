@@ -1,31 +1,27 @@
-friendship_1:
-    created_at: <%= Time.zone.now %>
-    friend_id: 6
-    id: 1
+test_and_friendly:
+    created_at: <%= 5.days.ago %>
+    friend: friendly_user
     status: 'accepted'
-    updated_at: <%= Time.zone.now %>
-    user_id: 2
+    updated_at: <%= 5.days.ago %>
+    user: test_user
     
-friendship_2:
-    created_at: <%= Time.zone.now %>
-    friend_id: 2
-    id: 2
+friendly_and_test:
+    created_at: <%= 5.days.ago %>
+    friend: test_user
     status: 'accepted'
-    updated_at: <%= Time.zone.now %>
-    user_id: 6
+    updated_at: <%= 5.days.ago %>
+    user: friendly_user
     
-friendship_3:
-    created_at: <%= Time.zone.now %>
-    friend_id: 7
-    id: 3
+test_and_absent:
+    created_at: <%= 5.months.ago %>
+    friend: absent_user
     status: 'pending'
-    updated_at: <%= Time.zone.now %>
-    user_id: 2
+    updated_at: <%= 5.months.ago %>
+    user: test_user
     
-friendship_4:
-    created_at: <%= Time.zone.now %>
-    friend_id: 2
-    id: 4
+absent_and_test:
+    created_at: <%= 5.months.ago %>
+    friend: test_user
     status: 'waiting'
-    updated_at: <%= Time.zone.now %>
-    user_id: 7
+    updated_at: <%= 5.months.ago %>
+    user: absent_user

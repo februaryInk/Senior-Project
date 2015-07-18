@@ -1,7 +1,6 @@
 comment_1:
     content: 'alpha beta gamma'
-    conversation_id: 1
+    conversation: chit_chat
     created_at: <%= Time.zone.now %>
-    id: 1
-    user_id: 2
+    user: test_user
     updated_at: <%= Time.zone.now %>

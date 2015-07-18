@@ -4,7 +4,8 @@ class ConversationsControllerTest < ActionController::TestCase
 
     def setup
         @admin_user = users( :admin_user )
-        @conversation_1 = conversations( :conversation_1 )
+        @forum = forums( :life_and_stuff )
+        @conversation = conversations( :chit_chat )
         @test_user = users( :test_user )
     end
     
@@ -13,7 +14,7 @@ class ConversationsControllerTest < ActionController::TestCase
     test 'should create a new conversation' do
         sign_in_as @test_user
         assert_difference 'Conversation.count', 1 do
-            post :create, :conversation => { :forum_id => 1, :name => 'Test Conversation', :comments_attributes => { '0' => { :content => 'alpha', :user_id => @test_user.id } } }
+            post :create, :conversation => { :forum_id => @forum.id, :name => 'Test Conversation', :comments_attributes => { '0' => { :content => 'alpha', :user_id => @test_user.id } } }
         end
         assert_equal Comment.last.content, 'alpha'
     end
@@ -21,14 +22,14 @@ class ConversationsControllerTest < ActionController::TestCase
     test 'should create a new comment' do
         sign_in_as @test_user
         assert_difference 'Comment.count', 1 do
-            post :create, :conversation => { :forum_id => 1, :name => 'Test Conversation', :comments_attributes => { '0' => { :content => 'alpha', :user_id => @test_user.id } } }
+            post :create, :conversation => { :forum_id => @forum.id, :name => 'Test Conversation', :comments_attributes => { '0' => { :content => 'alpha', :user_id => @test_user.id } } }
         end
         assert_equal Conversation.last.id, Comment.last.conversation_id
     end
     
     test 'should redirect if a user is not signed in' do
         assert_no_difference 'Comment.count' do
-            post :create, :conversation => { :forum_id => 1, :name => 'Test Conversation', :comments_attributes => { '0' => { :content => 'alpha', :user_id => @test_user.id } } }
+            post :create, :conversation => { :forum_id => @forum.id, :name => 'Test Conversation', :comments_attributes => { '0' => { :content => 'alpha', :user_id => @test_user.id } } }
         end
         assert_redirected_to signin_path
     end
@@ -38,14 +39,14 @@ class ConversationsControllerTest < ActionController::TestCase
     test 'should delete a conversation' do
         sign_in_as @admin_user
         assert_difference 'Conversation.count', -1 do
-            delete :destroy, :id => @conversation_1
+            delete :destroy, :id => @conversation.id
         end
     end
     
     test 'should redirect if the user is not an admin' do
         sign_in_as @test_user
         assert_no_difference 'Conversation.count' do
-            delete :destroy, :id => @conversation_1
+            delete :destroy, :id => @conversation.id
         end
         assert_redirected_to user_path( @test_user.id )
     end
@@ -69,9 +70,9 @@ class ConversationsControllerTest < ActionController::TestCase
     # SHOW
 
     test 'should get show' do
-        get :show, :id => @conversation_1.id
+        get :show, :id => @conversation.id
         assert_response :success
         assert_template 'conversations/show'
-        assert_select 'title', conversations_show_title( @conversation_1 )
+        assert_select 'title', conversations_show_title( @conversation )
     end
 end

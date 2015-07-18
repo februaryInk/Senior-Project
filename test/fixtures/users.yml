@@ -3,167 +3,85 @@ admin_user:
     activated_at: <%= Time.zone.now %>
     activation_digest: <%= User.digest( 'activation_token' ) %>
     admin: true
-    biography: 'I am an admin user.'
+    biography: > 
+        I am an admin user. I do admin stuff.
     created_at: <%= Time.zone.now %>
     email: adminuser@example.com
-    id: 1
     password_digest: <%= User.digest( 'goodpassword' ) %>
     remember_digest: <%= User.digest( 'remember_token' ) %>
     reset_digest: <%= User.digest( 'reset_token' ) %>
     reset_sent_at: <%= Time.zone.now %>
-    simple_name: 'adminuser'
+    simple_name: adminuser
     updated_at: <%= Time.zone.now %>
-    username: 'Admin User'
+    username: Admin User
 
 test_user:
     activated: true
-    activated_at: <%= Time.zone.now %>
+    activated_at: <%= 1.year.ago %>
     activation_digest: <%= User.digest( 'activation_token' ) %>
     admin: false
-    biography: 'I am a test user.'
-    created_at: <%= Time.zone.now %>
+    biography: > 
+        I am really serious about writing...and testing. I test everything. Web 
+        applications. Electrical outlets. Limits. Everything.
+    created_at: <%= 1.year.ago %>
     email: testuser@example.com
-    id: 2
     password_digest: <%= User.digest( 'goodpassword' ) %>
     remember_digest: <%= User.digest( 'remember_token' ) %>
-    reset_digest: <%= User.digest( 'reset_token' ) %>
-    reset_sent_at: <%= Time.zone.now %>
-    simple_name: 'testuser'
-    updated_at: <%= Time.zone.now %>
-    username: 'Test User'
+    reset_digest: null
+    reset_sent_at: null
+    simple_name: testuser
+    updated_at: <%= 2.months.ago %>
+    username: Test User
     
 other_user:
     activated: true
-    activated_at: <%= Time.zone.now %>
+    activated_at: <%= 7.months.ago %>
     activation_digest: <%= User.digest( 'activation_token' ) %>
     admin: false
-    biography: 'I am another user.'
-    created_at: <%= Time.zone.now %>
+    biography: >
+        I am test user's competition. People compare us, but I know I'm better.
+    created_at: <%= 8.months.ago %>
     email: otheruser@example.com
-    id: 3
     password_digest: <%= User.digest( 'goodpassword' ) %>
     remember_digest: <%= User.digest( 'remember_token' ) %>
     reset_digest: <%= User.digest( 'reset_token' ) %>
-    reset_sent_at: <%= Time.zone.now %>
-    simple_name: 'otheruser'
-    updated_at: <%= Time.zone.now %>
-    username: 'Other User'
+    reset_sent_at: <%= 17.days.ago %>
+    simple_name: otheruser
+    updated_at: <%= 17.days.ago %>
+    username: Other User
     
-activated_user:
-    activated: true
-    activated_at: <%= Time.zone.now %>
-    activation_digest: <%= User.digest( 'activation_token' ) %>
-    admin: false
-    biography: ''
-    created_at: <%= Time.zone.now %>
-    email: activateduser@example.com
-    id: 4
-    password_digest: <%= User.digest( 'goodpassword' ) %>
-    remember_digest: <%= User.digest( 'remember_token' ) %>
-    reset_digest: <%= User.digest( 'reset_token' ) %>
-    reset_sent_at: <%= Time.zone.now %>
-    simple_name: 'activateduser'
-    updated_at: <%= Time.zone.now %>
-    username: 'Activated User'
-    
-unactivated_user:
+absent_user:
     activated: false
-    activated_at: <%= Time.zone.now %>
+    activated_at: null
     activation_digest: <%= User.digest( 'activation_token' ) %>
     admin: false
-    biography: ''
-    created_at: <%= Time.zone.now %>
-    email: unactivateduser@example.com
-    id: 5
+    biography: >
+        I am the user who signed up, but never did anything beyond that. Don't bother 
+        talking to me. I never respond.
+    created_at: <%= 5.months.ago %>
+    email: absentuser@example.com
     password_digest: <%= User.digest( 'goodpassword' ) %>
-    remember_digest: <%= User.digest( 'remember_token' ) %>
-    reset_digest: <%= User.digest( 'reset_token' ) %>
-    reset_sent_at: <%= Time.zone.now %>
-    simple_name: 'unactivateduser'
-    updated_at: <%= Time.zone.now %>
-    username: 'Unactivated User'
+    remember_digest: null
+    reset_digest: null
+    reset_sent_at: null
+    simple_name: absentuser
+    updated_at: <%= 5.months.ago %>
+    username: Absent User
     
-friend_of_test_user:
+friendly_user:
     activated: true
-    activated_at: <%= Time.zone.now %>
+    activated_at: <%= 7.days.ago %>
     activation_digest: <%= User.digest( 'activation_token' ) %>
     admin: false
-    biography: ''
-    created_at: <%= Time.zone.now %>
-    email: friendoftestuser@example.com
-    id: 6
+    biography: >
+        I love friending, chatting, and hanging out in the forums! I'm a little 
+        forgetful, though! PM me sometime!
+    created_at: <%= 8.days.ago %>
+    email: friendlyuser@example.com
     password_digest: <%= User.digest( 'goodpassword' ) %>
-    remember_digest: <%= User.digest( 'remember_token' ) %>
+    remember_digest: null
     reset_digest: <%= User.digest( 'reset_token' ) %>
-    reset_sent_at: <%= Time.zone.now %>
-    simple_name: 'friendoftestuser'
-    updated_at: <%= Time.zone.now %>
-    username: 'Friend of Test User'
-    
-pending_friend_of_test_user:
-    activated: true
-    activated_at: <%= Time.zone.now %>
-    activation_digest: <%= User.digest( 'activation_token' ) %>
-    admin: false
-    biography: ''
-    created_at: <%= Time.zone.now %>
-    email: pendingfriendoftestuser@example.com
-    id: 7
-    password_digest: <%= User.digest( 'goodpassword' ) %>
-    remember_digest: <%= User.digest( 'remember_token' ) %>
-    reset_digest: <%= User.digest( 'reset_token' ) %>
-    reset_sent_at: <%= Time.zone.now %>
-    simple_name: 'pendingfriendoftestuser'
-    updated_at: <%= Time.zone.now %>
-    username: 'Pending Friend of Test User'
-    
-not_friend_of_test_user:
-    activated: true
-    activated_at: <%= Time.zone.now %>
-    activation_digest: <%= User.digest( 'activation_token' ) %>
-    admin: false
-    biography: ''
-    created_at: <%= Time.zone.now %>
-    email: notfriendoftestuser@example.com
-    id: 8
-    password_digest: <%= User.digest( 'goodpassword' ) %>
-    remember_digest: <%= User.digest( 'remember_token' ) %>
-    reset_digest: <%= User.digest( 'reset_token' ) %>
-    reset_sent_at: <%= Time.zone.now %>
-    simple_name: 'notfriendoftestuser'
-    updated_at: <%= Time.zone.now %>
-    username: 'Not Friend of Test User'
-    
-remembered_user:
-    activated: true
-    activated_at: <%= Time.zone.now %>
-    activation_digest: <%= User.digest( 'activation_token' ) %>
-    admin: false
-    biography: ''
-    created_at: <%= Time.zone.now %>
-    email: remembereduser@example.com
-    id: 9
-    password_digest: <%= User.digest( 'goodpassword' ) %>
-    remember_digest: <%= User.digest( 'remember_token' ) %>
-    reset_digest: <%= User.digest( 'reset_token' ) %>
-    reset_sent_at: <%= Time.zone.now %>
-    simple_name: 'remembereduser'
-    updated_at: <%= Time.zone.now %>
-    username: 'Remembered User'
-    
-unremembered_user:
-    activated: true
-    activated_at: <%= Time.zone.now %>
-    activation_digest: <%= User.digest( 'activation_token' ) %>
-    admin: false
-    biography: ''
-    created_at: <%= Time.zone.now %>
-    email: unremembereduser@example.com
-    id: 10
-    password_digest: <%= User.digest( 'goodpassword' ) %>
-    remember_digest: <%= User.digest( 'remember_token' ) %>
-    reset_digest: <%= User.digest( 'reset_token' ) %>
-    reset_sent_at: <%= Time.zone.now %>
-    simple_name: 'unremembereduser'
-    updated_at: <%= Time.zone.now %>
-    username: 'Unremembered User'
+    reset_sent_at: <%= 1.hour.ago %>
+    simple_name: friendlyuser
+    updated_at: <%= 1.hour.ago %>
+    username: Friendly User

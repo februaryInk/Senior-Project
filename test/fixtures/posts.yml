@@ -1,41 +1,35 @@
 post_1:
-    content: 'alpha beta gamma'
+    content: alpha beta gamma
     created_at: <%= 2.hours.ago %>
-    id: 1
-    user_id: 2
+    user: test_user
     updated_at: <%= 2.hours.ago %>
     
 post_2:
-    content: 'delta epsilon zeta'
+    content: delta epsilon zeta
     created_at: <%= 1.hours.ago %>
-    id: 2
-    user_id: 2
+    user_id: test_user
     updated_at: <%= 1.hours.ago %>
     
 post_3:
-    content: 'eta theta iota'
+    content: eta theta iota
     created_at: <%= Time.zone.now %>
-    id: 3
-    user_id: 2
+    user_id: test_user
     updated_at: <%= Time.zone.now %>
     
 post_4:
-    content: 'kappa lambda mu'
+    content: kappa lambda mu
     created_at: <%= 3.hours.ago %>
-    id: 4
-    user_id: 3
+    user_id: test_user
     updated_at: <%= 3.hours.ago %>
     
 post_5:
-    content: 'nu xi omicron'
+    content: nu xi omicron
     created_at: <%= 1.hours.ago %>
-    id: 5
-    user_id: 3
+    user_id: test_user
     updated_at: <%= 1.hours.ago %>
     
 post_6:
-    content: 'pi rho sigma'
+    content: pi rho sigma
     created_at: <%= 5.minutes.ago %>
-    id: 6
-    user_id: 3
+    user_id: test_user
     updated_at: <%= 5.minutes.ago %>

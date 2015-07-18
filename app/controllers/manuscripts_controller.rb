@@ -95,7 +95,7 @@ class ManuscriptsController < DefaultNamespaceController
         end
     end
     
-    # display the manuscript contents in a format for reading.
+    # display the manuscript contents in a format for writing.
     def write
         @manuscript_tab = true
         @reader_or_writer = true

@@ -4,12 +4,12 @@ class ManuscriptsControllerTest < ActionController::TestCase
 
     def setup
         @user = users( :test_user )
-        @inkling = inklings( :inkling_1 )
+        @the_test = manuscripts( :the_test )
     end
 
     test "should get edit" do
         sign_in_as @user
-        get :edit, :id => 1
+        get :edit, :id => @the_test.id
         assert_response :success
     end
 
@@ -26,7 +26,7 @@ class ManuscriptsControllerTest < ActionController::TestCase
 
     test "should get show" do
         sign_in_as @user
-        get :show, :id => 1
+        get :show, :id => @the_test.id
         assert_response :success
     end
 end

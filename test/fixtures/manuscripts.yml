@@ -1,11 +1,26 @@
-manuscript_1:
-    dark_word_count: 1
-    description: 'adventure adventure adventure'
-    genre: 'adventure'
-    id: 1
-    light_word_count: 2
-    might_word_count: 5
-    rating: 'Mild'
-    title: 'Manuscipt 1'
-    user_id: 2
-    word_count: 100
+the_test:
+    dark_word_count: 0
+    description: > 
+        Three young lads set out from their hometown with adventure in mind. 
+        Little did they know how they would be tested...
+    genre: adventure
+    light_word_count: 0
+    might_word_count: 0
+    rating: Mild
+    title: The Test
+    user: test_user
+    word_count: 0
+    
+the_magicians_rival:
+    dark_word_count: 0
+    description: > 
+        A great magician struggles against her rival. He is inferior to her in all the 
+        magical arts, but has risen to the top through his deviousness. It is up to 
+        her to overthrow him.
+    genre: fantasy
+    light_word_count: 0
+    might_word_count: 0
+    rating: Candid
+    title: The Magician's Rival
+    user: other_user
+    word_count: 0
