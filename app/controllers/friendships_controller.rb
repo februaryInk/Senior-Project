@@ -46,8 +46,8 @@ class FriendshipsController < DefaultNamespaceController
         reciprocated_friendship = friendship.reciprocal
         begin
             friendship.transaction do
-                friendship.update_attributes( :status => 'accepted' )
-                reciprocated_friendship.update_attributes( :status => 'accepted' )
+                friendship.update_attributes( :status => FriendshipStatus.called( 'Accepted' ) )
+                reciprocated_friendship.update_attributes( :status => FriendshipStatus.called( 'Accepted' ) )
             end
             redirect_to :back, :flash => { :success => "You are now friends with #{ @user.username }." }
         rescue Exception
@@ -58,10 +58,10 @@ class FriendshipsController < DefaultNamespaceController
     private
     
         def friendship_params
-            params.require( :friendship ).permit( :friend_id ).merge( :status => 'pending', :user_id => current_user.id )
+            params.require( :friendship ).permit( :friend_id ).merge( :friendship_status_id => FriendshipStatus.called( 'Pending' ).id, :user_id => current_user.id )
         end
         
         def reciprocated_friendship_params
-            params.require( :reciprocated_friendship ).permit( :user_id ).merge( :friend_id => current_user.id, :status => 'waiting' )
+            params.require( :reciprocated_friendship ).permit( :user_id ).merge( :friend_id => current_user.id, :friendship_status_id => FriendshipStatus.called( 'Waiting' ).id )
         end
 end

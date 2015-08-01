@@ -7,9 +7,8 @@ the_test_inkling:
     might_points: 0
     points: 0
     revival_fee: 200
-    revival_fee_currency: 1
+    revival_fee_currency: Words
     updated_at: <%= Time.zone.now %>
-    user: test_user
     word_count_goal: 1000
     word_rate_goal: 100
     word_rate_goal_basis: 1
@@ -23,9 +22,8 @@ the_magicians_rival_inkling:
     might_points: 0
     points: 0
     revival_fee: 200
-    revival_fee_currency: 1
+    revival_fee_currency: Points
     updated_at: <%= Time.zone.now %>
-    user: other_user
     word_count_goal: 1000
     word_rate_goal: 100
     word_rate_goal_basis: 1

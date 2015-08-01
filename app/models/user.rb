@@ -28,22 +28,28 @@ class User < ActiveRecord::Base
     
     # RELATIONSHIPS
     
+    belongs_to :role, :class_name => 'UserRole', :foreign_key => 'user_role_id'
+    
     has_many :conversations
     has_many :comments
     has_many :manuscripts, :dependent => :destroy
     has_many :news_reports
     has_many :posts, :dependent => :destroy
-    has_many :inklings, :dependent => :destroy
+    has_many :inklings, :through => :manuscripts, :dependent => :destroy
     has_many :sections, :through => :manuscripts
     has_many :feedback
     
     has_many :friendships, :dependent => :destroy
     has_many :reciprocated_friendships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy
     
-    has_many :accepted_friends, -> { where( 'friendships.status = ?', 'accepted' ) }, :through => :friendships
+    has_many :accepted_friends, -> { where( 'friendships.friendship_status_id = ?', FriendshipStatus.called( 'Accepted' ).id ) }, :through => :friendships
     has_many :friends, :through => :friendships
-    has_many :pending_friends, -> { where( 'friendships.status = ?', 'pending' ) }, :through => :friendships
-    has_many :waiting_friends, -> { where( 'friendships.status = ?', 'waiting' ) }, :through => :friendships
+    has_many :pending_friends, -> { where( 'friendships.friendship_status_id = ?', FriendshipStatus.called( 'Pending' ) ) }, :through => :friendships
+    has_many :waiting_friends, -> { where( 'friendships.friendship_status_id = ?', FriendshipStatus.called( 'Waiting' ).id ) }, :through => :friendships
+    
+    # DELEGATIONS
+  
+    delegate :name, :to => :role, :prefix => true
     
     # BEFORE ACTIONS
     
@@ -80,8 +86,13 @@ class User < ActiveRecord::Base
     
     # fetch the posts that belong in this user's activity feed.
     def activity_feed
-        accepted_friends_ids = "SELECT user_id FROM friendships WHERE friend_id = :user_id AND status = 'accepted'"
+        accepted_friends_ids = "SELECT user_id FROM friendships WHERE friend_id = :user_id AND friendship_status_id = '#{ FriendshipStatus.called( "Accepted" ).id }'"
         Post.where( "user_id IN (#{ accepted_friends_ids }) OR user_id = :user_id", :user_id => self.id )
+    end
+    
+    # determine if the user is an admin.
+    def admin?
+        self.role_name == 'Admin'
     end
     
     # determine the user's simple_name and assign it. the simple_name is used to 

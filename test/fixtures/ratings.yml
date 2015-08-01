@@ -1,0 +1,14 @@
+friendly:
+    name: Friendly
+    
+mild:
+    name: Mild
+    
+candid:
+    name: Candid
+    
+intense:
+    name: Intense
+    
+explicit:
+    name: Explicit

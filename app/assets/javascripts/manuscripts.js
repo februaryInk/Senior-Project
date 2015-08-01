@@ -55,3 +55,32 @@ $( document ).ready( function (  ) {
         $( '#form-section-update' ).submit(  );
     } );
 } );
+
+$( document ).on( 'click', '.leave-feedback', function( evt ) {
+    evt.preventDefault(  );
+    var manuscriptId = $( this ).attr( 'id' );
+    modalDialog( 'Feedback', 'Leave your feedback for this manuscript.', { content: 'textarea' }, 
+    function( inputs, values, modal ) {
+        $.ajax( {
+            url: '/manuscripts/' + manuscriptId + '/feedback',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                feedback: {
+                    content: values.content
+                }
+            },
+            success: function(  ) {
+                modal.dialog( 'close' ).remove(  );
+                window.location.reload(  );
+            },
+            error: function( response ) {
+                // derive form validation errors from the response, then rebuild the form with 
+                // its errors marked.
+                var errors = JSON.parse( response.responseText );
+                var formHtml = buildForm( inputs, errors );
+                $( 'dialog-form' ).html( formHtml );
+            }
+        } );
+    } );
+} );

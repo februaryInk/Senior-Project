@@ -81,7 +81,7 @@
                                 = "#{ @manuscript.title }"
                         - if action_name == 'read'
                             %td.td-to-fit
-                                = link_to 'Leave Feedback', '#', :class => 'link-add-modal'
+                                = link_to( 'Leave Feedback', '#', :class => 'leave-feedback', :id => @manuscript.id ) if signed_in?
                             %td.td-to-fit
                                 = link_to 'See All Feedback', manuscript_feedback_path( @manuscript.id )
                         - elsif action_name == 'write'

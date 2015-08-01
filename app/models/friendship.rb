@@ -8,12 +8,13 @@ class Friendship < ActiveRecord::Base
     # VALIDATIONS
     
     validates :friend_id, :presence => true
-    validates :status, :inclusion => { :in => [ 'accepted', 'pending', 'waiting' ] }, :presence => true
     validates :user_id, :presence => true
     
     # RELATIONSHIPS
 
     belongs_to :user
+    belongs_to :status, :class_name => 'FriendshipStatus', :foreign_key => 'friendship_status_id'
+    
     belongs_to :accepted_friend, :class_name => 'User', :foreign_key => 'friend_id'
     belongs_to :friend, :class_name => 'User'
     belongs_to :pending_friend, :class_name => 'User', :foreign_key => 'friend_id'

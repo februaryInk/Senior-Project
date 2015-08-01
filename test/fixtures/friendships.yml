@@ -1,27 +1,27 @@
 test_and_friendly:
     created_at: <%= 5.days.ago %>
     friend: friendly_user
-    status: 'accepted'
+    status: accepted
     updated_at: <%= 5.days.ago %>
     user: test_user
     
 friendly_and_test:
     created_at: <%= 5.days.ago %>
     friend: test_user
-    status: 'accepted'
+    status: accepted
     updated_at: <%= 5.days.ago %>
     user: friendly_user
     
 test_and_absent:
     created_at: <%= 5.months.ago %>
     friend: absent_user
-    status: 'pending'
+    status: pending
     updated_at: <%= 5.months.ago %>
     user: test_user
     
 absent_and_test:
     created_at: <%= 5.months.ago %>
     friend: test_user
-    status: 'waiting'
+    status: waiting
     updated_at: <%= 5.months.ago %>
     user: absent_user

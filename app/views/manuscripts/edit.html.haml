@@ -10,34 +10,34 @@
                 = render :partial => 'shared/error_messages', :locals => { :object => f.object }
                 %p
                     = f.label :title
-                    = f.text_field :title, :value => @manuscript.title
+                    = f.text_field :title
                 %p
                     = f.label :genre
-                    = f.select :genre, options_for_select( @genres ), :value => @manuscript.genre
+                    = f.select :genre_ids, options_from_collection_for_select( Genre.all, 'id', 'name', :selected => @manuscript.genres.map( &:id ) ), {  }, { :multiple => true }
                 %p
                     = f.label :rating
-                    = f.select :rating, options_for_select( Manuscript::RATINGS ), :prompt => '---'
+                    = f.select :rating_id, options_from_collection_for_select( Rating.all, 'id', 'name' )
                 %p
                     = f.label :description
-                    = f.text_area :description, :value => @manuscript.description, :class => 'height-10em'
+                    = f.text_area :description, :class => 'height-10em'
                 = f.fields_for @inkling do | ff |
                     %p
                         = ff.label :word_count_goal, 'Word Count Goal'
                         %br
-                        = ff.text_field :word_count_goal, :class => 'input-inline', :value => @inkling.word_count_goal
+                        = ff.text_field :word_count_goal, :class => 'input-inline'
                         words
                     - unless @inkling.hardcore == true
                         %p
                             = ff.label :word_rate_goal, 'Word Rate Goal'
                             %br
-                            = ff.text_field :word_rate_goal, :class => 'input-inline', :value => @inkling.word_rate_goal
+                            = ff.text_field :word_rate_goal, :class => 'input-inline'
                             words every
-                            = ff.text_field :word_rate_goal_basis, :class => 'input-inline', :value => @inkling.word_rate_goal_basis
+                            = ff.text_field :word_rate_goal_basis, :class => 'input-inline'
                             day(s)
                         %p
                             = ff.label :revival_fee, 'Revival Fee'
                             %br
-                            = ff.text_field :revival_fee, :class => 'input-inline', :value => @inkling.revival_fee
-                            = ff.select :revival_fee_currency, options_for_select( [ 'words', 'points' ] ), { :value => @inkling.revival_fee_currency }, { :class => 'input-inline' }
+                            = ff.text_field :revival_fee, :class => 'input-inline'
+                            = ff.select :revival_fee_currency, options_for_select( Inkling::CURRENCIES ), {  }, { :class => 'input-inline' }
                     %p
                         = f.submit 'Submit Changes', :class => 'button-flat'

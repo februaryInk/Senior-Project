@@ -22,12 +22,11 @@ class ManuscriptsController < DefaultNamespaceController
     def create
         @manuscript = current_user.manuscripts.build( manuscript_params )
         # assign the attributes that the user does not need to specify.
-        @manuscript.assign_attributes( :word_count => 0, :might_word_count => 0, :light_word_count => 0, :dark_word_count => 0, :inkling_attributes => { :points => 0, :might_points => 0,  :light_points => 0, :dark_points => 0, :user_id => current_user.id } )
+        @manuscript.assign_attributes( :word_count => 0, :might_word_count => 0, :light_word_count => 0, :dark_word_count => 0, :inkling_attributes => { :points => 0, :might_points => 0,  :light_points => 0, :dark_points => 0 } )
         if @manuscript.save
             @manuscript.generate_inkling
             redirect_to manuscript_path( @manuscript )
         else
-            @genres =  %w[ adventure action fantasy historical horror mystery romance paranormal western ]
             render 'new'
         end
     end
@@ -44,7 +43,6 @@ class ManuscriptsController < DefaultNamespaceController
         @manuscript_tab = true
         @manuscript = Manuscript.find( params[ :id ] )
         @inkling = @manuscript.inkling
-        @genres = %w[ adventure fantasy horror historical mystery romance paranormal ]
     end
     
     # display the feedback page, where all of the feedback for the manuscript is
@@ -63,8 +61,6 @@ class ManuscriptsController < DefaultNamespaceController
     def new
         @manuscript = current_user.manuscripts.build
         @manuscript.build_inkling
-        # it may be appropriate to eventually make a genre model, to store typical word count, associated inklings, genre names, genre stamps...
-        @genres =  %w[ adventure action fantasy historical horror mystery romance paranormal western ]
     end
     
     # display the manuscript contents in a format for reading.
@@ -113,6 +109,6 @@ class ManuscriptsController < DefaultNamespaceController
         end
     
         def manuscript_params
-            params.require( :manuscript ).permit( :description, :genre, :rating, :title, :user_id, :inkling_attributes => [:hardcore, :revival_fee, :revival_fee_currency, :word_count_goal, :word_rate_goal, :word_rate_goal_basis] )
+            params.require( :manuscript ).permit( :description, :rating_id, :title, :user_id, :inkling_attributes => [ :hardcore, :revival_fee, :revival_fee_currency, :word_count_goal, :word_rate_goal, :word_rate_goal_basis ], :genre_ids => [  ] )
         end
 end

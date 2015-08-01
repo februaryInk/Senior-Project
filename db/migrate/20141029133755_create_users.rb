@@ -1,9 +1,10 @@
 class CreateUsers < ActiveRecord::Migration
     def change
         create_table :users do | t |
+            
+            t.references :user_role, :foreign_key => true, :index => true
         
             t.boolean :activated, :default => false
-            t.boolean :admin, :default => false
             
             t.datetime :activated_at
             t.datetime :reset_sent_at

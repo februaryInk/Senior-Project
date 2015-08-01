@@ -2,7 +2,15 @@ class ForumsController < DefaultNamespaceController
 
     # display the forums index page.
     def index
-        @forums = Forum.all
+        community_forums = Forum.community_forums
+        reading_forums = Forum.reading_forums
+        writing_forums = Forum.writing_forums
+        
+        @forums =
+            { 'Community' => community_forums,
+              'Reading' => reading_forums,
+              'Writing' => writing_forums }
+            
     end
     
     # display the show page for a forum.

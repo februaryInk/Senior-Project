@@ -21,23 +21,18 @@ class ManuscriptTest < ActiveSupport::TestCase
         assert_not @manuscript.valid?
     end
     
-    test 'genre should be present' do
-        @manuscript.genre = ' ' * 5
-        assert_not @manuscript.valid?
-    end
-    
-    test 'genre should be contained in the allowed genres' do
-        @manuscript.genre = 'a' * 5
+    test 'genres should be present' do
+        @manuscript.genres = [  ]
         assert_not @manuscript.valid?
     end
     
     test 'rating should be present' do
-        @manuscript.rating = ' ' * 5
+        @manuscript.rating_id = ' '
         assert_not @manuscript.valid?
     end
     
-    test 'rating should be contained in the allowed ratings' do
-        @manuscript.rating = 'a' * 5
+    test 'rating_id should be an integer' do
+        @manuscript.rating_id = 1.75
         assert_not @manuscript.valid?
     end
     

@@ -9,9 +9,9 @@
             %h2
                 = @manuscript.title
             %p
-                = @manuscript.genre
+                = @manuscript.genres.map( &:name ).join( ' / ' )
             %p
-                = @manuscript.rating
+                = @manuscript.rating.name
             %p
                 = @manuscript.description
         %div#statistics

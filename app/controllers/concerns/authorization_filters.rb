@@ -1,5 +1,7 @@
 module AuthorizationFilters
     
+    extend ActiveSupport::Concern
+    
     private
         
         def admin_user

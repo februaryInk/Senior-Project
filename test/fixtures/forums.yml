@@ -1,5 +1,5 @@
 life_and_stuff:
+    category: community
     created_at: <%= Time.zone.now %>
-    group: 'Casual Talk'
     name: 'Life and Stuff'
     updated_at: <%= Time.zone.now %>

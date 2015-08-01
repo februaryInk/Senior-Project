@@ -3,35 +3,17 @@
 - content_for( :body ) do
 
     %div.content
-        %table.table-wide
-            %tr
-                %th.category
-                    %h3
-                        Community Forums
-                %th
-                    %strong
-                        Latest Activity
-            - i = 1
-            - for forum in @forums
-                - if forum.group == 'community'
-                    = content_tag :tr, :class => "#{ i.odd? ? 'tr-odd' : 'tr-even' }" do
-                        %td.topic
-                            = link_to h( forum.name ), forum_path( forum.id )
-                        %td.latest_conversation
-                            - if forum.conversations.any?
-                                = forum.conversations.order( :updated_at ).last.name
-                    - i += 1
-        %table.table-wide
-            %tr
-                %th.category
-                    %h3
-                        Writing Forums
-                %th
-                    %strong
-                        Latest Activity
-            - i = 1
-            - for forum in @forums
-                - if forum.group == 'writing'
+        = @forums.each do | category, forums |
+            %table.table-wide
+                %tr
+                    %th.category
+                        %h3
+                            = "#{ category } Forums"
+                    %th
+                        %strong
+                            Latest Activity
+                - i = 1
+                - for forum in forums
                     = content_tag :tr, :class => "#{ i.odd? ? 'tr-odd' : 'tr-even' }" do
                         %td.topic
                             = link_to h( forum.name ), forum_path( forum.id )

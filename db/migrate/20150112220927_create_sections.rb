@@ -2,7 +2,7 @@ class CreateSections < ActiveRecord::Migration
     def change
         create_table :sections do | t |
         
-            t.references :manuscript, :index => true
+            t.references :manuscript, :foreign_key => true, :index => true
             
             t.boolean :published
             

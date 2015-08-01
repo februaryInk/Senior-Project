@@ -3,10 +3,9 @@ the_test:
     description: > 
         Three young lads set out from their hometown with adventure in mind. 
         Little did they know how they would be tested...
-    genre: adventure
     light_word_count: 0
     might_word_count: 0
-    rating: Mild
+    rating: mild
     title: The Test
     user: test_user
     word_count: 0
@@ -17,10 +16,9 @@ the_magicians_rival:
         A great magician struggles against her rival. He is inferior to her in all the 
         magical arts, but has risen to the top through his deviousness. It is up to 
         her to overthrow him.
-    genre: fantasy
     light_word_count: 0
     might_word_count: 0
-    rating: Candid
+    rating: candid
     title: The Magician's Rival
     user: other_user
     word_count: 0

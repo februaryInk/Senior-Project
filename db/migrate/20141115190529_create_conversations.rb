@@ -2,8 +2,8 @@ class CreateConversations < ActiveRecord::Migration
     def change
         create_table :conversations do | t |
         
-            t.references :forum, :index => true
-            t.references :user, :index => true
+            t.references :forum, :foreign_key => true, :index => true
+            t.references :user, :foreign_key => true, :index => true
             
             t.string :name
 

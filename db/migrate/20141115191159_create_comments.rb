@@ -2,8 +2,8 @@ class CreateComments < ActiveRecord::Migration
     def change
         create_table :comments do | t |
     
-            t.references :conversation, :index => true
-            t.references :user, :index => true
+            t.references :conversation, :foreign_key => true, :index => true
+            t.references :user, :foreign_key => true, :index => true
         
             t.text :content
             

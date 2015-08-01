@@ -13,10 +13,10 @@
                     = f.text_field :title
                 %p
                     = f.label :genre
-                    = f.select :genre, options_for_select( @genres ), :prompt => '---'
+                    = f.select :genre_ids, options_from_collection_for_select( Genre.all, 'id', 'name' ), { :prompt => '---' }, { :multiple => true }
                 %p
                     = f.label :rating
-                    = f.select :rating, options_for_select( Manuscript::RATINGS ), :prompt => '---'
+                    = f.select :rating_id, options_from_collection_for_select( Rating.all, 'id', 'name' ), :prompt => '---'
                 %p
                     = f.label :description
                     = f.text_area :description, :class => 'height-10em'
@@ -37,7 +37,7 @@
                         = ff.label :revival_fee, 'Revival Fee'
                         %br
                         = ff.text_field :revival_fee, :class => 'input-inline'
-                        = ff.select :revival_fee_currency, options_for_select( [ 'words', 'points' ] ), { :prompt => '---' }, { :class => 'input-inline' }
+                        = ff.select :revival_fee_currency, options_for_select( Inkling::CURRENCIES ), { :prompt => '---' }, { :class => 'input-inline' }
                     %p
                         = ff.label :hardcore, 'Do you want to make the word rate goal and revival fee unchangeable?'
                         = ff.check_box :hardcore

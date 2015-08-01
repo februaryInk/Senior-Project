@@ -1,0 +1,8 @@
+accepted:
+    name: Accepted
+    
+pending:
+    name: Pending
+    
+waiting:
+    name: Waiting

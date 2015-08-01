@@ -28,16 +28,27 @@ class ManuscriptsControllerTest < ActionController::TestCase
     
     test 'should create a manuscript' do
         sign_in_as @test_user
-        inkling_attributes = { :hardcore => false, :revival_fee => 100, :revival_fee_currency => 2, :word_count_goal => 10000, :word_rate_goal => 100, :word_rate_goal_basis => 1 }
         assert_difference 'Manuscript.count', 1 do
-            post :create, { :manuscript => { :description => 'A puzzle, so much like a test...', :genre => 'adventure', :rating => 'Candid', :title => 'The Forenzi Puzzle', :user_id => @test_user.id, :inkling_attributes => inkling_attributes } }
+            post :create, { :manuscript => { 
+                :description => 'A puzzle, so much like a test...', 
+                :rating_id => Rating.called( 'Candid' ).id, 
+                :title => 'The Forenzi Puzzle', 
+                :user_id => @test_user.id,
+                :genre_ids => [ Genre.called( 'Adventure' ).id ],
+                :inkling_attributes => {
+                    :hardcore => false, 
+                    :revival_fee => 100, 
+                    :revival_fee_currency => 'Points', 
+                    :word_count_goal => 10000, 
+                    :word_rate_goal => 100, 
+                    :word_rate_goal_basis => 1 } } }
         end
     end
     
     test 'should not create a manuscript if no-one is signed in' do
-        inkling_attributes = { :hardcore => false, :revival_fee => 100, :revival_fee_currency => 2, :word_count_goal => 10000, :word_rate_goal => 100, :word_rate_goal_basis => 1 }
+        inkling_attributes = { :hardcore => false, :revival_fee => 100, :revival_fee_currency => 'Points', :word_count_goal => 10000, :word_rate_goal => 100, :word_rate_goal_basis => 1 }
         assert_difference 'Manuscript.count', 0 do
-            post :create, { :manuscript => { :description => 'A puzzle, so much like a test...', :genre => 'adventure', :rating => 'Candid', :title => 'The Forenzi Puzzle', :user_id => @test_user.id, :inkling_attributes => inkling_attributes } }
+            post :create, { :manuscript => { :description => 'A puzzle, so much like a test...', :genre => 'Adventure', :rating_id => Rating.called( 'Candid' ).id, :title => 'The Forenzi Puzzle', :user_id => @test_user.id, :inkling_attributes => inkling_attributes } }
         end
     end
     

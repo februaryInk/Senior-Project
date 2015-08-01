@@ -2,7 +2,8 @@ class CreateManuscripts < ActiveRecord::Migration
     def change
         create_table :manuscripts do | t |
         
-            t.references :user, :index => true
+            t.references :rating, :foreign_key => true, :index => true
+            t.references :user, :foreign_key => true, :index => true
             
             t.integer :light_word_count
             t.integer :dark_word_count
@@ -10,7 +11,6 @@ class CreateManuscripts < ActiveRecord::Migration
             t.integer :word_count
             
             t.string :genre
-            t.string :rating
             t.string :title
             
             t.text :description

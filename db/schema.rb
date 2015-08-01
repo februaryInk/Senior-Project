@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518170647) do
+ActiveRecord::Schema.define(version: 20150809210940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,8 +51,22 @@ ActiveRecord::Schema.define(version: 20150518170647) do
   add_index "feedback", ["manuscript_id"], name: "index_feedback_on_manuscript_id", using: :btree
   add_index "feedback", ["user_id"], name: "index_feedback_on_user_id", using: :btree
 
+  create_table "forum_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "forums", force: :cascade do |t|
-    t.string   "group"
+    t.integer  "forum_category_id"
+    t.string   "name"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "forums", ["forum_category_id"], name: "index_forums_on_forum_category_id", using: :btree
+
+  create_table "friendship_statuses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -61,14 +75,31 @@ ActiveRecord::Schema.define(version: 20150518170647) do
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
-    t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "friendship_status_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
+  add_index "friendships", ["friendship_status_id"], name: "index_friendships_on_friendship_status_id", using: :btree
   add_index "friendships", ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true, using: :btree
   add_index "friendships", ["user_id"], name: "index_friendships_on_user_id", using: :btree
+
+  create_table "genre_manuscripts", force: :cascade do |t|
+    t.integer  "genre_id"
+    t.integer  "manuscript_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "genre_manuscripts", ["genre_id"], name: "index_genre_manuscripts_on_genre_id", using: :btree
+  add_index "genre_manuscripts", ["manuscript_id"], name: "index_genre_manuscripts_on_manuscript_id", using: :btree
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "inkling_part_guides", force: :cascade do |t|
     t.integer "max_dark_points"
@@ -95,14 +126,13 @@ ActiveRecord::Schema.define(version: 20150518170647) do
 
   create_table "inklings", force: :cascade do |t|
     t.integer  "manuscript_id"
-    t.integer  "user_id"
     t.boolean  "hardcore"
     t.integer  "dark_points"
     t.integer  "light_points"
     t.integer  "might_points"
     t.integer  "points"
     t.integer  "revival_fee"
-    t.integer  "revival_fee_currency"
+    t.string   "revival_fee_currency"
     t.integer  "word_count_goal"
     t.integer  "word_rate_goal"
     t.integer  "word_rate_goal_basis"
@@ -111,16 +141,15 @@ ActiveRecord::Schema.define(version: 20150518170647) do
   end
 
   add_index "inklings", ["manuscript_id"], name: "index_inklings_on_manuscript_id", using: :btree
-  add_index "inklings", ["user_id"], name: "index_inklings_on_user_id", using: :btree
 
   create_table "manuscripts", force: :cascade do |t|
+    t.integer  "rating_id"
     t.integer  "user_id"
     t.integer  "light_word_count"
     t.integer  "dark_word_count"
     t.integer  "might_word_count"
     t.integer  "word_count"
     t.string   "genre"
-    t.string   "rating"
     t.string   "title"
     t.text     "description"
     t.datetime "created_at",       null: false
@@ -128,6 +157,7 @@ ActiveRecord::Schema.define(version: 20150518170647) do
   end
 
   add_index "manuscripts", ["genre"], name: "index_manuscripts_on_genre", using: :btree
+  add_index "manuscripts", ["rating_id"], name: "index_manuscripts_on_rating_id", using: :btree
   add_index "manuscripts", ["user_id"], name: "index_manuscripts_on_user_id", using: :btree
 
   create_table "news_reports", force: :cascade do |t|
@@ -149,6 +179,12 @@ ActiveRecord::Schema.define(version: 20150518170647) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
+  create_table "ratings", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sections", force: :cascade do |t|
     t.integer  "manuscript_id"
     t.boolean  "published"
@@ -166,9 +202,15 @@ ActiveRecord::Schema.define(version: 20150518170647) do
 
   add_index "sections", ["manuscript_id"], name: "index_sections_on_manuscript_id", using: :btree
 
+  create_table "user_roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
+    t.integer  "user_role_id"
     t.boolean  "activated",         default: false
-    t.boolean  "admin",             default: false
     t.datetime "activated_at"
     t.datetime "reset_sent_at"
     t.string   "activation_digest"
@@ -185,5 +227,6 @@ ActiveRecord::Schema.define(version: 20150518170647) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["simple_name"], name: "index_users_on_simple_name", unique: true, using: :btree
+  add_index "users", ["user_role_id"], name: "index_users_on_user_role_id", using: :btree
 
 end
