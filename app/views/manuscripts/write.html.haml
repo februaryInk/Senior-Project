@@ -2,7 +2,7 @@
 
 - content_for( :body ) do
 
-    %div.content-wide
+    %div.content
         - if @manuscript.sections.any?
             %div#open-section
                 = render :partial => 'sections/open_section', :object => @open_section

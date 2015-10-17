@@ -1,0 +1,54 @@
+.align-middle { vertical-align: middle; }
+.align-top { vertical-align: top; }
+
+.table-narrow {
+    border-bottom: 0.1em solid $color-table-border;
+    border-top: 0.1em solid $color-table-border;
+    width: 100%;
+    
+    td {
+        font-size: 1.2em;
+        line-height: 1.4em;
+        padding: 0.5em;
+    }
+    
+    th {
+        line-height: 1.75em;
+        padding: 0.5em;
+    }
+}
+
+.table-wide {
+    border-bottom: 0.1em solid $color-table-border;
+    border-top: 0.1em solid $color-table-border;
+    margin-bottom: 4em;
+    width: 100%;
+    
+    td {
+        font-size: 1.2em;
+        line-height: 2em;
+        padding: 0.5em;
+    }
+    
+    th {
+        line-height: 2.5em;
+        padding: 0.5em;
+    }
+}
+
+.td-fill-remainder {
+    width: 99%;
+}
+
+.td-to-fit {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.tr-even {
+    background-color: $color-tr-even;
+}
+
+.tr-odd {
+    background-color: $color-tr-odd;
+}

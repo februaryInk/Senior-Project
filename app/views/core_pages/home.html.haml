@@ -1,82 +1,55 @@
 - content_for( :title ) { home_title }
-
-- content_for :body do
-
-    %div.content
-        %table#table-welcome
-            %tr
-                %td#intro-wrapper
-                    %div#intro
-                        %h2
-                            See your story come
-                            %span.emphasis
-                                alive.
-                            Make it
-                            %span.emphasis
-                                grow. 
-                            Watch it
-                            %span.emphasis
-                                evolve.
-                        %br
-                        %div.intro-text
-                            %p
-                                Inklings is a new writing community where your work in progress 
-                                is just as emphasized as being with other writers. Your story needs your attention, 
-                                and by embodying it as an Inkling, a creature that feeds on words and changes as 
-                                your story does, our website lets you view your work as never before.
-                            %p
-                                Come on in. Meet other writers. Nurture your story.
-                            - unless signed_in?
-                                %p
-                                    = link_to 'Learn More', about_path, :class => 'link-inline'
-                                    or sign up at the right.
-                %td#td-transparency
-                %td#sign-up
-                    - if signed_in?
-                        %div.overlay.overlay-content
-                            %h3
+- content_for( :sub_header ) do
+    %section.sub-header
+        %table.content
+            %tbody
+                %tr
+                    %td.intro
+                        %h1.h--large
+                            = "See your story come #{content_tag( :em, 'Alive' )}.".html_safe
+                        %p.t--large
+                            Inklings is a writing community where your work in progress 
+                            is just as emphasized as being with other writers. Your story needs your attention, and by embodying it as an Inkling, a creature that feeds on words and changes as your story does, our website lets you view your work as never before.
+                        %p.t--large
+                            Come on in. Meet other writers. Nurture your story.
+                    %td.welcome{ :class => signed_in? ? 'align-top' : 'align-middle' }
+                        - if signed_in?
+                            %h2.h--fine
                                 Hello Again!
-                        %div.intro-text
-                            %p
-                                = "You are currently signed in as #{ current_user.username }."
-                                %br
-                                = "(Not #{ current_user.username }? Click "
-                                = link_to 'here', signout_path, :method => 'delete', :class => 'link-inline'
-                                to sign out.)
-                            %p
-                                - if current_user.manuscripts.any?
-                                    = "You were last working on: #{ @working_on.title }"
-                                    %br
-                                    %br
-                                    = link_to 'Keep Working', manuscript_path( :id => @working_on.id ), :class => 'link-affirmative'
-                                - else
-                                    You currently have no manuscripts.
-                                = link_to 'Start a New Manuscript', new_manuscript_path, :class => 'link-affirmative'
-                    - else
-                        %div.overlay.overlay-content
-                            %h3
-                                Sign Up
-                        %div#form-user-new
-                            = render :partial => 'users/new'
-        %div#news
-            %div.overlay.overlay-content
-                %h2
-                    Website News
-            %br
-            - if signed_in? && current_user.admin?
-                %div#form-news-report-new
-                    = render :partial => 'news_reports/new'
-                    %hr
-            - for report in @news_reports do
-                %div#report
-                    %h3
-                        = report.title
-                    %p
-                        = "Reported by #{ User.find( report.user_id ).username } on #{ report.created_at.strftime( '%B %d, %Y' ) }"
-                    %p.report
-                        = report.content
-                    - if signed_in? && current_user.admin?
-                        %br
-                        = link_to 'Edit Report', edit_news_report_path( report.id ), :class => 'link-button-like'
-                        = link_to 'Delete Report', news_report_path( report.id ), :class => 'link-button-like', :method => :delete, :data => { :confirm => 'Are you sure you want to permanently delete this news report?' }
-                    %hr
+                            %div.intro-text
+                                %p
+                                    = "You are currently signed in as #{current_user.username}. (Not #{current_user.username}? Please click #{link_to( 'here', signout_path, :method => 'delete', :class => 'underlined' )} to sign out.)".html_safe
+                                %p
+                                    - if current_user.manuscripts.any?
+                                        = "You were last working on: #{@working_on.title}"
+                                        %br
+                                        %br
+                                        = link_to 'Keep Working', manuscript_path( :id => @working_on.id ), :class => 'button--large-bright full-width'
+                                    - else
+                                        You currently have no manuscripts.
+                                    = link_to 'Start a New Manuscript', new_manuscript_path, :class => 'bumped button--large-light full-width'
+                        - else
+                            = link_to 'Sign Up', '#', :class => 'button--large-bright full-width'
+                            = link_to 'Learn More', about_path, :class => 'bumped button--large-light full-width'
+                
+%main
+    %section.content.news
+        %h1.h--medium
+            News Feed
+        - if signed_in? && current_user.admin?
+            %div.new-report
+                = render :partial => 'news_reports/new'
+                %hr
+        - for report in @news_reports do
+            %div.bumped.report
+                %h2.h--fine
+                    = report.title
+                %p.t--fine
+                    = "Reported by #{ User.find( report.user_id ).username } on #{ report.created_at.strftime( '%B %d, %Y' ) }"
+                %p
+                    = report.content
+                - if signed_in? && current_user.admin?
+                    %br
+                    = link_to 'Edit Report', edit_news_report_path( report.id ), :class => 'link-light'
+                    = link_to 'Delete Report', news_report_path( report.id ), :class => 'link-light', :method => :delete, :data => { :confirm => 'Are you sure you want to permanently delete this news report?' }
+                %hr

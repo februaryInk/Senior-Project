@@ -1,0 +1,145 @@
+#div-table-of-contents {
+    background-color: darken( $color-white, 5% );
+    padding: 1.5em;
+    
+    input {
+        background-color: darken( $color-white, 5% );
+        border: 0.1em solid darken( $color-white, 5% );
+        font-size: 0.85em;
+        margin: 0;
+        
+        &:focus {
+            background-color: darken( $color-white, 2.5% );
+            border: 0.1em solid darken( $color-white, 15% );
+        }
+        
+        &:hover {
+            border: 0.1em solid darken( $color-white, 10% );
+        }
+    }
+}
+
+#instructions {
+    margin-bottom: 1em;
+}
+
+#section-content {
+    height: 40em;
+}
+
+#table-of-contents {
+    border-top: 0.1em solid darken( $color-white, 25% );
+    margin-bottom: 1em;
+    width: 100%;
+    
+    td {
+        font-size: 1.2em;
+        line-height: 1.4em;
+        padding: 0.5em;
+    }
+    
+    th {
+        line-height: 1.75em;
+        padding: 0.5em;
+    }
+}
+
+.aside-user {
+    float: left;
+    padding: 2em 0;
+    text-align: center;
+    width: 10em;
+}
+
+.date {
+    float: right;
+    padding: 0.5em;
+}
+
+.div-inkling-habitat {
+    border: 0.1em dotted darken( $color-white, 10% );
+    height: 40em;
+    position: relative;
+    width: 100%;
+}
+
+.div-inkling-wrapper {
+    display: block;
+    height: 15em;
+    left: calc( 50% - 11.563em );
+    top: calc( 50% - 7.5em );
+    width: 23.125em;
+}
+
+.feedback {
+    margin-left: 14em;
+    padding: 2em;
+    
+    p {
+        font-size: 1.2em;
+    }
+}
+
+.feedback-info {
+    background-color: $color-white;
+    border-bottom: 0.1em solid darken( $color-white, 25% );
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+.handle {
+    display: block;
+    height: 0.8em;
+    width: 0.8em;
+    
+    &:after {
+        background-color: darken( $color-white, 5% );
+        border-radius: 0.35em;
+        content: '';
+        display: block;
+        height: 0.7em;
+        left: 0.05em;
+        position: relative;
+        top: -0.75em;
+        width: 0.7em;
+    }
+    
+    &:before {
+        background-color: darken( $color-white, 85% );
+        border-radius: 0.4em;
+        content: '';
+        display: block;
+        height: 0.8em;
+        position: relative;
+        top: 0em;
+        width: 0.8em;
+    }
+}
+
+.handle-wrapper {
+    display: table;
+    vertical-align: center;
+}
+
+// CSS priority requires the specification of type to override the styles
+// in global-styles.css.scss.
+input[type="text"].input-inline,
+.input-inline {
+    display: inline-block;
+    width: 10em;
+}
+
+.li-feedback {
+    background-color: darken( $color-white, 7.5% );
+    border: 0.1em solid darken( $color-white, 25% );
+    margin-bottom: 1em;
+}
+
+.name {
+    float: left;
+}
+
+.number {
+    float: left;
+    padding: 0.5em;
+}

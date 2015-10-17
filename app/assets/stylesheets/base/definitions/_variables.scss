@@ -1,0 +1,96 @@
+// color variable names are generated using http://chir.ag/projects/name-that-color/#6195ED .
+
+$color-black: #000000;
+$color-cod-gray: #111111;
+$color-mineshaft: #222222;
+$color-tundora: #444444;
+$color-emperor: #555555;
+$color-dove-gray: #666666;
+$color-boulder: #777777;
+$color-gray: #888888;
+$color-dusty-gray: #999999;
+$color-silver-chalice: #aaaaaa;
+$color-silver: #bbbbbb;
+$color-alto: #dddddd;
+$color-gallery: #eeeeee;
+$color-alabaster: #f8f8f8;
+$color-white: #ffffff;
+
+$color-mulberry: #d04090;
+$color-pigeon-post: #abccdb;
+$color-portage: #9090f0;
+$color-sea-pink: #f09090;
+$color-shamrock: #50e0a0;
+$color-sulu: #90f090;
+
+$color-danger: $color-sea-pink;
+$color-info: $color-portage;
+$color-success: $color-shamrock;
+$color-warning: $color-mulberry;
+
+// flash.scss
+
+$color-flash-default: darken( $color-white, 2.5% );
+$color-flash-default-text: darken( $color-white, 85% );
+$color-flash-danger: darken( $color-white, 2.5% );
+$color-flash-danger-text: darken( $color-white, 85% );
+$color-flash-info: darken( $color-white, 2.5% );
+$color-flash-info-text: darken( $color-white, 85% );
+$color-flash-success: darken( $color-white, 2.5% );
+$color-flash-success-text: darken( $color-white, 85% );
+$color-flash-warning: darken( $color-white, 2.5% );
+$color-flash-warning-text: darken( $color-white, 85% );
+
+// header.scss
+
+$color-dropdown: darken( $color-white, 25% );
+$color-dropdown-arrow: darken( $color-white, 85% );
+$color-dropdown-border: darken( $color-white, 35% );
+$color-dropdown-hover: darken( $color-white, 5% );
+$color-header: darken( $color-white, 2.5% );
+$color-header-tabs: darken( $color-white, 5% );
+$color-header-tabs-active: $color-white;
+$color-header-tabs-border: darken( $color-white, 25% );
+$color-manuscript-nav: $color-white;
+
+// inputs.scss
+
+$color-border-errors: $color-danger;
+$color-border-inputs: darken( $color-white, 25% );
+$color-button: darken( $color-white, 25% );
+$color-button-active: darken( $color-white, 35% );
+$color-button-hover: darken( $color-white, 20% );
+$color-text-button: $color-white;
+
+// links.scss
+
+$color-link-default-text: darken( $color-white, 85% );
+$color-link-light: darken( $color-white, 5% );
+$color-link-light-active: darken( $color-white, 10% );
+$color-link-light-hover: darken( $color-white, 7.5% );
+$color-link-light-text: darken( $color-white, 85% );
+$color-link-dark: darken( $color-white, 50% );
+$color-link-dark-active: darken( $color-white, 40% );
+$color-link-dark-hover: darken( $color-white, 45% );
+$color-link-dark-text: $color-white;
+
+// other.scss
+
+$color-border-add-new: darken( $color-white, 25% );
+$color-hr-bottom: darken( $color-white, 2.5% );
+$color-hr-top: darken( $color-white, 10% );
+$color-text-default: darken( $color-white, 85% );
+$color-text-errors: $color-danger;
+
+// shapes.scss
+
+$color-arrow: darken( $color-white, 85% );
+
+// tables.scss
+
+$color-table-border: darken( $color-white, 25% );
+$color-tr-even: darken( $color-white, 2.5% );
+$color-tr-odd: darken( $color-white, 7.5% );
+
+$size-button-height: 2em;
+$size-button-large-height: 3em;

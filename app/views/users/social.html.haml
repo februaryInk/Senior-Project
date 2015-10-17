@@ -67,7 +67,7 @@
                                     %br
                                     = friend.username
                                 %br
-                                = link_to 'Revoke Friendship', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :delete, :class => 'link-negative', :data => { :confirm => 'Are you sure you want to end this friendship?' }
+                                = link_to 'Revoke Friendship', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :delete, :class => 'link-dark', :data => { :confirm => 'Are you sure you want to end this friendship?' }
                         %div.clear
                         = will_paginate @accepted_friends
                 - if @waiting_friends.any?
@@ -82,8 +82,8 @@
                                     = friend.username
                                 %br
                                 = "Since #{ l( current_user.friendships.find_by( :friend_id => friend.id ).created_at, :format => :to_the_day ) }"
-                                = link_to 'Accept Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :patch, :class => 'link-affirmative'
-                                = link_to 'Reject Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :delete, :class => 'link-negative'
+                                = link_to 'Accept Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :patch, :class => 'link-light'
+                                = link_to 'Reject Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :delete, :class => 'link-dark'
                         %div.clear
                         = will_paginate @waiting_friends
                 - if @pending_friends.any?
@@ -98,7 +98,7 @@
                                     = friend.username
                                 %br
                                 = "Since #{ l( current_user.friendships.find_by( :friend_id => friend.id ).created_at, :format => :to_the_day ) }"
-                                = link_to 'Revoke Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :delete, :class => 'link-negative', :data => { :confirm => 'Are you sure you want revoke this offer of friendship?' }
+                                = link_to 'Revoke Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :delete, :class => 'link-dark', :data => { :confirm => 'Are you sure you want revoke this offer of friendship?' }
                         %div.clear
                         = will_paginate @pending_friends
             - else

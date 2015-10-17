@@ -38,5 +38,5 @@
                     - if @sections.any?
                         = render :partial => 'sections/sections'
             = link_to sections_path( :manuscript_id => params[ :id ] ), :method => :post, :remote => true, :class => 'make-new' do
-                %div#div-section-new
+                %div.add-new
                     Create a New Section

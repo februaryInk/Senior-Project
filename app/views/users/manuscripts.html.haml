@@ -18,9 +18,9 @@
                                         %h3
                                             = manuscript.title
                             %div.clear
-                        = link_to 'Open Manuscript', manuscript_path( :id => manuscript.id ), :class => 'link-affirmative'
-                        = link_to 'Manage Settings', edit_manuscript_path( :id => manuscript.id ), :class => 'link-affirmative'
-                        = link_to 'Delete Manuscript', manuscript_path( :id => manuscript.id ), :method => :delete, :class => 'link-negative'
+                        = link_to 'Open Manuscript', manuscript_path( :id => manuscript.id ), :class => 'link-light'
+                        = link_to 'Manage Settings', edit_manuscript_path( :id => manuscript.id ), :class => 'link-light'
+                        = link_to 'Delete Manuscript', manuscript_path( :id => manuscript.id ), :method => :delete, :class => 'link-dark'
                     - if manuscript.inkling != nil
                         = content_tag 'div', :class => 'div-inkling-habitat' do
                             = content_tag 'div', :id => manuscript.id.to_s, :class => 'div-inkling-wrapper moving', :data => { :selectors => manuscript.inkling.inkling_parts.map( &:selector ) } do
@@ -29,5 +29,5 @@
             %h3
                 You are not currently working on any manuscripts.
         = link_to new_manuscript_path do
-            %div#div-section-new
+            %div.add-new
                 Create a New Manuscript

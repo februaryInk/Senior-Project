@@ -1,0 +1,52 @@
+.aside-user {
+    float: left;
+    padding: 2em 0;
+    text-align: center;
+    width: 10em;
+}
+
+.li-comment {
+    background-color: darken( $color-white, 7.5% );
+    border: 0.1em solid darken( $color-white, 25% );
+    margin-bottom: 1em;
+}
+
+.comment {
+    margin-left: 14em;
+    padding: 2em;
+    
+    p {
+        font-size: 1.2em;
+    }
+}
+
+.comment-info {
+    background-color: $color-white;
+    border-bottom: 0.1em solid darken( $color-white, 25% );
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+.date {
+    float: right;
+    padding: 0.5em;
+}
+
+.name {
+    float: left;
+}
+
+.number {
+    float: left;
+    padding: 0.5em;
+}
+
+#form-comment-new {
+    padding: 2em;
+}
+
+#conversation-info {
+    border: 0.1em solid darken( $color-white, 25% );
+    margin-bottom: 1em;
+    padding: 0.5em;
+}

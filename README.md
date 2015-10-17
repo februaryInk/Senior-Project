@@ -127,9 +127,11 @@ say exactly what it is that this commit does.
 # Sass Style Guide
 ---
 
+Sass should be **predictable**, **reusable**, and **clean**.
+
 - Use classes rather than ids, because id specificity is difficult to overcome. Reserve ids for jQuery selection.
 - Do not add a tag qualifier on top of a class selector - for example, `a.affirmative` - except in cases where a class should behave differently based on the tag it is applied to. In general, the class will be good enough and the tag qualifier just uses additional processing time.
-- Use nesting as minimally as possible. In particular, try to follow the Inception Rule and limit nesting depth to 4 levels.
+- Use nesting as minimally as possible. In particular, try to follow the Inception Rule and limit nesting depth to 4 levels. Class or id selectors should almost **NEVER** be nested; the styling gained by applying a class and espcially an id should be as predictable as possible, and modifying these selectors based on their location in the DOM counteracts this basic rule.
 - Put each selector on its own line, with the last one followed by the opening curly brace.
 - Put each rule on its own line.
 - Put the closing curly brace on its own line.
@@ -182,7 +184,7 @@ The key to flexible modular CSS (or SCSS, as the case is) is to regard the HTML 
 
 ### Rule 1: Objects
 
-An object is a group of elements that can be regarded as self-contained or which are placed on the page as a whole, such as headers, links, or tables. Give objects noun names.
+An object is a group of elements that can be regarded as self-contained or which are placed on the page as a whole, such as headers, links, or tables. Give objects descriptive names that contain a noun.
 
 ```
 .link {
@@ -202,9 +204,23 @@ An object is a group of elements that can be regarded as self-contained or which
 }
 ```
 
+Two objects may serve similar functions on the page but be unrelated in terms of stylistic rules. In these cases, scoped modifiers would be inappropriate because there are no shared styles. Instead, name them with the same object name (noun) followed by a dash and a unique one- or at most two-word descriptor (adjective). The descriptor is placed after the object name so that when sorted within the page, rules for similar objects will tend to be close together.
+
+```
+.sidebar-left {
+    float: left;
+    width: 384px;
+}
+
+.sidebar-right {
+    float: right;
+    width: 256px;
+}
+```
+
 ### Rule 2: Descendants of Objects
 
-Try to not nest child elements within object selectors. Instead, append the parent name as a prefix if the child element can't be regarded as a reusable object in its own right.
+Try to not nest child elements within object selectors (espcially using class or id selectors, as asserted previously). Instead, append the parent name as a prefix if the child element can't be regarded as a reusable object in its own right.
 
 ```
 .link {
@@ -246,9 +262,11 @@ The exception to this is if the parent object exists as a container for a collec
 }
 ```
 
-### Rule 3: Modifiers
+### Rule 3: Local Modifiers
 
-There may be instances where two objects are similar in purpose and share some properties, but not all. In that case, we can introduce scoped modifier classes in a way that is analogous to subclassing in object-oriented languages. Most object-oriented programming languages have a way of subclassing objects such that the subclass becomes a "type" of the superclass. It inherits the behaviors of the superclass while typically adding some behaviors of its own. This same principle can be applied to SCSS. We can, for example, make a small logo inherit all the properties of a general logo while adding its own additional properties. This can be accomplished by using SCSS's ampersand operator with a class.
+There may be instances where two objects are similar in purpose and share some properties, but not all. In that case, we can introduce scoped modifier classes in a way that is analogous to subclassing in object-oriented languages. Most object-oriented programming languages have a way of subclassing objects such that the subclass becomes a "type" of the superclass. It inherits the behaviors of the superclass while typically adding some behaviors of its own. This same principle can be applied to SCSS. We can, for example, make a small logo inherit all the properties of a general logo while adding its own additional properties. This can be accomplished by using SCSS's ampersand operator with a class. (This is similar to the functionality of an `@extend`, but isn't shared between selectors.)
+
+Local modifiers should have adjective names, prepended with the name of the class they are modifying to prevent the (admittedly rare) confusion that may occur when 2 classes with the same local modifiers are applied to a single element.
 
 ```
 .logo {
@@ -257,42 +275,33 @@ There may be instances where two objects are similar in purpose and share some p
     background-size: contain;
     display: inline-block;
     
-    &.big {
+    &.logo-big {
         height: 96px;
         width: 282px;
     }
 
-    &.small {
+    &.logo-small {
         height: 64px;
         width: 188px;
     }
 }
 ```
 
-The classes `.small` and `.big` are modifiers scoped to the `logo` class, and must always be used in conjunction with it to be effective.
+The classes `.logo-small` and `.logo-big` are local modifiers scoped to the `logo` class, and must always be used in conjunction with it to be effective.
 
 ```
-= link_to '', root_path, :class => 'logo small'
+= link_to '', root_path, :class => 'logo logo-small'
 ```
 
-In some cases, though, it may be appropriate to create a global modifier that can be used with any object. Global modifiers should never be given the same names as any scoped modifiers, lest they cause styling conflicts.
+Rule 4: Global Modifiers
+
+In some cases, though, it may be appropriate to create a global modifier that can be used with any object. Global modifiers should never be given the same names as any scoped modifiers, lest they cause styling conflicts. These modifiers can be used to effect small adjustments on elements that either don't have their own class, or that have a class that shouldn't be altered because it is used elsewhere as is. However, if more than 2 global modifiers are applied to a single element, it is usually better to give the element its own class. These global modifiers are not for building up a style from scratch; they are for tweaking elements that behave just a little bit different from the rest.
 
 ```
-.link {
-    text-decoration: none;
-    
-    &.green {
-        color: green;
-    }
-}
-
-...
-
 .margined-bottom-2em { 
     margined-bottom: 2em;
 }
 
-// don't do this, or `class='link green'` will become ambiguous.
 .green { 
     background-color: green;
 }
@@ -300,21 +309,21 @@ In some cases, though, it may be appropriate to create a global modifier that ca
 
 Modifier names should be short descriptors, preferably a single adjective where possible.
 
-### Rule 4: Unrelated but Similar Objects
+Rule 5: JavaScript Selectors
 
-Two objects may serve similar functions on the page but be unrelated in terms of stylistic rules. In these cases, scoped modifiers would be inappropriate because there are no shared styles. Instead, name them with the same object name (noun) followed by a dash and a unique one- or at most two-word descriptor (adjective). The descriptor is placed after the object name so that when sorted within the page, rules for similar objects will tend to be close together.
+When a class or id is being used by JavaScript as a selector, make it obvious by prepending `js` to the selector. Do not use JavaScript selector classes for styling; they should be as de-coupled as possible from the element's styles.
 
-```
-.side-bar-left {
-    float: left;
-    width: 384px;
-}
+### Summary
 
-.side-bar-right {
-    float: right;
-    width: 256px;
-}
-```
+The rules described in the previous sections are summarized in the table shown here.
+
+| Rule | Class Naming Convention | Grammatical Format | Brief Description |
+|----------------------|-------------------------|--------------------|-------------------|
+| Object | Use a descriptive noun name. | noun | Any group of elements capable of standing alone. |
+| Descendant | Prepend the Object ancestor's name. | noun--noun | An Object descendant that can't exist on its own. |
+| Local Modifier | Prepend the modified class's name. | noun-adjective | A modified version of an Object. |
+| Global Modifier | Describe the modification's effect. | adjective, or property name + value | A modification applicable to many elements. |
+| Functionally Similar |
 
 ## Inter-Selector Organization
 
@@ -350,12 +359,46 @@ Even if a selector only has a single rule, I leave them multi-line. This keeps a
 
 Having a plan for rule organization makes them always easy to find. I like to use the following order for the different categories of rules.
 
-1. Mixins (`@include`): Alphabetized
-2. Extends (`@extend`): Alphabetized
+1. Extends (`@extend`): Alphabetized
+2. Mixins (`@include`): Alphabetized
 3. CSS rules: Alphabetized
 4. Pseudo-classes (`&:`): Alphabetized
-5. Miscellaneous Parent-referencing rules (`&`): Alphabetized
+5. Miscellaneous Parent-modifying rules (`&.`, `&#`): Alphabetized
 6. Pseudo-elements (`&::`): Alphabetized
 7. Nested selectors: By specificity, then alphabetized
 
 Mixins and extends come first because it is nice to know straight off that the selector inherits or has the potential to inherit a whole other set of rules. After that, the order is generally dictated by how directly the rules will affect the selector element.
+
+# HAML Style Guide
+
+### Place Individual Elements, Including Text Nodes, on Their Own Lines
+
+### Indent Child Objects 1 Step Past Their Parents
+
+### Do Not Omit the `div` Tag Declarations
+
+It is a common practice in HAML to leave off the tag declaration for `div`s and let the element default to a `div`. This feature was added in because `div`s are so common.
+
+```
+.content
+    Hello, World!
+```
+
+However, I prefer to keep the `div`s explicit. Omitting the tag implies that a `div` is a nothing element, empty of any identity, when it is not - or at the least, no more so than a `span`. Both are basic elements, with distinct properties and uses. Additionally, the omission makes it more difficult to visually identify the tag and makes tag declaration inconsistent.
+
+# Ruby Style Guide
+
+I am particularly aware that I do not, in this particular project, follow the conventional style practices for Ruby on Rails. This is because I think that a few Rails style practices, such as the omission of parenthesis for most Rails DSL functions, are unnecessarily inaccessible to Rails new-comers or result in semi-ambiguous situations.
+
+## Routes
+## 
+
+When passing instance variables as locals to partials, maintain the `@` symbol. It indicates that the variable originated from the controller.
+
+```
+# bad - dropped `@` on the instance variable.
+render { :partial => 'post_fields.html.haml', :ff => ff, :user => @user }
+
+# good.
+render { :partial => 'post_fields.html.haml', :@user => @user, :ff => ff }
+```

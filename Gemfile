@@ -1,37 +1,73 @@
 source( 'https://rubygems.org' )
 
-gem( 'rails',         '4.2.0' )                                                             # The essential Ruby on Rails gem.
+# The essential Ruby on Rails gem.
+gem( 'rails', '4.2.0' )
 
-gem( 'bcrypt',        '3.1.9' )                                                             # Includes password-encrypting function BCrypt.
-gem( 'haml-rails'             )                                                             # Allows HTML code to be written in HAML, a kind of HTML shorthand.
-gem( 'jbuilder',      '2.0.0' )                                                             # Builds JSON APIs with ease.
-gem( 'jquery-rails'           )                                                             # Instates jQuery as the JavaScript library.
-gem( 'jquery-ui-rails'        )                                                             # Enables jQuery UI.
-gem( 'pg',           '0.18.1' )                                                             # PostgreSQL database gem.
-gem( 'sass-rails',    '4.0.3' )                                                             # Allows the use of SCSS for style sheets.
-gem( 'uglifier',      '1.3.0' )                                                             # Compresses JavaScript assets.
-gem( 'will_paginate', '3.0.7' )                                                             # Paginates long lists or tables.
+# Adds browser-specific CSS prefixes automatically.
+gem 'autoprefixer-rails'
 
-gem( 'tzinfo',                   { :platforms => [ :x64_mingw, :mingw, :mswin ] } )         # Provides Windows with the necessary zoneinfo files.
-gem( 'tzinfo-data',              { :platforms => [ :x64_mingw, :mingw, :mswin ] } )         # Provides Windows with the necessary zoneinfo files.
+# Includes password-encrypting function BCrypt.
+gem( 'bcrypt', '3.1.9' )
 
-gem( 'therubyracer',             { :platforms => [ :ruby ] } )
-gem( 'execjs',                   { :platforms => [ :ruby ] } )
-gem( 'whenever',                 { :platforms => [ :ruby ], :require => false } )
+# Allows HTML code to be written in HAML, a kind of HTML shorthand.
+gem( 'haml-rails' )
+
+# Builds JSON APIs with ease.
+gem( 'jbuilder', '2.0.0' )
+
+# Instates jQuery as the JavaScript library.
+gem( 'jquery-rails' )
+
+# Enables jQuery UI.
+gem( 'jquery-ui-rails' )
+
+# PostgreSQL database gem.
+gem( 'pg', '0.18.1' )
+
+# Allows the use of SCSS for style sheets.
+gem( 'sass-rails',    '4.0.3' )
+
+# Compresses JavaScript assets.
+gem( 'uglifier', '1.3.0' )
+
+# Paginates long lists or tables.
+gem( 'will_paginate', '3.0.7' )
+
+
+# Provides Windows with the necessary zoneinfo files.
+gem( 'tzinfo', { :platforms => [ :x64_mingw, :mingw, :mswin ] } )
+
+# Provides Windows with the necessary zoneinfo files.
+gem( 'tzinfo-data', { :platforms => [ :x64_mingw, :mingw, :mswin ] } )
+
+
+gem( 'therubyracer', { :platforms => [ :ruby ] } )
+gem( 'execjs', { :platforms => [ :ruby ] } )
+gem( 'whenever', { :platforms => [ :ruby ], :require => false } )
+
 
 group( :development ) do
-    gem( 'web-console', '~> 2.0' )                                                          # Provides a console on exception pages or when <%= console %> is in views.
+    # Provides a console on exception pages or when <%= console %> is in views.
+    gem( 'web-console', '~> 2.0' )
 end
+
 
 group( :development, :test ) do
-    gem( 'faker' )                                                                          # Generates fake information for tests and development.
+    # Generates fake information for tests and development.
+    gem( 'faker' )
 end
+
 
 group( :doc ) do
-    gem( 'sdoc', '0.4.0',        { :require => false } )                                    # Wrapper for the rdoc command line tool.
+    # Wrapper for the rdoc command line tool.
+    gem( 'sdoc', '0.4.0', { :require => false } )
 end
 
+
 group( :test ) do
-    gem( 'minitest-reporters' )                                                             # Provides a clearer assessment of test results.
-    gem( 'win32console',         { :platforms => [ :x64_mingw, :mingw, :mswin ] } )         # Provides colored test output in Windows.
+    # Provides a clearer assessment of test results.
+    gem( 'minitest-reporters' )
+    
+    # Provides colored test output in Windows.
+    gem( 'win32console', { :platforms => [ :x64_mingw, :mingw, :mswin ] } )
 end

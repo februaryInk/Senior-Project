@@ -1,0 +1,142 @@
+#direc {
+    margin: 1.5em auto;
+    width: 100%;
+    
+    tr td {
+        text-align: center;
+        width: 6%;
+    }
+}
+
+#div-comments,
+#div-conversations {
+    margin-bottom: 2em;
+    width: 100%;
+}
+
+#div-gravatar {
+    margin: 0.5em 0;
+}
+
+#div-profile {
+    margin-left: 14em;
+}
+
+#sidebar-member {
+    float: left;
+    text-align: center;
+    width: 12em;
+}
+
+#ul-activity-feed {
+}
+
+.div-book {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.div-book-writing {
+    left: 0;
+    padding: 10% 5% 5% 10%;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
+
+.div-book-wrapper {
+    clear: both;
+    display: block;
+    position: relative;
+}
+
+.div-manuscript-inkling {
+    border-bottom: 0.1em solid darken( $color-white, 10% );
+    border-top: 0.1em solid darken( $color-white, 10% );
+    min-height: 36.2em;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    padding: 0.5em;
+    width: 100%;
+}
+
+.div-manuscript {
+    display: inline-block;
+    float: left;
+    width: 27.5%;
+}
+
+.div-inkling-wrapper {
+    display: block;
+    height: 9em;
+    left: 50px;
+    top: 50px;
+    width: 13.875em;
+}
+
+.div-inkling-habitat {
+    border: 0.1em dotted darken( $color-white, 10% );
+    float: right;
+    height: 100%;
+    min-height: 35em;
+    position: relative;
+    width: 70%;
+}
+
+.div-post-content {
+    padding: 0.5em;
+}
+
+.div-post-header {
+    padding: 0.5em;
+    
+    span {
+        margin-right: 1em;
+    }
+}
+
+.friend {
+    float: left;
+    margin: 1em;
+    text-align: center;
+    width: 10em;
+}
+
+.img-book {
+    width: 100%;
+}
+
+.li-post {
+    border-color: darken( $color-white, 15% );
+    border-style: solid;
+    border-width: 1px 0 0 0;
+}
+
+.table-user {   
+    td {
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+    
+    & td:last-child {
+        width: 100%;
+    }
+}
+
+.users {
+    margin: 0;
+    width: 100%;
+    
+    tr td {
+        border-bottom: 1px solid darken( $color-white, 15% );
+        line-height: 100%;
+        padding: 0.5em;
+        vertical-align: middle;
+    }
+}
+
+body {
+    background-color: $color-white;
+}

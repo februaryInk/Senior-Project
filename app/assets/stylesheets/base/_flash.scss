@@ -1,0 +1,46 @@
+.flash {
+    background-color: $color-flash-default;
+    border-color: $color-flash-default-text;
+    border-bottom-width: 1px;
+    border-style: solid;
+    border-top-width: 1px;
+    color: $color-flash-default-text;
+    line-height: 2em;
+    margin: auto;
+    margin-bottom: 0.75em;
+    margin-top: 0.75em;
+    text-align: center;
+    width: 100%;
+}
+
+.flash-danger {
+    @extend .flash;
+
+    background-color: $color-flash-danger;
+    border-color: $color-flash-danger-text;
+    color: $color-flash-danger-text;
+}
+
+.flash-info {
+    @extend .flash;
+
+    background-color: $color-flash-info;
+    border-color: $color-flash-info-text;
+    color: $color-flash-info-text;
+}
+
+.flash-success {
+    @extend .flash;
+
+    background-color: $color-flash-success;
+    border-color: $color-flash-success-text;
+    color: $color-flash-success-text;
+}
+
+.flash-warning {
+    @extend .flash;
+
+    background-color: $color-flash-warning;
+    border-color: $color-flash-warning-text;
+    color: $color-flash-warning-text;
+}

@@ -1,0 +1,94 @@
+@import 'base/definitions/fonts.scss';
+@import 'base/definitions/variables.scss';
+@import 'base/definitions/mixins.scss';
+
+@import 'base/reset.scss';
+
+@import 'base/buttons_and_links.scss';
+@import 'base/flash.scss';
+@import 'base/footer.scss';
+@import 'base/global_modifiers.scss';
+@import 'base/header.scss';
+@import 'base/inputs.scss';
+@import 'base/shapes.scss';
+@import 'base/tables.scss';
+@import 'base/typography.scss';
+
+* {
+    box-sizing: border-box;
+}
+
+hr {
+    border: 0;
+    height: 0;
+    border-bottom: 0.1em solid $color-hr-bottom;
+    border-top: 0.1em solid $color-hr-top;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+html {
+    font-size: 100%;
+}
+
+main {
+    padding-top: 2em;
+}
+
+sub {
+    font-size: 50%;
+    margin-left: -0.25em;
+    vertical-align: 0%;
+}
+
+.add-new {
+    border: 0.1em dotted $color-border-add-new;
+    display: block;
+    font-size: 1.2em;
+    height: 3em;
+    line-height: 3em;
+    text-align: center;
+}
+
+.clear {
+    clear: both;
+}
+
+.content {
+    margin: auto;
+    width: 60%;
+}
+
+.div-errors {
+    color: $color-text-errors;
+}
+
+.height-10em {
+    height: 10em;
+}
+
+.in-text-list {
+    list-style: square;
+    list-style-position: inside;
+    padding-left: 1em;
+}
+
+.indented {
+    padding-left: 2em;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.padding-top-4em {
+    padding-top: 4em;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.width-100 {
+    width: 100%;
+}

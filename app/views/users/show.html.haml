@@ -15,19 +15,19 @@
                             %p
                                 = "#{ @user.username } is your friend"
                             %p
-                                = link_to 'Revoke Friendship', friendship_path( @friendship ), :method => :delete, :class => 'link-negative', :data => { :confirm => 'Are you sure you want to end this friendship?' }
+                                = link_to 'Revoke Friendship', friendship_path( @friendship ), :method => :delete, :class => 'link-dark', :data => { :confirm => 'Are you sure you want to end this friendship?' }
                         - elsif current_user.pending_friends.include?( @user )
                             %p
                                 = "You sent this user an offer of friendship on #{ l( current_user.friendships.find_by( :friend_id => @user.id ).created_at, :format => :to_the_day ) }."
                             %p
-                                = link_to 'Revoke Offer', friendship_path( @friendship ), :method => :delete, :class => 'link-negative', :data => { :confirm => 'Are you sure you want to revoke your offer of friendship?' }
+                                = link_to 'Revoke Offer', friendship_path( @friendship ), :method => :delete, :class => 'link-dark', :data => { :confirm => 'Are you sure you want to revoke your offer of friendship?' }
                         - elsif current_user.waiting_friends.include?( @user )
                             %p
                                 = "This user sent you an offer of friendship on #{ l( current_user.friendships.find_by( :friend_id => @user.id ).created_at, :format => :to_the_day ) }."
                             %p
-                                = link_to 'Accept Offer', friendship_path( @friendship ), :method => :patch, :class => 'link-affirmative'
+                                = link_to 'Accept Offer', friendship_path( @friendship ), :method => :patch, :class => 'link-light'
                             %p
-                                = link_to 'Reject Offer', friendship_path( @friendship ), :method => :delete, :class => 'link-negative'
+                                = link_to 'Reject Offer', friendship_path( @friendship ), :method => :delete, :class => 'link-dark'
                         - else
                             = form_tag( friendships_path, :method => 'post' ) do
                                 = fields_for 'friendship', @friendship do | f |

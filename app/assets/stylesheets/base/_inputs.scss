@@ -1,0 +1,40 @@
+select,
+textarea,
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    border: 1px solid $color-border-inputs;
+    padding: 0.5em;
+    width: 100%;
+    
+    &.field-error {
+        border-color: $color-border-errors;
+    }
+}
+
+.field {
+    margin-bottom: 16px;
+}
+
+input[type="submit"] {
+    @include serif-family;
+
+  	background-color: $color-button;
+    color: $color-text-button;
+    border: 0;
+    font-size: 1em;
+    line-height: 2em;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    
+    // this doesn't set without the !important qualifier. browser styling 
+    // overrides it.
+    &:active {
+        background-color: $color-button-active !important;
+    }
+    
+    &:hover {
+        background-color: $color-button-hover;
+    }
+}

@@ -1,0 +1,11 @@
+@mixin accent-family {
+  font-family: Kalam, cursive;
+}
+
+@mixin sans-serif-family {
+  font-family: Candara, 'Gill Sans', 'Gill Sans MT', Calibri, Helvetica, sans-serif;
+}
+
+@mixin serif-family {
+  font-family: 'Fontin', Impact, serif;
+}
