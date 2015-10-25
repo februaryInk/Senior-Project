@@ -22,7 +22,7 @@ $( document ).ready( function (  ) {
     
     // AJAX update the section being displayed when a new value is selected from 
     // the drop-down list with id selector-for-links.
-    $( '#selector-for-writer' ).change( function( el ) {
+    $( '#js-selector-for-writer' ).change( function( el ) {
         var section_num = $( this ).val(  );
         $.ajax( {
             url : 'sections/select_for_writer',
@@ -33,7 +33,7 @@ $( document ).ready( function (  ) {
     
     // AJAX update the section being displayed when a new value is selected from 
     // the drop-down list with id selector-for-reader.
-    $( '#selector-for-reader' ).change( function( el ) {
+    $( '#js-selector-for-reader' ).change( function( el ) {
         var section_num = $( this ).val(  );
         $.ajax( {
             url : 'sections/select_for_reader',

@@ -8,14 +8,11 @@ class ManuscriptsController < DefaultNamespaceController
     # display the table of contents. AJAX and jQuery are used to make it
     # interactive.
     def contents
-        @manuscript_tab = true
         @manuscript = Manuscript.find( params[ :id ] )
         @sections = @manuscript.sections.all
         @section = @manuscript.sections.build
-        respond_to do | format |
-            format.js
-            format.html
-        end
+        
+        render( { :layout => 'manuscript_overview.html.haml' } )
     end
     
     # create a manuscript and its inkling.
@@ -23,6 +20,7 @@ class ManuscriptsController < DefaultNamespaceController
         @manuscript = current_user.manuscripts.build( manuscript_params )
         # assign the attributes that the user does not need to specify.
         @manuscript.assign_attributes( :word_count => 0, :might_word_count => 0, :light_word_count => 0, :dark_word_count => 0, :inkling_attributes => { :points => 0, :might_points => 0,  :light_points => 0, :dark_points => 0 } )
+        
         if @manuscript.save
             @manuscript.generate_inkling
             redirect_to manuscript_path( @manuscript )
@@ -35,14 +33,16 @@ class ManuscriptsController < DefaultNamespaceController
     def destroy
         manuscript = Manuscript.find( params[ :id ] )
         manuscript.destroy
+        
         redirect_to user_path( current_user.id )
     end
     
     # display the edit page, where manuscript settings can be updated.
     def edit
-        @manuscript_tab = true
         @manuscript = Manuscript.find( params[ :id ] )
         @inkling = @manuscript.inkling
+        
+        render( { :layout => 'manuscript_overview.html.haml' } )
     end
     
     # display the feedback page, where all of the feedback for the manuscript is
@@ -65,7 +65,6 @@ class ManuscriptsController < DefaultNamespaceController
     
     # display the manuscript contents in a format for reading.
     def read
-        @reader_or_writer = true
         @manuscript = Manuscript.find( params[ :id ] )
         @open_section = params[ :section_id ].nil? ? @manuscript.sections.first : Section.find( params[ :section_id ] )
         @sections = @manuscript.sections.all
@@ -74,15 +73,17 @@ class ManuscriptsController < DefaultNamespaceController
 
     # display information/statistics relating to the manuscript.
     def show
-        @manuscript_tab = true
         @manuscript = Manuscript.find( params[ :id ] )
         @inkling = @manuscript.inkling
         @selectors = @inkling.inkling_parts.map( &:selector ).to_json
+        
+        render( { :layout => 'manuscript_overview.html.haml' } )
     end 
     
     # update manuscript and inkling settings.
     def update
         @manuscript = Manuscript.find( params[ :id ] )
+        
         if @manuscript.update_attributes( manuscript_params )
             redirect_to manuscript_url( @manuscript )
             flash[ :success ] = 'Manuscript settings have been successfully updated.'
@@ -93,11 +94,11 @@ class ManuscriptsController < DefaultNamespaceController
     
     # display the manuscript contents in a format for writing.
     def write
-        @manuscript_tab = true
-        @reader_or_writer = true
         @manuscript = Manuscript.find( params[ :id ] )
         @open_section = params[ :section_id ].nil? ? @manuscript.sections.first : Section.find( params[ :section_id ] )
         @sections = @manuscript.sections.all
+        
+        render( { :layout => 'manuscript_overview.html.haml' } )
     end
     
     private

@@ -1,11 +1,10 @@
 - content_for( :title ) { manuscripts_write_title( @manuscript ) }
+- content_for( :navigation ) { render( :partial => 'layouts/components/nav_writer.html.haml', :locals => { :manuscript => @manuscript, :sections => @sections } ) }
 
-- content_for( :body ) do
-
-    %div.content
-        - if @manuscript.sections.any?
-            %div#open-section
-                = render :partial => 'sections/open_section', :object => @open_section
-        - else
-            %p
-                This manuscript does not currently have any sections. Visit the Contents tab to create and manage sections.
+%div.content
+    - if @manuscript.sections.any?
+        %div#open-section
+            = render :partial => 'sections/open_section', :object => @open_section
+    - else
+        %p
+            This manuscript does not currently have any sections. Visit the Contents tab to create and manage sections.

@@ -4,7 +4,9 @@ a {
 }
 
 .button {
+    background-color: transparent;
     border: none;
+    cursor: pointer;
     display: inline-block;
     height: $size-button-height;
     line-height: $size-button-height;
@@ -15,7 +17,9 @@ a {
 .button--large {
     @include serif-family;
     
+    background-color: transparent;
     border: none;
+    cursor: pointer;
     display: inline-block;
     font-size: 18px;
     height: $size-button-large-height;

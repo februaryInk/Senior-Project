@@ -13,9 +13,9 @@
             %table.manuscript
                 - for manuscript in @updated_manuscripts do
                     %tr
-                        %td.td-to-fit
+                        %td.fitted
                             = manuscript.title
-                        %td.td-fill-remainder
+                        %td.maximized
                             = manuscript.description
                                         
             = will_paginate @updated_manuscripts

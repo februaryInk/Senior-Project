@@ -24,9 +24,9 @@
                         - i = 1
                         - @conversations.each do | conversation |
                             = content_tag :tr, :class => "#{ i.odd? ? 'tr-odd' : 'tr-even' }" do
-                                %td.td-fill-remainder
+                                %td.maximized
                                     = link_to conversation.name, conversation_path( conversation )
-                                %td.td-to-fit
+                                %td.fitted
                                     = l( conversation.created_at, :format => :to_the_day )
                             - i += 1
                 = will_paginate @conversations
@@ -47,9 +47,9 @@
                         - i = 1
                         - @comments.each do | comment |
                             = content_tag :tr, :class => "#{ i.odd? ? 'tr-odd' : 'tr-even' }" do
-                                %td.td-fill-remainder
+                                %td.maximized
                                     = link_to comment.content, conversation_path( comment.conversation_id )
-                                %td.td-to-fit
+                                %td.fitted
                                     = l( comment.created_at, :format => :to_the_day )
                             - i += 1
                 = will_paginate @comments

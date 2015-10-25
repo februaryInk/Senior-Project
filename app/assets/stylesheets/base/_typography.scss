@@ -5,6 +5,8 @@ body {
     font-size: 18px;
 }
 
+h1, h2, h3, h4, h5, h6 { margin-bottom: 16px; }
+
 label {
     font-size: 15px;
     font-weight: bold;
@@ -14,6 +16,7 @@ label {
 }
 
 p {
+    font-size: 18px;
     line-height: 1.5em;
     margin-bottom: 16px;
 }
@@ -25,11 +28,14 @@ em, i { font-style: italic; }
 .t--medium { font-size: 18px; }
 .t--large { font-size: 20px; }
 
-.h { @include serif-family; margin-bottom: 16px; }
+.h { @include serif-family; }
 .h--fine { @extend .h; font-size: 24px; }
 .h--medium { @extend .h; font-size: 28px; }
 .h--large { @extend .h; font-size: 32px; }
 .h--grand { @extend .h; font-size: 48px; }
 .h--giant { @extend .h; font-size: 64px; }
 
-.underlined { text-decoration: underline; }
+.no-whitespace { line-height: 1em; margin: 0; padding: 0; }
+
+a, span { &.underlined { text-decoration: underline; } }
+h1, h2, h3, h4, h5, h6 { &.underlined { border-bottom: 2px solid $color-silver; display: block; padding-bottom: 4px; width: 100%; } }

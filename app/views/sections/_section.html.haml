@@ -1,18 +1,18 @@
 = content_tag :tr, :id => "#{ section.id }" do
-    %td.td-to-fit
+    %td.fitted
         %div.handle
-    %td.td-fill-remainder
+    %td.maximized
         = form_tag( section_rename_path( section.id ), :method => :patch, :remote => true ) do
             = hidden_field_tag :section_id, section.id
             // auto-submit class is meaningful to a jQuery function in
             // manuscripts.js.
             = text_field_tag :name, section.name, :class => 'auto-submit'
-    %td.td-to-fit
+    %td.fitted
         = section.position
-    %td.td-to-fit
+    %td.fitted
         = section.word_count
-    %td.td-to-fit
+    %td.fitted
         = link_to 'Go to', manuscript_write_path( @manuscript.id, :section_id => section.id )
-    %td.td-to-fit
+    %td.fitted
         = link_to "Delete", section_path( section.id ), :class => 'delete-section', :method => :delete, :remote => true, :data => "Are you sure you want to permanently delete the contents of #{ section.name }?"
         

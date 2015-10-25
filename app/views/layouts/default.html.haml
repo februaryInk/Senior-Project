@@ -1,4 +1,4 @@
-- content_for( :header ) { render :partial => 'layouts/header.html.haml' }
-- content_for( :footer ) { render :partial => 'layouts/footer.html.haml' }
+- content_for( :header ) { render :partial => 'layouts/components/header.html.haml' }
+- content_for( :footer ) { render :partial => 'layouts/components/footer.html.haml' }
 
-= render :template => 'layouts/application'
+= render :template => 'layouts/application.html.haml'

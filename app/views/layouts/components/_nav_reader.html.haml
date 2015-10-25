@@ -1,0 +1,13 @@
+%nav.navbar
+    %div.navbar__content
+        %div.faux-table.full-height.spacers--vertical
+            %div
+                %div.maximized
+                    %h1.h--medium.no-whitespace
+                        = "#{manuscript.title}"
+                %div.fitted
+                    = link_to( 'Leave Feedback', '#', :class => 'leave-feedback', :id => manuscript.id ) if signed_in?
+                %div.fitted
+                    = link_to 'See All Feedback', manuscript_feedback_path( @manuscript.id )
+                %div.fitted
+                    = collection_select :section, :id, @sections, :id, :name, { :selected => ( params[ :section ].nil? ? 1 : params[ :section ] ) }, { :id => 'js-selector-for-reader select-navigation' }

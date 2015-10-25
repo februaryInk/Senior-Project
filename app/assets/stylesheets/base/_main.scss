@@ -56,7 +56,7 @@ sub {
 
 .content {
     margin: auto;
-    width: 60%;
+    width: $size-content-width;
 }
 
 .div-errors {

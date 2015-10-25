@@ -1,0 +1,12 @@
+%div.header-tabs
+    %nav.content
+        %ul
+            %li
+                = link_to( 'Profile', user_path( user.id ), { :class => 'js-openable-link' } )
+            %li
+                = link_to( 'Manuscripts', user_manuscripts_path( user.id ), { :class => 'js-openable-link' } )
+            %li
+                = link_to( 'Social', user_social_path( user.id ), { :class => 'js-openable-link' } )
+            %li
+                = link_to( 'Settings', edit_user_path( user.id ), { :class => 'js-openable-link' } )
+            %div.clear

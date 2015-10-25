@@ -1,0 +1,5 @@
+- content_for( :header ) { render( { :partial => 'layouts/components/header.html.haml' } ) }
+- content_for( :tabs ) { render( { :partial => 'layouts/components/tabs_help.html.haml' } ) }
+- content_for( :footer ) { render( { :partial => 'layouts/components/footer.html.haml' } ) }
+
+= render( { :template => 'layouts/application.html.haml' } )

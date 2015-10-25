@@ -1,5 +1,7 @@
 class HelpPagesController < DefaultNamespaceController
 
+    layout( 'help_pages.html.haml' )
+
     # display the contact page.
     def contact
     end

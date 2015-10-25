@@ -12,6 +12,7 @@
     %body
         = yield( :header ) if content_for?( :header )
         = yield( :sub_header ) if content_for?( :sub_header )
+        = yield( :tabs ) if content_for?( :tabs )
         = yield( :navigation ) if content_for?( :navigation )
         %section#flash-container
             = render( :partial => 'shared/flash_messages' )

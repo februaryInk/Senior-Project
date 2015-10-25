@@ -9,16 +9,16 @@
                     Start A New Conversation
         %table.table-wide
             %tr
-                %th.td-fill-remainder
+                %th.maximized
                     %h3
                         Conversation
-                %th.td-to-fit
+                %th.fitted
                     %strong
                         Participants
-                %th.td-to-fit
+                %th.fitted
                     %strong
                         Comments
-                %th.td-to-fit
+                %th.fitted
                     %strong
                         Latest Activity
                 - if signed_in? && current_user.admin?
@@ -26,15 +26,15 @@
                 - i = 1
                 - for conversation in @conversations
                     = content_tag :tr, :class => "#{ i.odd? ? 'tr-odd' : 'tr-even' }" do
-                        %td.td-fill-remainder
+                        %td.maximized
                             = link_to h( conversation.name ), conversation_path( conversation.id )
-                        %td.td-to-fit
+                        %td.fitted
                             = conversation.comments.group_by( &:user_id ).count
-                        %td.td-to-fit
+                        %td.fitted
                             = conversation.comments.to_a.count
-                        %td.td-to-fit
+                        %td.fitted
                             = conversation.comments.last.created_at.strftime( '%B %d, %Y' )
                         - if signed_in? && current_user.admin?
-                            %td.td-to-fit
+                            %td.fitted
                                 = link_to 'delete', conversation, :method => :delete, :data => { :confirm => 'Are you sure you want to permanently delete this conversation?' }
                     - i += 1

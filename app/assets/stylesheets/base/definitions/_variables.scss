@@ -50,7 +50,7 @@ $color-dropdown-hover: darken( $color-white, 5% );
 $color-header: darken( $color-white, 2.5% );
 $color-header-tabs: darken( $color-white, 5% );
 $color-header-tabs-active: $color-white;
-$color-header-tabs-border: darken( $color-white, 25% );
+$color-header-tabs-border: $color-silver;
 $color-manuscript-nav: $color-white;
 
 // inputs.scss
@@ -79,7 +79,7 @@ $color-link-dark-text: $color-white;
 $color-border-add-new: darken( $color-white, 25% );
 $color-hr-bottom: darken( $color-white, 2.5% );
 $color-hr-top: darken( $color-white, 10% );
-$color-text-default: darken( $color-white, 85% );
+$color-text-default: $color-mineshaft;
 $color-text-errors: $color-danger;
 
 // shapes.scss
@@ -94,3 +94,4 @@ $color-tr-odd: darken( $color-white, 7.5% );
 
 $size-button-height: 2em;
 $size-button-large-height: 3em;
+$size-content-width: 60%;

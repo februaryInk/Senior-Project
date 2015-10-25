@@ -391,14 +391,3 @@ However, I prefer to keep the `div`s explicit. Omitting the tag implies that a `
 I am particularly aware that I do not, in this particular project, follow the conventional style practices for Ruby on Rails. This is because I think that a few Rails style practices, such as the omission of parenthesis for most Rails DSL functions, are unnecessarily inaccessible to Rails new-comers or result in semi-ambiguous situations.
 
 ## Routes
-## 
-
-When passing instance variables as locals to partials, maintain the `@` symbol. It indicates that the variable originated from the controller.
-
-```
-# bad - dropped `@` on the instance variable.
-render { :partial => 'post_fields.html.haml', :ff => ff, :user => @user }
-
-# good.
-render { :partial => 'post_fields.html.haml', :@user => @user, :ff => ff }
-```

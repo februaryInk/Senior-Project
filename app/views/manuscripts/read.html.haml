@@ -1,4 +1,5 @@
 - content_for( :title ) { manuscripts_read_title( @manuscript ) }
+- content_for( :navigation ) { render( :partial => 'layouts/components/nav_reader.html.haml', :locals => { :manuscript => @manuscript, :sections => @sections } ) }
 
 - content_for( :body ) do
     %div.content

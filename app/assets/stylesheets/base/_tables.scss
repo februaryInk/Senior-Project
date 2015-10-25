@@ -1,5 +1,40 @@
 .align-middle { vertical-align: middle; }
 .align-top { vertical-align: top; }
+.fitted { text-align: center; white-space: nowrap; }
+.maximized { width: 99%; }
+
+.faux-table {
+    border-collapse: collapse;
+    display: table;
+    width: 100%;
+    
+    & > * {
+            display: table-row;
+          
+            & > * {
+                display: table-cell;
+                vertical-align: middle;
+            }
+    }
+}
+
+.spacers--vertical {
+    & > * {
+    
+        & > * {
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+        }
+        
+        & > *:first-child {
+            padding-left: 0;
+        }
+        
+        & > *:last-child {
+            padding-right: 0;
+        }
+    }
+}
 
 .table-narrow {
     border-bottom: 0.1em solid $color-table-border;
@@ -34,15 +69,6 @@
         line-height: 2.5em;
         padding: 0.5em;
     }
-}
-
-.td-fill-remainder {
-    width: 99%;
-}
-
-.td-to-fit {
-    text-align: center;
-    white-space: nowrap;
 }
 
 .tr-even {

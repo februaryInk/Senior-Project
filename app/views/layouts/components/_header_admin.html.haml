@@ -1,0 +1,19 @@
+%header.main-header
+    %div.content
+        %div.main-header__logo
+            = link_to( 'Inklings', admin_root_path )
+            %sub
+                (Admin)
+        %nav.main-header__nav
+            %ul
+                %li
+                    = link_to( 'Dashboard', admin_root_path, { :class => 'js-openable-link' } )
+                %li
+                    = link_to( 'Inbox', '#', { :class => 'js-openable-link' } )
+                %li
+                    = link_to( 'Tasks', '#', { :class => 'js-openable-link' } )
+                %li
+                    = link_to( 'Users', '#', { :class => 'js-openable-link' } )
+                %li
+                    = link_to( 'Sign Out', admin_signout_path, { :class => 'js-openable-link', :method => :delete } )
+        %div.clear

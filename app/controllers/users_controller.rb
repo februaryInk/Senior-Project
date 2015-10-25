@@ -31,8 +31,9 @@ class UsersController < DefaultNamespaceController
     
     # display the user's edit page.
     def edit
-        @account_tab = true
         @user = User.find( params[ :id ] )
+        
+        render( { :layout => 'profile_overview.html.haml' } )
     end
 
     # display the user index page.
@@ -43,8 +44,9 @@ class UsersController < DefaultNamespaceController
     
     # display all of a user's manuscripts for personal viewing.
     def manuscripts
-        @account_tab = true
         @manuscripts = current_user.manuscripts
+        
+        render( { :layout => 'profile_overview.html.haml' } )
     end
 
     # display a user's profile page.
@@ -53,6 +55,7 @@ class UsersController < DefaultNamespaceController
         @post = Post.new
         @user = User.find( params[ :id ] )
         @activity_feed = @user.activity_feed.paginate( :page => params[ :page ] )
+        
         unless current_user.nil?
             unless current_user.friends.include?( @user )
                 @friendship = current_user.friendships.new
@@ -62,16 +65,19 @@ class UsersController < DefaultNamespaceController
                 @reciprocated_friendship = @user.friendships.find_by( :friend_id => current_user.id )
             end
         end
+        
+        render( { :layout => 'profile_overview.html.haml' } ) if current_user == @user
     end
     
     # display a user's social activity for personal viewing.
     def social
-        @account_tab = true
         @accepted_friends = current_user.accepted_friends.order( 'username ASC' ).paginate( :page => params[ :friend_page ] )
         @comments = current_user.comments.order( 'created_at DESC' ).paginate( :page => params[ :comment_page ], :per_page => 10 )
         @conversations = current_user.conversations.order( 'created_at DESC' ).paginate( :page => params[ :conversation_page ], :per_page => 5 )
         @pending_friends = current_user.pending_friends.order( 'username ASC' ).paginate( :page => params[ :p_friend_page ] )
         @waiting_friends = current_user.waiting_friends.order( 'username ASC' ).paginate( :page => params[ :w_friend_page ] )
+        
+        render( { :layout => 'profile_overview.html.haml' } )
     end
     
     # update a user if they supply the correct password.

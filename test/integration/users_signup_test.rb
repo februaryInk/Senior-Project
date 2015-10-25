@@ -9,7 +9,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
         end
         follow_redirect!
         assert_template 'core_pages/home'
-        assert_select 'div.alert-info'
+        assert_select 'div.flash-info'
         assert_select 'div.div-errors', :count => 0
     end
     

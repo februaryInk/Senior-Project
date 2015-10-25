@@ -1,0 +1,12 @@
+%div.header-tabs
+    %nav.content
+        %ul
+            %li
+                = link_to( 'Summary', manuscript_path( manuscript.id ), { :class => 'js-openable-link' } )
+            %li
+                = link_to( 'Contents', manuscript_contents_path( manuscript.id ), { :class => 'js-openable-link' } )
+            %li
+                = link_to( 'Write', manuscript_write_path( manuscript.id ), { :class => 'js-openable-link' } )
+            %li
+                = link_to( 'Settings', edit_manuscript_path( manuscript.id ), { :class => 'js-openable-link' } )
+            %div.clear

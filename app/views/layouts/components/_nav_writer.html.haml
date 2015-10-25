@@ -1,0 +1,13 @@
+%nav.navbar
+    %div.navbar__content
+        %div.faux-table.full-height.spacers--vertical
+            %div
+                %div.maximized
+                    %h1.h--medium.no-whitespace
+                        = "#{manuscript.title}"
+                %div.fitted
+                    = button_tag 'Save', :class => 'button button-submit-section'
+                %div.fitted
+                    = button_tag 'Save and Publish', :class => 'button button-submit-and-publish-section'
+                %div.fitted
+                    = collection_select :section, :id, sections, :id, :name, { :selected => ( params[ :section ].nil? ? 1 : params[ :section ] ) }, { :class => 'js-selector-for-writer select-navigation' }
