@@ -6,7 +6,7 @@ class SectionsController < DefaultNamespaceController
         @manuscript = Manuscript.find( params[ :manuscript_id ] )
         position = @manuscript.sections.count + 1
         default_name = "Chapter #{ position }"
-        @section = @manuscript.sections.create( :name => default_name, :position => position, :word_count => 0, :dark_word_count => 0, :light_word_count => 0, :might_word_count => 0 )
+        @section = @manuscript.sections.create( :name => default_name, :position => position, :word_count => 0 )
     end
     
     # destroy the section, then update the positions of the remaining sections and 
@@ -18,14 +18,14 @@ class SectionsController < DefaultNamespaceController
         destroyed_position = section.position
         section.destroy
         @sections = @manuscript.sections.all
+        
         @sections.each do | section |
             if section.position > destroyed_position
                 section.update_attributes( :position => section.position - 1 )
             end
         end
+        
         @manuscript.update_counts
-        @manuscript.inkling.update_points( @manuscript )
-        @manuscript.inkling.update_parts
     end
     
     # change the name of a section on blur of the :name field. this action is used 
@@ -81,11 +81,9 @@ class SectionsController < DefaultNamespaceController
             end
         
             content = params[ :section ][ :content ]
-            @open_section.update_words( content, might_words, light_words, dark_words )
+            @open_section.update_words( content )
             
             @manuscript.update_counts
-            inkling.update_points( @manuscript )
-            inkling.update_parts
         end
         
         respond_to do | format |
@@ -94,18 +92,6 @@ class SectionsController < DefaultNamespaceController
     end
     
     private
-    
-        def might_words
-            %w[ arrow compass east north plains river sea snow south sword tree west wild wilderness ]
-        end
-        
-        def light_words
-            %w[ beautiful blush breath candle eyes gown handsome light lips love necklace ruffles shine sun sweet ]
-        end
-    
-        def dark_words
-            %w[ black blood dark destroy fear fright gore lightening maimed spider storm sweat thunder wolf ]
-        end
 
         def section_params
             params.require( :section ).permit( :manuscript_id, :name )

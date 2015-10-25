@@ -1,10 +1,10 @@
 - content_for( :title ) { home_title }
 - content_for( :sub_header ) do
     %section.sub-header
-        %table.content
-            %tbody
-                %tr
-                    %td.intro
+        %div.content
+            %div.faux-table
+                %div
+                    %div.intro
                         %h1.h--large
                             = "See your story come #{content_tag( :em, 'Alive' )}.".html_safe
                         %p.t--large
@@ -12,7 +12,7 @@
                             is just as emphasized as being with other writers. Your story needs your attention, and by embodying it as an Inkling, a creature that feeds on words and changes as your story does, our website lets you view your work as never before.
                         %p.t--large
                             Come on in. Meet other writers. Nurture your story.
-                    %td.welcome{ :class => signed_in? ? 'align-top' : 'align-middle' }
+                    %div.welcome{ :class => signed_in? ? 'align-top' : 'align-middle' }
                         - if signed_in?
                             %h2.h--fine
                                 Hello Again!

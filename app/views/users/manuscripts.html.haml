@@ -1,6 +1,4 @@
 - content_for( :title ) { users_account_title }
-- content_for( :javascript ) { javascript_include_tag 'inklings' }
-- content_for( :stylesheet ) { stylesheet_link_tag 'styles/inklings.css' }
 
 - content_for( :body ) do
 
@@ -21,10 +19,6 @@
                         = link_to 'Open Manuscript', manuscript_path( :id => manuscript.id ), :class => 'link-light'
                         = link_to 'Manage Settings', edit_manuscript_path( :id => manuscript.id ), :class => 'link-light'
                         = link_to 'Delete Manuscript', manuscript_path( :id => manuscript.id ), :method => :delete, :class => 'link-dark'
-                    - if manuscript.inkling != nil
-                        = content_tag 'div', :class => 'div-inkling-habitat' do
-                            = content_tag 'div', :id => manuscript.id.to_s, :class => 'div-inkling-wrapper moving', :data => { :selectors => manuscript.inkling.inkling_parts.map( &:selector ) } do
-                                = render :partial => 'inklings/inkling_svg.html'
         - else
             %h3
                 You are not currently working on any manuscripts.

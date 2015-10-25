@@ -177,10 +177,33 @@ User.first.news_reports.create(
     Friendship.create(
         :friend_id => user_1.id,
         :friendship_status_id => FriendshipStatus.called( status ).id,
-        :user_id => user_2.id )
+        :user_id => user_2.id
+    )
         
     Friendship.create(
         :friend_id => user_2.id,
         :friendship_status_id => FriendshipStatus.called( reciprocal_status ).id,
-        :user_id => user_1.id )
+        :user_id => user_1.id
+    )
+end
+
+User.all.each do | user |
+
+    manuscript = Manuscript.create(
+        :description => Faker::Lorem.paragraph,
+        :rating_id => Rating.offset( rand( Rating.count ) ).first.id,
+        :title => Faker::Lorem.word(3),
+        :user_id => user.id,
+        :genre_ids => [
+            Genre.offset( rand( Genre.count ) ).first.id
+        ],
+        :inkling_attributes => {
+            :hardcore => [ false, true ].sample,
+            :revival_fee => [ 0, 10, 100 ].sample,
+            :revival_fee_currency => 'Points',
+            :word_count_goal => [ 40000, 60000, 80000 ].sample,
+            :word_rate_goal => [ 100, 500, 1000 ].sample,
+            :word_rate_goal_basis => [ 1, 3, 7 ].sample
+        }
+    )
 end

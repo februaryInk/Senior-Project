@@ -6,10 +6,6 @@ class CreateInklings < ActiveRecord::Migration
             
             t.boolean :hardcore
             
-            t.integer :dark_points
-            t.integer :light_points
-            t.integer :might_points
-            t.integer :points
             t.integer :revival_fee
             t.integer :revival_fee_currency
             t.integer :word_count_goal

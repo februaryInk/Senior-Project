@@ -101,36 +101,9 @@ ActiveRecord::Schema.define(version: 20150809210940) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "inkling_part_guides", force: :cascade do |t|
-    t.integer "max_dark_points"
-    t.integer "max_light_points"
-    t.integer "max_might_points"
-    t.integer "max_points"
-    t.string  "kind"
-  end
-
-  create_table "inkling_parts", force: :cascade do |t|
-    t.integer  "inkling_id"
-    t.integer  "inkling_part_guide_id"
-    t.integer  "dark_points"
-    t.integer  "light_points"
-    t.integer  "might_points"
-    t.integer  "total_points"
-    t.string   "kind"
-    t.string   "selector"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  add_index "inkling_parts", ["inkling_id"], name: "index_inkling_parts_on_inkling_id", using: :btree
-
   create_table "inklings", force: :cascade do |t|
     t.integer  "manuscript_id"
     t.boolean  "hardcore"
-    t.integer  "dark_points"
-    t.integer  "light_points"
-    t.integer  "might_points"
-    t.integer  "points"
     t.integer  "revival_fee"
     t.string   "revival_fee_currency"
     t.integer  "word_count_goal"
@@ -145,15 +118,12 @@ ActiveRecord::Schema.define(version: 20150809210940) do
   create_table "manuscripts", force: :cascade do |t|
     t.integer  "rating_id"
     t.integer  "user_id"
-    t.integer  "light_word_count"
-    t.integer  "dark_word_count"
-    t.integer  "might_word_count"
     t.integer  "word_count"
     t.string   "genre"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "manuscripts", ["genre"], name: "index_manuscripts_on_genre", using: :btree
@@ -189,15 +159,12 @@ ActiveRecord::Schema.define(version: 20150809210940) do
     t.integer  "manuscript_id"
     t.boolean  "published"
     t.datetime "published_at"
-    t.integer  "dark_word_count"
-    t.integer  "light_word_count"
-    t.integer  "might_word_count"
     t.integer  "position"
     t.integer  "word_count"
     t.string   "name"
     t.text     "content"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "sections", ["manuscript_id"], name: "index_sections_on_manuscript_id", using: :btree

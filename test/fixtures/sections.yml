@@ -2,9 +2,6 @@ the_test_1:
     content: > 
         Our young heroes set out into the Bleak Black Wood in search of the famous Shiny Treasure.
     created_at: <%= Time.zone.now %>
-    dark_word_count: 0
-    light_word_count: 0
-    might_word_count: 0
     manuscript: the_test
     name: Chapter 1
     position: 1
@@ -15,9 +12,6 @@ the_test_2:
     content: >
         They were tested. Boy, were they ever tested.
     created_at: <%= Time.zone.now %>
-    dark_word_count: 0
-    light_word_count: 0
-    might_word_count: 0
     manuscript: the_test
     name: Chapter 2
     position: 2
@@ -30,9 +24,6 @@ the_magicians_rival_1:
         bribery and blackmail. The public thought he was swell, but she knew his dark 
         secrets.
     created_at: <%= Time.zone.now %>
-    dark_word_count: 0
-    light_word_count: 0
-    might_word_count: 0
     manuscript: the_magicians_rival
     name: Chapter 1
     position: 1

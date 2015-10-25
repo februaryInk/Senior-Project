@@ -1,11 +1,7 @@
 the_test_inkling:
     created_at: <%= Time.zone.now %>
-    dark_points: 0
     hardcore: false
-    light_points: 0
     manuscript: the_test
-    might_points: 0
-    points: 0
     revival_fee: 200
     revival_fee_currency: Words
     updated_at: <%= Time.zone.now %>
@@ -15,12 +11,8 @@ the_test_inkling:
     
 the_magicians_rival_inkling:
     created_at: <%= Time.zone.now %>
-    dark_points: 0
     hardcore: false
-    light_points: 0
     manuscript: the_magicians_rival
-    might_points: 0
-    points: 0
     revival_fee: 200
     revival_fee_currency: Points
     updated_at: <%= Time.zone.now %>

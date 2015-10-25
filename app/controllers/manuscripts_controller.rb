@@ -19,10 +19,9 @@ class ManuscriptsController < DefaultNamespaceController
     def create
         @manuscript = current_user.manuscripts.build( manuscript_params )
         # assign the attributes that the user does not need to specify.
-        @manuscript.assign_attributes( :word_count => 0, :might_word_count => 0, :light_word_count => 0, :dark_word_count => 0, :inkling_attributes => { :points => 0, :might_points => 0,  :light_points => 0, :dark_points => 0 } )
+        @manuscript.assign_attributes( :word_count => 0 )
         
         if @manuscript.save
-            @manuscript.generate_inkling
             redirect_to manuscript_path( @manuscript )
         else
             render 'new'
@@ -75,7 +74,6 @@ class ManuscriptsController < DefaultNamespaceController
     def show
         @manuscript = Manuscript.find( params[ :id ] )
         @inkling = @manuscript.inkling
-        @selectors = @inkling.inkling_parts.map( &:selector ).to_json
         
         render( { :layout => 'manuscript_overview.html.haml' } )
     end 

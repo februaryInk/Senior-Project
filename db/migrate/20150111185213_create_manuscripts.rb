@@ -5,9 +5,6 @@ class CreateManuscripts < ActiveRecord::Migration
             t.references :rating, :foreign_key => true, :index => true
             t.references :user, :foreign_key => true, :index => true
             
-            t.integer :light_word_count
-            t.integer :dark_word_count
-            t.integer :might_word_count
             t.integer :word_count
             
             t.string :genre
