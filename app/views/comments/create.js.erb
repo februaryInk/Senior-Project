@@ -1,5 +1,5 @@
 if ( <%= @saved %> ) {
-    window.location = '<%= conversation_path( @conversation.id ) %>';
+    window.location = '<%= forum_conversation_path( @conversation.forum.id, @conversation.id ) %>';
 }
 else {
     $( '#form-comment-new' ).html( "<%= escape_javascript( render( :partial => 'comments/new' ) ).html_safe %>" );

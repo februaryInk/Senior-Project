@@ -192,7 +192,7 @@ User.all.each do | user |
     manuscript = Manuscript.create(
         :description => Faker::Lorem.paragraph,
         :rating_id => Rating.offset( rand( Rating.count ) ).first.id,
-        :title => Faker::Lorem.word(3),
+        :title => Faker::Lorem.words(3).join(' '),
         :user_id => user.id,
         :genre_ids => [
             Genre.offset( rand( Genre.count ) ).first.id

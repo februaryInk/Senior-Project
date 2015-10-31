@@ -6,12 +6,14 @@ class CommentsController < DefaultNamespaceController
 
     # create a comment. this action uses AJAX.
     def create
-        @comment = current_user.comments.build( comment_params )
-        @conversation = current_conversation
+        @forum = Forum.find( params[ :forum_id ] )
+        @conversation = Conversation.find( params[ :conversation_id ] )
+        @comment = current_user.comments.build( comment_params.merge( :conversation_id => @conversation.id ) )
+        
         respond_to do | format |
             if @comment.save
                 @saved = true
-                format.html { redirect_to conversation_path( @conversation.id ) }
+                format.html { redirect_to forum_conversation_path( @forum, @conversation.id ) }
             else
                 @saved = false
             end
@@ -20,13 +22,8 @@ class CommentsController < DefaultNamespaceController
     end
     
     private
-    
-        # get the conversation to which the comment belongs.
-        def current_conversation
-            Conversation.find_by( id: params[ :comment ][ :conversation_id ] )
-        end
         
         def comment_params
-            params.require( :comment ).permit( :content, :conversation_id, :user_id ) 
+            params.require( :comment ).permit( :content, :user_id )
         end
 end

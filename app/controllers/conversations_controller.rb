@@ -8,10 +8,10 @@ class ConversationsController < DefaultNamespaceController
     # create a conversation.
     def create
         @conversation = current_user.conversations.build( conversation_params )
+        
         if @conversation.save
-            redirect_to conversation_path( @conversation.id )
+            redirect_to forum_conversation_path( @conversation.forum.id, @conversation.id )
         else
-            @forums = Forum.all
             render 'new'
         end
     end
@@ -19,8 +19,11 @@ class ConversationsController < DefaultNamespaceController
     # destroy a conversation.
     def destroy
         @conversation = Conversation.find( params[ :id ] )
+        @forum = Forum.find( params[ :forum_id ] )
+        
         @conversation.destroy
-        redirect_to forums_path
+        
+        redirect_to forum_path( @forum.id )
     end
 
     # display the new conversation page.
@@ -32,6 +35,7 @@ class ConversationsController < DefaultNamespaceController
 
     # show the conversation with all of its comments.
     def show
+        @forum = Forum.find( params[ :forum_id ] )
         @conversation = Conversation.find( params[ :id ] )
         @comments = @conversation.comments.paginate( :page => params[ :page ], :per_page => 15 )
         @comment = Comment.new

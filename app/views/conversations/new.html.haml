@@ -1,21 +1,19 @@
 - content_for( :title ) { conversations_new_title }
 
-- content_for( :body ) do
-
-    %div.content
-        %div#form-conversation
-            = form_for @conversation do | f |
-                = render :partial => 'shared/error_messages', :locals => { :object => f.object }
+%div.content
+    %div#form-conversation
+        = form_for @conversation do | f |
+            = render :partial => 'shared/error_messages', :locals => { :object => f.object }
+            %p
+                = f.label :forum
+                = f.collection_select :forum_id, @forums, :id, :name, :selected => params[ :forum_id ]
+            %p
+                = f.label :name
+                = f.text_field :name
+            = f.fields_for :comments do | ff |
+                = ff.hidden_field :user_id, :value => current_user.id
                 %p
-                    = f.label :forum
-                    = f.collection_select :forum_id, @forums, :id, :name, :selected => params[ :forum_id ]
-                %p
-                    = f.label :name
-                    = f.text_field :name
-                = f.fields_for :comments do | ff |
-                    = ff.hidden_field :user_id, :value => current_user.id
-                    %p
-                        = ff.label :content
-                        = ff.text_area :content, :class => 'height-10em width-100'
-                %p
-                    = f.submit 'Submit'
+                    = ff.label :content
+                    = ff.text_area :content, :class => 'height-10em width-100'
+            %p
+                = f.submit 'Submit'

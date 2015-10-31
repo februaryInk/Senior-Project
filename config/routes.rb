@@ -12,14 +12,18 @@ Rails.application.routes.draw do
     end
     
     resources :account_activations, :only => [ :create, :edit, :new ]
-    resources :comments, :only => [ :create, :destroy ]
     resources :feedback, :only => [ :destroy ]
-    resources :forums, :only => [ :index, :show ]
+    resources :forums, :only => [ :index, :show ] do
+        resources :conversations, :only => [ :destroy, :show ] do
+            resources :comments, :only => [ :create, :destroy ]
+        end
+    end
     resources :friendships, :only => [ :create, :destroy, :update ]
     # sort and select are section methods, but are used on views that belong
     # to the manuscripts controller. putting them under the manuscripts 
     # resources keeps the relevant manuscript id in params as :manuscript_id.
     resources :manuscripts do
+        patch '/section/:id/rename',         :to => 'sections#rename',            :as => 'section_rename'
         patch '/sections/sort',              :to => 'sections#sort',              :as => 'section_sort'
         get   '/sections/select_for_writer', :to => 'sections#select_for_writer', :as => 'section_select_for_writer'
         get   '/sections/select_for_reader', :to => 'sections#select_for_reader', :as => 'section_select_for_reader'
@@ -32,7 +36,7 @@ Rails.application.routes.draw do
     resources :users
     
     scope :path => '/forums' do
-        resources :conversations
+        resources :conversations, :only => [ :create, :new ]
     end
 
     get '/about', :to => 'core_pages#about', :as => 'about'
@@ -44,8 +48,6 @@ Rails.application.routes.draw do
     get '/manuscripts/:id/write',    :to => 'manuscripts#write',    :as => 'manuscript_write'
     get '/manuscripts/:id/read',     :to => 'manuscripts#read',     :as => 'manuscript_read'
     get '/manuscripts/:id/feedback', :to => 'manuscripts#feedback', :as => 'manuscript_feedback'
-    
-    patch '/section/:id/rename', :to => 'sections#rename', :as => 'section_rename'
     
     get '/help',                 :to => 'help_pages#help_center',     :as => 'help'
     get '/help/contact',         :to => 'help_pages#contact',         :as => 'contact'

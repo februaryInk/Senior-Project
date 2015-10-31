@@ -27,7 +27,7 @@
                 - for conversation in @conversations
                     = content_tag :tr, :class => "#{ i.odd? ? 'tr-odd' : 'tr-even' }" do
                         %td.maximized
-                            = link_to h( conversation.name ), conversation_path( conversation.id )
+                            = link_to h( conversation.name ), forum_conversation_path( conversation.forum.id, conversation.id )
                         %td.fitted
                             = conversation.comments.group_by( &:user_id ).count
                         %td.fitted

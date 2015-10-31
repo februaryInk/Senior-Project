@@ -39,14 +39,14 @@ class ConversationsControllerTest < ActionController::TestCase
     test 'should delete a conversation' do
         sign_in_as @admin_user
         assert_difference 'Conversation.count', -1 do
-            delete :destroy, :id => @conversation.id
+            delete :destroy, :forum_id => @conversation.forum_id, :id => @conversation.id
         end
     end
     
     test 'should redirect if the user is not an admin' do
         sign_in_as @test_user
         assert_no_difference 'Conversation.count' do
-            delete :destroy, :id => @conversation.id
+            delete :destroy, :forum_id => @conversation.forum_id, :id => @conversation.id
         end
         assert_redirected_to user_path( @test_user.id )
     end
@@ -70,7 +70,7 @@ class ConversationsControllerTest < ActionController::TestCase
     # SHOW
 
     test 'should get show' do
-        get :show, :id => @conversation.id
+        get :show, :forum_id => @conversation.forum_id, :id => @conversation.id
         assert_response :success
         assert_template 'conversations/show'
         assert_select 'title', conversations_show_title( @conversation )

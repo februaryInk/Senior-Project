@@ -25,7 +25,7 @@
                         - @conversations.each do | conversation |
                             = content_tag :tr, :class => "#{ i.odd? ? 'tr-odd' : 'tr-even' }" do
                                 %td.maximized
-                                    = link_to conversation.name, conversation_path( conversation )
+                                    = link_to conversation.name, forum_conversation_path( conversation.forum_id, conversation.id )
                                 %td.fitted
                                     = l( conversation.created_at, :format => :to_the_day )
                             - i += 1
@@ -48,7 +48,7 @@
                         - @comments.each do | comment |
                             = content_tag :tr, :class => "#{ i.odd? ? 'tr-odd' : 'tr-even' }" do
                                 %td.maximized
-                                    = link_to comment.content, conversation_path( comment.conversation_id )
+                                    = link_to comment.content, forum_conversation_path( comment.conversation.forum_id, comment.conversation_id )
                                 %td.fitted
                                     = l( comment.created_at, :format => :to_the_day )
                             - i += 1
