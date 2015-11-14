@@ -1,0 +1,20 @@
+%h1.h--fine
+    Activity
+- if current_user?( user )
+    %div.post-form
+        = render( { :partial => 'posts/form.html.haml' } )
+%ul#ul-activity-feed
+    - activity_feed.each do | post |
+        %li.li-post
+            %div.div-post-header
+                %span
+                    = link_to post.user.username, user_path( post.user.id )
+                %span
+                    = l( post.created_at, :format => :to_the_day )
+                - if current_user && current_user.is_owner?( post )
+                    %span
+                        = link_to( 'delete', post_path( post.id ), { :method => :delete } )
+            %div.div-post-content
+                = post.content
+                
+= will_paginate( @activity_feed )

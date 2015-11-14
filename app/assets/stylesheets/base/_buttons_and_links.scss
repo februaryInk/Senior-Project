@@ -12,6 +12,16 @@ a {
     line-height: $size-button-height;
     padding: 0;
     position: relative;
+    whitespace: no-wrap;
+}
+
+.button--bright {
+    @extend .button;
+    
+    background-color: $color-tundora;
+    color: $color-white;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
 }
 
 .button--large {
@@ -41,6 +51,14 @@ a {
     @extend .button--large;
     
     background-color: $color-white;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+
+.button--subtle {
+    @extend .button;
+    
+    background-color: $color-gallery;
     padding-left: 1.5em;
     padding-right: 1.5em;
 }
@@ -76,5 +94,3 @@ a {
         background-color: $color-link-dark-hover;
     }
 }
-
-/* .link-subtle */

@@ -10,16 +10,13 @@ class UsersController < DefaultNamespaceController
     # create a user and send them an activation email. this action uses AJAX.
     def create
         @user = User.new( user_params )
-        respond_to do | format |
-            if @user.save
-                @saved = true
-                @user.send_activation_email
-                flash[ :info ] = 'Activation email has been sent. Please check your email inbox.'
-                format.html { redirect_to root_path }
-            else
-                @saved = false
-            end
-            format.js { render layout: false, content_type: 'text/javascript' }
+        
+        if @user.save
+            @user.send_activation_email
+            flash[ :info ] = 'Activation email has been sent. Please check your email inbox.'
+            format.html { redirect_to root_path }
+        else
+            render 'new'
         end
     end
     
@@ -47,6 +44,10 @@ class UsersController < DefaultNamespaceController
         @manuscripts = current_user.manuscripts
         
         render( { :layout => 'profile_overview.html.haml' } )
+    end
+    
+    def new
+        @user = User.new
     end
 
     # display a user's profile page.

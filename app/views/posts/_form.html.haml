@@ -1,0 +1,10 @@
+= form_for( @post, { :remote => true } ) do | f |
+    %field
+        = f.label( :content, 'New Post' )
+        = f.text_area( :content )
+        - if f.object.errors[ :content ].present?
+            %p.error-message
+                = f.object.errors.messages[ :content ].join( ', ' )
+    %buttons
+        %buttons--right
+            = f.submit 'Submit', :class => 'button-flat'

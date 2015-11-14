@@ -1,0 +1,5 @@
+- content_for( :title ) { users_new_title }
+
+%div.page-content
+    %div.content
+        = render( { :partial => 'form.html.haml', :locals => { :user => @user } } )

@@ -10,4 +10,6 @@
 .full-height { height: 100%; }
 
 .full-width { width: 100%; }
-a.full-width, input[type=submit].full-width { text-align: center; }
+a.full-width, input[type=submit].full-width { display: block; text-align: center; }
+
+.interactable { cursor: pointer }

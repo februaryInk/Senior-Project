@@ -8,14 +8,10 @@ class PostsController < DefaultNamespaceController
     # create a post. this action uses AJAX.
     def create
         @post = current_user.posts.build( post_params )
+        @post.save
+        
         respond_to do | format |
-            if @post.save
-                @saved = true
-                format.html { redirect_to user_path( current_user.id ) }
-            else
-                @saved = false
-            end
-            format.js { render layout: false, content_type: 'text/javascript' }
+            format.js {  }
         end
     end
     
@@ -23,6 +19,7 @@ class PostsController < DefaultNamespaceController
     def destroy
         @post = Post.find( params[ :id ] )
         @post.destroy
+        
         redirect_to user_path( current_user.id )
     end
 

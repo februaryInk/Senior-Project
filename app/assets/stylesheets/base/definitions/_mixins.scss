@@ -1,11 +1,18 @@
 @mixin accent-family {
-  font-family: Kalam, cursive;
+    font-family: Kalam, cursive;
 }
 
 @mixin sans-serif-family {
-  font-family: Candara, 'Gill Sans', 'Gill Sans MT', Calibri, Helvetica, sans-serif;
+    font-family: Candara, 'Gill Sans', 'Gill Sans MT', Calibri, Helvetica, sans-serif;
 }
 
 @mixin serif-family {
-  font-family: 'Fontin', Impact, serif;
+    font-family: 'Fontin', Impact, serif;
+}
+
+@mixin color-band( $background-color, $min-width ) {
+    background-color: $background-color;
+    display: block;
+    min-width: $min-width;
+    width: 100%;
 }

@@ -1,4 +1,6 @@
 class SessionsController < DefaultNamespaceController
+
+    layout( 'simple.html.haml' )
     
     # sign in the user if all requirements are met.
     def create

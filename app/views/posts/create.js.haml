@@ -1,0 +1,6 @@
+- if @post.new_record?
+    :plain
+        $( '.post-form' ).html( "#{escape_javascript( render( :partial => 'posts/form.html.haml' ) ).html_safe}" );
+- else
+    :plain
+        window.location = "#{user_path( current_user.id )}";

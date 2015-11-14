@@ -15,26 +15,3 @@ input[type="text"] {
 .field {
     margin-bottom: 16px;
 }
-
-input[type="submit"] {
-    @include serif-family;
-
-  	background-color: $color-button;
-    color: $color-text-button;
-    border: 0;
-    font-size: 1em;
-    line-height: 2em;
-    padding: 0;
-    position: relative;
-    width: 100%;
-    
-    // this doesn't set without the !important qualifier. browser styling 
-    // overrides it.
-    &:active {
-        background-color: $color-button-active !important;
-    }
-    
-    &:hover {
-        background-color: $color-button-hover;
-    }
-}

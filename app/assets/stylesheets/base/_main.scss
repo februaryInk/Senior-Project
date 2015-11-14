@@ -4,6 +4,7 @@
 
 @import 'base/reset.scss';
 
+@import 'base/accents.scss';
 @import 'base/buttons_and_links.scss';
 @import 'base/flash.scss';
 @import 'base/footer.scss';
@@ -31,10 +32,6 @@ html {
     font-size: 100%;
 }
 
-main {
-    padding-top: 2em;
-}
-
 sub {
     font-size: 50%;
     margin-left: -0.25em;
@@ -52,6 +49,10 @@ sub {
 
 .clear {
     clear: both;
+}
+
+.color-band {
+    @include color-band( $color-gallery, $size-content-width );
 }
 
 .content {
@@ -83,6 +84,10 @@ sub {
 
 .padding-top-4em {
     padding-top: 4em;
+}
+
+.page-content {
+  padding-top: 3em;
 }
 
 .text-align-center {

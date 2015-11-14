@@ -1,6 +1,0 @@
-if ( <%= @saved %> ) {
-    window.location = '<%= user_path( current_user.id ) %>';
-}
-else {
-    $( '#form-post-new' ).html( "<%= escape_javascript( render( :partial => 'posts/new' ) ).html_safe %>" );
-}

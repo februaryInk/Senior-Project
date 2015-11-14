@@ -1,7 +1,0 @@
-= form_for @post, :remote => true do | f |
-    = render :partial => 'shared/error_messages', :locals => { :object => f.object }
-    %p
-        = f.label :content, 'New Post'
-        = f.text_area :content
-    %p
-        = f.submit 'Submit', :class => 'button-flat'

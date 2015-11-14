@@ -29,10 +29,10 @@
                                         You currently have no manuscripts.
                                     = link_to 'Start a New Manuscript', new_manuscript_path, :class => 'bumped button--large-light full-width'
                         - else
-                            = link_to 'Sign Up', '#', :class => 'button--large-bright full-width'
+                            = link_to 'Sign Up', new_user_path, :class => 'button--large-bright full-width'
                             = link_to 'Learn More', about_path, :class => 'bumped button--large-light full-width'
                 
-%main
+%main.page-content
     %section.content.news
         %h1.h--medium.underlined
             News Feed

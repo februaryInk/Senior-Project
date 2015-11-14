@@ -24,9 +24,7 @@ p {
 b, strong { font-weight: bold; }
 em, i { font-style: italic; }
 
-.t--fine { font-size: 16px; }
-.t--medium { font-size: 18px; }
-.t--large { font-size: 20px; }
+.centered { text-align: center; }
 
 .h { @include serif-family; }
 .h--fine { @extend .h; font-size: 24px; }
@@ -35,7 +33,13 @@ em, i { font-style: italic; }
 .h--grand { @extend .h; font-size: 48px; }
 .h--giant { @extend .h; font-size: 64px; }
 
+.logo { @include accent-family; font-size: 3em; }
+
 .no-whitespace { line-height: 1em; margin: 0; padding: 0; }
+
+.t--fine { font-size: 16px; }
+.t--medium { font-size: 18px; }
+.t--large { font-size: 20px; }
 
 a, span { &.underlined { text-decoration: underline; } }
 h1, h2, h3, h4, h5, h6 { &.underlined { border-bottom: 2px solid $color-silver; display: block; padding-bottom: 4px; width: 100%; } }

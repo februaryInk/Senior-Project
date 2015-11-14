@@ -1,6 +1,6 @@
 class FeedbackController < DefaultNamespaceController
 
-    layout 'simple'
+    layout( 'simple.html.haml' )
     
     include AuthorizationFilters
     

@@ -18,17 +18,21 @@
     margin: 0.5em 0;
 }
 
-#div-profile {
-    margin-left: 14em;
+.activities {
+    margin: 2em auto 0;
+    padding: 2em 0;
+    width: $size-content-width;
 }
 
-#sidebar-member {
-    float: left;
-    text-align: center;
-    width: 12em;
+.activities__feed {
+    border-left: 1px solid $color-silver;
+    float: right;
+    padding: 0 0 2em 1em;
+    width: 27em;
 }
 
-#ul-activity-feed {
+.activities__manuscripts {
+    padding-right: 28em;
 }
 
 .div-book {
@@ -112,6 +116,19 @@
     border-color: darken( $color-white, 15% );
     border-style: solid;
     border-width: 1px 0 0 0;
+}
+
+.member-info {
+    margin: 0 auto;
+    width: $size-content-width;
+}
+
+.member-info__avatar {
+    border: 1px solid $color-black;
+    float: left;
+    height: calc( #{$size-content-width} / 4 );
+    margin: 0 2em 2em 0;
+    width: calc( #{$size-content-width} / 4 );
 }
 
 .table-user {   

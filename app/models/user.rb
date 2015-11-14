@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     # VIRTUAL ATTRIBUTES
     
     # these attributes are not kept in the database, and so are assigned here.
-    attr_accessor :activation_token, :remember_token, :reset_token
+    attr_accessor :activation_token, :current_password, :remember_token, :reset_token
     
     # VALIDATIONS
     

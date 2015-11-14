@@ -1,42 +1,40 @@
 - content_for( :title ) { conversations_show_title( @conversation ) }
 
-- content_for( :body ) do
+%div.content
+    %div#conversation-info
+        %div.name
+            %h3
+                = @conversation.name
+        %div.date
+            %strong
+                = "Started #{ l( @conversation.created_at, :format => :to_the_day ) } by #{ User.find( @conversation.user_id ).username }"
+        %div.clear
+        
+    = will_paginate @comments
     
-    %div.content
-        %div#conversation-info
-            %div.name
-                %h3
-                    = @conversation.name
-            %div.date
-                %strong
-                    = "Started #{ l( @conversation.created_at, :format => :to_the_day ) } by #{ User.find( @conversation.user_id ).username }"
-            %div.clear
-            
-        = will_paginate @comments
-        
-        %ol
-            - i = 1
-            - for comment in @comments
-                %li.li-comment
-                    %div.comment-info
-                        %div.date
-                            = "#{ time_ago_in_words( comment.created_at ) } ago"
-                        %div.number
-                            = params[ :page ].nil? ? "##{ i }" : "##{ i + 15 * ( params[ :page ].to_i - 1) }"
-                        %div.clear
-                    %aside.aside-user
-                        = gravatar_for User.find( comment.user_id )
-                        %br
-                        %h3
-                            = User.find( comment.user_id ).username
-                    %div.comment
-                        %p
-                            = comment.content
+    %ol
+        - i = 1
+        - for comment in @comments
+            %li.li-comment
+                %div.comment-info
+                    %div.date
+                        = "#{time_ago_in_words( comment.created_at )} ago"
+                    %div.number
+                        = params[ :page ].nil? ? "##{i}" : "##{i + 15 * ( params[ :page ].to_i - 1)}"
                     %div.clear
-                - i += 1
-                
-        = will_paginate @comments
-        
-        - if signed_in?
-            %div#form-comment-new
-                = render :partial => 'comments/new'
+                %aside.aside-user
+                    = gravatar_for User.find( comment.user_id )
+                    %br
+                    %h3
+                        = User.find( comment.user_id ).username
+                %div.comment
+                    %p
+                        = comment.content
+                %div.clear
+            - i += 1
+            
+    = will_paginate( @comments )
+    
+    - if signed_in?
+        %div#form-comment-new
+            = render( { :partial => 'comments/form.html.haml' } )

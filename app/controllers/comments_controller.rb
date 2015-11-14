@@ -9,15 +9,10 @@ class CommentsController < DefaultNamespaceController
         @forum = Forum.find( params[ :forum_id ] )
         @conversation = Conversation.find( params[ :conversation_id ] )
         @comment = current_user.comments.build( comment_params.merge( :conversation_id => @conversation.id ) )
+        @comment.save
         
         respond_to do | format |
-            if @comment.save
-                @saved = true
-                format.html { redirect_to forum_conversation_path( @forum, @conversation.id ) }
-            else
-                @saved = false
-            end
-            format.js { render layout: false, content_type: 'text/javascript' }
+            format.js {  }
         end
     end
     

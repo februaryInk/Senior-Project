@@ -3,7 +3,6 @@
     %head
         %title
             = yield( :title ) || 'Inklings'
-        %link{ :href => 'http://fonts.googleapis.com/css?family=Merienda+One|Delius|Kalam:400,300,700|Merienda', :rel => 'stylesheet', :type => 'text/css' }
         = csrf_meta_tags
         = stylesheet_link_tag( 'application', :media => 'all' )
         = javascript_include_tag( 'application' )
@@ -19,7 +18,7 @@
         %main
             = yield( :body )
             = yield
-        = yield( :footer ) if content_for?( :footer )
         %div.content
             = debug( params ) if Rails.env.development?
-    -# console
+        = yield( :footer ) if content_for?( :footer )
+    - console
