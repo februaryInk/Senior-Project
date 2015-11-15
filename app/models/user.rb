@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
     validates :username, { :presence => true, :length => { :maximum => 32 }, :format => { :with => USERNAME_REGEX }, :reduce => true }
     validates :password, { :presence => true, :length => { :maximum => 32, :minimum => 8 }, :reduce => true, :on => :create }
     validates :password, { :length => { :maximum => 32, :minimum => 8 }, :reduce => true, :on => :update, :if => :update_password? }
+    validates :password_confirmation, { :presence => true, :on => :create }
     validates :simple_name, { :uniqueness => true }
     
     # RELATIONSHIPS

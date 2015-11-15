@@ -1,0 +1,36 @@
+.color-band {
+    @include color-band( $color-gallery, $size-content-width );
+}
+
+.content {
+    margin: auto;
+    width: $size-content-width;
+}
+
+.content--narrow {
+  margin-left: auto;
+  margin-right: auto;
+  width: $size-content-narrow-width;
+}
+
+.content--slender {
+  margin-left: auto;
+  margin-right: auto;
+  width: $size-content-slender-width;
+}
+
+.notebox {
+    background-color: $color-gallery;
+    display: block;
+    font-size: 16px;
+    padding: 0.75em;
+    width: 100%;
+}
+
+.page-content {
+  padding-top: 3em;
+}
+
+.page-content--lowered {
+  padding-top: 8em;
+}

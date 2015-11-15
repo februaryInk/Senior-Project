@@ -16,7 +16,7 @@ class UsersController < DefaultNamespaceController
             flash[ :info ] = 'Activation email has been sent. Please check your email inbox.'
             format.html { redirect_to root_path }
         else
-            render 'new'
+            render( 'new', { :layout => 'simple.html.haml' } )
         end
     end
     
@@ -48,6 +48,7 @@ class UsersController < DefaultNamespaceController
     
     def new
         @user = User.new
+        render( { :layout => 'simple.html.haml' } )
     end
 
     # display a user's profile page.

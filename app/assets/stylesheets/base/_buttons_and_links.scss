@@ -3,64 +3,41 @@ a {
     text-decoration: none;
 }
 
-.button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-    height: $size-button-height;
-    line-height: $size-button-height;
-    padding: 0;
-    position: relative;
-    whitespace: no-wrap;
+.button--large {
+    @include button( $size-button-large-height );
+    
+    font-size: 20px;
+}
+
+.button--standard {
+    @include button( $size-button-large-height );
 }
 
 .button--bright {
-    @extend .button;
-    
     background-color: $color-tundora;
     color: $color-white;
     padding-left: 1.5em;
     padding-right: 1.5em;
 }
 
-.button--large {
-    @include serif-family;
-    
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 18px;
-    height: $size-button-large-height;
-    line-height: $size-button-large-height;
-    padding: 0;
-    position: relative;
-}
-
-.button--large-bright {
-    @extend .button--large;
-    
-    background-color: $color-tundora;
-    color: $color-white;
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-}
-
-.button--large-light {
-    @extend .button--large;
-    
+.button--light {
     background-color: $color-white;
     padding-left: 1.5em;
     padding-right: 1.5em;
 }
 
 .button--subtle {
-    @extend .button;
-    
     background-color: $color-gallery;
     padding-left: 1.5em;
     padding-right: 1.5em;
+}
+
+.buttons--standard {
+    padding-top: 0.5em;
+}
+
+.buttons--large {
+    padding-top: 1em;
 }
 
 .link-light {

@@ -24,7 +24,7 @@ class SessionsController < DefaultNamespaceController
             else
                 flash.now[ :session_error ] = 'There is no user associated with that email address.'
             end
-            render 'new'
+            render( 'new' )
         end
     end
     

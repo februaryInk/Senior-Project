@@ -1,5 +1,51 @@
 - content_for( :title ) { users_new_title }
 
-%div.page-content
-    %div.content
-        = render( { :partial => 'form.html.haml', :locals => { :user => @user } } )
+%div.page-content--lowered
+    %section.content--narrow
+        %div.even-split
+            %div
+                %div.align-baseline
+                    = link_to( root_path, { :class => 'logo' } ) do
+                        %h1
+                            Inklings
+                %div.align-baseline
+                    %h2.h--medium.no-whitespace
+                        Sign up for free.
+        %div.bumped
+            = form_for( @user ) do | f |
+                %div.field
+                    = f.label( :username )
+                    %span.field-note
+                        (requires 1+ alphanumeric characters, permits . _ -)
+                    = f.text_field( :username )
+                    - if f.object.errors[ :username ].present?
+                        %p.error-message
+                            = f.object.errors.messages[ :username ].join( ', ' )
+                %div.field
+                    = f.label( :email )
+                    = f.email_field( :email )
+                    - if f.object.errors[ :email ].present?
+                        %p.error-message
+                            = f.object.errors.messages[ :email ].join( ', ' )
+                %div.even-split
+                    %div
+                        %div.field
+                            = f.label( :password, 'Password' )
+                            %span.field-note
+                                (8+ characters)
+                            = f.password_field( :password )
+                            - if f.object.errors[ :password ].present?
+                                %p.error-message
+                                    = f.object.errors.messages[ :password ].join( ', ' )
+                        %div.field
+                            = f.label( :password_confirmation, 'Confirm Password' )
+                            = f.password_field( :password_confirmation )
+                            - if f.object.errors[ :password_confirmation ].present?
+                                %p.error-message
+                                    = f.object.errors.messages[ :password_confirmation ].join( ', ' )
+                %div.content--slender
+                    %div.buttons--large
+                        = f.submit( 'Sign Up', { :class => 'button--bright button--large full-width' } )
+        %div.bumped
+            %p.t--fine
+                = sanitize( "Already have an account? #{link_to( 'Sign in', signin_path, :class => 'underlined' )}." )

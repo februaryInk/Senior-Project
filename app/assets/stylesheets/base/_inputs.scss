@@ -3,15 +3,21 @@ textarea,
 input[type="email"],
 input[type="password"],
 input[type="text"] {
+    background-color: $color-gallery;
     border: 1px solid $color-border-inputs;
+    border-radius: 0.25em;
     padding: 0.5em;
     width: 100%;
     
     &.field-error {
-        border-color: $color-border-errors;
+        border: 1px solid $color-border-errors;
     }
 }
 
 .field {
-    margin-bottom: 16px;
+    padding-bottom: 16px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px $color-gallery inset;
 }

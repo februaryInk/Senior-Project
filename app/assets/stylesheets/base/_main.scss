@@ -11,6 +11,7 @@
 @import 'base/global_modifiers.scss';
 @import 'base/header.scss';
 @import 'base/inputs.scss';
+@import 'base/layout_elements.scss';
 @import 'base/shapes.scss';
 @import 'base/tables.scss';
 @import 'base/typography.scss';
@@ -51,15 +52,6 @@ sub {
     clear: both;
 }
 
-.color-band {
-    @include color-band( $color-gallery, $size-content-width );
-}
-
-.content {
-    margin: auto;
-    width: $size-content-width;
-}
-
 .div-errors {
     color: $color-text-errors;
 }
@@ -84,16 +76,4 @@ sub {
 
 .padding-top-4em {
     padding-top: 4em;
-}
-
-.page-content {
-  padding-top: 3em;
-}
-
-.text-align-center {
-    text-align: center;
-}
-
-.width-100 {
-    width: 100%;
 }
