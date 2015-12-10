@@ -12,6 +12,7 @@ class NewsReportsController < DefaultNamespaceController
             flash[ :success ] = "Report successfully created."
             redirect_to( root_path )
         else
+            @news_reports = NewsReport.all
             render( 'core_pages/home.html.haml' )
         end
     end

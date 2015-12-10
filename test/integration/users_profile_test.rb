@@ -10,7 +10,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
         get user_path( @test_user.id )
         assert_template 'users/show'
         assert_select 'title', users_show_title
-        assert_select 'img.gravatar'
+        assert_select 'div.member-info__avatar'
         @test_user.activity_feed.paginate( :page => 1 ).each do | post |
             assert_match post.content, response.body
         end

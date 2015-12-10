@@ -10,10 +10,17 @@ a {
 }
 
 .button--standard {
-    @include button( $size-button-large-height );
+    @include button( $size-button-height );
 }
 
 .button--bright {
+    background-color: $color-boulder;
+    color: $color-white;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+
+.button--dark {
     background-color: $color-tundora;
     color: $color-white;
     padding-left: 1.5em;

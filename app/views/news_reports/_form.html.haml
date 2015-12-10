@@ -1,0 +1,12 @@
+= form_for( news_report ) do | f |
+    %div.field
+        = f.label( :title )
+        = f.text_field( :title )
+        = f.error_message( :title )
+    %div.field
+        = f.label( :content )
+        = f.text_area( :content )
+        = f.error_message( :content )
+    %div.buttons--standard
+        %div.buttons--left
+            = f.submit( 'Submit Report', { :class => 'button--standard button--bright' } )

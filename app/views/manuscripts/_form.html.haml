@@ -1,0 +1,46 @@
+= form_for( @manuscript ) do | f |
+    %div.field
+        = f.label( :title )
+        = f.text_field( :title )
+        = f.error_message( :title )
+    %div.field
+        = f.label( :genre_ids, 'Genre' )
+        = f.select( :genre_ids, options_from_collection_for_select( Genre.all, 'id', 'name' ), { :prompt => '---' }, { :multiple => true } )
+        = f.error_message( :genre_ids )
+    %div.field
+        = f.label( :rating_id, 'Rating' )
+        = f.select( :rating_id, options_from_collection_for_select( Rating.all, 'id', 'name' ), { :prompt => '---' } )
+        = f.error_message( :rating_id )
+    %div.field
+        = f.label( :description )
+        = f.text_area( :description, { :class => 'height-10em' } )
+        = f.error_message( :description )
+    = f.fields_for( :inkling ) do | ff |
+        %div.field
+            = ff.label( :word_count_goal, 'Word Count Goal' )
+            %br
+            = ff.text_field( :word_count_goal, { :class => 'input-inline' } )
+            words
+            = ff.error_message( :word_count_goal )
+        %div.field
+            = ff.label( :word_rate_goal, 'Word Rate Goal' )
+            %br
+            = ff.text_field( :word_rate_goal, { :class => 'input-inline' } )
+            words every
+            = ff.text_field( :word_rate_goal_basis, { :class => 'input-inline' } )
+            day(s)
+            = ff.error_message( :word_rate_goal )
+            = ff.error_message( :word_rate_goal_basis )
+        %div.field
+            = ff.label( :revival_fee, 'Revival Fee' )
+            %br
+            = ff.text_field( :revival_fee, { :class => 'input-inline' } )
+            = ff.select( :revival_fee_currency, options_for_select( Inkling::CURRENCIES ), { :prompt => '---' }, { :class => 'input-inline' } )
+            = ff.error_message( :revival_fee_currency )
+        %div.field
+            = ff.label( :hardcore, 'Do you want to make the word rate goal and revival fee unchangeable?' )
+            = ff.check_box( :hardcore )
+            = ff.error_message( :hardcore )
+    %div.buttons
+        %div.buttons--left
+            = f.submit( 'Create', { :class => 'button--dark button--standard' } )

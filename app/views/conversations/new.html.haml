@@ -2,18 +2,21 @@
 
 %div.content
     %div#form-conversation
-        = form_for @conversation do | f |
-            = render :partial => 'shared/error_messages', :locals => { :object => f.object }
-            %p
-                = f.label :forum
-                = f.collection_select :forum_id, @forums, :id, :name, :selected => params[ :forum_id ]
-            %p
-                = f.label :name
-                = f.text_field :name
-            = f.fields_for :comments do | ff |
-                = ff.hidden_field :user_id, :value => current_user.id
-                %p
-                    = ff.label :content
-                    = ff.text_area :content, :class => 'height-10em full-width'
-            %p
-                = f.submit 'Submit'
+        = form_for( @conversation ) do | f |
+            %div.field
+                = f.label( :forum_id, 'Forum' )
+                = f.collection_select( :forum_id, @forums, :id, :name, { :selected => params[ :forum_id ] } )
+                = f.error_message( :forum_id )
+            %div.field
+                = f.label( :name )
+                = f.text_field( :name )
+                = f.error_message( :name )
+            = f.fields_for( :comments ) do | ff |
+                = ff.hidden_field( :user_id, { :value => current_user.id } )
+                %div.field
+                    = ff.label( :content )
+                    = ff.text_area( :content )
+                    = ff.error_message( :content )
+            %div.buttons--standard
+                %div.buttons--left
+                    = f.submit( 'Submit' )

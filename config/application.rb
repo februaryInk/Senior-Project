@@ -12,7 +12,7 @@ module Inklings
         
         # do not include all view helpers in every controller. instead, only include
         # the application helper and the controller's specific helper.
-        config.action_controller.include_all_helpers = false
+        config.action_controller.include_all_helpers = true
         
         # override the default behavior for input fields that fail validation (that is,
         # wrapping the field with the error in a new div with the class "field-with-error").
@@ -26,6 +26,12 @@ module Inklings
                 html_tag.insert html_tag.index( '>' ), ' class="field-error"'
             end
         end
+        
+        # use the custom form builder as the default rather than the built-in one.
+        config.after_initialize do
+            ActionView::Base.default_form_builder = FormsHelper::CustomFormBuilder
+        end
+        
         # Settings in config/environments/* take precedence over those specified here.
         # Application configuration should go into files in config/initializers
         # -- all .rb files in that directory are automatically loaded.

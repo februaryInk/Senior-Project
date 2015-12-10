@@ -37,4 +37,4 @@
     
     - if signed_in?
         %div#form-comment-new
-            = render( { :partial => 'comments/form.html.haml' } )
+            = render( { :partial => 'comments/form.html.haml', :locals => { :comment => @comment, :conversation => @conversation, :forum => @forum } } )

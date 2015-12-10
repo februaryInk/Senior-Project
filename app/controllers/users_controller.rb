@@ -14,7 +14,7 @@ class UsersController < DefaultNamespaceController
         if @user.save
             @user.send_activation_email
             flash[ :info ] = 'Activation email has been sent. Please check your email inbox.'
-            format.html { redirect_to root_path }
+            redirect_to( root_path )
         else
             render( 'new', { :layout => 'simple.html.haml' } )
         end
@@ -58,6 +58,8 @@ class UsersController < DefaultNamespaceController
         @user = User.find( params[ :id ] )
         @activity_feed = @user.activity_feed.paginate( :page => params[ :page ] )
         
+        @user_json = @user.to_json(only: [:id, :username, :email])
+        
         unless current_user.nil?
             unless current_user.friends.include?( @user )
                 @friendship = current_user.friendships.new
@@ -85,7 +87,8 @@ class UsersController < DefaultNamespaceController
     # update a user if they supply the correct password.
     def update
         @user = User.find( params[ :id ] )
-        if ( @user.authenticate( params[ :authentication ][ :password ] ) && @user.update_attributes( user_params ) )
+        @user.assign_attributes( user_params )
+        if @user.save( { :context => :self_update } )
             flash[ :success ] = 'Account settings were successfully edited.'
             redirect_to edit_user_path( @user.id )
         else
@@ -109,6 +112,6 @@ class UsersController < DefaultNamespaceController
         end
     
         def user_params
-            params.require( :user ).permit( :biography, :email, :password, :password_confirmation, :username )
+            params.require( :user ).permit( :biography, :current_password, :email, :password, :password_confirmation, :username )
         end
 end

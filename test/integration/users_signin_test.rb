@@ -52,6 +52,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
         assert_template 'sessions/new'
         post signin_path, :session => { :email => @user.email, :password => 'wrongpassword' }
         assert_template 'sessions/new'
-        assert_select 'div.div-errors'
+        assert_select 'p.t--danger'
     end
 end 

@@ -1,17 +1,6 @@
 - content_for( :title ) { news_reports_edit_title }
 
-- content_for( :body ) do
-
-    %div.content
-        %h2
-            Edit News Report
-        = form_for( @news_report ) do | f |
-            = f.label :title
-            %br
-            = f.text_field :title, :class => 'full-width'
-            %br
-            = f.label :content
-            %br
-            = f.text_area :content, :class => 'full-width height-10em'
-            %br
-            = f.submit 'Submit Report', :class => 'button-flat'
+%div.content
+    %h2
+        Edit News Report
+    = render( { :partial => 'form.html.haml', :locals => { :news_report => @news_report } } )

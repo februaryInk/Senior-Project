@@ -46,6 +46,21 @@
     font-family: 'Fontin', Impact, serif;
 }
 
+@mixin spacers--horizontal {
+    & > * {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+    }
+    
+    & > *:first-child {
+        padding-top: 0;
+    }
+    
+    & > *:last-child {
+        padding-bottom: 0;
+    }
+}
+
 @mixin spacers--vertical {
     & > * {
     

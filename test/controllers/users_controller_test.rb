@@ -135,7 +135,7 @@ class UsersControllerTest < ActionController::TestCase
     
     test 'should update a user' do
         sign_in_as @test_user
-        patch :update, :id => @test_user.id, :authentication => { :password => 'goodpassword' }, :user => { :username => 'newusername' }
+        patch :update, :id => @test_user.id, :user => { :current_password => 'goodpassword', :username => 'newusername' }
         assert_response :found
         @test_user.reload
         assert_equal 'newusername', @test_user.username
@@ -143,7 +143,7 @@ class UsersControllerTest < ActionController::TestCase
     
     test 'should redirect if a user attempts to update another\'s account' do
         sign_in_as @test_user
-        patch :update, :id => @other_user.id, :authentication => { :password => 'goodpassword' }, :user => { :email => @test_user.email }
+        patch :update, :id => @other_user.id, :user => { :password => 'goodpassword', :email => @test_user.email }
         assert_response 302
         assert_redirected_to root_path
     end
@@ -151,7 +151,7 @@ class UsersControllerTest < ActionController::TestCase
     test 'should not permit users to update their own admin status' do
         sign_in_as @test_user
         assert_not @test_user.admin?
-        patch :update, :id => @test_user.id, :authentication => { :password => 'goodpassword' }, :user => { :admin => true }
+        patch :update, :id => @test_user.id, :user => { :password => 'goodpassword', :admin => true }
         assert_not @test_user.admin?
     end
 end

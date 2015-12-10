@@ -11,3 +11,4 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require_directory ./main
+//= require_directory ./model_based

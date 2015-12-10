@@ -38,7 +38,7 @@ class NewsReportsControllerTest < ActionController::TestCase
         assert_no_difference 'NewsReport.count' do
             post :create, :news_report => { :content => '', :title => 'Alpha', :user_id => @admin_user.id }, :format => 'js'
         end
-        assert_template 'news_reports/_new'
+        assert_template 'news_reports/_form.html.haml'
     end
     
     # DESTROY

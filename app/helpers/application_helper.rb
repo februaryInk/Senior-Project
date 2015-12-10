@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+    include FormsHelper
+
     # get a user's globally recognized avatar, hosted at gravatar.com under their
     # username.
     def gravatar_for( user )

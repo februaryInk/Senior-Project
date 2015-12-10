@@ -4,15 +4,24 @@ class Admin::SessionsController < AdminNamespaceController
 
     # sign in the user if all requirements are met.
     def create
-        user = User.find_by( :email => params[ :session ][ :email ].downcase )
-        if user && user.authenticate( params[ :session ][ :password ] ) && user.admin?
-            sign_in user
-            redirect_back_or admin_root_path
+        @session = Session.new( session_params )
+        user = User.find_by( :email => @session.email.downcase )
+        if user.admin?
+            if @session.valid?
+                # sign the user in only if their account has been authenticated.
+                if user.activated?
+                    sign_in( user )
+                    redirect_back_or( admin_root_path )
+                else
+                    flash[ :warning ] = "This account has not been activated. Check your email inbox for the activation link. If you cannot find the email, #{view_context.link_to( 'click here', new_account_activation_path )} to send another.".html_safe
+                    redirect_to( root_path )
+                end
+            else
+                render( 'new' )
+            end
         else
-            # sessions have no model, so errors are passed via the flash. use flash.now 
-            # because of the render.
-            flash.now[ :session_error ] = 'The supplied email or password is incorrect.'
-            render 'new'
+            flash[ :warning ] = 'You are not authorized to sign into the admin portal. Please sign in here instead.'
+            redirect_to( signin_path )
         end
     end
     
@@ -24,5 +33,15 @@ class Admin::SessionsController < AdminNamespaceController
     
     # display the sign in page.
     def new
+        @session = Session.new
     end
+    
+    private
+    
+        def session_params
+            params.require( :session ).permit( 
+                :email,
+                :password
+            )
+        end
 end

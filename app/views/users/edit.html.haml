@@ -7,6 +7,35 @@
         %div#div-gravatar
             %p
                 = gravatar_for @user
-                = link_to( 'Change', 'http://gravatar.com/emails', :target => '_blank' )
+                = link_to( 'Change', 'http://gravatar.com/emails', { :target => '_blank' } )
         %div.edit-user
-            = render( { :partial => 'form.html.haml', :locals => { :user => @user } } )
+            = form_for( @user ) do | f |
+                %div.field
+                    = f.label( :username )
+                    = f.text_field( :username )
+                    = f.error_message( :username )
+                %div.field
+                    = f.label( :email )
+                    = f.email_field( :email )
+                    = f.error_message( :email )
+                %div.field
+                    = f.label( :biography )
+                    = f.text_area( :biography )
+                    = f.error_message( :biography )
+                %div.field
+                    = f.label( :password, 'New Password' )
+                    = f.password_field( :password )
+                    = f.error_message( :password )
+                %div.field
+                    = f.label( :password_confirmation, 'Confirm New Password' )
+                    = f.password_field( :password_confirmation )
+                    = f.error_message( :password_confirmation )
+                %p
+                    To authorize any account changes, please enter your current password before submitting.
+                %div.field
+                    = f.label( :current_password, 'Current Password' )
+                    = f.password_field( :current_password )
+                    = f.error_message( :current_password )
+                %div.buttons
+                    %div.buttons--left
+                        = f.submit( 'Submit', { :class => 'button--dark button--standard' } )

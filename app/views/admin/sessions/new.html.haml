@@ -1,22 +1,30 @@
 - content_for( :title ) { admin_signin_title }
 
-- content_for( :body ) do
-
-    %div.content
-        %div#signin
-            %h2
-                Sign in to Inklings 
-                %sub
-                    (Admin)
-            - if flash[ :session_error ]
-                %div.div-errors
-                    = flash[ :session_error ]
-            = form_for( :session, :url => admin_signin_path ) do | f |
-                %p
-                    = f.label :email
-                    = f.text_field :email
-                %p
-                    = f.label :password
-                    = f.password_field :password
-                %p
-                    = f.submit 'Sign In', :class => 'button-flat'
+%main.page-content--lowered
+    %section.content--narrow
+        %div.even-split
+            %div
+                %div.align-baseline
+                    = link_to( root_path, { :class => 'logo' } ) do
+                        %h1
+                            Inklings
+                            %sub
+                                (Admin)
+                %div.align-baseline
+                    %h2.h--medium.no-whitespace
+                        Sign in.
+        = form_for( @session, { :url => admin_signin_path } ) do | f |
+            - if f.object.errors[ :base ].present?
+                %p.t--danger
+                    = f.object.errors.messages[ :base ].join( ', ' )
+            %div.field
+                = f.label( :email )
+                = f.text_field( :email )
+                = f.error_message( :email )
+            %div.field
+                = f.label( :password )
+                = f.password_field( :password )
+                = f.error_message( :password )
+            %div.content--slender
+                %div.buttons--large
+                    = f.submit( 'Sign In', { :class => 'button--bright button--large full-width' } )

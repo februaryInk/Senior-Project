@@ -1,9 +1,9 @@
 = "Leave feedback for #{ @manuscript.title }."
-= form_for @feedback, :url => manuscript_feedback_index_path( params[ :id ] ) do | f |
-    = render :partial => 'shared/error_messages', :locals => { :object => f.object }
-    %p
-        = f.text_area :content
-    %p
-        = f.submit 'Submit'
-%p
-    = button_to 'Nevermind', '#', :class => 'close-dialog'
+= form_for( @feedback, :url => manuscript_feedback_index_path( params[ :id ] ) ) do | f |
+    %div.field
+        = f.label( :content )
+        = f.text_area( :content )
+    %div.buttons--standard
+        %div.buttons--left
+            = f.submit( 'Submit', { :class => 'button--bright button--standard' } )
+            = link_to( 'Nevermind', '#', { :class => 'button--standard button--subtle close-dialog' } )

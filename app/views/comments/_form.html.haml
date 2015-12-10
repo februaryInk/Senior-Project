@@ -1,7 +1,7 @@
-= form_for [ @forum, @conversation, @comment ], :remote => true do | f |
-    = render :partial => 'shared/error_messages', :locals => { :object => f.object }
-    %p
-        = f.label 'New Comment'
-        = f.text_area :content, :class => 'height-10em'
-    %p
-        = f.submit 'Submit', :class => 'button-flat'
+= form_for( [ forum, conversation, comment ], { :remote => true } ) do | f |
+    %div.field
+        = f.label( 'New Comment' )
+        = f.text_area( :content )
+    %div.buttons--standard
+        %div.buttons--left
+            = f.submit( 'Submit', { :class => 'button--bright button--standard' } )

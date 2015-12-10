@@ -40,7 +40,7 @@ class SessionsControllerTest < ActionController::TestCase
         post :create, :session => { :email => @test_user.email, :password => 'wrongpassword' }
         assert_nil session[ :user_id ]
         assert_template 'sessions/new'
-        assert_not_nil flash[ :session_error ]
+        assert_select 'p.t--danger'
     end
     
     # DESTROY

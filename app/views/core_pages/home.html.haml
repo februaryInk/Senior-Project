@@ -38,18 +38,21 @@
             News Feed
         - if signed_in? && current_user.admin?
             %div.new-report
-                = render :partial => 'news_reports/new'
+                %h3
+                    This Just in...
+                = render( { :partial => 'news_reports/form.html.haml', :locals => { :news_report => @news_report } } )
                 %hr
-        - for report in @news_reports do
-            %div.bumped.report
-                %h2.h--fine
-                    = report.title
-                %p.t--fine
-                    = "Reported by #{ User.find( report.user_id ).username } on #{ report.created_at.strftime( '%B %d, %Y' ) }"
-                %p
-                    = report.content
-                - if signed_in? && current_user.admin?
-                    %br
-                    = link_to 'Edit Report', edit_news_report_path( report.id ), :class => 'link-light'
-                    = link_to 'Delete Report', news_report_path( report.id ), :class => 'link-light', :method => :delete, :data => { :confirm => 'Are you sure you want to permanently delete this news report?' }
-                %hr
+        - if !@news_reports.empty?
+            - for report in @news_reports do
+                %div.bumped.report
+                    %h2.h--fine
+                        = report.title
+                    %p.t--fine
+                        = "Reported by #{ User.find( report.user_id ).username } on #{ report.created_at.strftime( '%B %d, %Y' ) }"
+                    %p
+                        = report.content
+                    - if signed_in? && current_user.admin?
+                        %br
+                        = link_to 'Edit Report', edit_news_report_path( report.id ), :class => 'link-light'
+                        = link_to 'Delete Report', news_report_path( report.id ), :class => 'link-light', :method => :delete, :data => { :confirm => 'Are you sure you want to permanently delete this news report?' }
+                    %hr

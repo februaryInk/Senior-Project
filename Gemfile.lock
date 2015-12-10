@@ -188,3 +188,6 @@ DEPENDENCIES
   whenever
   will_paginate (= 3.0.7)
   win32console
+
+BUNDLED WITH
+   1.10.6

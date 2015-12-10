@@ -18,15 +18,11 @@
                     %span.field-note
                         (requires 1+ alphanumeric characters, permits . _ -)
                     = f.text_field( :username )
-                    - if f.object.errors[ :username ].present?
-                        %p.error-message
-                            = f.object.errors.messages[ :username ].join( ', ' )
+                    = f.error_message( :username )
                 %div.field
                     = f.label( :email )
                     = f.email_field( :email )
-                    - if f.object.errors[ :email ].present?
-                        %p.error-message
-                            = f.object.errors.messages[ :email ].join( ', ' )
+                    = f.error_message( :email )
                 %div.even-split
                     %div
                         %div.field
@@ -34,18 +30,13 @@
                             %span.field-note
                                 (8+ characters)
                             = f.password_field( :password )
-                            - if f.object.errors[ :password ].present?
-                                %p.error-message
-                                    = f.object.errors.messages[ :password ].join( ', ' )
+                            = f.error_message( :password )
                         %div.field
                             = f.label( :password_confirmation, 'Confirm Password' )
                             = f.password_field( :password_confirmation )
-                            - if f.object.errors[ :password_confirmation ].present?
-                                %p.error-message
-                                    = f.object.errors.messages[ :password_confirmation ].join( ', ' )
+                            = f.error_message( :password_confirmation )
+                %p.t--fine
+                    = sanitize( "Already have an account? #{link_to( 'Sign in', signin_path, :class => 'underlined' )}." )
                 %div.content--slender
                     %div.buttons--large
                         = f.submit( 'Sign Up', { :class => 'button--bright button--large full-width' } )
-        %div.bumped
-            %p.t--fine
-                = sanitize( "Already have an account? #{link_to( 'Sign in', signin_path, :class => 'underlined' )}." )

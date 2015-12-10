@@ -2,7 +2,7 @@
     Activity
 - if current_user?( user )
     %div.post-form
-        = render( { :partial => 'posts/form.html.haml' } )
+        = render( { :partial => 'posts/form.html.haml', :locals => { :post => @post } } )
 %ul#ul-activity-feed
     - activity_feed.each do | post |
         %li.li-post

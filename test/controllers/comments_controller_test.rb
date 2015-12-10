@@ -29,6 +29,6 @@ class CommentsControllerTest < ActionController::TestCase
         assert_no_difference 'Comment.count' do
             post :create, :forum_id => @conversation.forum_id, :conversation_id => @conversation.id, :comment => { :content => '', :conversation_id => @conversation.id, :user_id => @test_user.id }, :format => 'js'
         end
-        assert_template 'comments/_new'
+        assert_template 'comments/_form.html.haml'
     end
 end

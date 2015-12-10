@@ -1,6 +1,0 @@
-if ( <%= @saved %> ) {
-    window.location = '<%= root_path %>';
-}
-else {
-    $( '#form-news-report-new' ).html( "<%= escape_javascript( render( :partial => 'news_reports/new' ) ).html_safe %>" );
-}

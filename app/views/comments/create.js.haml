@@ -1,6 +1,6 @@
 - if @comment.new_record?
     :plain
-        $( '#form-comment-new' ).html( "#{escape_javascript( render( :partial => 'comments/form.html.haml' ) ).html_safe}" );
+        $( '#form-comment-new' ).html( "#{escape_javascript( render( { :partial => 'comments/form.html.haml', :locals => { :comment => @comment, :conversation => @conversation, :forum => @forum } } ) ).html_safe}" );
 - else
     :plain
         window.location = "#{forum_conversation_path( @conversation.forum.id, @conversation.id )}";

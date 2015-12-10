@@ -20,8 +20,8 @@ class Admin::SessionsControllerTest < ActionController::TestCase
         assert_nil session[ :admin_user_id ]
         post :create, :session => { :email => @test_user.email, :password => 'goodpassword' }
         assert_nil session[ :admin_user_id ]
-        assert_template 'admin/sessions/new'
-        assert_not_nil flash[ :session_error ]
+        assert_redirected_to signin_path
+        assert_not_nil flash[ :warning ]
     end
     
     test 'should not sign in a user with an incorrect password' do
@@ -29,7 +29,7 @@ class Admin::SessionsControllerTest < ActionController::TestCase
         post :create, :session => { :email => @admin_user.email, :password => 'wrongpassword' }
         assert_nil session[ :admin_user_id ]
         assert_template 'admin/sessions/new'
-        assert_not_nil flash[ :session_error ]
+        assert_select 'p.t--danger'
     end
     
     # DESTROY

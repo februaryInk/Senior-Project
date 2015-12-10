@@ -23,9 +23,11 @@ class User < ActiveRecord::Base
     validates :email, { :presence => true, :format => { :with => EMAIL_REGEX }, :uniqueness => { :case_sensitive => false }, :reduce => true }
     validates :username, { :presence => true, :length => { :maximum => 32 }, :format => { :with => USERNAME_REGEX }, :reduce => true }
     validates :password, { :presence => true, :length => { :maximum => 32, :minimum => 8 }, :reduce => true, :on => :create }
-    validates :password, { :length => { :maximum => 32, :minimum => 8 }, :reduce => true, :on => :update, :if => :update_password? }
+    validates :password, { :length => { :maximum => 32, :minimum => 8 }, :reduce => true, :on => [ :self_update, :update ], :if => :update_password? }
     validates :password_confirmation, { :presence => true, :on => :create }
     validates :simple_name, { :uniqueness => true }
+    validates :current_password, { :presence => true, :on => :self_update }
+    validate  :authentication, { :on => :update, :if => :current_password_present? }
     
     # RELATIONSHIPS
     
@@ -170,11 +172,19 @@ class User < ActiveRecord::Base
     
     private
     
+        def authentication
+            self.errors.add( :current_password, 'does not match password' ) unless self.authenticate( self.current_password )
+        end
+    
         # create an activation token for sending to the user through email, then
         # store the digest in the database.
         def create_activation_digest
             self.activation_token = User.create_token
             self.activation_digest = User.digest( activation_token )
+        end
+        
+        def current_password_present?
+            self.current_password.present?
         end
         
         # detect if the user is attempting to change their password when updating
