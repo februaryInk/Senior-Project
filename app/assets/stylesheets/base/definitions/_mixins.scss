@@ -2,21 +2,6 @@
     font-family: Kalam, cursive;
 }
 
-@mixin button( $height ) {
-    @include serif-family;
-    
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    display: block;
-    height: $height;
-    line-height: $height;
-    padding-left: 0;
-    padding-right: 0;
-    position: relative;
-    whitespace: no-wrap;
-}
-
 @mixin color-band( $background-color, $min-width ) {
     background-color: $background-color;
     display: block;

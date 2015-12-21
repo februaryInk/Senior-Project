@@ -32,9 +32,7 @@
                             Words
                         %th
                         %th
-                // the sortable class is being used as a jQuery selector in manuscripts.js to
-                // add the jQuery-ui sortable properties.
-                %tbody#tbody-contents.sortable
+                %tbody#tbody-contents.js-sortable
                     - if @sections.any?
                         = render :partial => 'sections/sections'
             = link_to sections_path( :manuscript_id => params[ :id ] ), :method => :post, :remote => true, :class => 'make-new' do

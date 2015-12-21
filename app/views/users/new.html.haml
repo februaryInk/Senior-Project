@@ -1,7 +1,7 @@
 - content_for( :title ) { users_new_title }
 
-%div.page-content--lowered
-    %section.content--narrow
+%div.page-content.-lowered
+    %section.content.-narrow
         %div.even-split
             %div
                 %div.align-baseline
@@ -9,7 +9,7 @@
                         %h1
                             Inklings
                 %div.align-baseline
-                    %h2.h--medium.no-whitespace
+                    %h2.heading.-medium.no-white-space
                         Sign up for free.
         %div.bumped
             = form_for( @user ) do | f |
@@ -35,8 +35,8 @@
                             = f.label( :password_confirmation, 'Confirm Password' )
                             = f.password_field( :password_confirmation )
                             = f.error_message( :password_confirmation )
-                %p.t--fine
+                %p.t-fine
                     = sanitize( "Already have an account? #{link_to( 'Sign in', signin_path, :class => 'underlined' )}." )
-                %div.content--slender
-                    %div.buttons--large
-                        = f.submit( 'Sign Up', { :class => 'button--bright button--large full-width' } )
+                %div.content.-slender
+                    %div.buttons.-large
+                        = f.submit( 'Sign Up', { :class => 'button -bright -large full-width' } )

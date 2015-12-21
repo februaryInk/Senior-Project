@@ -12,12 +12,15 @@
 @import 'base/header.scss';
 @import 'base/inputs.scss';
 @import 'base/layout_elements.scss';
-@import 'base/shapes.scss';
 @import 'base/tables.scss';
 @import 'base/typography.scss';
 
 * {
     box-sizing: border-box;
+}
+
+body {
+    height: 100%;
 }
 
 hr {

@@ -11,7 +11,7 @@
                 %li
                     = link_to( 'Forums', forums_path, { :class => 'js-openable-link' } )
                 - if signed_in?
-                    %li.dropdown
+                    %li.dropdown.js-dropdown
                         %div.dropdown__label
                             ACCOUNT
                         %div.arrow

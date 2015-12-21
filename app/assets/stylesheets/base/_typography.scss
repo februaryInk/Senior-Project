@@ -42,22 +42,25 @@ em, i { font-style: italic; }
     padding: 0 0 0.25em 0.5em;
 }
 
-.h { @include serif-family; }
-.h--fine { @extend .h; font-size: 24px; }
-.h--medium { @extend .h; font-size: 28px; }
-.h--large { @extend .h; font-size: 32px; }
-.h--grand { @extend .h; font-size: 48px; }
-.h--giant { @extend .h; font-size: 64px; }
+.heading { 
+    @include serif-family;
+    
+    &.-fine { font-size: 24px; }
+    &.-medium { font-size: 28px; }
+    &.-large { font-size: 32px; }
+    &.-grand { font-size: 48px; }
+    &.-giant { font-size: 64px; }
+}
 
 .logo { @include accent-family; font-size: 3em; }
 
-.no-whitespace { line-height: 1em; margin: 0; padding: 0; }
+.no-white-space { line-height: 1em; margin: 0; padding: 0; }
 
-.t--fine { font-size: 16px; }
-.t--medium { font-size: 18px; }
-.t--large { font-size: 20px; }
+.t-fine { font-size: 16px; }
+.t-medium { font-size: 18px; }
+.t-large { font-size: 20px; }
 
-.t--danger { color: $color-danger; }
+.t-danger { color: $color-danger; }
 
 a, span { &.underlined { text-decoration: underline; } }
 h1, h2, h3, h4, h5, h6 { &.underlined { border-bottom: 2px solid $color-silver; display: block; padding-bottom: 4px; width: 100%; } }

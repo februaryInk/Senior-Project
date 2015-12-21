@@ -1,7 +1,7 @@
 - content_for( :title ) { admin_signin_title }
 
-%main.page-content--lowered
-    %section.content--narrow
+%main.page-content.-lowered
+    %section.content.-narrow
         %div.even-split
             %div
                 %div.align-baseline
@@ -11,11 +11,11 @@
                             %sub
                                 (Admin)
                 %div.align-baseline
-                    %h2.h--medium.no-whitespace
+                    %h2.heading.-medium.no-white-space
                         Sign in.
         = form_for( @session, { :url => admin_signin_path } ) do | f |
             - if f.object.errors[ :base ].present?
-                %p.t--danger
+                %p.t-danger
                     = f.object.errors.messages[ :base ].join( ', ' )
             %div.field
                 = f.label( :email )
@@ -25,6 +25,6 @@
                 = f.label( :password )
                 = f.password_field( :password )
                 = f.error_message( :password )
-            %div.content--slender
-                %div.buttons--large
-                    = f.submit( 'Sign In', { :class => 'button--bright button--large full-width' } )
+            %div.content.-slender
+                %div.buttons.-large
+                    = f.submit( 'Sign In', { :class => 'button -bright -large full-width' } )

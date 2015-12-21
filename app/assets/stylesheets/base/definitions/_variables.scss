@@ -28,19 +28,6 @@ $color-info: $color-portage;
 $color-success: $color-shamrock;
 $color-warning: $color-mulberry;
 
-// flash.scss
-
-$color-flash-default: darken( $color-white, 2.5% );
-$color-flash-default-text: darken( $color-white, 85% );
-$color-flash-danger: darken( $color-white, 2.5% );
-$color-flash-danger-text: darken( $color-white, 85% );
-$color-flash-info: darken( $color-white, 2.5% );
-$color-flash-info-text: darken( $color-white, 85% );
-$color-flash-success: darken( $color-white, 2.5% );
-$color-flash-success-text: darken( $color-white, 85% );
-$color-flash-warning: darken( $color-white, 2.5% );
-$color-flash-warning-text: darken( $color-white, 85% );
-
 // header.scss
 
 $color-dropdown: darken( $color-white, 25% );
@@ -89,8 +76,6 @@ $color-arrow: darken( $color-white, 85% );
 // tables.scss
 
 $color-table-border: darken( $color-white, 25% );
-$color-tr-even: darken( $color-white, 2.5% );
-$color-tr-odd: darken( $color-white, 7.5% );
 
 $size-accent-height: 1.5em;
 $size-accent-large-height: 2em;

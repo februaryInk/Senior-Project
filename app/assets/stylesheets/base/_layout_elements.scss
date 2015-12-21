@@ -3,20 +3,17 @@
 }
 
 .content {
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     width: $size-content-width;
-}
 
-.content--narrow {
-  margin-left: auto;
-  margin-right: auto;
-  width: $size-content-narrow-width;
-}
+    &.-narrow {
+        width: $size-content-narrow-width;
+    }
 
-.content--slender {
-  margin-left: auto;
-  margin-right: auto;
-  width: $size-content-slender-width;
+    &.-slender {
+        width: $size-content-slender-width;
+    }
 }
 
 .notebox {
@@ -28,9 +25,15 @@
 }
 
 .page-content {
-  padding-top: 3em;
+    padding-top: 3em;
+    padding-bottom: 15em;
+    
+    &.-lowered {
+        padding-top: 8em;
+    }
 }
 
-.page-content--lowered {
-  padding-top: 8em;
+#page-wrapper {
+    min-height: 100%;
+    position: relative;
 }

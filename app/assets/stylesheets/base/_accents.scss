@@ -1,35 +1,28 @@
 .accent {
     display: inline-block;
-    height: $size-accent-height;
-    line-height: $size-accent-height;
+    font-size: 14px;
+    padding: 0.25em 0;
     position: relative;
     text-transform: uppercase;
-    whitespace: no-wrap;
-}
-
-.accent--bright {
-    @extend .accent;
+    white-space: nowrap;
     
-    background-color: $color-alto;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-}
-
-.accent--large {
-    height: $size-accent-large-height;
-    line-height: $size-accent-large-height;
-    
-    &.accent--bright,
-    &.accent--subtle {
-        padding-left: 1.5em;
-        padding-right: 1.5em;
+    &.-bright {
+        ground-color: $color-alto;
+        padding-left: 0.5em;
+        padding-right: 0.5
     }
-}
-
-.accent--subtle {
-    @extend .accent;
     
-    background-color: $color-gallery;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    &.-large {
+        @include serif-family;
+        
+        font-size: 18px;
+        padding-bottom: 0.5em;
+        padding-top: 0.5em;
+    }
+    
+    &.-subtle {
+        background-color: $color-gallery;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
 }

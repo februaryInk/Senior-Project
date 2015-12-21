@@ -3,11 +3,11 @@
         %div.faux-table.full-height.spacers--vertical
             %div
                 %div.align-middle.maximized
-                    %h1.h--medium.no-whitespace
+                    %h1.heading.-medium.no-white-space
                         = "#{manuscript.title}"
                 %div.align-middle.fitted
-                    = link_to( 'Save', { :class => 'button button-submit-section' } )
+                    = link_to( 'Save', { :class => 'button js-button-submit-section' } )
                 %div.align-middle.fitted
-                    = link_to( 'Save and Publish', { :class => 'button button-submit-and-publish-section' } )
+                    = link_to( 'Save and Publish', { :class => 'button js-button-submit-and-publish-section' } )
                 %div.align-middle.fitted
                     = collection_select( :section, :id, sections, :id, :name, { :selected => ( params[ :section ].nil? ? 1 : params[ :section ] ) }, { :class => 'js-selector-for-writer select-navigation' } )

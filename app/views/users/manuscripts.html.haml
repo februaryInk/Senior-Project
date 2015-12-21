@@ -16,8 +16,8 @@
                                         %h3
                                             = manuscript.title
                             %div.clear
-                        = link_to 'Open Manuscript', manuscript_path( :id => manuscript.id ), :class => 'link-light'
-                        = link_to 'Manage Settings', edit_manuscript_path( :id => manuscript.id ), :class => 'link-light'
+                        = link_to 'Open Manuscript', manuscript_path( :id => manuscript.id ), :class => 'button -subtle'
+                        = link_to 'Manage Settings', edit_manuscript_path( :id => manuscript.id ), :class => 'button -subtle'
                         = link_to 'Delete Manuscript', manuscript_path( :id => manuscript.id ), :method => :delete, :class => 'link-dark'
         - else
             %h3

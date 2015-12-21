@@ -178,13 +178,11 @@ All of these color-by-function variables can go in their own file as well, makin
 
 ## Class Names
 
-[This article](http://thesassway.com/advanced/modular-css-naming-conventions) is the basis of the Sass naming conventions followed in this project. Much of what follows is cribbed directly from the practices given in the article, with a few alterations that were made to suit my own preferences.
-
-The key to flexible modular CSS (or SCSS, as the case is) is to regard the HTML structures to which styles are applied as reusable, modifiable objects. This follows the philosophy of the Block, Element, Modifier (BEM) class-naming method. However, the BEM method was primarily designed with CSS in mind, and apart from that is commonly criticized for being ugly and requiring excessive typing. The naming rules for this project are similar to those given by BEM, but adjusted to partially address these complaints.
+The Sass naming conventions followed in this project are based on a methodology called BEVM, a variation (heh) of the Block Element Modifier (BEM) method. BEVM stands for Block Element _Variation_ Modifier, and it allows for a slightly more categorical approach to class naming than vanilla BEM. The following rules detail my use of BEVM.
 
 ### Rule 1: Objects
 
-An object is a group of elements that can be regarded as self-contained or which are placed on the page as a whole, such as headers, links, or tables. Give objects descriptive names that contain a noun.
+The key to flexible modular CSS (or SCSS, as the case is) is to regard the HTML structures to which styles are applied as reusable, modifiable objects. An object is a group of elements that can be regarded as self-contained or which are placed on the page as a whole, such as headers, links, or tables. Give objects descriptive names that consist of, or at least contain, a noun.
 
 ```
 .link {
@@ -204,21 +202,7 @@ An object is a group of elements that can be regarded as self-contained or which
 }
 ```
 
-Two objects may serve similar functions on the page but be unrelated in terms of stylistic rules. In these cases, scoped modifiers would be inappropriate because there are no shared styles. Instead, name them with the same object name (noun) followed by a dash and a unique one- or at most two-word descriptor (adjective). The descriptor is placed after the object name so that when sorted within the page, rules for similar objects will tend to be close together.
-
-```
-.sidebar-left {
-    float: left;
-    width: 384px;
-}
-
-.sidebar-right {
-    float: right;
-    width: 256px;
-}
-```
-
-### Rule 2: Descendants of Objects
+### Rule 2: Elements, or Descendants of Objects
 
 Try to not nest child elements within object selectors (espcially using class or id selectors, as asserted previously). Instead, append the parent name as a prefix if the child element can't be regarded as a reusable object in its own right.
 
@@ -239,7 +223,7 @@ Try to not nest child elements within object selectors (espcially using class or
     }
 }
 
-.link-icon {
+.link__icon {
     float: left;
     height: 2em;
     width: 2em;
@@ -262,11 +246,27 @@ The exception to this is if the parent object exists as a container for a collec
 }
 ```
 
-### Rule 3: Local Modifiers
+### Rule 3: Variations
 
-There may be instances where two objects are similar in purpose and share some properties, but not all. In that case, we can introduce scoped modifier classes in a way that is analogous to subclassing in object-oriented languages. Most object-oriented programming languages have a way of subclassing objects such that the subclass becomes a "type" of the superclass. It inherits the behaviors of the superclass while typically adding some behaviors of its own. This same principle can be applied to SCSS. We can, for example, make a small logo inherit all the properties of a general logo while adding its own additional properties. This can be accomplished by using SCSS's ampersand operator with a class. (This is similar to the functionality of an `@extend`, but isn't shared between selectors.)
+Two objects may serve similar functions on the page but be entirely unrelated in terms of stylistic rules. Name them with the same object name (noun) followed by two dashes and a unique one- or at most two-word descriptor (adjective). The descriptor is placed after the object name so that when sorted within the page, rules for these similar objects will tend to be close together.
 
-Local modifiers should have adjective names, prepended with the name of the class they are modifying to prevent the (admittedly rare) confusion that may occur when 2 classes with the same local modifiers are applied to a single element.
+```
+.sidebar--left {
+    float: left;
+    width: 384px;
+}
+
+.sidebar--right {
+    float: right;
+    width: 256px;
+}
+```
+
+### Rule 4: Scoped Modifiers
+
+On the other hand, there may be instances where two objects are similar in purpose and share some properties, but not all. In that case, we can introduce scoped modifier classes in a way that is analogous to subclassing in object-oriented languages. Most object-oriented programming languages have a way of subclassing objects such that the subclass becomes a "type" of the superclass. It inherits the behaviors of the superclass while typically adding some behaviors of its own. This same principle can be applied to SCSS. We can, for example, make a small logo inherit all the properties of a general logo while adding its own additional properties. This can be accomplished by using SCSS's ampersand operator with a class. (This is similar to the functionality of an `@extend`, but isn't shared between selectors.)
+
+Local modifiers should have adjective names, prepended with a single dash. The nesting is used to ensure that the modifiers apply to only one object and no others.
 
 ```
 .logo {
@@ -275,55 +275,72 @@ Local modifiers should have adjective names, prepended with the name of the clas
     background-size: contain;
     display: inline-block;
     
-    &.logo-big {
+    &.-big {
         height: 96px;
         width: 282px;
     }
 
-    &.logo-small {
+    &.-small {
         height: 64px;
         width: 188px;
     }
 }
 ```
 
-The classes `.logo-small` and `.logo-big` are local modifiers scoped to the `logo` class, and must always be used in conjunction with it to be effective.
+The classes `.-small` and `.-big` modifiers are scoped to the `logo` class, and must always be used in conjunction with it to be effective.
 
 ```
-= link_to '', root_path, :class => 'logo logo-small'
+= link_to( '', root_path, { :class => 'logo -small' } )
 ```
 
-Rule 4: Global Modifiers
+### Rule 5: Global Modifiers
 
-In some cases, though, it may be appropriate to create a global modifier that can be used with any object. Global modifiers should never be given the same names as any scoped modifiers, lest they cause styling conflicts. These modifiers can be used to effect small adjustments on elements that either don't have their own class, or that have a class that shouldn't be altered because it is used elsewhere as is. However, if more than 2 global modifiers are applied to a single element, it is usually better to give the element its own class. These global modifiers are not for building up a style from scratch; they are for tweaking elements that behave just a little bit different from the rest.
+In some cases, though, it may be appropriate to create a global modifier that can be used with any object. These modifiers can be used to effect small adjustments on elements that either don't have their own class, or that have a class that shouldn't be altered directly because it is used elsewhere as is. However, if more than 2 global modifiers are applied to a single element, it may be better to give the element its own class. These global modifiers are not for building up a style from scratch; they are for tweaking elements that behave just a little bit different from the rest.
 
 ```
-.margined-bottom-2em { 
-    margined-bottom: 2em;
-}
-
 .green { 
     background-color: green;
+}
+
+.push { 
+    margine-bottom: 2em;
 }
 ```
 
 Modifier names should be short descriptors, preferably a single adjective where possible.
 
-Rule 5: JavaScript Selectors
+### Rule 6: JavaScript Selectors
 
-When a class or id is being used by JavaScript as a selector, make it obvious by prepending `js` to the selector. Do not use JavaScript selector classes for styling; they should be as de-coupled as possible from the element's styles.
+When a class or id is being used by JavaScript as a selector, make it obvious by prepending `js` to the selector. Do not use JavaScript selector classes for styling; they should be as de-coupled as possible from the element's styles and should briefly describe the element's JavaScript meaning.
+
+```
+%ul
+  %li
+    = link_to( 'Home', root_path )
+  %li
+    = link_to( 'About', about_path )
+  %li.dropdown.js-dropdown
+    %span.dropdown__label
+      My Account
+    %ul.dropdown__menu.js-dropdown-menu
+      %li
+        = link_to( 'My Profile', profile_path )
+      %li
+        = link_to( 'Sign Out' sign_out_path )
+```
 
 ### Summary
 
 The rules described in the previous sections are summarized in the table shown here.
 
-| Rule | Class Naming Convention | Grammatical Format | Brief Description |
-|----------------------|-------------------------|--------------------|-------------------|
-| Object | Use a descriptive noun name. | noun | Any group of elements capable of standing alone. |
-| Descendant | Prepend the Object ancestor's name. | noun--noun | An Object descendant that can't exist on its own. |
-| Local Modifier | Prepend the modified class's name. | noun-adjective | A modified version of an Object. |
-| Global Modifier | Describe the modification's effect. | adjective, or property name + value | A modification applicable to many elements. |
-| Functionally Similar |
+| Rule                | Class Naming Convention               | Grammatical Format                  | Brief Description                                               |
+|---------------------|---------------------------------------|-------------------------------------|-----------------------------------------------------------------|
+| Object              | Use a descriptive noun name.          | noun                                | Any group of elements capable of standing alone.                |
+| Descendant          | Prepend the Object ancestor's name.   | noun__noun                          | An Object descendant that can't exist on its own.               |
+| Scoped Modifier     | Prepended a dash and nest the rule.   | -adjective                          | A modification applicable to a single Object.                   |
+| Variation           | Append a descriptor to differentiate. | --adjective                         | A variation of multiple similar but unrelated Objects/Elements. |
+| Global Modifier     | Describe the modification's effect.   | adjective, or property name + value | A modification applicable to many elements.                     |
+| JavaScript Selector | Describe the functional meaning.      | js- + brief description             | A hook for JavaScript purposes.                                 |
 
 ## Inter-Selector Organization
 

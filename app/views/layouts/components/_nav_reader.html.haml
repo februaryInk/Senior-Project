@@ -3,10 +3,10 @@
         %div.faux-table.full-height.spacers--vertical
             %div
                 %div.align-middle.maximized
-                    %h1.h--medium.no-whitespace
+                    %h1.heading.-medium.no-white-space
                         = "#{manuscript.title}"
                 %div.align-middle.fitted
-                    = link_to( 'Leave Feedback', '#', { :class => 'leave-feedback', :id => manuscript.id } ) if signed_in?
+                    = link_to( 'Leave Feedback', '#', { :class => 'js-leave-feedback', :id => manuscript.id } ) if signed_in?
                 %div.align-middle.fitted
                     = link_to( 'See All Feedback', manuscript_feedback_path( @manuscript.id ) )
                 %div.align-middle.fitted

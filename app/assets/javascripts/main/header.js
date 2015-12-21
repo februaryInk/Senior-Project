@@ -1,12 +1,12 @@
 $( document ).ready( function(  ) {
     
     // detect the open "tab" on the header with tabs and style it a certain way.
-    var activeLink = $( 'a[ href="' + window.location.pathname + '" ].js-openable-link' );
-    $( activeLink ).addClass( 'open' );
+    var openLink = $( 'a[ href="' + window.location.pathname + '" ].js-openable-link' );
+    $( openLink ).addClass( 'open' );
 
     // make a dropdown menu operable.
-    $( '.dropdown' ).mouseover( openSubMenu );
-    $( '.dropdown' ).mouseout( closeSubMenu );
+    $( '.js-dropdown' ).mouseover( openSubMenu );
+    $( '.js-dropdown' ).mouseout( closeSubMenu );
 } );
 
 // make dropdown visible.

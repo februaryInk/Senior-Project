@@ -13,7 +13,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
         patch user_path( @user ), :user => { :current_password => 'goodpassword', :username => 'New Name', :email => 'newemail@example.com' }
         follow_redirect!
         assert_template 'users/edit'
-        assert_select 'div.flash-success'
+        assert_select 'div.flash.-success'
         @user.reload
         assert_equal @user.username, 'New Name'
         assert_equal @user.email, 'newemail@example.com'
@@ -27,7 +27,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
         follow_redirect!
         assert_template 'users/edit'
         @user.reload
-        assert_select 'div.flash-success'
+        assert_select 'div.flash.-success'
         assert @user.authenticate( 'newpassword' )
     end
     

@@ -1,5 +1,11 @@
 footer {
-    margin-top: 2em;
+    bottom: 0;
+    display: block;
+    height: 15em;
+    overflow: hidden;
+    padding: 2em;
+    position: absolute;
+    width: 100%;
     
     ul {
         float: left;

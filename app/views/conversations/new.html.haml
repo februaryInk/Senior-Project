@@ -17,6 +17,5 @@
                     = ff.label( :content )
                     = ff.text_area( :content )
                     = ff.error_message( :content )
-            %div.buttons--standard
-                %div.buttons--left
-                    = f.submit( 'Submit' )
+            %div.buttons
+                = f.submit( 'Submit', { :class => 'button -bright -left' } )

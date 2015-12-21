@@ -29,7 +29,7 @@ class Admin::SessionsControllerTest < ActionController::TestCase
         post :create, :session => { :email => @admin_user.email, :password => 'wrongpassword' }
         assert_nil session[ :admin_user_id ]
         assert_template 'admin/sessions/new'
-        assert_select 'p.t--danger'
+        assert_select 'p.t-danger'
     end
     
     # DESTROY

@@ -4,24 +4,24 @@
     %div.member-info
         %div.member-info__avatar
         %div.member-info__report
-            %h1.h--medium
+            %h1.heading.-medium
                 = @user.username
             %p
                 = @user.biography
             - unless current_user.nil? || current_user?( @user )
                 %div.friendship-form
                     - if current_user.accepted_friends.include?( @user )
-                        %span.accent--bright.accent--large
+                        %span.accent.-bright.accent.-large
                             Friend
                     - elsif current_user.pending_friends.include?( @user )
-                        %span.accent--large.accent--subtle
+                        %span.accent.-large.-subtle
                             = "You sent this user an offer of friendship on #{ l( current_user.friendships.find_by( :friend_id => @user.id ).created_at :format => :to_the_day ) }."
-                        = link_to 'Revoke Offer', friendship_path( @friendship ), :method => :delete, :class => 'button--subtle', :data => { :confirm => 'Are you sure you want to revoke your offer of friendship?' }
+                        = link_to 'Revoke Offer', friendship_path( @friendship ), :method => :delete, :class => '-subtle', :data => { :confirm => 'Are you sure you want to revoke your offer of friendship?' }
                     - elsif current_user.waiting_friends.include?( @user )
-                        %span.accent--large.accent--subtle
+                        %span.accent.-large.-subtle
                             = "This user sent you an offer of friendship on #{ l( current_user.friendships.find_by( :friend_id => @user.id ).created_at, :format => :to_the_day ) }."
-                        = link_to 'Accept Offer', friendship_path( @friendship ), :method => :patch, :class => 'button--bright'
-                        = link_to 'Reject Offer', friendship_path( @friendship ), :method => :delete, :class => 'button--subtle'
+                        = link_to 'Accept Offer', friendship_path( @friendship ), :method => :patch, :class => '-bright'
+                        = link_to 'Reject Offer', friendship_path( @friendship ), :method => :delete, :class => '-subtle'
                     - else
                         = form_tag( friendships_path, :method => 'post' ) do
                             = fields_for 'friendship', @friendship do | f |
@@ -29,13 +29,13 @@
                             = fields_for 'reciprocated_friendship', @reciprocated_friendship do | f |
                                 = f.hidden_field :user_id, :value => @user.id
                             %p
-                                = submit_tag 'Send Friendship Request', :class => 'button--bright'
+                                = submit_tag 'Send Friendship Request', :class => '-bright'
     %div.clear.color-band
         %div.activities
             %div.activities__feed
                 = render( { :partial => 'users/activity_feed.html.haml', :locals => { :activity_feed => @activity_feed, :user => @user } } )
             %div.activities__manuscripts
-                %h2.h--fine
+                %h2.heading.-fine
                     Manuscripts
                 %div
                     - @user.manuscripts.each do | manuscript |

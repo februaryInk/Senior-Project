@@ -3,7 +3,6 @@
     %div.field
         = f.label( :content )
         = f.text_area( :content )
-    %div.buttons--standard
-        %div.buttons--left
-            = f.submit( 'Submit', { :class => 'button--bright button--standard' } )
-            = link_to( 'Nevermind', '#', { :class => 'button--standard button--subtle close-dialog' } )
+    %div.buttons
+        = f.submit( 'Submit', { :class => 'button -bright -left' } )
+        = link_to( 'Nevermind', '#', { :class => 'button -left -subtle close-dialog' } )

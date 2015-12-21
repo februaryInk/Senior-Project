@@ -2,7 +2,7 @@
 
 %div.page-content
     %section.content
-        %h1.h--medium
+        %h1.heading.-medium
             = "Account Settings"
         %div#div-gravatar
             %p
@@ -37,5 +37,4 @@
                     = f.password_field( :current_password )
                     = f.error_message( :current_password )
                 %div.buttons
-                    %div.buttons--left
-                        = f.submit( 'Submit', { :class => 'button--dark button--standard' } )
+                    = f.submit( 'Submit', { :class => 'button -dark -left' } )

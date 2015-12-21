@@ -2,7 +2,7 @@ $( document ).ready( function (  ) {
     
     // make manuscript contents sortable with jQuery-ui's sortable interface. 
     // affected sections update after a sort and ajax reloads the contents table.
-    $( 'tbody.sortable' ).sortable( {
+    $( 'js-sortable' ).sortable( {
         stop: function( e, ui ) {
             var positions = $.map( $( this ).find( 'tr' ), function( el ) {
                 return $( el ).attr( 'id' );
@@ -15,8 +15,8 @@ $( document ).ready( function (  ) {
         }
     } );
     
-    // submit form on blur of elements with class auto-submit.
-    $( 'body' ).on( 'blur', '.auto-submit', function(  ) {
+    // submit form on blur of elements with class js-auto-submit.
+    $( 'body' ).on( 'blur', '.js-auto-submit', function(  ) {
         $( this ).parent(  ).submit(  );
     } );
     
@@ -43,20 +43,20 @@ $( document ).ready( function (  ) {
     } );
     
     // submit the section update form from the header.
-    $( '.button-submit-section' ).click( function( evt ) {
+    $( '.js-button-submit-section' ).click( function( evt ) {
         $( '#form-section-update' ).submit(  );
     } );
     
     // submit the section update and publish form from the header. set the publish
     // param to true.
-    $( '.button-submit-and-publish-section' ).click( function( evt ) {
+    $( '.js-button-submit-and-publish-section' ).click( function( evt ) {
         var input = $( '<input>' ).attr( 'type', 'hidden' ).attr( 'name', 'publish' ).val( true );
         $( '#form-section-update' ).append( $( input ) );
         $( '#form-section-update' ).submit(  );
     } );
 } );
 
-$( document ).on( 'click', '.leave-feedback', function( evt ) {
+$( document ).on( 'click', '.js-leave-feedback', function( evt ) {
     evt.preventDefault(  );
     var manuscriptId = $( this ).attr( 'id' );
     modalDialog( 'Feedback', 'Leave your feedback for this manuscript.', { content: 'textarea' }, 
@@ -79,7 +79,7 @@ $( document ).on( 'click', '.leave-feedback', function( evt ) {
                 // its errors marked.
                 var errors = JSON.parse( response.responseText );
                 var formHtml = buildForm( inputs, errors );
-                $( 'dialog-form' ).html( formHtml );
+                $( '#dialog-form' ).html( formHtml );
             }
         } );
     } );

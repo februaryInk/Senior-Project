@@ -1,8 +1,8 @@
 - content_for( :title ) { edit_password_reset_title }
 
-%main.page-content--lowered
-    %section.content--narrow
-        %h1.h--medium
+%main.page-content.-lowered
+    %section.content.-narrow
+        %h1.heading.-medium
             Reset Your Inklings Password
         = form_for( @user, { :action => 'update', :controller => 'password_resets', :method => :patch } ) do | f |
             %div.field
@@ -13,6 +13,5 @@
                 = f.label( :password_confirmation, 'Password Confirmation' )
                 = f.password_field( :password_confirmation )
                 = f.error_message( :password_confirmation )
-            %buttons--standard
-                %buttons--left
-                    = f.submit( 'Update Password', { :class => 'button--bright button--standard' } )
+            %buttons
+                = f.submit( 'Update Password', { :class => 'button -bright -left' } )

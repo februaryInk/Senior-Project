@@ -3,78 +3,71 @@ a {
     text-decoration: none;
 }
 
-.button--large {
-    @include button( $size-button-large-height );
+.button {
+    @include serif-family;
     
-    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    padding: 0.5em 0;
+    position: relative;
+    white-space: nowrap;
+    
+    &:hover {
+        opacity: 0.75;
+    }
+    
+    &.-bright {
+        background-color: $color-boulder;
+        color: $color-white;
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+    }
+    
+    &.-dark {
+        background-color: $color-tundora;
+        color: $color-white;
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+    }
+    
+    &.-large {
+        font-size: 20px;
+        padding-bottom: 1em;
+        padding-top: 1em;
+    }
+    
+    &.-left {
+        float: left;
+        margin-right: 8px;
+    }
+    
+    &.-light {
+        background-color: $color-white;
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+    }
+    
+    &.-right {
+        float: right;
+        margin-left: 8px;
+    }
+    
+    &.-subtle {
+        background-color: $color-gallery;
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+    }
 }
 
-.button--standard {
-    @include button( $size-button-height );
-}
-
-.button--bright {
-    background-color: $color-boulder;
-    color: $color-white;
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-}
-
-.button--dark {
-    background-color: $color-tundora;
-    color: $color-white;
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-}
-
-.button--light {
-    background-color: $color-white;
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-}
-
-.button--subtle {
-    background-color: $color-gallery;
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-}
-
-.buttons--standard {
+.buttons {
+    overflow: hidden;
     padding-top: 0.5em;
-}
-
-.buttons--large {
-    padding-top: 1em;
-}
-
-.link-light {
-    background-color: $color-link-light;
-    color: $color-link-light-text;
-    display: block;
-    margin: 0.25em 0;
-    padding: 0.5em;
+    width: 100%;
     
-    &:active {
-        background-color: $color-link-light-active;
-    }
-    
-    &:hover {
-        background-color: $color-link-light-hover;
-    }
-}
-
-.link-dark {
-    background-color: $color-link-dark;
-    color: $color-link-dark-text;
-    display: block;
-    margin: 0.25em 0;
-    padding: 0.5em;
-    
-    &:active {
-        background-color: $color-link-dark-active;
-    }
-    
-    &:hover {
-        background-color: $color-link-dark-hover;
+    &.-large {
+        padding-top: 1em;
     }
 }

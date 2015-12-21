@@ -1,8 +1,8 @@
 - content_for( :title ) { new_account_activation_title }
 
-%main.page-content--lowered
-    %section.content--narrow
-        %h1.h--medium
+%main.page-content.-lowered
+    %section.content.-narrow
+        %h1.heading.-medium
             Re-Send Account Activation Email
         = form_for( @account_activation, { :url => account_activations_path, :method => :post } ) do | f |
             %div.field
@@ -10,4 +10,4 @@
                 = f.text_field( :email )
                 = f.error_message( :email )
             %div.field
-                = f.submit( 'Send Email', { :class => 'button--standard button--bright' } )
+                = f.submit( 'Send Email', { :class => 'button -bright' } )

@@ -82,7 +82,7 @@
                                     = friend.username
                                 %br
                                 = "Since #{ l( current_user.friendships.find_by( :friend_id => friend.id ).created_at, :format => :to_the_day ) }"
-                                = link_to 'Accept Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :patch, :class => 'link-light'
+                                = link_to 'Accept Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :patch, :class => 'button -subtle'
                                 = link_to 'Reject Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :delete, :class => 'link-dark'
                         %div.clear
                         = will_paginate @waiting_friends

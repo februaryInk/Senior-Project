@@ -7,14 +7,25 @@ module ApplicationHelper
     def gravatar_for( user )
     
         gravatar_id = Digest::MD5::hexdigest( user.email.downcase )
-        gravatar_url = "https://secure.gravatar.com/avatar/#{ gravatar_id }"
+        gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
         image_tag( gravatar_url, :alt => user.username, :class => 'gravatar' )
     end
     
-    def path_from_controller_name( controller_name )
-        
-        pieces = controller_name.split( '::' ).map { | piece | piece.underscore.split( '_' )[ 0..-2 ] }
-        File.join( pieces ).to_s
+    # determine the namespace of the current controller.
+    def namespace
+    
+        controller.class.parent.name == 'Object' ? '' : controller.class.parent.name.underscore.gsub( '_', '-' )
+    end
+    
+    # define a class for the page body by joining the names of the namespace, 
+    # controller, and action names, after removing any empty values.
+    def page_body_class
+    
+        namespace_called = namespace
+        controller_called = controller_name.underscore.gsub( '_', '-' )
+        action_called = action_name.gsub( '_', '-' )
+
+        ( [ namespace_called, controller_called, action_called ].reject { | name | name.blank? } ).join( '-' )
     end
 
     # use site_name for all instances, so that it is trivial to change it.

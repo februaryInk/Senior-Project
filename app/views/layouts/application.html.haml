@@ -8,14 +8,15 @@
         = javascript_include_tag( 'application' )
         = javascript_include_tag( controller_name ) if ::Rails.application.assets.find_asset( controller_name )
         = yield( :javascript ) if content_for?( :javascript )
-    %body
-        = yield( :header ) if content_for?( :header )
-        = yield( :sub_header ) if content_for?( :sub_header )
-        = yield( :tabs ) if content_for?( :tabs )
-        = yield( :navigation ) if content_for?( :navigation )
-        %section#flash-container
-            = render( :partial => 'shared/flash_messages' )
-        = yield( :body )
-        = yield
-        = yield( :footer ) if content_for?( :footer )
-    - console if Rails.env.development?
+    %body{ :class => "#{page_body_class}" }
+        %div#page-wrapper
+            = yield( :header ) if content_for?( :header )
+            = yield( :sub_header ) if content_for?( :sub_header )
+            = yield( :tabs ) if content_for?( :tabs )
+            = yield( :navigation ) if content_for?( :navigation )
+            %section#flash-container
+                = render( :partial => 'shared/flash_messages' )
+            = yield( :body )
+            = yield
+            = yield( :footer ) if content_for?( :footer )
+    -# console if Rails.env.development?
