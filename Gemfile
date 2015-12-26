@@ -43,7 +43,6 @@ gem( 'tzinfo-data', { :platforms => [ :x64_mingw, :mingw, :mswin ] } )
 
 gem( 'therubyracer', { :platforms => [ :ruby ] } )
 gem( 'execjs', { :platforms => [ :ruby ] } )
-gem( 'whenever', { :platforms => [ :ruby ], :require => false } )
 
 
 group( :development ) do
@@ -58,15 +57,9 @@ group( :development, :test ) do
 end
 
 
-group( :doc ) do
-    # Wrapper for the rdoc command line tool.
-    gem( 'sdoc', '0.4.0', { :require => false } )
-end
-
-
 group( :test ) do
-    # Provides a clearer assessment of test results.
-    gem( 'minitest-reporters' )
+    # Reports code test coverage.
+    gem( 'simplecov' )
     
     # Provides colored test output in Windows.
     gem( 'win32console', { :platforms => [ :x64_mingw, :mingw, :mswin ] } )

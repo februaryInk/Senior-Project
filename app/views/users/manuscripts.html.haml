@@ -1,9 +1,8 @@
 - content_for( :title ) { users_account_title }
 
-- content_for( :body ) do
-
-    %div.content
-        %h2
+%main.page-content
+    %section.content
+        %h1
             Your Manuscripts
         - if @manuscripts.any?
             - @manuscripts.each do | manuscript |

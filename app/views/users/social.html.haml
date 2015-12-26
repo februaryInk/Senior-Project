@@ -1,9 +1,8 @@
 - content_for( :title ) { users_account_title }
 
-- content_for( :body ) do
-
-    %div.content
-        %h2
+%main.page-content
+    %section.content
+        %h1
             Your Social Activity
         %div#div-forums
             %h3
@@ -23,7 +22,7 @@
                     %tbody
                         - i = 1
                         - @conversations.each do | conversation |
-                            = content_tag :tr, :class => "#{ i.odd? ? 'tr-odd' : 'tr-even' }" do
+                            = content_tag :tr, :class => (i.odd? ? 'tr-odd' : 'tr-even') do
                                 %td.maximized
                                     = link_to conversation.name, forum_conversation_path( conversation.forum_id, conversation.id )
                                 %td.fitted
@@ -46,7 +45,7 @@
                     %tbody
                         - i = 1
                         - @comments.each do | comment |
-                            = content_tag :tr, :class => "#{ i.odd? ? 'tr-odd' : 'tr-even' }" do
+                            = content_tag :tr, :class => (i.odd? ? 'tr-odd' : 'tr-even') do
                                 %td.maximized
                                     = link_to comment.content, forum_conversation_path( comment.conversation.forum_id, comment.conversation_id )
                                 %td.fitted
