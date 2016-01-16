@@ -27,9 +27,9 @@
                                         = link_to 'Keep Working', manuscript_path( :id => @working_on.id ), :class => 'button -bright -large full-width'
                                     - else
                                         You currently have no manuscripts.
-                                    = link_to 'Start a New Manuscript', new_manuscript_path, :class => 'bumped button -large -light full-width'
+                                    = link_to 'Start a New Manuscript', new_manuscript_path, :class => 'button -large -light full-width'
                         - else
-                            = link_to 'Sign Up', new_user_path, :class => 'button -bright -large full-width'
+                            = link_to 'Sign Up', new_user_path, :class => 'button -bright -large full-width margin-b1'
                             = link_to 'Learn More', about_path, :class => 'bumped button -large -light full-width'
                 
 %main.page-content
@@ -44,7 +44,7 @@
                 %hr
         - if !@news_reports.empty?
             - for report in @news_reports do
-                %div.bumped.report
+                %div.report
                     %h2.heading.-fine
                         = report.title
                     %p.t-fine

@@ -1,9 +1,10 @@
 - content_for( :title ) { users_account_title }
 
 %div.page-content
-    %div.member-info
-        %div.member-info__avatar
-        %div.member-info__report
+    %section.content
+        %div.column-25
+            %div.member-info__avatar
+        %div.column-75.member-info__report
             %h1.heading.-medium
                 = @user.username
             %p
@@ -29,8 +30,8 @@
                             = fields_for 'reciprocated_friendship', @reciprocated_friendship do | f |
                                 = f.hidden_field :user_id, :value => @user.id
                             %p
-                                = submit_tag 'Send Friendship Request', :class => '-bright'
-    %div.clear.color-band
+                                = submit_tag 'Send Friendship Request', :class => 'button -bright'
+    %section.clear.color-band
         %div.activities
             %div.activities__feed
                 = render( { :partial => 'users/activity_feed.html.haml', :locals => { :activity_feed => @activity_feed, :user => @user } } )
@@ -39,7 +40,7 @@
                     Manuscripts
                 %div
                     - @user.manuscripts.each do | manuscript |
-                        %div.bumped
+                        %div.margin-b1
                             %h3.h
                                 = manuscript.title
                             %p

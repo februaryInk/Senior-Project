@@ -23,6 +23,12 @@
     }
 }
 
+@mixin overflow-clear {
+    display: block;
+    overflow: hidden;
+    zoom: 1;
+}
+
 @mixin sans-serif-family {
     font-family: Candara, 'Gill Sans', 'Gill Sans MT', Calibri, Helvetica, sans-serif;
 }
