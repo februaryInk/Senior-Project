@@ -7,14 +7,16 @@
 @import 'base/accents.scss';
 @import 'base/buttons_and_links.scss';
 @import 'base/flash.scss';
-@import 'base/footer.scss';
+@import 'base/footers.scss';
 @import 'base/global_modifiers.scss';
 @import 'base/grid.scss';
-@import 'base/header.scss';
+@import 'base/headers.scss';
 @import 'base/inputs.scss';
 @import 'base/layout_elements.scss';
 @import 'base/tables.scss';
+@import 'base/tabs.scss';
 @import 'base/typography.scss';
+@import 'base/utility_bars.scss';
 
 * {
     box-sizing: border-box;

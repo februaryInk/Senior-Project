@@ -1,0 +1,5 @@
+- model = controller_name.classify.constantize
+- focus = model.friendly_or_not_find(params[:id])
+
+= link_to( 'Edit', eval("edit_admin_#{controller_name.singularize}_path(focus)"), class: "button button--plain" if policy(focus).edit?
+= link_to "Delete", eval("admin_#{controller_name.singularize}_path(focus)"), method: :delete, class: "button button--warning" if policy(focus).destroy?

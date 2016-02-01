@@ -1,4 +1,5 @@
 - content_for( :header ) { render( { :partial => 'layouts/components/header_admin.html.haml' } ) }
-- content_for( :footer ) { render( { :partial => 'layouts/components/footer_admin.html.haml' } ) }
+- content_for( :tabs ) { render( { :partial => 'layouts/components/tabs_admin.html.haml' } ) }
+- content_for( :utility_bar ) { render( { :partial => 'layouts/components/utility_bar_admin.html.haml' } ) }
 
 = render( { :template => 'layouts/application.html.haml' } )

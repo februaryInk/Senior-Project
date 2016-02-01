@@ -1,0 +1,12 @@
+- content_for( :title ) { admin_news_reports_index_title }
+- content_for( :actions ) { render( { :partial => 'admin/shared/index_actions.html.haml' } ) }
+
+%main.page-content--admin
+    %section.column-100
+        - @news_reports.each do | news_report |
+            %div
+                %h2.heading.-fine
+                    = news_report.title
+                %p
+                    = news_report.content
+                    

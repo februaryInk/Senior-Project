@@ -35,9 +35,9 @@ $color-dropdown-arrow: darken( $color-white, 85% );
 $color-dropdown-border: darken( $color-white, 35% );
 $color-dropdown-hover: darken( $color-white, 5% );
 $color-header: darken( $color-white, 2.5% );
-$color-header-tabs: darken( $color-white, 5% );
-$color-header-tabs-active: $color-white;
-$color-header-tabs-border: $color-silver;
+$color-tabs--header: darken( $color-white, 5% );
+$color-tabs--header-active: $color-white;
+$color-tabs--header-border: $color-silver;
 $color-manuscript-nav: $color-white;
 
 // inputs.scss

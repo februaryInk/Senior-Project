@@ -36,19 +36,13 @@
     %section.content.news
         %h1.heading.-medium.underlined
             News Feed
-        - if signed_in? && current_user.admin?
-            %div.new-report
-                %h3
-                    This Just in...
-                = render( { :partial => 'news_reports/form.html.haml', :locals => { :news_report => @news_report } } )
-                %hr
         - if !@news_reports.empty?
             - for report in @news_reports do
                 %div.report
                     %h2.heading.-fine
                         = report.title
                     %p.t-fine
-                        = "Reported by #{ User.find( report.user_id ).username } on #{ report.created_at.strftime( '%B %d, %Y' ) }"
+                        = "Reported by #{User.find( report.user_id ).username} on #{report.created_at.strftime( '%B %d, %Y' )}"
                     %p
                         = report.content
                     - if signed_in? && current_user.admin?

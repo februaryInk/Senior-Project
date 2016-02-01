@@ -18,7 +18,7 @@ class UsersControllerTest < ActionController::TestCase
         assert_not_nil User.find_by( :email => 'newuser@example.com' )
         mail = ActionMailer::Base.deliveries.last
         assert_equal 'newuser@example.com', mail[ :to ].to_s
-        assert_equal "#{ site_name } Account Activation", mail[ :subject ].to_s
+        assert_equal "#{site_name} Account Activation", mail[ :subject ].to_s
     end
     
     # DESTROY

@@ -6,9 +6,8 @@
     border-top-width: 1px;
     color: $color-black;
     line-height: 2em;
-    margin: auto;
-    margin-bottom: 0.75em;
-    margin-top: 0.75em;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
     text-align: center;
     width: 100%;
 
@@ -34,5 +33,14 @@
         background-color: $color-silver;
         border-color: $color-black;
         color: $color-black;
+    }
+}
+
+.admin {
+    #flash-container {
+        left: 20em;
+        position: absolute;
+        right: 0;
+        top: 8em;
     }
 }

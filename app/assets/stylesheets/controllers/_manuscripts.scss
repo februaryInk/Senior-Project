@@ -92,7 +92,7 @@
     height: 0.8em;
     width: 0.8em;
     
-    &:after {
+    &::after {
         background-color: darken( $color-white, 5% );
         border-radius: 0.35em;
         content: '';
@@ -104,7 +104,7 @@
         width: 0.7em;
     }
     
-    &:before {
+    &::before {
         background-color: darken( $color-white, 85% );
         border-radius: 0.4em;
         content: '';

@@ -1,8 +1,4 @@
 class NewsReport < ActiveRecord::Base
-
-    # make the default order of collections of news_reports dependent on the
-    # time they were created_at, most recent first.
-    default_scope -> { order( :created_at => :desc ) }
     
     # VALIDATIONS
     

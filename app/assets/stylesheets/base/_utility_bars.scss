@@ -1,0 +1,48 @@
+.utility-bar {
+    height: 4em;
+    
+    &.-admin {
+        background-color: $color-gallery;
+        left: 20em;
+        padding-left: 3em;
+        padding-right: 3em;
+        position: absolute;
+        right: 0;
+        top: 4em;
+    }
+    
+    &.-manuscript {
+        background-color: $color-white;
+        width: 100%;
+        
+        hr {
+            margin: 0;
+        }
+    }
+}
+
+.utility-bar__content {
+    border-bottom: 1px solid $color-silver;
+    height: 100%;
+    margin: 0 auto;
+    width: $size-content-width;
+}
+
+.utility-bar__title {
+    overflow: ellipsis;
+    vertical-align: middle;
+    width: 99%;
+}
+
+.utility-bar__utilities {
+    vertical-align: middle;
+    white-space: nowrap;
+    
+    & > * {
+        margin-left: 1em;
+    }
+}
+
+.select-navigation {
+    width: 20em;
+}

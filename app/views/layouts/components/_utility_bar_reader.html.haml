@@ -1,13 +1,11 @@
-%nav.navbar
-    %div.navbar__content
+%section.utility-bar.-manuscript
+    %div.utility-bar__content
         %div.faux-table.full-height.spacers--vertical
             %div
-                %div.align-middle.maximized
+                %div.utility-bar__title
                     %h1.heading.-medium.no-white-space
                         = "#{manuscript.title}"
-                %div.align-middle.fitted
+                %div.utility-bar__utilities
                     = link_to( 'Leave Feedback', '#', { :class => 'js-leave-feedback', :id => manuscript.id } ) if signed_in?
-                %div.align-middle.fitted
                     = link_to( 'See All Feedback', manuscript_feedback_path( @manuscript.id ) )
-                %div.align-middle.fitted
                     = collection_select( :section, :id, @sections, :id, :name, { :selected => ( params[ :section ].nil? ? 1 : params[ :section ] ) }, { :class => 'select-navigation', :id => 'js-selector-for-reader' } )

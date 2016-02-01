@@ -1,0 +1,5 @@
+- content_for( :title ) { admin_news_report_new_title }
+
+%main.page-content--admin
+    %section.column-100
+        = render( { :partial => 'form.html.haml', :locals => { :news_report => @news_report } } )

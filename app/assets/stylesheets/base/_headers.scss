@@ -1,3 +1,46 @@
+.admin-header {
+    @include overflow-clear;
+    
+    background-color: $color-alabaster;
+    left: 20em;
+    line-height: 4em;
+    padding-left: 3em;
+    padding-right: 3em;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.admin-header__nav {
+    float: right;
+    
+    a {
+        padding-bottom: 0.125em;
+        padding-top: 0.125em;
+        text-transform: uppercase;
+        
+        &.-open {
+            border-bottom: 1px solid $color-text-default;
+        }
+    }
+    
+    & > ul {
+        list-style: none;
+        
+        & > li {
+            display: inline-block;
+            margin-left: 2em;
+        }
+    }
+}
+
+.admin-header__logo {
+    @include accent-family;
+
+    float: left;
+    font-size: 2.5em;
+}
+
 .dropdown {
     ul {
         background-color: $color-dropdown;
@@ -56,40 +99,6 @@
     }
 }
 
-.header-tabs {
-    background-color: $color-gallery;
-    line-height: 3em;
-    
-    ul {
-        list-style: none;
-        width: 100%;
-        
-        li {
-            display: inline-block;
-            float: left;
-            height: 100%;
-            text-align: center;
-            width: 25%;
-            
-            a {
-                border-color: $color-header-tabs-border;
-                border-style: solid;
-                border-width: 0.1em;
-                display: block;
-                height: 100%;
-                padding: 0;
-                text-transform: uppercase;
-                width: 100%;
-                
-                &.open {
-                    border-bottom-color: $color-white;
-                    background-color: $color-white;
-                }
-            }
-        }
-    }
-}
-
 .main-header {
     background-color: $color-alabaster;
     line-height: 4em;
@@ -104,7 +113,7 @@
         padding-top: 0.125em;
         text-transform: uppercase;
         
-        &.open {
+        &.-open {
             border-bottom: 1px solid $color-text-default;
         }
     }
@@ -124,28 +133,6 @@
 
     float: left;
     font-size: 2.5em;
-}
-
-.navbar {
-    background-color: $color-white;
-    height: 3.5em;
-    width: 100%;
-    
-    hr {
-        margin: 0;
-    }
-}
-
-.navbar__content {
-    border-bottom: 1px solid $color-silver;
-    height: 100%;
-    margin: 0 auto;
-    width: $size-content-width;
-}
-
-.select-navigation {
-    margin: 0;
-    width: 20em;
 }
 
 .sub-header {

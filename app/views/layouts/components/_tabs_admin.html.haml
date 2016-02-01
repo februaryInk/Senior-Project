@@ -1,0 +1,26 @@
+%aside.tabs--sidebar
+    %div.logo-box
+        = link_to( admin_root_path, { :class => 'logo' } ) do
+            Inklings
+            %sub
+                (Admin)
+    %nav
+        %ul.tabs--sidebar__links-list
+            %li
+                = link_to( 'Dashboard', admin_root_path, { :class => 'js-openable-categorical-link' } )
+            %li
+                = link_to( 'Messages', '#', { :class => 'js-openable-categorical-link' } )
+            %li
+                = link_to( 'Tasks', '#', { :class => 'js-openable-categorical-link' } )
+            %li
+                = link_to( 'Forums', '#', { :class => 'js-openable-categorical-link' } )
+            %li
+                = link_to( 'Genres', '#', { :class => 'js-openable-categorical-link' } )
+            %li
+                = link_to( 'Manuscripts', '#', { :class => 'js-openable-categorical-link' } )
+            %li
+                = link_to( 'News Reports', admin_news_reports_path, { :class => 'js-openable-categorical-link' } )
+            %li
+                = link_to( 'Ratings', '#', { :class => 'js-openable-categorical-link' } )
+            %li
+                = link_to( 'Users', '#',{ :class => 'js-openable-categorical-link' } )
