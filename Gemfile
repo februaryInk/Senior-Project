@@ -4,10 +4,13 @@ source( 'https://rubygems.org' )
 gem( 'rails', '4.2.0' )
 
 # Adds browser-specific CSS prefixes automatically.
-gem 'autoprefixer-rails'
+gem( 'autoprefixer-rails' )
 
 # Includes password-encrypting function BCrypt.
 gem( 'bcrypt', '3.1.9' )
+
+# Imports the Font Awesome icons.
+gem( 'font-awesome-rails' )
 
 # Allows HTML code to be written in HAML, a kind of HTML shorthand.
 gem( 'haml-rails' )
@@ -25,13 +28,19 @@ gem( 'jquery-ui-rails' )
 gem( 'pg', '0.18.1' )
 
 # Allows the use of SCSS for style sheets.
-gem( 'sass-rails',    '4.0.3' )
+gem( 'sass-rails', '4.0.3' )
 
 # Compresses JavaScript assets.
 gem( 'uglifier', '1.3.0' )
 
 # Paginates long lists or tables.
 gem( 'will_paginate', '3.0.7' )
+
+# use this gem instead of the source once it updates to the iframe-less Squire.
+# source( 'https://rails-assets.org' ) do
+    # Imports the lightweight Squire text editor.
+    # gem( 'rails-assets-squire-rte' )
+# end
 
 
 # Provides Windows with the necessary zoneinfo files.

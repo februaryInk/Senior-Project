@@ -119,7 +119,7 @@
 }
 
 .member-info__avatar {
-    border: 1px solid $color-black;
+    border: 1em solid $color-gallery;
     float: left;
     height: calc( #{$size-content-width} / 4 );
     margin: 0 2em 2em 0;

@@ -44,7 +44,7 @@
                     %p.t-fine
                         = "Reported by #{User.find( report.user_id ).username} on #{report.created_at.strftime( '%B %d, %Y' )}"
                     %p
-                        = report.content
+                        = simple_format( report.content )
                     - if signed_in? && current_user.admin?
                         %br
                         = link_to 'Edit Report', edit_news_report_path( report.id ), :class => 'button -subtle'

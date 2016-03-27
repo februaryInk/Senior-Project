@@ -5,8 +5,8 @@
             = yield( :title ) || 'Inklings'
         = csrf_meta_tags
         = stylesheet_link_tag( 'application', :media => 'all' )
-        = javascript_include_tag( 'application' )
-        = javascript_include_tag( controller_name ) if ::Rails.application.assets.find_asset( controller_name )
+        = javascript_include_tag( 'application.js' )
+        = javascript_include_tag( 'squire-raw.js' )
         = yield( :javascript ) if content_for?( :javascript )
     %body{ :class => "#{page_body_class}" + ( namespace.present? ? " #{namespace}" : '' ) }
         %div#page-wrapper
@@ -19,4 +19,4 @@
             = yield( :body )
             = yield
             = yield( :footer ) if content_for?( :footer )
-    - console if Rails.env.development?
+    -# console if Rails.env.development?

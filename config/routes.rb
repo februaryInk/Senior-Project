@@ -58,4 +58,6 @@ Rails.application.routes.draw do
     get    '/signin',  :to => 'sessions#new'
     post   '/signin',  :to => 'sessions#create'
     delete '/signout', :to => 'sessions#destroy', :as => 'signout'
+    
+    get '/shared/squire_ui.html', :to => 'application#squire_ui', :as => 'squire_ui'
 end

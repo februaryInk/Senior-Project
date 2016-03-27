@@ -5,67 +5,59 @@ forum_categories = [
 ]
 
 forum_categories.each do | name |
-    
+
     ForumCategory.create( :name => name )
 end
       
-community_forums = [ 
-    'Introduce Yourself', 
-    'Questions and Answers', 
-    'General Talk',
-    'Role Playing' 
-]
+forums = {
+    'Community' => [
+        'Introduce Yourself', 
+        'Questions and Answers', 
+        'General Talk',
+        'Role Playing'
+    ],
+    'Reading' => [
+        'Authors',
+        'Good Books',
+        'Community Stories'
+    ],
+    'Writing' => [
+        'Advice',
+        'Characters',
+        'Grammar and Form',
+        'Ideas Exchange',
+        'Playing with Plot',
+        'Revising and Polishing'
+    ]
+}
 
-community_forums.each do | name |
+forums.each do | category, names |
 
-    Forum.create( 
-        :forum_category_id => ForumCategory.called( 'Community' ).id,
-        :name => name
-    )
-end
-      
-reading_forums = [ 
-    'Authors',
-    'Good Books',
-    'Stories on Inklings'
-]
-      
-reading_forums.each do | name |
+    names.each do | name |
     
-    Forum.create(
-        :forum_category_id => ForumCategory.called( 'Reading' ).id,
-        :name => name
-    )
-end
-      
-writing_forums = [
-    'Advice',
-    'Characters',
-    'Grammar and Form',
-    'Ideas Exchange',
-    'Playing with Plot',
-    'Revising and Polishing'
-]
-
-writing_forums.each do | name |
-    
-    Forum.create(
-        :forum_category_id => ForumCategory.called( 'Writing' ).id,
-        :name => name )
+        Forum.create(
+            :forum_category_id => ForumCategory.called( category ).id,
+            :name => name
+        )
+    end
 end
       
 genres = [ 
     'Adventure', 
     'Action', 
+    'Comedy', 
     'Fantasy', 
     'Fiction', 
+    'Gothic', 
     'Historical', 
     'Horror', 
     'Literary', 
     'Mystery', 
     'Non-Fiction', 
+    'Religious', 
     'Romance', 
     'Paranormal', 
+    'Science Fiction', 
     'Western' 
 ]
 

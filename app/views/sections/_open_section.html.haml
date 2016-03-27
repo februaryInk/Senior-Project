@@ -1,5 +1,11 @@
-= form_for( @open_section, { :html => { :id => 'form-section-update' }, :method => 'patch', :remote => true } ) do | f |
-    %div.field
-        = f.label( :content, @open_section.name )
-        = f.text_area( :content, { :id => 'section-content' } )
-        = f.error_message( :content )
+%div.page-content
+    %div
+        %textarea.js-squire-standin
+%script{ :type => 'text/javascript' }
+    :plain
+        $( document ).ready( function (  ) {
+          new SquireUI( {
+              buildPath: '/shared/',
+              replace: 'textarea.js-squire-standin'
+          } );
+        } );
