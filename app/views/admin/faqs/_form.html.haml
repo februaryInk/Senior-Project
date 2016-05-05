@@ -1,0 +1,16 @@
+= form_for( [ :admin, faq ] ) do | f |
+    %div.field
+        = f.label( :faq_category_id, 'Category' )
+        = f.select( :faq_category_id, options_from_collection_for_select( FaqCategory.all, 'id', 'name' ), { :prompt => '---' } )
+    %div.field
+        = f.label( :question )
+        = f.text_area( :question )
+        = f.error_message( :question )
+    %div.field
+        = f.label( :answer )
+        = f.text_area( :answer )
+        = f.error_message( :answer )
+    %div.buttons
+        = f.submit( 'Submit', { :class => 'button -bright -left' } )
+        = link_to( 'Cancel', admin_faqs_path, { :class => 'button -left -subtle' } )
+    

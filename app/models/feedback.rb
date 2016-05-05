@@ -1,6 +1,6 @@
 class Feedback < ActiveRecord::Base
 
-    # RELATIONSHIPS
+    # ASSOCIATIONS
 
     belongs_to :user
     belongs_to :manuscript

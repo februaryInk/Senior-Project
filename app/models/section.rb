@@ -12,7 +12,7 @@ class Section < ActiveRecord::Base
     
     validates :content, { :length => { :minimum => 100 }, :on => :update, :if => :publish_now? }
 
-    # RELATIONSHIPS
+    # ASSOCIATIONS
 
     belongs_to :manuscript
     has_one :user, :through => :manuscript

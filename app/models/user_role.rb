@@ -1,12 +1,12 @@
 class UserRole < ActiveRecord::Base
 
-    include CalledClassMethod
+    include CallableByName
 
     # VALIDATIONS
 
     validates :name, :uniqueness => { :case_sensitive => true }
 
-    # RELATIONSHIPS
+    # ASSOCIATIONS
 
     has_many :users
 end

@@ -1,6 +1,6 @@
 class GenreManuscript < ActiveRecord::Base
     
-    # RELATIONSHIPS
+    # ASSOCIATIONS
     
     belongs_to :genre
     belongs_to :manuscript

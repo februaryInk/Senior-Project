@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         delete '/signout', :to => 'sessions#destroy', :as => 'signout'
         
         resources :news_reports, :only => [ :create, :destroy, :edit, :index, :new, :update ]
+        resources :faqs
     end
     
     resources :account_activations, :only => [ :create, :edit, :new ]

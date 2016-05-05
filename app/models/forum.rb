@@ -1,8 +1,8 @@
 class Forum < ActiveRecord::Base
 
-    include CalledClassMethod
+    include CallableByName
 
-    # RELATIONSHIPS
+    # ASSOCIATIONS
 
     belongs_to :category, :class_name => 'ForumCategory', :foreign_key => 'forum_category_id'
     

@@ -7,7 +7,7 @@ class Manuscript < ActiveRecord::Base
     validates :rating_id, :presence => true, :numericality => { :only_integer => true }, :reduce => true
     validates :user_id, :presence => true, :numericality => { :only_integer => true }, :reduce => true
     
-    # RELATIONSHIPS
+    # ASSOCIATIONS
 
     belongs_to :rating
     belongs_to :user

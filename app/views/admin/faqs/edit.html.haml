@@ -1,0 +1,6 @@
+- content_for( :title ) { admin_faq_edit_title }
+- content_for( :utility_title ) { admin_faq_edit_utility_title }
+
+%main.page-content--admin
+    %section.column-100
+        = render( { :partial => 'form.html.haml', :locals => { :faq => @faq } } )

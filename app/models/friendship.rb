@@ -10,7 +10,7 @@ class Friendship < ActiveRecord::Base
     validates :friend_id, :presence => true
     validates :user_id, :presence => true
     
-    # RELATIONSHIPS
+    # ASSOCIATIONS
 
     belongs_to :user
     belongs_to :status, :class_name => 'FriendshipStatus', :foreign_key => 'friendship_status_id'

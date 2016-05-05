@@ -8,6 +8,7 @@ class HelpPagesController < DefaultNamespaceController
 
     # display the FAQ page.
     def faq
+        @faqs = Faq.all
     end
 
     # display the getting started page.

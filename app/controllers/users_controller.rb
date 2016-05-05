@@ -112,6 +112,13 @@ class UsersController < DefaultNamespaceController
         end
     
         def user_params
-            params.require( :user ).permit( :biography, :current_password, :email, :password, :password_confirmation, :username )
+            params.require( :user ).permit( 
+                :biography, 
+                :current_password, 
+                :email, 
+                :password, 
+                :password_confirmation, 
+                :username 
+            )
         end
 end

@@ -6,7 +6,7 @@ class Conversation < ActiveRecord::Base
     validates :user_id, { :presence => true }
     validates :name, { :presence => true, :length => { :maximum => 140 }, :reduce => true }
     
-    # RELATIONSHIPS
+    # ASSOCIATIONS
 
     belongs_to :forum
     belongs_to :user

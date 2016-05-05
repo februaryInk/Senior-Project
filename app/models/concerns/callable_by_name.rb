@@ -1,4 +1,4 @@
-module CalledClassMethod
+module CallableByName
 
     extend ActiveSupport::Concern
     

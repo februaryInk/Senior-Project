@@ -4,9 +4,9 @@
 
 class FriendshipStatus < ActiveRecord::Base
 
-    include CalledClassMethod
+    include CallableByName
 
-    # RELATIONSHIPS
+    # ASSOCIATIONS
     
     has_many :friendships
 end

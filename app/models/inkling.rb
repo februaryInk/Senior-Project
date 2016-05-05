@@ -12,7 +12,7 @@ class Inkling < ActiveRecord::Base
     validates :revival_fee, :presence => true, :numericality => { :only_integer => true }, :reduce => true
     validates :revival_fee_currency, :presence => true, :inclusion => { :in => CURRENCIES }, :reduce => true
     
-    # RELATIONSHIPS
+    # ASSOCIATIONS
 
     belongs_to :manuscript
     

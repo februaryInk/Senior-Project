@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
     validates :content, :presence => true, :length => { :maximum => 1000 }, :reduce => true
     validates :user_id, :presence => true
 
-    # RELATIONSHIPS
+    # ASSOCIATIONS
     
     belongs_to :user
 end

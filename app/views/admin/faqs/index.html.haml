@@ -1,0 +1,12 @@
+- content_for( :actions ) { render( { :partial => 'admin/shared/index_actions.html.haml' } ) }
+- content_for( :title ) { admin_faqs_index_title }
+- content_for( :utility_title ) { admin_faqs_index_utility_title }
+
+
+%main.page-content--admin
+    %section.column-100
+        - @faqs.each do | faq |
+            %p
+                = faq.question
+            %p
+                = faq.answer

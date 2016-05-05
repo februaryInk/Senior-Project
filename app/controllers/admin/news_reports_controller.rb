@@ -46,6 +46,9 @@ class Admin::NewsReportsController < AdminNamespaceController
     private
         
         def news_report_params
-            params.require( :news_report ).permit( :content, :title )
+            params.require( :news_report ).permit( 
+                :content, 
+                :title 
+            )
         end
 end

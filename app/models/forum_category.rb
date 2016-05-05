@@ -1,8 +1,8 @@
 class ForumCategory < ActiveRecord::Base
 
-    include CalledClassMethod
+    include CallableByName
 
-    # RELATIONSHIPS
+    # ASSOCIATIONS
     
     has_many :forums
 end

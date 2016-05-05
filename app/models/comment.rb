@@ -12,7 +12,7 @@ class Comment < ActiveRecord::Base
     validates :conversation, { :presence => true }
     validates :content, { :presence => true }
     
-    # RELATIONSHIPS
+    # ASSOCIATIONS
 
     belongs_to :user
     belongs_to :conversation

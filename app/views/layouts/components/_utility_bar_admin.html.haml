@@ -4,6 +4,6 @@
             %div
                 %div.utility-bar__title
                     %h1.heading.-large.no-white-space
-                        = yield( :title ) if content_for?( :title )
+                        = yield( :utility_title ) if content_for?( :utility_title )
                 %div.utility-bar__utilities
                     = yield( :actions ) if content_for?( :actions )

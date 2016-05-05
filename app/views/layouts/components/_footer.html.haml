@@ -17,5 +17,9 @@
                     = link_to 'Contact Us', contact_path
             %ul
                 %li
-                    Inklings &copy 2014
+                    = link_to 'Internal', admin_root_path
+            %ul
+                %li
+                    Inklings &copy 
+                    = "#{Time.now.year}"
         %div.clear

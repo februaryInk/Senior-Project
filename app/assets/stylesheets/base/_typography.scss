@@ -49,6 +49,8 @@ em, i { font-style: italic; }
     &.-large { font-size: 32px; }
     &.-grand { font-size: 48px; }
     &.-giant { font-size: 64px; }
+    
+    &.-subtle { color: $color-gray; }
 }
 
 .logo { @include accent-family; font-size: 3em; }
@@ -60,6 +62,7 @@ em, i { font-style: italic; }
 .t-large { font-size: 20px; }
 
 .t-danger { color: $color-danger; }
+.t-subtle { color: $color-gray; }
 
 a, span { &.underlined { text-decoration: underline; } }
 h1, h2, h3, h4, h5, h6 { &.underlined { border-bottom: 2px solid $color-silver; display: block; padding-bottom: 4px; width: 100%; } }

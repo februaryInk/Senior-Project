@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
     validates :current_password, { :presence => true, :on => :self_update }
     validate  :authentication, { :on => :update, :if => :current_password_present? }
     
-    # RELATIONSHIPS
+    # ASSOCIATIONS
     
     belongs_to :role, :class_name => 'UserRole', :foreign_key => 'user_role_id'
     

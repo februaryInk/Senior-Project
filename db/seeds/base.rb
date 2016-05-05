@@ -12,7 +12,7 @@ end
 forums = {
     'Community' => [
         'Introduce Yourself', 
-        'Questions and Answers', 
+        'FAQs', 
         'General Talk',
         'Role Playing'
     ],
@@ -64,8 +64,18 @@ genres = [
 genres.each do | name |
     
     Genre.find_or_create_by( :name => name )
-end    
+end
+
+faq_categories = [
+    'How To',
+    'Technical'
+]
+
+faq_categories.each do | name |
     
+    FaqCategory.find_or_create_by( :name => name )
+end
+
 ratings = [ 
     'Friendly',
     'Mild',

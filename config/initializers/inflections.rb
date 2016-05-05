@@ -10,6 +10,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.irregular 'person', 'people'
 #   inflect.uncountable %w( fish sheep )
     inflect.uncountable %w( feedback )
+    inflect.irregular 'faq', 'faqs'
 end
 
 # These inflection rules are supported but not enabled by default:
