@@ -5,8 +5,8 @@
             = yield( :title ) || 'Inklings'
         = csrf_meta_tags
         = stylesheet_link_tag( 'application', :media => 'all' )
-        = javascript_include_tag( 'application.js' )
         = javascript_include_tag( 'squire-raw.js' )
+        = javascript_include_tag( 'application.js' )
         = yield( :javascript ) if content_for?( :javascript )
     %body{ :class => "#{page_body_class}" + ( namespace.present? ? " #{namespace}" : '' ) }
         %div#page-wrapper

@@ -1,3 +1,4 @@
+
 .aside-user {
     float: left;
     padding: 2em 0;
@@ -30,14 +31,15 @@
     border-radius: 50%;
     cursor: pointer;
     display: inline-block;
-    height: 2em;
-    line-height: 2em;
+    height: 2.5em;
+    line-height: 2.5em;
     text-align: center;
     user-select: none;
-    width: 2em;
+    width: 2.5em;
     
-    &.open {
+    &.-open {
         background-color: $color-silver;
+        border: 1px solid $color-gray;
     }
 }
 
