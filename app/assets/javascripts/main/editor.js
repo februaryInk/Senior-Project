@@ -11,10 +11,10 @@ function Editor ( controlsHtmlPath, standin ) {
 
 Editor.prototype.activateListeners = function (  ) {
     
-    var editor = this;
+    editor = this;
     
     $( document ).on( 'blur', '.js-editor-textarea-' + this.uniqueId, function(  ) {
-        
+        editor.controlPanel.neutralizeControlStates(  );
     } );
     
     $( document ).on( 'click select', '.js-editor-textarea-' + this.uniqueId, function(  ) {

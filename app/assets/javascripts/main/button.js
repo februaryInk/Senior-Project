@@ -1,6 +1,7 @@
-var Button = function ( action, controlPanel, editor, parent, selector, tag, testRegex ) {
+var Button = function ( action, clickFunction, controlPanel, editor, parent, selector, tag, testRegex ) {
     
     this.action = action;
+    this.clickFunction = clickFunction;
     this.controlPanel = controlPanel;
     this.editor = editor;
     this.parent = parent;
@@ -18,21 +19,7 @@ Button.prototype.activate = function (  ) {
     var button = this;
     
     $( document ).on( 'click', this.selector, function(  ) {
-        
-        console.log( 'Clicked ' + button.action + '.' );
-        
-        var test = button.editor.textarea.testPresenceinSelection( button.action, button.action, button.tag, button.testRegex );
-        
-        console.log( test );
-        
-        if ( test ) {
-            button.editor.textarea[ 'remove' + button.action.charAt( 0 ).toUpperCase(  ) + button.action.slice( 1 ) ](  );
-        } else {
-            button.editor.textarea[ button.action ](  );
-            button.editor.textarea.focus(  );
-        }
-        
-        button.controlPanel.visualizeControlStates(  );
+        button.clickFunction( button );
     } );
 }
 

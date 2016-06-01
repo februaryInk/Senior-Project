@@ -7,22 +7,49 @@ ControlPanel = function ( editor, htmlPath, node ) {
     this.buttons = {
         intermediate: {  },
         select: {  },
+        special: {  },
         toggle: {  }
     };
     
     this.buttonRegexes = {
         bold: />B\b/,
         italic: />I\b/,
-        underline: />U\b/
+        redo: null,
+        underline: />U\b/,
+        undo: null
     }
 
     this.buttonTags = {
         bold: 'B',
         italic: 'I',
-        underline: 'U'
+        redo: null,
+        underline: 'U',
+        undo: null
     }
     
     this.build( htmlPath );
+}
+
+ControlPanel.prototype.buttonFunctions = {
+    intermediate: function (  ) {
+    },
+    select: function (  ) {
+    },
+    toggle: function ( button ) {
+        var test = button.editor.textarea.testPresenceinSelection( button.action, button.action, button.tag, button.testRegex );
+    
+        console.log( test );
+        console.log( 'Clicked ' + button.action + '.' );
+        
+        if ( test ) {
+            button.editor.textarea[ 'remove' + button.action.charAt( 0 ).toUpperCase(  ) + button.action.slice( 1 ) ](  );
+        } else {
+            button.editor.textarea[ button.action ](  );
+            button.editor.textarea.focus(  );
+        }
+        
+        button.controlPanel.visualizeControlStates(  );
+    }
 }
 
 ControlPanel.prototype.build = function ( htmlPath ) {
@@ -41,12 +68,24 @@ ControlPanel.prototype.build = function ( htmlPath ) {
             $( buttons ).each( function( index, element ) {
                 
                 var action = $( this ).data( 'action' );
+                var clickFunction = function ( button ) { alert( 'Function not assigned.' ) };
                 var method = $( this ).data( 'method' );
+                
+                if ( method in controlPanel.buttonFunctions ) {
+                    clickFunction = controlPanel.buttonFunctions[ method ];
+                } else {
+                    console.log( action );
+                    clickFunction = function ( button ) { 
+                        controlPanel.editor.textarea[ action ](  );
+                        button.editor.textarea.focus(  );
+                    }
+                }
                 
                 $( this ).addClass( 'js-' + action + '-' + controlPanel.editor.uniqueId );
                 
                 controlPanel.buttons[ method ][ action ] = new Button(
                     action,
+                    clickFunction,
                     controlPanel,
                     controlPanel.editor,
                     null,
@@ -59,20 +98,33 @@ ControlPanel.prototype.build = function ( htmlPath ) {
     } );
 }
 
+ControlPanel.prototype.neutralizeControlStates = function (  ) {
+    
+    $.each( this.buttons.toggle, function( key, value ) {
+        value.toggleOff(  );
+    } );
+}
+
 ControlPanel.prototype.visualizeControlStates = function (  ) {
     
     console.log( 'Buttoning up.' );
         
     var test = {
-        testBold: this.editor.textarea.testPresenceinSelection( 'bold', 'bold', 'B', ( />B\b/ ) ),
-        testItalic: this.editor.textarea.testPresenceinSelection( 'italic', 'italic', 'I', ( />I\b/ ) ),
-        testUnderline: this.editor.textarea.testPresenceinSelection( 'underline', 'underline', 'U', ( />U\b/ ) ),
-        testOrderedList: this.editor.textarea.testPresenceinSelection( 'makeOrderedList', 'makeOrderedList', 'OL', ( />OL\b/ ) ),
-        testLink: this.editor.textarea.testPresenceinSelection( 'makeLink', 'makeLink', 'A', ( />A\b/ ) ),
-        testQuote: this.editor.textarea.testPresenceinSelection( 'increaseQuoteLevel', 'increaseQuoteLevel', 'blockquote', ( />blockquote\b/ ) )
+        bold: this.editor.textarea.testPresenceinSelection( 'bold', 'bold', 'B', ( />B\b/ ) ),
+        italic: this.editor.textarea.testPresenceinSelection( 'italic', 'italic', 'I', ( />I\b/ ) ),
+        underline: this.editor.textarea.testPresenceinSelection( 'underline', 'underline', 'U', ( />U\b/ ) ),
+        orderedList: this.editor.textarea.testPresenceinSelection( 'makeOrderedList', 'makeOrderedList', 'OL', ( />OL\b/ ) ),
+        link: this.editor.textarea.testPresenceinSelection( 'makeLink', 'makeLink', 'A', ( />A\b/ ) ),
+        quote: this.editor.textarea.testPresenceinSelection( 'increaseQuoteLevel', 'increaseQuoteLevel', 'blockquote', ( />blockquote\b/ ) )
     }
     
-    if ( test.testBold ) { this.buttons.toggle.bold.toggleOn(  ); } else { this.buttons.toggle.bold.toggleOff(  ); }
-    if ( test.testItalic ) { this.buttons.toggle.italic.toggleOn(  ); } else { this.buttons.toggle.italic.toggleOff(  ); }
-    if ( test.testUnderline ) { this.buttons.toggle.underline.toggleOn(  ); } else { this.buttons.toggle.underline.toggleOff(  ); }
+    $.each( this.buttons.toggle, function( key, value ) {
+        if ( test[ key ] ) {
+            console.log( 'Turn on ' + key );
+            value.toggleOn(  );
+        } else {
+            console.log( 'Turn off ' + key );
+            value.toggleOff(  );
+        }
+    } );
 }
