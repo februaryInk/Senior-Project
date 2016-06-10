@@ -4,10 +4,15 @@ var Button = function ( action, clickFunction, controlPanel, editor, parent, sel
     this.clickFunction = clickFunction;
     this.controlPanel = controlPanel;
     this.editor = editor;
+    this.initialHeight = $( selector ).outerHeight(  );
+    this.initialWidth = $( selector ).outerWidth(  );
+    this.open = false;
     this.parent = parent;
     this.selector = selector;
     this.tag = tag;
     this.testRegex = testRegex;
+    this.toBeClosed = false;
+    this.toBeOpened = false;
     
     this.activate(  );
 }

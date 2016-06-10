@@ -2,7 +2,7 @@
 - content_for( :utility_bar ) { render( :partial => 'layouts/components/utility_bar_writer.html.haml', :locals => { :manuscript => @manuscript, :sections => @sections } ) }
 
 %main.page-content
-    %div.content
+    %div.content.padding-t3
         %div.column-100
             - if @manuscript.sections.any?
                 %div#open-section

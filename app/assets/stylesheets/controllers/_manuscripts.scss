@@ -30,9 +30,11 @@
     background-color: $color-alto;
     border-radius: 50%;
     cursor: pointer;
-    display: inline-block;
+    display: block;
+    float: left;
     height: 2.5em;
     line-height: 2.5em;
+    position: relative;
     text-align: center;
     user-select: none;
     width: 2.5em;
@@ -41,6 +43,15 @@
         background-color: $color-silver;
         border: 1px solid $color-gray;
     }
+}
+
+.editor-control__sub-controls {
+    display: none;
+    left: 0;
+    position: absolute;
+    text-align: left;
+    top: -2.5em;
+    width: 1000%;
 }
 
 .editor-textarea {
@@ -86,14 +97,6 @@
         position: absolute;
         width:100%;
     }
-
-    &::before {
-    
-    }
-}
-
-.editor__left-right {
-
 }
 
 .feedback {
@@ -110,6 +113,11 @@
     border-bottom: 0.1em solid darken( $color-white, 25% );
     font-weight: bold;
     line-height: 1.5em;
+}
+
+.group {
+    display: inline-block;
+    margin-right: 1em;
 }
 
 .handle {
@@ -152,6 +160,10 @@ input[type="text"].input-inline,
 .input-inline {
     display: inline-block;
     width: 10em;
+}
+
+.intermediate-control-wrapper {
+    position: relative;
 }
 
 .li-feedback {
