@@ -1,13 +1,4 @@
-var ui, editor;
 
-$( document ).ready( function (  ) {
-    if ( $( '.js-squire-standin' ).length ) {
-        ui = new Editor(
-            '/shared/squire_ui.html',
-            '.js-squire-standin'
-        );
-    }
-} );
 
 Squire.prototype.visualizeControlStates = function (  ) {
     console.log( 'Buttoning up.' );

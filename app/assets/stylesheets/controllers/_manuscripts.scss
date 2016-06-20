@@ -55,48 +55,12 @@
 }
 
 .editor-textarea {
+    border-left: 1px dotted $color-silver-chalice;
+    border-right: 1px dotted $color-silver-chalice;
     height: 400px;
     padding-left: 0.5em;
     padding-right: 0.5em;
     position: relative;
-    
-    &::after,
-    &::before {
-        background-image: linear-gradient(to top, $color-silver-chalice 50%, transparent 0%);
-        background-repeat: repeat-y;
-        background-size: 1px 16px;
-        bottom: 0;
-        content: '';
-        height: 100%;
-        position: absolute;
-        width: 1px;
-    }
-    
-    &::after {
-        background-position: right;
-        right: 0;
-    }
-
-    &::before {
-        background-position: left;
-        left: 0;
-    }
-}
-
-.editor__bottom-top {
-    &::after {
-        background-image: linear-gradient(to right, #7f7f7f 71%, rgba(255, 255, 255, 0) 0%);
-        background-position: bottom;
-        background-repeat: repeat-x;
-        background-size: 11px 1px;
-        bottom: 0;
-        content:'';
-        left:0;
-        right:0;
-        height:2px;
-        position: absolute;
-        width:100%;
-    }
 }
 
 .feedback {

@@ -1,3 +1,14 @@
+var ui, editor;
+
+$( document ).ready( function (  ) {
+    if ( $( '.js-squire-standin' ).length ) {
+        ui = new Editor(
+            '/shared/squire_ui.html',
+            '.js-squire-standin'
+        );
+    }
+} );
+
 function Editor ( controlsHtmlPath, standin ) {
     
     this.$container = $( standin ).parent(  );
@@ -13,6 +24,8 @@ Editor.prototype.activateListeners = function (  ) {
     
     editor = this;
     
+    // TODO: use this.textarea.selector.
+    // FIX: blur messes with button-click effects.
     $( document ).on( 'blur', '.js-editor-textarea-' + this.uniqueId, function(  ) {
         editor.controlPanel.neutralizeControlStates(  );
     } );

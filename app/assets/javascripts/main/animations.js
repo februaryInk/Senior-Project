@@ -16,14 +16,11 @@ var animateWithPause = function ( selector, animations, durations, pause ) {
     var $elements = $( selector );
     
     if ( $elements.length > 0 ) {
-        console.log( 'Made it this far...' );
         animateNextElementPause( $elements, 0, animations, durations, pause );
     }
 }
 
 var animateNextElementPause = function ( $elements, index, animations, durations, pause ) {
-    
-    console.log( 'Trigering ' + index );
     
     if ( index < $elements.length ) {
         setTimeout( function (  ) {
@@ -34,14 +31,11 @@ var animateNextElementPause = function ( $elements, index, animations, durations
     if ( typeof( animations ) === 'function' && ( typeof( durations ) === 'number' || typeof( durations ) === 'string' ) ) {
         $( $elements[ index ] ).animate( animations, durations );
     } else if ( animations instanceof Array && durations instanceof Array ) {
-        console.log( 'Working through...' );
         startNextAnimationPause( $elements[ index ], 0, animations, durations );
     }
 }
 
 var startNextAnimationPause = function ( element, index, animations, durations ) {
-    
-    console.log( 'Animation ' + index );
     
     $( element ).animate( animations[ index ], durations[ index ], function(  ) {
         if ( index < animations.length ) {
