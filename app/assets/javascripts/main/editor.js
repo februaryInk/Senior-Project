@@ -26,9 +26,9 @@ Editor.prototype.activateListeners = function (  ) {
     
     // TODO: use this.textarea.selector.
     // FIX: blur messes with button-click effects.
-    $( document ).on( 'blur', '.js-editor-textarea-' + this.uniqueId, function(  ) {
-        editor.controlPanel.neutralizeControlStates(  );
-    } );
+    //$( document ).on( 'blur', '.js-editor-textarea-' + this.uniqueId, function(  ) {
+    //    editor.controlPanel.neutralizeControlStates(  );
+    //} );
     
     $( document ).on( 'click select', '.js-editor-textarea-' + this.uniqueId, function(  ) {
         editor.controlPanel.visualizeControlStates(  );

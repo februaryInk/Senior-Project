@@ -1,11 +1,13 @@
 SelectButton.prototype = Object.create( Button.prototype, { constructor: { value: SelectButton } } );
 
-function SelectButton ( action, controlPanel, editor, selector ) {
+function SelectButton ( action, controlPanel, editor, selector, textarea ) {
     
-    Button.call( this, action, controlPanel, editor, selector );
+    Button.call( this, action, controlPanel, editor, selector, textarea );
     
-    if ( action === 'fontSize' ) {
-        this.size = $( selector ).data( 'size' );
+    this.parent = controlPanel.buttons.intermediate[ $( selector ).data( 'parent' ) ];
+    
+    if ( this.parent.action === 'fontSize' ) {
+        this.size = $( selector ).data( 'size' ) + 'px';
     }
     
     this.activate(  );
@@ -13,5 +15,10 @@ function SelectButton ( action, controlPanel, editor, selector ) {
 
 SelectButton.prototype.clickFunction = function (  ) {
     
-    console.log( 'Fill me in!' );
+    if ( this.parent.action == 'fontSize' ) {
+        this.textarea.setFontSize( this.size );
+        this.parent.toBeClosed = true;
+        this.textarea.focus(  );
+        this.controlPanel.visualizeControlStates(  );
+    }
 }

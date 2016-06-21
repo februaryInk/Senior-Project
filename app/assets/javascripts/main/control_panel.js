@@ -36,31 +36,35 @@ ControlPanel.prototype.build = function ( htmlPath ) {
                 
                 if ( method == 'intermediate' ) {
                     controlPanel.buttons[ method ][ action ] = new IntermediateButton(
-                      action,
-                      controlPanel,
-                      controlPanel.editor,
-                      '.js-' + action + '-' + controlPanel.editor.uniqueId
-                  );
+                        action,
+                        controlPanel,
+                        controlPanel.editor,
+                        '.js-' + action + '-' + controlPanel.editor.uniqueId,
+                        controlPanel.editor.textarea
+                    );
                 } else if ( method == 'select' ) {
                     controlPanel.buttons[ method ][ action ] = new SelectButton(
                         action,
                         controlPanel,
                         controlPanel.editor,
-                        '.js-' + action + '-' + controlPanel.editor.uniqueId
+                        '.js-' + action + '-' + controlPanel.editor.uniqueId,
+                        controlPanel.editor.textarea
                     );
                 } else if ( method == 'toggle' ) {
                     controlPanel.buttons[ method ][ action ] = new ToggleButton(
                         action,
                         controlPanel,
                         controlPanel.editor,
-                        '.js-' + action + '-' + controlPanel.editor.uniqueId
+                        '.js-' + action + '-' + controlPanel.editor.uniqueId,
+                        controlPanel.editor.textarea
                     );
                 } else {
                     controlPanel.buttons[ 'special' ][ action ] = new Button(
                         action,
                         controlPanel,
                         controlPanel.editor,
-                        '.js-' + action + '-' + controlPanel.editor.uniqueId
+                        '.js-' + action + '-' + controlPanel.editor.uniqueId,
+                        controlPanel.editor.textarea
                     );
                 }
             } );

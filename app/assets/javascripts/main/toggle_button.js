@@ -1,8 +1,8 @@
 ToggleButton.prototype = Object.create( Button.prototype, { constructor: { value: ToggleButton } } );
 
-function ToggleButton ( action, controlPanel, editor, selector ) {
+function ToggleButton ( action, controlPanel, editor, selector, textarea ) {
     
-    Button.call( this, action, controlPanel, editor, selector );
+    Button.call( this, action, controlPanel, editor, selector, textarea );
     
     this.tag = this.tags[ action ];
     this.testRegex = this.testRegexes[ action ];
@@ -21,8 +21,8 @@ ToggleButton.prototype.clickFunction = function (  ) {
         var removeCommand = 'remove' + this.action.charAt( 0 ).toUpperCase(  ) + this.action.slice( 1 );
         this.editor.textarea[ removeCommand ](  );
     } else {
-        this.editor.textarea[ this.action ](  );
-        this.editor.textarea.focus(  );
+        this.textarea[ this.action ](  );
+        this.textarea.focus(  );
     }
     
     this.controlPanel.visualizeControlStates(  );

@@ -1,8 +1,8 @@
 IntermediateButton.prototype = Object.create( Button.prototype, { constructor: { value: IntermediateButton } } );
 
-function IntermediateButton ( action, controlPanel, editor, selector ) {
+function IntermediateButton ( action, controlPanel, editor, selector, textarea ) {
     
-    Button.call( this, action, controlPanel, editor, selector );
+    Button.call( this, action, controlPanel, editor, selector, textarea );
     
     this.initialHeight = $( selector ).outerHeight(  );
     this.initialWidth = $( selector ).outerWidth(  );
@@ -31,7 +31,7 @@ IntermediateButton.prototype.clickFunction = function (  ) {
     console.log( 'Will open: ' + this.toBeOpened );
 
     this.controlPanel.visualizeControlStates(  );
-    this.editor.textarea.focus(  );
+    this.textarea.focus(  );
 }
 
 IntermediateButton.prototype.close = function (  ) {
