@@ -1,5 +1,3 @@
-
-
 Squire.prototype.visualizeControlStates = function (  ) {
     console.log( 'Buttoning up.' );
         

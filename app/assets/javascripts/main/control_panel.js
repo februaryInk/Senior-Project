@@ -78,6 +78,10 @@ ControlPanel.prototype.neutralizeControlStates = function (  ) {
         value.toggleOff(  );
     } );
     
+    $.each( this.buttons.select, function ( key, value ) {
+        value.close(  );
+    } );
+    
     $.each( this.buttons.intermediate, function ( key, value ) {
         if ( value.isOpen ) {
             value.toBeClosed = true;
@@ -90,6 +94,7 @@ ControlPanel.prototype.neutralizeControlStates = function (  ) {
 ControlPanel.prototype.visualizeControlStates = function (  ) {
         
     this.visualizeToggleStates(  );
+    this.visualizeSelectStates(  );
     this.visualizeIntermediateStates(  );
 }
 
@@ -103,6 +108,32 @@ ControlPanel.prototype.visualizeIntermediateStates = function (  ) {
         
         if ( value.toBeOpened ) {
             value.open(  );
+        }
+    } );
+}
+
+ControlPanel.prototype.visualizeSelectStates = function (  ) {
+    
+    $.each( this.buttons.select, function ( key, value ) {
+        var regex = '';
+        var test = false;
+        
+        if ( this.nested ) {
+            if ( value.parent.action === 'fontSize' ) {
+                test = this.editor.textarea.getFontInfo(  ).size === this.size ||
+                    this.editor.textarea.getFontInfo(  ).size === undefined && this.size === '16px';
+            }
+        } else {
+            regex = new RegExp( value.action.replace( /([A-Z])/g, function ( x, y ) { return '-' + y.toLowerCase(  ) } ) );
+            test = this.editor.textarea.testPresenceinSelection( value.action, value.action, value.action, regex );
+        }
+        
+        if ( test ) {
+            console.log( 'Turn on ' + key );
+            value.open(  );
+        } else {
+            console.log( 'Turn off ' + key );
+            value.close(  );
         }
     } );
 }

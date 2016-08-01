@@ -16,6 +16,18 @@ input[type="text"] {
     }
 }
 
+select:not([multiple]) {
+  appearance: none;
+  
+  option {
+    padding: 0.25em !important;
+  }
+  
+  &::-ms-expand {
+    display: none;
+  }
+}
+
 textarea {
     height: 5em;
 }
