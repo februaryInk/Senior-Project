@@ -15,26 +15,6 @@ Squire.prototype.command = function ( method, arg1, arg2 ) {
     return( this.focus(  ) );
 }
 
-Squire.prototype.alignCenter = function (  ) { 
-    
-    this.setTextAlignment( 'center' );
-}
-
-Squire.prototype.alignLeft = function (  ) { 
-    
-    this.setTextAlignment( 'left' );
-}
-
-Squire.prototype.alignJustify = function (  ) { 
-    
-    this.setTextAlignment( 'justify' );
-}
-
-Squire.prototype.alignRight = function (  ) { 
-    
-    this.setTextAlignment( 'right' );
-}
-
 // TODO: take a look at increaseQuoteLevel and see how it inserts block-level 
 // tag elements.
 Squire.prototype.heading = function (  ) {

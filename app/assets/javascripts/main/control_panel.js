@@ -1,8 +1,9 @@
-function ControlPanel ( editor, htmlPath, node ) {
+function ControlPanel ( htmlPath, editor, node ) {
     
     this.node = node;
     this.editor = editor;
     this.selector = '.js-editor-control-panel-' + editor.uniqueId;
+    this.textarea = editor.textarea;
     
     this.buttons = {
         intermediate: {  },
@@ -14,62 +15,71 @@ function ControlPanel ( editor, htmlPath, node ) {
     this.build( htmlPath );
 }
 
+ControlPanel.prototype.buttonTypes = {
+    alignCenter: 'select',
+    alignJustify: 'select',
+    alignLeft: 'select',
+    alignRight: 'select',
+    bold: 'toggle',
+    fontSize: 'select',
+    heading: 'toggle',
+    italic: 'toggle',
+    open: 'intermediate',
+    orderedList: 'toggle',
+    quote: 'toggle',
+    redo: '',
+    textAlignment: 'select',
+    underline: 'toggle',
+    undo: ''
+}
+
 ControlPanel.prototype.build = function ( htmlPath ) {
     
-    $( this.node ).addClass( this.selector );
+    var controlPanel = this;
+    var controlPanelDiv = $( this.node );
+    
+    controlPanelDiv.addClass( this.editor.config.controlPanelStyleClass );
+    
+    $( controlPanelDiv ).load( htmlPath, function ( data ) {
+        
+        setTimeout( function(  ) {
+            
+            controlPanel.buildButtons( controlPanelDiv );
+        }, 500 );
+    } );
+}
+
+ControlPanel.prototype.buildButtons = function ( container ) {
     
     var controlPanel = this;
     
-    $( this.node ).load( htmlPath, function( data ) {
-        setTimeout( function(  ) {
-            buttons = $( controlPanel.node ).find( '.js-editor-button' );
-            
-            console.log( controlPanel );
-            console.log( buttons.length );
-            
-            $( buttons ).each( function( index, element ) {
-                
-                var action = $( this ).data( 'action' );
-                var method = $( this ).data( 'method' );
-                
-                $( element ).addClass( 'js-' + action + '-' + controlPanel.editor.uniqueId );
-                
-                if ( method == 'intermediate' ) {
-                    controlPanel.buttons[ method ][ action ] = new IntermediateButton(
-                        action,
-                        controlPanel,
-                        controlPanel.editor,
-                        '.js-' + action + '-' + controlPanel.editor.uniqueId,
-                        controlPanel.editor.textarea
-                    );
-                } else if ( method == 'select' ) {
-                    controlPanel.buttons[ method ][ action ] = new SelectButton(
-                        action,
-                        controlPanel,
-                        controlPanel.editor,
-                        '.js-' + action + '-' + controlPanel.editor.uniqueId,
-                        controlPanel.editor.textarea
-                    );
-                } else if ( method == 'toggle' ) {
-                    controlPanel.buttons[ method ][ action ] = new ToggleButton(
-                        action,
-                        controlPanel,
-                        controlPanel.editor,
-                        '.js-' + action + '-' + controlPanel.editor.uniqueId,
-                        controlPanel.editor.textarea
-                    );
-                } else {
-                    controlPanel.buttons[ 'special' ][ action ] = new Button(
-                        action,
-                        controlPanel,
-                        controlPanel.editor,
-                        '.js-' + action + '-' + controlPanel.editor.uniqueId,
-                        controlPanel.editor.textarea
-                    );
-                }
-            } );
-        }, 500 );
+    // TODO: If there are no nested buttons to worry about, switch to iterating
+    // over only button elements.
+    $( container ).children(  ).each( function ( index, element ) {
+        
+        if ( $( element ).prop( 'tagName' ) === 'SPAN' ) {
+            controlPanel.buildButton( element );
+        } else {
+            if ( $( element ).children(  ).length > 0 ) {
+                controlPanel.buildButtons( element );
+            }
+        }
     } );
+}
+
+ControlPanel.prototype.buildButton = function ( node ) {
+    
+    var action = $( node ).data( 'action' );
+    var type = this.buttonTypes[ action ] || '';
+    
+    var constructor = window[ ( type + 'Button' ).charAt( 0 ).toUpperCase(  ) + ( type + 'Button' ).slice( 1 ) ];
+    
+    this.buttons[ type ? type : 'special' ][ action ] = new constructor(
+        action,
+        this.editor,
+        node,
+        this
+    );
 }
 
 ControlPanel.prototype.neutralizeControlStates = function (  ) {
@@ -115,17 +125,18 @@ ControlPanel.prototype.visualizeIntermediateStates = function (  ) {
 ControlPanel.prototype.visualizeSelectStates = function (  ) {
     
     $.each( this.buttons.select, function ( key, value ) {
+        
         var regex = '';
         var test = false;
         
         if ( this.nested ) {
-            if ( value.parent.action === 'fontSize' ) {
+            if ( value.action === 'fontSize' ) {
                 test = this.editor.textarea.getFontInfo(  ).size === this.size ||
                     this.editor.textarea.getFontInfo(  ).size === undefined && this.size === '16px';
             }
         } else {
             regex = new RegExp( value.action.replace( /([A-Z])/g, function ( x, y ) { return '-' + y.toLowerCase(  ) } ) );
-            test = this.editor.textarea.testPresenceinSelection( value.action, value.action, value.action, regex );
+            test = this.textarea.testPresenceinSelection( value.action, value.action, value.action, regex );
         }
         
         if ( test ) {
@@ -141,13 +152,12 @@ ControlPanel.prototype.visualizeSelectStates = function (  ) {
 ControlPanel.prototype.visualizeToggleStates = function (  ) {
     
     $.each( this.buttons.toggle, function ( key, value ) {
+        
         var test = this.editor.textarea.testPresenceinSelection( value.action, value.action, value.tag, value.testRegex );
         
         if ( test ) {
-            console.log( 'Turn on ' + key );
             value.toggleOn(  );
         } else {
-            console.log( 'Turn off ' + key );
             value.toggleOff(  );
         }
     } );

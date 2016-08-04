@@ -26,18 +26,22 @@
     width: 23.125em;
 }
 
-.editor-control {
+.editor__button {
     background-color: $color-alto;
+    border: none;
     border-radius: 50%;
     cursor: pointer;
-    display: block;
+    display: inline-block;
     float: left;
     height: 2.5em;
     line-height: 2.5em;
+    margin: 0;
+    padding: 0;
     position: relative;
     text-align: center;
     user-select: none;
     width: 2.5em;
+    z-index: 10;
     
     &.-open {
         background-color: $color-silver;
@@ -45,13 +49,18 @@
     }
 }
 
-.editor-control__sub-controls {
+.editor__control-panel {
+    z-index: 10;
+}
+
+.editor__sub-buttons {
     display: none;
     left: 0;
     position: absolute;
     text-align: left;
     top: -2.5em;
-    width: 1000%;
+    width: 325%;
+    z-index: 10;
 }
 
 .editor-textarea {

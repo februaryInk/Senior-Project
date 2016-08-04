@@ -3,13 +3,25 @@ var ui, editor;
 $( document ).ready( function (  ) {
     if ( $( '.js-squire-standin' ).length ) {
         ui = new Editor(
-            '/shared/squire_ui.html',
-            '.js-squire-standin'
+            '.js-squire-standin',
+            '/shared/squire_ui.html'
         );
     }
 } );
 
-function Editor ( controlsHtmlPath, standin ) {
+function Editor ( standin, controlsHtmlPath, config ) {
+    
+    editor = this;
+    
+    this.config = {
+        buttonStyleClass: 'editor__button',
+        controlPanelHandleClass: 'js-control-panel',
+        controlPanelStyleClass: 'editor__control-panel',
+        subButtonsContainerStyleClass: 'editor__sub-buttons',
+        subButtonStyleClass: 'editor__button',
+        textareaHandleClass: 'js-textarea',
+        textareaStyleClass: 'editor__textarea'
+    }
     
     this.$container = $( standin ).parent(  );
     this.controlPanel;
@@ -21,8 +33,6 @@ function Editor ( controlsHtmlPath, standin ) {
 }
 
 Editor.prototype.activateListeners = function (  ) {
-    
-    editor = this;
     
     // TODO: use this.textarea.selector.
     // FIX: blur messes with button-click effects.
@@ -57,5 +67,5 @@ Editor.prototype.build = function ( controlsHtmlPath, standin ) {
     textareaDiv.className = 'editor-textarea js-editor-textarea-' + this.uniqueId;
     
     this.textarea = new Squire( textareaDiv );
-    this.controlPanel = new ControlPanel( this, controlsHtmlPath, controlsDiv );
+    this.controlPanel = new ControlPanel( controlsHtmlPath, this, controlsDiv );
 }

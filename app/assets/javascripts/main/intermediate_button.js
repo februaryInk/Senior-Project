@@ -1,21 +1,56 @@
 IntermediateButton.prototype = Object.create( Button.prototype, { constructor: { value: IntermediateButton } } );
 
-function IntermediateButton ( action, controlPanel, editor, selector, textarea ) {
+function IntermediateButton ( action, editor, node, parent ) {
     
-    Button.call( this, action, controlPanel, editor, selector, textarea );
+    Button.call( this, action, editor, node, parent );
     
-    this.initialHeight = $( selector ).outerHeight(  );
-    this.initialWidth = $( selector ).outerWidth(  );
     this.isOpen = false;
     this.toBeClosed = false;
     this.toBeOpened = false;
     
+    this.addHandle(  );
+    this.addStyle(  );
+    this.buildSubButtons(  );
+    
+    this.initialHeight = $( node ).outerHeight(  );
+    this.initialWidth = $( node ).outerWidth(  );
+    
     this.activate(  );
+}
+
+IntermediateButton.prototype.buildSubButtons = function (  ) {
+    
+    var button = this;
+    var subButtonsNode = document.createElement( 'div' );
+    
+    this.subButtonsSelector = '.' + this.action + '-sub-buttons-' + this.editor.uniqueId;
+    
+    $( subButtonsNode ).addClass( this.editor.config.subButtonsContainerStyleClass );
+    $( subButtonsNode ).addClass( this.subButtonsSelector.slice( 1 ) );
+    
+    $( this.node ).after( subButtonsNode );
+    
+    while ( $( button.node ).children(  ).length > 0 ) {
+        $( subButtonsNode ).append( $( button.node ).children(  )[ 0 ] );
+    }
+    
+    $( subButtonsNode ).find( 'span' ).each( function ( index, element ) {
+        
+        var action = $( element ).data( 'action' );
+        
+        new SelectButton(
+            action,
+            button.editor,
+            element,
+            button
+        );
+    } );
 }
 
 IntermediateButton.prototype.clickFunction = function (  ) {
     
     $.each( this.controlPanel.buttons.intermediate, function ( key, value ) {
+        
         value.toBeOpened = false;
         
         if ( value.isOpen ) {
@@ -39,8 +74,8 @@ IntermediateButton.prototype.close = function (  ) {
     var buttonHeight = this.initialHeight;
     var buttonWidth = this.initialWidth;
     
-    $( this.selector ).siblings( '.js-sub-controls' ).css( 'display', 'none' );
-            
+    $( this.subButtonsSelector ).css( 'display', 'none' );
+    
     animateInSequence( this.selector, 
         [ {
             height: 1.10 * buttonHeight,
@@ -96,9 +131,9 @@ IntermediateButton.prototype.open = function (  ) {
         ]
     );
     
-    $( this.selector ).siblings( '.js-sub-controls' ).css( 'display', 'block' );
+    $( this.subButtonsSelector ).css( 'display', 'block' );
     
-    animateWithPause( this.selector + ' ~ ' + 'div ' + '.js-editor-button',
+    animateWithPause( this.subButtonsSelector + ' span',
         [ { 
             height: 1.25 * buttonHeight, 
             lineHeight: 1.25 * buttonHeight,

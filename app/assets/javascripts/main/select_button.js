@@ -1,34 +1,31 @@
 SelectButton.prototype = Object.create( Button.prototype, { constructor: { value: SelectButton } } );
 
-function SelectButton ( action, controlPanel, editor, selector, textarea ) {
+function SelectButton ( action, editor, node, parent ) {
     
-    Button.call( this, action, controlPanel, editor, selector, textarea );
+    Button.call( this, action, editor, node, parent );
     
-    this.nested = false;
+    this.nested = ( this.parent.prototype === Button );
+    this.value = $( node ).data( 'value' );
     
-    if ( $( selector ).data( 'parent' ) ) {
-        this.nested = true;
-        this.parent = controlPanel.buttons.intermediate[ $( selector ).data( 'parent' ) ];
-        
-        if ( this.parent.action === 'fontSize' ) {
-            this.size = $( selector ).data( 'size' ) + 'px';
-        }
-    }
-    
+    this.addHandle(  );
+    this.addStyle(  );
     this.activate(  );
+}
+
+SelectButton.prototype.addHandle = function (  ) {
+    
+    var selector = this.action + '-' + this.value + '-' + this.editor.uniqueId;
+    
+    $( this.node ).addClass( selector );
+    this.selector = '.' + selector;
 }
 
 SelectButton.prototype.clickFunction = function (  ) {
     
+    this.textarea[ 'set' + this.action.charAt( 0 ).toUpperCase(  ) + this.action.slice( 1 ) ]( this.value );
+    
     if ( this.nested ) {
-        if ( this.parent.action == 'fontSize' ) {
-            this.textarea.setFontSize( this.size );
-        }
-        
         this.parent.toBeClosed = true;
-    } else {
-        this.editor.textarea[ this.action ](  );
-        this.editor.textarea.focus(  );
     }
     
     this.textarea.focus(  );

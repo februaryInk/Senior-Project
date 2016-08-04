@@ -1,12 +1,14 @@
 ToggleButton.prototype = Object.create( Button.prototype, { constructor: { value: ToggleButton } } );
 
-function ToggleButton ( action, controlPanel, editor, selector, textarea ) {
+function ToggleButton ( action, editor, node, parent ) {
     
-    Button.call( this, action, controlPanel, editor, selector, textarea );
+    Button.call( this, action, editor, node );
     
     this.tag = this.tags[ action ];
     this.testRegex = this.testRegexes[ action ];
     
+    this.addHandle(  );
+    this.addStyle(  );
     this.activate(  );
 }
 
