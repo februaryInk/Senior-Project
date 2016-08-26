@@ -12,6 +12,8 @@ function ControlPanel ( htmlPath, editor, node ) {
         toggle: {  }
     };
     
+    this.dropdowns = {  };
+    
     this.build( htmlPath );
 }
 
@@ -57,12 +59,12 @@ ControlPanel.prototype.buildButtons = function ( container ) {
     // over only button elements.
     $( container ).children(  ).each( function ( index, element ) {
         
-        if ( $( element ).prop( 'tagName' ) === 'SPAN' ) {
+        if ( $( element ).prop( 'tagName' ) === 'SPAN' && !$( element ).data( 'preserve' ) ) {
             controlPanel.buildButton( element );
-        } else {
-            if ( $( element ).children(  ).length > 0 ) {
-                controlPanel.buildButtons( element );
-            }
+        } else if ( $( element ).prop( 'tagName' ) === 'SELECT' ) {
+            controlPanel.buildSelectDropdown( element );
+        } else if ( $( element ).children(  ).length > 0 ) {
+            controlPanel.buildButtons( element );
         }
     } );
 }
@@ -75,6 +77,18 @@ ControlPanel.prototype.buildButton = function ( node ) {
     var constructor = window[ ( type + 'Button' ).charAt( 0 ).toUpperCase(  ) + ( type + 'Button' ).slice( 1 ) ];
     
     this.buttons[ type ? type : 'special' ][ action ] = new constructor(
+        action,
+        this.editor,
+        node,
+        this
+    );
+}
+
+ControlPanel.prototype.buildSelectDropdown = function ( node ) {
+    
+    var action = $( node ).data( 'action' );
+    
+    this.dropdowns[ action ] = new SelectDropdown(
         action,
         this.editor,
         node,

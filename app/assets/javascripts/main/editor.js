@@ -17,6 +17,7 @@ function Editor ( standin, controlsHtmlPath, config ) {
         buttonStyleClass: 'editor__button',
         controlPanelHandleClass: 'js-control-panel',
         controlPanelStyleClass: 'editor__control-panel',
+        dropdownStyleClass: 'editor__dropdown',
         subButtonsContainerStyleClass: 'editor__sub-buttons',
         subButtonStyleClass: 'editor__button',
         textareaHandleClass: 'js-textarea',

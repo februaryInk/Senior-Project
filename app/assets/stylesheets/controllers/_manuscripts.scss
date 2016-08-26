@@ -1,4 +1,3 @@
-
 .aside-user {
     float: left;
     padding: 2em 0;
@@ -53,6 +52,28 @@
     z-index: 10;
 }
 
+.editor__dropdown {
+    display: inline-block;
+}
+
+.editor__dropdown-label {
+    display: inline-block;
+}
+
+.editor__dropdown-wrapper {
+    background-color: $color-alto;
+    display: inline-block;
+    padding-left: 0.625em;
+}
+
+.editor__dropdown-wrapper-wrapper {
+    background-color: $color-alto;
+    display: inline-block;
+    float: left;
+    padding-left: 0.625em;
+    padding-right: 0.625em;
+}
+
 .editor__sub-buttons {
     display: none;
     left: 0;
@@ -63,7 +84,7 @@
     z-index: 10;
 }
 
-.editor-textarea {
+.editor__textarea {
     border-left: 1px dotted $color-silver-chalice;
     border-right: 1px dotted $color-silver-chalice;
     height: 400px;

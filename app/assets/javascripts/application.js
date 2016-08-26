@@ -10,5 +10,19 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require_directory ./main
+
+//= require ./main/animations
+//= require ./main/header
+//= require ./main/modal
+
+//= require ./main/editor
+//= require ./main/control_panel
+//= require ./main/textarea
+//= require ./main/control
+//= require ./main/button
+//= require ./main/intermediate_button
+//= require ./main/select_button
+//= require ./main/toggle_button
+//= require ./main/select_dropdown
+
 //= require_directory ./model_based
