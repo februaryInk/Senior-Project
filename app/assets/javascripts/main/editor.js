@@ -65,7 +65,7 @@ Editor.prototype.build = function ( controlsHtmlPath, standin ) {
     $( standin ).remove(  );
     
     controlsDiv.className = 'js-editor-control-panel-' + this.uniqueId;
-    textareaDiv.className = 'editor-textarea js-editor-textarea-' + this.uniqueId;
+    textareaDiv.className = this.config.textareaStyleClass + ' ' + this.config.textareaHandleClass + '-' + this.uniqueId;
     
     this.textarea = new Squire( textareaDiv );
     this.controlPanel = new ControlPanel( controlsHtmlPath, this, controlsDiv );

@@ -53,6 +53,8 @@
 }
 
 .editor__dropdown {
+    background-color: $color-alto;
+    border: none;
     display: inline-block;
 }
 
@@ -68,10 +70,11 @@
 
 .editor__dropdown-wrapper-wrapper {
     background-color: $color-alto;
+    border-radius: 1.25em;
     display: inline-block;
     float: left;
     padding-left: 0.625em;
-    padding-right: 0.625em;
+    padding-right: 1.25em;
 }
 
 .editor__sub-buttons {
