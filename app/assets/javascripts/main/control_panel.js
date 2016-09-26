@@ -26,11 +26,15 @@ ControlPanel.prototype.buttonTypes = {
     fontSize: 'select',
     heading: 'toggle',
     italic: 'toggle',
-    open: 'intermediate',
+    openTextareaSize: 'intermediate',
+    openTypeSound: 'intermediate',
     orderedList: 'toggle',
     quote: 'toggle',
     redo: '',
+    strikethrough: 'toggle',
     textAlignment: 'select',
+    textareaSize: 'select',
+    typeSound: 'select',
     underline: 'toggle',
     undo: ''
 }
@@ -170,9 +174,9 @@ ControlPanel.prototype.visualizeToggleStates = function (  ) {
         var test = this.editor.textarea.testPresenceinSelection( value.action, value.action, value.tag, value.testRegex );
         
         if ( test ) {
-            value.toggleOn(  );
+            value.open(  );
         } else {
-            value.toggleOff(  );
+            value.close(  );
         }
     } );
 }

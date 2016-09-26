@@ -14,7 +14,7 @@ function ToggleButton ( action, editor, node, parent ) {
 
 ToggleButton.prototype.clickFunction = function (  ) {
     
-    var test = this.editor.textarea.testPresenceinSelection( this.action, this.action, this.tag, this.testRegex );
+    var test = this.textarea.testPresenceinSelection( this.action, this.action, this.tag, this.testRegex );
     
     console.log( test );
     console.log( 'Clicked ' + this.action + '.' );
@@ -32,30 +32,32 @@ ToggleButton.prototype.clickFunction = function (  ) {
 
 ToggleButton.prototype.testRegexes = {
     bold: />B\b/,
-    heading: />EM\b/,
+    heading: />H2\b/,
     italic: />I\b/,
     quote: />blockquote\b/,
     orderedList: />OL\b/,
+    strikethrough: />STRIKE\b/,
     underline: />U\b/,
 }
 
 ToggleButton.prototype.tags = {
     bold: 'B',
-    heading: 'EM',
+    heading: 'H2',
     italic: 'I',
     quote: 'blockquote',
     orderedList: 'OL',
+    strikethrough: 'STRIKE',
     underline: 'U',
 }
 
 // TODO: close, like intemediate buttons.
-ToggleButton.prototype.toggleOff = function (  ) {
+ToggleButton.prototype.close = function (  ) {
     
     $( this.selector ).removeClass( '-open' );
 }
 
 // TODO: open, like intermediate buttons.
-ToggleButton.prototype.toggleOn = function (  ) {
+ToggleButton.prototype.open = function (  ) {
     
     $( this.selector ).addClass( '-open' );
 }
