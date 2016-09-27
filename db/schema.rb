@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503182259) do
+ActiveRecord::Schema.define(version: 20160926232750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.integer  "manuscript_id"
+    t.integer  "user_id"
+    t.integer  "words"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "activities", ["manuscript_id"], name: "index_activities_on_manuscript_id", using: :btree
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "conversation_id"

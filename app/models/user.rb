@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
     
     belongs_to :role, :class_name => 'UserRole', :foreign_key => 'user_role_id'
     
+    has_many :activities, :dependent => :destroy
     has_many :conversations
     has_many :comments
     has_many :manuscripts, :dependent => :destroy
@@ -64,7 +65,7 @@ class User < ActiveRecord::Base
     
     # fetch all users who have usernames beginning with a given letter.
     def User.beginning_with( letter )
-        User.where( "username LIKE :first", :first => "#{ letter }%" ).order( 'username ASC' )
+        User.where( "username LIKE :first", :first => "#{letter}%" ).order( 'username ASC' )
     end
     
     # generate a random string to be used as a secure token.

@@ -31,6 +31,8 @@ Rails.application.routes.draw do
         get   '/sections/select_for_writer', :to => 'sections#select_for_writer', :as => 'section_select_for_writer'
         get   '/sections/select_for_reader', :to => 'sections#select_for_reader', :as => 'section_select_for_reader'
         post  '/feedback/',                  :to => 'feedback#create',            :as => 'feedback_index'
+        
+        resources :activities, :only => [ :create ]
     end
     resources :password_resets, :only => [ :create, :edit, :new, :update ]
     resources :posts, :only => [ :create, :destroy ]
