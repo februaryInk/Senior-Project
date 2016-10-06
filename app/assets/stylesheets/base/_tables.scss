@@ -24,8 +24,8 @@
 }
 
 .table-narrow {
-    border-bottom: 0.1em solid $color-table-border;
-    border-top: 0.1em solid $color-table-border;
+    border-bottom: 0.1em solid $color-silver;
+    border-top: 0.1em solid $color-silver;
     width: 100%;
     
     td {
@@ -35,26 +35,37 @@
     }
     
     th {
-        line-height: 1.75em;
+        border-bottom: 0.1em solid $color-silver;
+        font-weight: bold;
         padding: 0.5em;
+        text-transform: uppercase;
     }
 }
 
 .table-wide {
-    border-bottom: 0.1em solid $color-table-border;
-    border-top: 0.1em solid $color-table-border;
-    margin-bottom: 4em;
+    border-bottom: 1px solid $color-silver;
+    border-top: 1px solid $color-silver;
     width: 100%;
     
     td {
-        font-size: 1.2em;
-        line-height: 2em;
-        padding: 0.5em;
+        padding: 1em;
+        
+        a, 
+        span {
+            font-size: 1.125em;
+        }
     }
     
     th {
-        line-height: 2.5em;
-        padding: 0.5em;
+        border-bottom: 0.1em solid $color-silver;
+        padding: 0.5em 1em;
+        
+        a,
+        span {
+            font-size: 0.875em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
     }
 }
 

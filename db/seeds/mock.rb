@@ -70,7 +70,7 @@ difference = 100 - Conversation.count
         Comment.create(
             :content => Faker::Lorem.sentences.join( ' ' ),
             :conversation_id => conversation.id,
-            :user_id => [ true, false, false ].sample ? user.id : User.offset( rand( User.count ) ).first
+            :user_id => [ true, false, false ].sample ? user.id : User.offset( rand( User.count ) ).first.id
         )
     end
 end

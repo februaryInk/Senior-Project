@@ -18,6 +18,44 @@
     }
 }
 
+.help-tiles {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    
+    td {
+        background-color: darken( $color-white, 15% );
+        border-color: $color-white;
+        border-style: solid;
+        border-width: 1em;
+        padding: 2em;
+    }
+    
+    :first-child {
+        border-top: 0;
+    
+        * {
+            border-top: 0;
+        }
+    }
+    
+    :last-child {
+        border-bottom: 0;
+        
+        * {
+            border-bottom: 0;
+        }
+    }
+    
+    tr, tr :first-child {
+        border-left: 0;
+    }
+    
+    tr, tr :last-child {
+        border-right: 0;
+    }
+}
+
 .notebox {
     background-color: $color-gallery;
     display: block;
@@ -28,7 +66,7 @@
 
 .page-content {
     padding-top: 3em;
-    padding-bottom: 15em;
+    padding-bottom: 3em;
     
     &.-lowered {
         padding-top: 8em;

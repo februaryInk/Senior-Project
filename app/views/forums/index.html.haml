@@ -1,23 +1,51 @@
 - content_for( :title ) { forums_index_title }
-
-- content_for( :body ) do
-
-    %div.content
-        = @forums.each do | category, forums |
-            %table.table-wide
-                %tr
-                    %th.category
-                        %h3
-                            = "#{ category } Forums"
-                    %th
-                        %strong
-                            Latest Activity
-                - i = 1
-                - for forum in forums
-                    = content_tag :tr, :class => "#{ i.odd? ? 'tr-odd' : 'tr-even' }" do
-                        %td.topic
-                            = link_to h( forum.name ), forum_path( forum.id )
-                        %td.latest_conversation
-                            - if forum.conversations.any?
-                                = forum.conversations.order( :updated_at ).last.name
+- content_for( :sub_header ) do
+    %section.sub-header
+        %div.content
+            %h1.heading.-large
+                Welcome to the Inkling forums!
+            %p
+                %b
+                    Everyone is invited to participate.
+                Every Inklings member is welcome to contribute. If you're not a member yet, you can sign up for free and start communicating today.
+            %p
+                %b
+                    Be respectful to your fellow community members.
+                Regardless of whether they have earned it or not, please treat others with consideration. If a member is not following the forum rules, flag them for the moderators.
+- content_for( :tabs ) do
+    %section.tabs--header
+        %div.content
+            %ul.js-tabs.tab-band
+                - i = 0
+                - @forums.each do | category, forums |
+                    %li{ :class => ( '-open' if i == 0 ), 'data-target-id' => "tabs-#{category.downcase}" }
+                        = category
                     - i += 1
+
+%div.page-content
+    %section.content
+        %div.tab-content-container
+            - i = 0
+            - @forums.each do | category, forums |
+                %div.tab-content{ :class => ( '-open' if i == 0 ), :id => "tabs-#{category.downcase}" }
+                    %h1.heading.-medium
+                        = "#{category} Forums"
+                    %table.table-wide
+                        %tr
+                            %th.category
+                                %span
+                                    Forum
+                            %th
+                                %span
+                                    Latest Activity
+                        - j = 1
+                        - for forum in forums
+                            = content_tag :tr, :class => ( j.odd? ? 'tr-odd' : 'tr-even' ) do
+                                %td
+                                    = link_to( h( forum.name ), forum_path( forum.id ) )
+                                %td
+                                    - if forum.conversations.any?
+                                        %span
+                                            = forum.conversations.order( :updated_at ).last.name
+                            - j += 1
+                        - i += 1

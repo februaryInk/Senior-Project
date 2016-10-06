@@ -1,25 +1,24 @@
 - content_for( :title ) { forums_show_title( @forum ) }
 
-- content_for( :body ) do
-
-    %div.content
-        %div#conversation-info
-            = link_to new_conversation_path( :forum_id => params[ :id ] ) do
-                %div.add-new
-                    Start A New Conversation
+%div.page-content
+    %section.content.margin-b2
+        = link_to new_conversation_path( :forum_id => params[ :id ] ) do
+            %div.add-new
+                Start A New Conversation
+    %section.content
         %table.table-wide
             %tr
                 %th.maximized
-                    %h3
+                    %span
                         Conversation
                 %th.fitted
-                    %strong
+                    %span
                         Participants
                 %th.fitted
-                    %strong
+                    %span
                         Comments
                 %th.fitted
-                    %strong
+                    %span
                         Latest Activity
                 - if signed_in? && current_user.admin?
                     %th
@@ -29,12 +28,16 @@
                         %td.maximized
                             = link_to h( conversation.name ), forum_conversation_path( conversation.forum.id, conversation.id )
                         %td.fitted
-                            = conversation.comments.group_by( &:user_id ).count
+                            %span
+                                = conversation.comments.group_by( &:user_id ).count
                         %td.fitted
-                            = conversation.comments.to_a.count
+                            %span
+                                = conversation.comments.to_a.count
                         %td.fitted
-                            = conversation.comments.last.created_at.strftime( '%B %d, %Y' )
+                            %span
+                                = conversation.comments.last.created_at.strftime( '%B %d, %Y' )
                         - if signed_in? && current_user.admin?
                             %td.fitted
-                                = link_to 'delete', conversation, :method => :delete, :data => { :confirm => 'Are you sure you want to permanently delete this conversation?' }
+                                %span
+                                    = link_to 'delete', conversation, :method => :delete, :data => { :confirm => 'Are you sure you want to permanently delete this conversation?' }
                     - i += 1

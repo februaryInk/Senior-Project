@@ -1,22 +1,20 @@
 footer {
     background-color: $color-alabaster;
-    bottom: 0;
     display: block;
-    height: 15em;
     overflow: hidden;
-    padding-bottom: 2em;
-    padding-top: 2em;
-    position: absolute;
+    padding-bottom: 4em;
+    padding-top: 4em;
     width: 100%;
+}
+
+.footer__links {
+    float: right;
+    margin-top: 1em;
+    overflow: hidden;
     
-    ul {
+    li {
         float: left;
-        font-size: 18px;
-        line-height: 1.5em;
-        margin-right: 4em;
-    }
-    
-    .content {
-        padding-top: 2em;
+        font-size: 1.125em;
+        margin-left: 2em;
     }
 }

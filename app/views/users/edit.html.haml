@@ -4,7 +4,7 @@
     %section.content
         %h1.heading.-medium
             = "Account Settings"
-        %div#div-gravatar
+        %div
             %p
                 = gravatar_for @user
                 = link_to( 'Change', 'http://gravatar.com/emails', { :target => '_blank' } )

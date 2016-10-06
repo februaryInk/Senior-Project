@@ -2,108 +2,92 @@
 
 %main.page-content
     %section.content
-        %h1
-            Your Social Activity
-        %div#div-forums
-            %h3
-                In the Forums
-            %div#div-conversations
-                %strong
-                    Conversations Started
-                %table.table-narrow
-                    %thead
-                        %tr
-                            %th
-                                %strong
-                                    Name
-                            %th
-                                %strong
-                                    Created On
-                    %tbody
-                        - i = 1
-                        - @conversations.each do | conversation |
-                            = content_tag :tr, :class => (i.odd? ? 'tr-odd' : 'tr-even') do
-                                %td.maximized
-                                    = link_to conversation.name, forum_conversation_path( conversation.forum_id, conversation.id )
-                                %td.fitted
-                                    = l( conversation.created_at, :format => :to_the_day )
-                            - i += 1
-                = will_paginate @conversations
-                
-            %div#div-comments
-                %strong
-                    Comments Posted
-                %table.table-narrow
-                    %thead
-                        %tr
-                            %th
-                                %strong
-                                    Content
-                            %th
-                                %strong
-                                    Created On
-                    %tbody
-                        - i = 1
-                        - @comments.each do | comment |
-                            = content_tag :tr, :class => (i.odd? ? 'tr-odd' : 'tr-even') do
-                                %td.maximized
-                                    = link_to comment.content, forum_conversation_path( comment.conversation.forum_id, comment.conversation_id )
-                                %td.fitted
-                                    = l( comment.created_at, :format => :to_the_day )
-                            - i += 1
-                = will_paginate @comments
-        %hr
-        %div#div-friends
-            - if current_user.friends.any?
-                - if @accepted_friends.any?
-                    %div#div-accepted-friends
-                        %h3
-                            Friends
-                        - @accepted_friends.each do | friend |
-                            %div.friend
-                                = link_to user_path( friend ) do
-                                    = gravatar_for friend
-                                    %br
-                                    = friend.username
+        %h1.heading.-medium
+            In the Forums
+        %div.margin-b2
+            %table.table-narrow
+                %thead
+                    %tr
+                        %th
+                            Conversations Started
+                        %th
+                %tbody
+                    - i = 1
+                    - @conversations.each do | conversation |
+                        = content_tag :tr, :class => ( i.odd? ? 'tr-odd' : 'tr-even' ) do
+                            %td.maximized
+                                = link_to conversation.name, forum_conversation_path( conversation.forum_id, conversation.id )
+                            %td.fitted
+                                = l( conversation.created_at, :format => :to_the_day )
+                        - i += 1
+            = will_paginate @conversations
+        %div.margin-b2
+            %table.table-narrow
+                %thead
+                    %tr
+                        %th
+                            Comments Posted
+                        %th
+                %tbody
+                    - i = 1
+                    - @comments.each do | comment |
+                        = content_tag :tr, :class => (i.odd? ? 'tr-odd' : 'tr-even') do
+                            %td.maximized
+                                = link_to comment.content, forum_conversation_path( comment.conversation.forum_id, comment.conversation_id )
+                            %td.fitted
+                                = l( comment.created_at, :format => :to_the_day )
+                        - i += 1
+            = will_paginate @comments
+    %section.content
+        %h1.heading.-medium
+            Other Users
+        - if current_user.friends.any?
+            - if @accepted_friends.any?
+                %div
+                    %h2.heading.-small
+                        Friends
+                    - @accepted_friends.each do | friend |
+                        %div.friend
+                            = link_to user_path( friend ) do
+                                = gravatar_for friend
                                 %br
-                                = link_to 'Revoke Friendship', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :delete, :class => 'link-dark', :data => { :confirm => 'Are you sure you want to end this friendship?' }
-                        %div.clear
-                        = will_paginate @accepted_friends
-                - if @waiting_friends.any?
-                    %div#div-waiting-friends
-                        %h3
-                            Offering Friendship to You
-                        - @waiting_friends.each do | friend |
-                            %div.friend
-                                = link_to user_path( friend ) do
-                                    = gravatar_for friend
-                                    %br
-                                    = friend.username
+                                = friend.username
+                            %br
+                            = link_to 'Revoke Friendship', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :delete, :class => 'link-dark', :data => { :confirm => 'Are you sure you want to end this friendship?' }
+                    %div.clear
+                    = will_paginate @accepted_friends
+            - if @waiting_friends.any?
+                %div
+                    %h2.heading.-small
+                        Offering Friendship to You
+                    - @waiting_friends.each do | friend |
+                        %div.friend
+                            = link_to user_path( friend ) do
+                                = gravatar_for friend
                                 %br
-                                = "Since #{ l( current_user.friendships.find_by( :friend_id => friend.id ).created_at, :format => :to_the_day ) }"
-                                = link_to 'Accept Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :patch, :class => 'button -subtle'
-                                = link_to 'Reject Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :delete, :class => 'link-dark'
-                        %div.clear
-                        = will_paginate @waiting_friends
-                - if @pending_friends.any?
-                    %div#div-pending-friends
-                        %h3
-                            Offered Friendship by You
-                        - @pending_friends.each do | friend |
-                            %div.friend
-                                = link_to user_path( friend ) do
-                                    = gravatar_for friend
-                                    %br
-                                    = friend.username
+                                = friend.username
+                            %br
+                            = "Since #{ l( current_user.friendships.find_by( :friend_id => friend.id ).created_at, :format => :to_the_day ) }"
+                            = link_to 'Accept Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :patch, :class => 'button -subtle'
+                            = link_to 'Reject Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :delete, :class => 'link-dark'
+                    %div.clear
+                    = will_paginate @waiting_friends
+            - if @pending_friends.any?
+                %div
+                    %h2.heading.-small
+                        Offered Friendship by You
+                    - @pending_friends.each do | friend |
+                        %div.friend
+                            = link_to user_path( friend ) do
+                                = gravatar_for friend
                                 %br
-                                = "Since #{ l( current_user.friendships.find_by( :friend_id => friend.id ).created_at, :format => :to_the_day ) }"
-                                = link_to 'Revoke Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :delete, :class => 'link-dark', :data => { :confirm => 'Are you sure you want revoke this offer of friendship?' }
-                        %div.clear
-                        = will_paginate @pending_friends
-            - else
-                %h3
-                    Friends
-                %p
-                    This is where your friends list will be if you decide to take advantage of the social features of the Inklings website and form friendships with other users.
-                    If you happen to meet someone you would like to be friends with, you can send them an offer of friendship from their profile page.
-            %hr
+                                = friend.username
+                            %br
+                            = "Since #{ l( current_user.friendships.find_by( :friend_id => friend.id ).created_at, :format => :to_the_day ) }"
+                            = link_to 'Revoke Offer', friendship_path( current_user.friendships.find_by( :friend_id => friend.id ) ), :method => :delete, :class => 'link-dark', :data => { :confirm => 'Are you sure you want revoke this offer of friendship?' }
+                    %div.clear
+                    = will_paginate @pending_friends
+        - else
+            %p
+                This is where your friends list will be if you decide to take advantage of the social features of the Inklings website and form friendships with other users.
+                If you happen to meet someone you would like to be friends with, you can send them an offer of friendship from their profile page.

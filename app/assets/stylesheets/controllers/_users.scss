@@ -8,16 +8,6 @@
     }
 }
 
-#div-comments,
-#div-conversations {
-    margin-bottom: 2em;
-    width: 100%;
-}
-
-#div-gravatar {
-    margin: 0.5em 0;
-}
-
 .activities {
     margin: 2em auto 0;
     padding: 2em 0;
@@ -72,23 +62,6 @@
     width: 27.5%;
 }
 
-.div-inkling-wrapper {
-    display: block;
-    height: 9em;
-    left: 50px;
-    top: 50px;
-    width: 13.875em;
-}
-
-.div-inkling-habitat {
-    border: 0.1em dotted darken( $color-white, 10% );
-    float: right;
-    height: 100%;
-    min-height: 35em;
-    position: relative;
-    width: 70%;
-}
-
 .div-post-content {
     padding: 0.5em;
 }
@@ -106,10 +79,6 @@
     margin: 1em;
     text-align: center;
     width: 10em;
-}
-
-.img-book {
-    width: 100%;
 }
 
 .li-post {
@@ -147,8 +116,4 @@
         padding: 0.5em;
         vertical-align: middle;
     }
-}
-
-body {
-    background-color: $color-white;
 }

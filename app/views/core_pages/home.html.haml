@@ -4,32 +4,31 @@
         %div.content
             %div.faux-table
                 %div
-                    %div.intro
+                    %div.align-top
                         %h1.heading.-large
                             = "Etiam et neque mollis #{content_tag( :em, 'laoreet' )}.".html_safe
                         %p.t-large
                             Nam id vehicula leo. Nulla auctor, erat id feugiat sollicitudin, elit augue tincidunt lectus, in dignissim quam neque vitae quam. Integer finibus pharetra congue. Proin ultricies ut libero eget convallis. Quisque interdum, tellus ac consequat commodo, eros tortor convallis diam, vitae finibus magna magna nec sapien. Donec bibendum eros vitae ornare placerat.
                         %p.t-large
                             Duis malesuada rutrum ligula, posuere laoreet neque dapibus vel.
-                    %div.welcome{ :class => signed_in? ? 'align-top' : 'align-middle' }
+                    %div.padding-l2{ :class => signed_in? ? 'align-top' : 'align-middle' }
                         - if signed_in?
                             %h2.heading.-fine
                                 Hello Again!
                             %div.intro-text
                                 %p
                                     = "You are currently signed in as #{current_user.username}. (Not #{current_user.username}? Please click #{link_to( 'here', signout_path, :method => 'delete', :class => 'underlined' )} to sign out.)".html_safe
-                                %p
-                                    - if current_user.manuscripts.any?
+                                - if current_user.manuscripts.any?
+                                    %p
                                         = "You were last working on: #{@working_on.title}"
-                                        %br
-                                        %br
-                                        = link_to 'Keep Working', manuscript_path( :id => @working_on.id ), :class => 'button -bright -large full-width'
-                                    - else
+                                    = link_to 'Keep Working', manuscript_path( :id => @working_on.id ), :class => 'button -bright -large -wide'
+                                - else
+                                    %p
                                         You currently have no manuscripts.
-                                    = link_to 'Start a New Manuscript', new_manuscript_path, :class => 'button -large -light full-width'
+                                    = link_to 'Start a New Manuscript', new_manuscript_path, :class => 'button -large -light -wide'
                         - else
-                            = link_to 'Sign Up', new_user_path, :class => 'button -bright -large full-width margin-b1'
-                            = link_to 'Learn More', about_path, :class => 'bumped button -large -light full-width'
+                            = link_to 'Sign Up', new_user_path, :class => 'button -bright -large -wide full-width margin-b1'
+                            = link_to 'Learn More', about_path, :class => 'button -large -light -wide full-width'
                 
 %main.page-content
     %section.content.news
