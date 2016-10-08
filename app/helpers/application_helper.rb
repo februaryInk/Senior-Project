@@ -1,6 +1,34 @@
 module ApplicationHelper
 
     include FormsHelper
+    
+    # adjust the date format according to how recent a datetime was.
+    def formatted_datetime( datetime )
+        
+        return '' unless datetime.present?
+        
+        if datetime.year != Time.zone.now.year
+            l( datetime.in_time_zone, :format => :month_day_year )
+        elsif datetime.in_time_zone < DateTime.now.in_time_zone( Time.zone ).beginning_of_day
+            l( datetime.in_time_zone, :format => :month_day )
+        else
+            l( datetime.in_time_zone, :format => :time_only )
+        end
+    end
+    
+    # adjust the date format according to how recent a datetime was.
+    def formatted_datetime_in_words( datetime )
+        
+        return '' unless datetime.present?
+        
+        if datetime.year != Time.zone.now.year
+            l( datetime.in_time_zone, :format => :month_day_year )
+        elsif datetime.in_time_zone < DateTime.now.in_time_zone( Time.zone ).beginning_of_day
+            "on #{l( datetime.in_time_zone, :format => :month_day )}"
+        else
+            "at #{l( datetime.in_time_zone, :format => :time_only )}"
+        end
+    end
 
     # get a user's globally recognized avatar, hosted at gravatar.com under their
     # username.

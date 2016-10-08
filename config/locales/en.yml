@@ -84,8 +84,14 @@ en:
     date:
         formats:
             default: "%B %d, %Y"
+            time_only: "%-I:%M %p"
+            month_day: "%b %-d"
+            month_day_year: "%-m/%-d/%y"
     time:
         formats:
             to_the_day: "%B %d, %Y"
+            time_only: "%-I:%M %P"
+            month_day: "%-b %-d"
+            month_day_year: "%-m/%-d/%y"
     errors:
         format: "%{message}"

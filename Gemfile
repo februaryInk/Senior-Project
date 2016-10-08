@@ -36,11 +36,14 @@ gem( 'uglifier', '1.3.0' )
 # Paginates long lists or tables.
 gem( 'will_paginate', '3.0.7' )
 
-# use this gem instead of the source once it updates to the iframe-less Squire.
-# source( 'https://rails-assets.org' ) do
-    # Imports the lightweight Squire text editor.
-    # gem( 'rails-assets-squire-rte' )
-# end
+source( 'https://rails-assets.org' ) do
+    
+    # use a DSL to manage cookies with JavaScript.
+    gem( 'rails-assets-js-cookie' )
+    
+    # detect the time zone of a user's browser with JavaScript.
+    gem( 'rails-assets-jsTimezoneDetect' )
+end
 
 
 # Provides Windows with the necessary zoneinfo files.

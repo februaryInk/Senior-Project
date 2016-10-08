@@ -10,6 +10,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require js-cookie
+//= require jsTimezoneDetect
 
 //= require ./main/animations
 //= require ./main/header

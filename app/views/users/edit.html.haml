@@ -8,7 +8,7 @@
             %p
                 = gravatar_for @user
                 = link_to( 'Change', 'http://gravatar.com/emails', { :target => '_blank' } )
-        %div.edit-user
+        %div
             = form_for( @user ) do | f |
                 %div.field
                     = f.label( :username )
@@ -24,12 +24,16 @@
                     = f.error_message( :biography )
                 %div.field
                     = f.label( :password, 'New Password' )
-                    = f.password_field( :password )
+                    = f.password_field( :password, :autocomplete => 'off' )
                     = f.error_message( :password )
                 %div.field
                     = f.label( :password_confirmation, 'Confirm New Password' )
                     = f.password_field( :password_confirmation )
                     = f.error_message( :password_confirmation )
+                %div.field
+                    = f.label( :time_zone )
+                    = f.select( :time_zone, time_zone_options_for_select( f.object.time_zone, ActiveSupport::TimeZone.us_zones ), { :include_blank => 'None (browser-detected)' }, { :class => 'full-width' } )
+                    = f.error_message( :time_zone )
                 %p
                     To authorize any account changes, please enter your current password before submitting.
                 %div.field

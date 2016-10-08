@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(version: 20160926232750) do
     t.string   "remember_digest"
     t.string   "reset_digest"
     t.string   "simple_name"
+    t.string   "time_zone",         default: ""
     t.string   "username"
     t.text     "biography"
     t.datetime "created_at",                        null: false

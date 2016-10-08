@@ -15,6 +15,7 @@ class CreateUsers < ActiveRecord::Migration
             t.string :remember_digest
             t.string :reset_digest
             t.string :simple_name
+            t.string :time_zone, :default => ''
             t.string :username
             
             t.text :biography
