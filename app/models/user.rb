@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
     
     belongs_to :role, :class_name => 'UserRole', :foreign_key => 'user_role_id'
     
-    has_many :activities, :dependent => :destroy
+    has_many :word_counts, :dependent => :destroy
     has_many :conversations
     has_many :comments
     has_many :manuscripts, :dependent => :destroy

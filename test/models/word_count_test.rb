@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ActivityTest < ActiveSupport::TestCase
+class WordCountTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

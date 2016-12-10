@@ -6,6 +6,9 @@ gem( 'rails', '4.2.0' )
 # Adds browser-specific CSS prefixes automatically.
 gem( 'autoprefixer-rails' )
 
+# Prints objects in a readable format.
+gem( 'awesome_print' )
+
 # Includes password-encrypting function BCrypt.
 gem( 'bcrypt', '3.1.9' )
 
@@ -24,6 +27,9 @@ gem( 'jquery-rails' )
 # Enables jQuery UI.
 gem( 'jquery-ui-rails' )
 
+# parse, manipulate, and format dates in JavaScript.
+gem( 'momentjs-rails' )
+
 # PostgreSQL database gem.
 gem( 'pg', '0.18.1' )
 
@@ -37,6 +43,9 @@ gem( 'uglifier', '1.3.0' )
 gem( 'will_paginate', '3.0.7' )
 
 source( 'https://rails-assets.org' ) do
+    
+    # draw SVG charts with JavaScript.
+    gem( 'rails-assets-chartist' )
     
     # use a DSL to manage cookies with JavaScript.
     gem( 'rails-assets-js-cookie' )

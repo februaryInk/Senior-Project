@@ -12,6 +12,8 @@
 //= require jquery-ui
 //= require js-cookie
 //= require jsTimezoneDetect
+//= require chartist
+//= require moment
 
 //= require ./main/animations
 //= require ./main/header
@@ -23,6 +25,7 @@
 //= require ./main/control
 //= require ./main/button
 //= require ./main/intermediate_button
+//= require ./main/chartist
 //= require ./main/manuscripts
 //= require ./main/select_button
 //= require ./main/tabs

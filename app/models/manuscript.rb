@@ -14,7 +14,7 @@ class Manuscript < ActiveRecord::Base
     
     has_one :inkling, :inverse_of => :manuscript, :dependent => :destroy
     
-    has_many :activities, :dependent => :destroy
+    has_many :word_counts, :dependent => :destroy
     has_many :feedback
     has_many :sections, :dependent => :destroy
     

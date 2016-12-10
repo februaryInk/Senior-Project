@@ -2,8 +2,8 @@
 
 one:
   words: 1
-  date: 2016-09-26
+  completed_at: 2016-09-26
 
 two:
   words: 1
-  date: 2016-09-26
+  completed_at: 2016-09-26

@@ -163,3 +163,20 @@ User.all.each do | user |
         )
     end
 end
+
+user = User.find_by( { :email => 'testuser@example.com' } )
+
+difference = 100 - user.word_counts.where( 'created_at < ?', 100.days.ago ).count
+
+( difference > 0 ? difference : 0 ).times do
+    
+    manuscript = user.manuscripts.sample
+    expected_words_per_day = manuscript.inkling.word_rate_goal / manuscript.inkling.word_rate_goal_basis
+    
+    WordCount.create!(
+        :completed_at => rand( 100.days ).seconds.ago,
+        :manuscript_id => manuscript.id,
+        :user_id => user.id,
+        :words => rand( 3 * expected_words_per_day ) - expected_words_per_day
+    )
+end

@@ -50,6 +50,41 @@ class UsersController < DefaultNamespaceController
         @user = User.new
         render( { :layout => 'simple.html.haml' } )
     end
+    
+    # fetch a user's word count progress.
+    def progress
+        user = User.find( params[ :id ] )
+        word_counts = user.word_counts
+        
+        added = [  ]
+        subtracted = [  ]
+        total = [  ]
+        
+        ( ( Date.today - 30 )..Date.today ).each do | date |
+            bod = date.beginning_of_day
+            eod = date.end_of_day
+            nod = date.at_noon
+            
+            words_added = word_counts
+                .where( 'words > 0 AND completed_at BETWEEN ? AND ?', bod, eod )
+                .sum( :words )
+            words_subtracted = word_counts
+                .where( 'words < 0 AND completed_at BETWEEN ? AND ?', bod, eod )
+                .sum( :words )
+            words_total = words_added - words_subtracted
+            
+            added      << { :x => nod.to_i, :y => words_added }
+            subtracted << { :x => nod.to_i, :y => words_subtracted }
+            total      << { :x => nod.to_i, :y => words_total }
+        end
+        
+        respond_to do | format |
+            format.json { render(
+                :json => { :added => added, :subtracted => subtracted, :total => total }.to_json, 
+                :status => 200
+            ) }
+        end
+    end
 
     # display a user's profile page.
     def show

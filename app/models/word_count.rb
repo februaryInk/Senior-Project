@@ -1,4 +1,4 @@
-class Activity < ActiveRecord::Base
+class WordCount < ActiveRecord::Base
     
     # ASSOCIATIONS
     

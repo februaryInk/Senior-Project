@@ -31,6 +31,9 @@
                                 = f.hidden_field :user_id, :value => @user.id
                             %p
                                 = submit_tag 'Send Friendship Request', :class => 'button -bright'
+    %section.clear.content
+        %div.colum-100
+            %div.ct-chart{ 'data-user-id' => @user.id }
     %section.clear.color-band
         %div.activities
             %div.activities__feed

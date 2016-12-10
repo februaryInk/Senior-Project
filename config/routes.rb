@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     resources :sections, :only => [ :create, :destroy, :update ]
     resources :users
     
+    get 'users/:id/progress', :to => 'users#progress'
+    
     scope :path => '/forums' do
         resources :conversations, :only => [ :create, :new ]
     end
