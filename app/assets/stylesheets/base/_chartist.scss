@@ -1,0 +1,42 @@
+.ct-chart {
+    height: 20em;
+}
+
+.ct-line {
+    stroke-width: 1px;
+}
+
+.ct-series-a {
+    .ct-area {
+        fill: #044452;
+        fill-opacity: 1;
+    }
+    
+    .ct-line {
+        stroke: #044452;
+    }
+}
+
+.ct-series-b {
+    .ct-area {
+        fill: #f6cf1c;
+        fill-opacity: 1;
+    }
+    
+    .ct-line {
+        stroke: #f29209;
+    }
+}
+
+.ct-series-c {
+    .ct-area {
+        fill: #672158;
+        fill-opacity: 1;
+    }
+    
+    .ct-line {
+        stroke: #420130;
+    }
+}
+
+
