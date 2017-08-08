@@ -1,4 +1,4 @@
-class Manuscript < ActiveRecord::Base
+class Manuscript < ApplicationRecord
     
     # VALIDATIONS
     

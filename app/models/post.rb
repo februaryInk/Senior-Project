@@ -1,4 +1,4 @@
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
 
     # make the default order of collections of posts dependent on the time they 
     # were created_at, most recent first.

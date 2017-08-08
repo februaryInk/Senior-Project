@@ -1,4 +1,4 @@
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
     
     # make the default order of collections of comments dependent on the
     # time they were created_at, most recent last.

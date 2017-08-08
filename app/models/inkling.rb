@@ -1,4 +1,4 @@
-class Inkling < ActiveRecord::Base
+class Inkling < ApplicationRecord
 
     # CLASS CONSTANTS
     

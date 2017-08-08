@@ -1,4 +1,4 @@
-class NewsReport < ActiveRecord::Base
+class NewsReport < ApplicationRecord
     
     # VALIDATIONS
     

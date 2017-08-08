@@ -1,4 +1,4 @@
-class ForumCategory < ActiveRecord::Base
+class ForumCategory < ApplicationRecord
 
     include CallableByName
 

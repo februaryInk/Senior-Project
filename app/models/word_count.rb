@@ -1,4 +1,4 @@
-class WordCount < ActiveRecord::Base
+class WordCount < ApplicationRecord
     
     # ASSOCIATIONS
     

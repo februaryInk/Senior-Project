@@ -3,7 +3,7 @@
 # between the records. this makes it easier to find all friendships for either 
 # user.
 
-class Friendship < ActiveRecord::Base
+class Friendship < ApplicationRecord
     
     # VALIDATIONS
     

@@ -1,4 +1,4 @@
-class GenreManuscript < ActiveRecord::Base
+class GenreManuscript < ApplicationRecord
     
     # ASSOCIATIONS
     

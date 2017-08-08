@@ -1,4 +1,4 @@
-class Section < ActiveRecord::Base
+class Section < ApplicationRecord
 
     # make the default order of collections of sections dependent on their
     # positions, lowest first.

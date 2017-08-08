@@ -1,4 +1,4 @@
-class Genre < ActiveRecord::Base
+class Genre < ApplicationRecord
 
     # it may be appropriate to eventually expand the genre model, to store typical word 
     # count, associated inklings, genre names, genre stamps...
